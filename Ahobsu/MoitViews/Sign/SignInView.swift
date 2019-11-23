@@ -11,7 +11,7 @@ import SwiftUI
 struct SignInView: View {
     var body: some View {
         VStack {
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: SignUpNickNameView()) {
                 Text("Sign Up")
             }
             NavigationLink(destination: EmptyView()) {
@@ -23,6 +23,8 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        NavigationView {
+            SignInView()
+        }
     }
 }
