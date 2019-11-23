@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SignUpNickNameView: View {
 
+    @Binding var window: UIWindow
     @State var nickName: String = ""
 
     var body: some View {
@@ -26,12 +27,12 @@ struct SignUpNickNameView: View {
         return SignUpFormView(title: "닉네임을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다 음",
-                              destination: SignUpGenderView())
+                              buttonDestination: SignUpGenderView(window: $window))
     }
 }
 
 struct SignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpNickNameView()
+        SignUpNickNameView(window: .constant(UIWindow()))
     }
 }

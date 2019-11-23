@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SignUpGenderView: View {
 
+    @Binding var window: UIWindow
     var genders: [String] = ["남성", "여성"]
     @State var gender: String = ""
 
@@ -29,12 +30,12 @@ struct SignUpGenderView: View {
         return SignUpFormView(title: "성별을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다음",
-                              destination: SignUpBirthdateView())
+                              buttonDestination: SignUpBirthdateView(window: $window))
     }
 }
 
 struct SignUpGenderView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpGenderView()
+        SignUpGenderView(window: .constant(UIWindow()))
     }
 }
