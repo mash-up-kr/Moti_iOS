@@ -14,36 +14,22 @@ struct SignUpGenderView: View {
     @State var gender: String = ""
 
     var body: some View {
-        ZStack {
-            VStack {
-                Spacer()
-                Text("성별을 입력해주세요.").font(.system(size: 28))
-                Spacer()
-                HStack {
-                    ForEach(genders, id: \.self) { (gender) in
-                        Button(action: {
-                            self.gender = gender
-                        }, label: {
-                            Text(gender).foregroundColor(.black)
-                        }).padding(.horizontal, 32)
-                            .padding(.vertical, 38)
-                            .background(Color.gray)
-                            .border(Color.black)
-                    }
-                }
-                Spacer()
-                // Next Step
-                NavigationLink(destination: EmptyView()) {
-                    Text("다 음").font(.system(size: 19))
-                        .foregroundColor(.white)
-                        .padding(20)
-                        .frame(minWidth: 243, minHeight: 58, alignment: .center)
-                        .background(Color(red: 0.325, green: 0.326, blue: 0.325))
-                        .cornerRadius(29)
-                }
-                Spacer()
-                }.frame(maxHeight: .infinity)
+        let contentView = HStack {
+            ForEach(genders, id: \.self) { (gender) in
+                Button(action: {
+                    self.gender = gender
+                }, label: {
+                    Text(gender).foregroundColor(.black)
+                }).padding(.horizontal, 32)
+                    .padding(.vertical, 38)
+                    .background(Color.gray)
+                    .border(Color.black)
+            }
         }
+        return SignUpFormView(title: "성별을 입력해주세요.",
+                              content: contentView,
+                              buttonTitle: "다음",
+                              destination: SignUpBirthdateView())
     }
 }
 
