@@ -29,17 +29,14 @@ struct SignUpNickNameView: View {
                               alignment: .bottom)
                     .padding(.horizontal, 66)
                 Spacer()
-                Button(action: {
-                    // Next Step
-                }, label: {
+                NavigationLink(destination: SignUpGenderView()) {
                     Text("다 음").font(.system(size: 19))
-                }).foregroundColor(.white)
-                    .padding(20)
-                    .frame(minWidth: 243,
-                           minHeight: 58,
-                           alignment: .center)
-                    .background(Color(red: 0.325, green: 0.326, blue: 0.325))
-                    .cornerRadius(29)
+                        .foregroundColor(.white)
+                        .padding(20)
+                        .frame(minWidth: 243, minHeight: 58, alignment: .center)
+                        .background(Color(red: 0.325, green: 0.326, blue: 0.325))
+                        .cornerRadius(29)
+                }
                 Spacer()
                 }.frame(maxHeight: .infinity)
         }
