@@ -60,6 +60,9 @@
 		49BF382A57134DDD162641DE9DCEC09B /* SignUpCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteView.swift; sourceTree = "<group>"; };
 		4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_EssayCamera.swift; sourceTree = "<group>"; };
 		4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotiView.swift; sourceTree = "<group>"; };
+		4C2B2F23BAC4441E6696E0BA8E772B62 /* MissionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionService.swift; sourceTree = "<group>"; };
+		576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBirthdateView.swift; sourceTree = "<group>"; };
+		58767712A13BF759341D51E350855FCC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
@@ -160,18 +163,18 @@
 		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */,
-				CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */,
+				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
+				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
 			);
-			path = AppLifeCycles;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		66B06056EC6306CB95E43D55EBB54D56 /* Products */ = {
+		7EC9B19E49698A9ED487734E855D7462 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */,
+				4C2B2F23BAC4441E6696E0BA8E772B62 /* MissionService.swift */,
 			);
-			name = Products;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		8D848B38A787F79BD8F0B4315BBF3C29 /* Main */ = {
@@ -198,6 +201,21 @@
 				70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */,
 			);
 			path = Common;
+		14FAD5B054B1379CC7373F5DAC8E6FDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				58767712A13BF759341D51E350855FCC /* Mission.swift */,
+				2A3D86867D089ED6F529A2FD7A55953F /* MissionData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
@@ -205,6 +223,7 @@
 			children = (
 				568E177EC003E48646C8E36071191FEF /* AppLifeCycles */,
 				6DC8FB8D69543F8D1CCD22185EBFC0B4 /* MotiViews */,
+				14FAD5B054B1379CC7373F5DAC8E6FDD /* Model */,
 				CEE4D77D1F9972D987DC8CF22F47216D /* Networking */,
 				C27E00B235EE98C2DD84FFBB365FE2C3 /* Preview Content */,
 				EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */,
@@ -213,6 +232,18 @@
 				E43C473F274655F06AC8950953A0EB4C /* UIColor+Extension.swift */,
 			);
 			path = Ahobsu;
+			sourceTree = "<group>";
+		};
+		A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */,
+				576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */,
+				F2342E0AF7C9A532B7236C864A992BD2 /* SignUpFormView.swift */,
+				3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */,
+				175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */,
+			);
+			path = Sign;
 			sourceTree = "<group>";
 		};
 		B8833F95E768E819E4F8D0D22A1EB3FB /* Recovered References */ = {
@@ -481,6 +512,8 @@
 				23CC565B3F399647ED41AD1DBFEA5A9E /* MainCardView.swift in Sources */,
 				25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */,
 				AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */,
+				5B83C300AB70327D0A91226820F152B0 /* Mission.swift in Sources */,
+				627BE14BB95E526E7D91939CBF74D995 /* MissionData.swift in Sources */,
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				DE8BDF24DD809376B8A04E8077644099 /* PageControl.swift in Sources */,
 				33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */,

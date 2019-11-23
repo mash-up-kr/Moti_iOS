@@ -9,13 +9,21 @@
 import Foundation
 
 struct MissionData: Decodable {
+<<<<<<< HEAD
     let id: Int
+=======
+    let missionId: Int
+>>>>>>> feat: 모델 추가
     let title: String
     let isContent: Bool
     let isImage: Bool
 
   enum CodingKeys: String, CodingKey {
+<<<<<<< HEAD
     case id
+=======
+    case missionId
+>>>>>>> feat: 모델 추가
     case title
     case isContent
     case isImage
