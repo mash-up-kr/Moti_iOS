@@ -13,6 +13,7 @@
 		30C1390123816564008D5EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390023816564008D5EA9 /* Assets.xcassets */; };
 		30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390323816564008D5EA9 /* Preview Assets.xcassets */; };
 		30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390523816564008D5EA9 /* LaunchScreen.storyboard */; };
+		84D596E023891D2B00FBBF07 /* Networking in Resources */ = {isa = PBXBuildFile; fileRef = 84D596DF23891D2B00FBBF07 /* Networking */; };
 		E33792BF0CFEC284B6B383BA /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		30C1390323816564008D5EA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		30C1390623816564008D5EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30C1390823816564008D5EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D596DF23891D2B00FBBF07 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Networking; sourceTree = "<group>"; };
 		927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91312CDCCC47762D2AC3736 /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +65,7 @@
 		30C138F923816562008D5EA9 /* Ahobsu */ = {
 			isa = PBXGroup;
 			children = (
+				84D596DF23891D2B00FBBF07 /* Networking */,
 				30C138FA23816562008D5EA9 /* AppDelegate.swift */,
 				30C138FC23816562008D5EA9 /* SceneDelegate.swift */,
 				30C138FE23816562008D5EA9 /* ContentView.swift */,
@@ -162,6 +165,7 @@
 			files = (
 				30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */,
 				30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */,
+				84D596E023891D2B00FBBF07 /* Networking in Resources */,
 				30C1390123816564008D5EA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
