@@ -13,20 +13,16 @@
 		20A553E9B441D4F59C7AA0944E1DFF21 /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */; };
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
 		38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */; };
-		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
-		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
-		421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */; };
-		671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */; };
 		44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */; };
+		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */; };
+		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
 		92C69078716DD61B3BCEEAC9964A53FF /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312E6E13FDD809B9878C356F45D4FE2 /* QuestionCellView.swift */; };
 		9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */; };
-		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
 		A99F9A73626BDEAF6CFCD7254D588FC4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */; };
 		ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */; };
-		B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */; };
 		D82223B8B860A96464BE927F35260501 /* SignUpBirthdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */; };
-		DDA0E631D33AC17514A6749FAA9F6F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442439CA50BE34489091510E78EB6EC5 /* LaunchScreen.storyboard */; };
 		E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */; };
 		F87C78B1BFD42D9039D0DA8332F78EB3 /* SignUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2342E0AF7C9A532B7236C864A992BD2 /* SignUpFormView.swift */; };
 /* End PBXBuildFile section */
@@ -36,10 +32,9 @@
 		19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayCellView.swift; sourceTree = "<group>"; };
 		1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
 		41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuProvider.swift; sourceTree = "<group>"; };
-		3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
 		44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeekView.swift; sourceTree = "<group>"; };
-		3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
 		576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBirthdateView.swift; sourceTree = "<group>"; };
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -72,6 +67,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
+				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,46 +101,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
+		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
 			isa = PBXGroup;
 			children = (
-				84D596DF23891D2B00FBBF07 /* Networking */,
-				30C138FA23816562008D5EA9 /* AppDelegate.swift */,
-				30C138FC23816562008D5EA9 /* SceneDelegate.swift */,
-				30C138FE23816562008D5EA9 /* ContentView.swift */,
-				30C1390023816564008D5EA9 /* Assets.xcassets */,
-				30C1390523816564008D5EA9 /* LaunchScreen.storyboard */,
-				30C1390823816564008D5EA9 /* Info.plist */,
-				30C1390223816564008D5EA9 /* Preview Content */,
 			);
 			path = Ahobsu;
-			sourceTree = "<group>";
-		};
-		CEE4D77D1F9972D987DC8CF22F47216D /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
-				65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */,
-				41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */,
-				627D69417FFDB9370F8C58945F570844 /* Networking.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
 			isa = PBXGroup;
 			children = (
 				568E177EC003E48646C8E36071191FEF /* AppLifeCycles */,
-				CEE4D77D1F9972D987DC8CF22F47216D /* Networking */,
 				EE810B349DEC4A45999182DF6FA41FDD /* MoitViews */,
+				CEE4D77D1F9972D987DC8CF22F47216D /* Networking */,
 				C27E00B235EE98C2DD84FFBB365FE2C3 /* Preview Content */,
 				EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */,
 				E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */,
@@ -137,10 +122,16 @@
 			path = Ahobsu;
 			sourceTree = "<group>";
 		};
+		B8833F95E768E819E4F8D0D22A1EB3FB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
-				FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */,
 				576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */,
 				F2342E0AF7C9A532B7236C864A992BD2 /* SignUpFormView.swift */,
 				3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */,
@@ -156,6 +147,7 @@
 				8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */,
 				808AD775A1258F6539D357758F0C5D1D /* Pods */,
 				66B06056EC6306CB95E43D55EBB54D56 /* Products */,
+				B8833F95E768E819E4F8D0D22A1EB3FB /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +157,17 @@
 				A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEE4D77D1F9972D987DC8CF22F47216D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
+				65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */,
+				41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */,
+				627D69417FFDB9370F8C58945F570844 /* Networking.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */ = {
@@ -187,8 +190,8 @@
 		EE810B349DEC4A45999182DF6FA41FDD /* MoitViews */ = {
 			isa = PBXGroup;
 			children = (
-				A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */,
 				FC288B4DD68EDE4832E309448571D2EA /* Main */,
+				A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */,
 			);
 			path = MoitViews;
 			sourceTree = "<group>";
@@ -269,16 +272,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */,
-				30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */,
-				84D596E023891D2B00FBBF07 /* Networking in Resources */,
-				30C1390123816564008D5EA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9FD54A6C1858EDB6CD735751C15700F1 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		21DF4C65FF65ECCEB7D801FCC5BA6251 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,24 +334,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		9FD54A6C1858EDB6CD735751C15700F1 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		B54ED29C05F8A79A24CCE41D0BD0EC17 /* Xunique */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -384,20 +383,18 @@
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
-				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */,
 				A99F9A73626BDEAF6CFCD7254D588FC4 /* MainView.swift in Sources */,
 				16A2863755DCB8DC9E54F9CDA1E5F6E1 /* MotiView.swift in Sources */,
+				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				92C69078716DD61B3BCEEAC9964A53FF /* QuestionCellView.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
-				421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */,
+				44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */,
 				D82223B8B860A96464BE927F35260501 /* SignUpBirthdateView.swift in Sources */,
 				F87C78B1BFD42D9039D0DA8332F78EB3 /* SignUpFormView.swift in Sources */,
 				671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */,
 				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,
-				44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */,
 				9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */,
-				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
