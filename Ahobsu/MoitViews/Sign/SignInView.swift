@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct SignInView: View {
+
+    @State var window: UIWindow
+
     var body: some View {
-        VStack {
-            NavigationLink(destination: SignUpNickNameView()) {
-                Text("Sign Up")
-            }
-            NavigationLink(destination: EmptyView()) {
-                Text("Sign In")
+        NavigationView {
+            VStack {
+                NavigationLink(destination: SignUpNickNameView(window: $window)) {
+                    Text("Sign Up")
+                }
+                NavigationLink(destination: EmptyView()) {
+                    Text("Sign In")
+                }
             }
         }
     }
@@ -23,8 +28,6 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SignInView()
-        }
+        SignInView(window: UIWindow())
     }
 }

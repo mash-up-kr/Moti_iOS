@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SignUpBirthdateView: View {
 
+    @Binding var window: UIWindow
     @State var birthdate: Date = Date()
 
     var body: some View {
@@ -24,12 +25,12 @@ struct SignUpBirthdateView: View {
         return SignUpFormView(title: "생년월일을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "가입하기",
-                              destination: EmptyView())
+                              buttonDestination: SignUpCompleteView(window: $window))
     }
 }
 
 struct SignUpBirthdateView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpBirthdateView().environment(\.horizontalSizeClass, .compact)
+        SignUpBirthdateView(window: .constant(UIWindow())).environment(\.horizontalSizeClass, .compact)
     }
 }
