@@ -16,6 +16,7 @@
 		421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */; };
 		44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		66B1CA6F45A8D130B036A0187A429B50 /* SignUpCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF71808CFE508C7E5154630E7FC5EB1 /* SignUpCompleteView.swift */; };
 		671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */; };
 		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
+		6BF71808CFE508C7E5154630E7FC5EB1 /* SignUpCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteView.swift; sourceTree = "<group>"; };
 		7533D079041E515F6A87A4581673A1F5 /* MotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotiView.swift; sourceTree = "<group>"; };
 		89547C729FE9693E0BC39DFB3A317506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B524EB2B72357F2B05DBB4E88D416AC /* AnswerComplete */ = {
+			isa = PBXGroup;
+			children = (
+				9ADC46C8F206284B8A176CED21E8DA18 /* AnswerComplete.swift */,
+			);
+			name = AnswerComplete;
+			path = Ahobsu/MoitViews/AnswerComplete;
+			sourceTree = SOURCE_ROOT;
+		};
 		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,20 +130,12 @@
 			path = Ahobsu;
 			sourceTree = "<group>";
 		};
-		0B524EB2B72357F2B05DBB4E88D416AC /* AnswerComplete */ = {
-			isa = PBXGroup;
-			children = (
-				9ADC46C8F206284B8A176CED21E8DA18 /* AnswerComplete.swift */,
-			);
-			name = AnswerComplete;
-			path = Ahobsu/MoitViews/AnswerComplete;
-			sourceTree = SOURCE_ROOT;
-		};
 		A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
 				FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */,
 				576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */,
+				6BF71808CFE508C7E5154630E7FC5EB1 /* SignUpCompleteView.swift */,
 				F2342E0AF7C9A532B7236C864A992BD2 /* SignUpFormView.swift */,
 				3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */,
 				175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */,
@@ -401,6 +404,7 @@
 				44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */,
 				421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */,
 				D82223B8B860A96464BE927F35260501 /* SignUpBirthdateView.swift in Sources */,
+				66B1CA6F45A8D130B036A0187A429B50 /* SignUpCompleteView.swift in Sources */,
 				F87C78B1BFD42D9039D0DA8332F78EB3 /* SignUpFormView.swift in Sources */,
 				671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */,
 				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,

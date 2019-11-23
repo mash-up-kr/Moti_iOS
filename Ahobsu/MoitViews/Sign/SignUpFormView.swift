@@ -13,7 +13,9 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
     var title: String
     var content: Content
     var buttonTitle: String
-    var destination: Destination
+    var buttonDestination: Destination
+    var buttonAction: (() -> Void)?
+    var shouldUseAction: Bool = false
 
     var body: some View {
         ZStack {
@@ -24,13 +26,26 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
                 content
                 Spacer()
                 // Next Step
-                NavigationLink(destination: destination) {
-                    Text(buttonTitle).font(.system(size: 19))
-                        .foregroundColor(.white)
-                        .padding(20)
-                        .frame(minWidth: 243, minHeight: 58, alignment: .center)
-                        .background(Color(red: 0.325, green: 0.326, blue: 0.325))
-                        .cornerRadius(29)
+                if shouldUseAction {
+                    Button(action: {
+                        self.buttonAction?()
+                    }, label: {
+                        Text(buttonTitle).font(.system(size: 19))
+                            .foregroundColor(.white)
+                            .padding(20)
+                            .frame(minWidth: 243, minHeight: 58, alignment: .center)
+                            .background(Color(red: 0.325, green: 0.326, blue: 0.325))
+                            .cornerRadius(29)
+                    })
+                } else {
+                    NavigationLink(destination: buttonDestination) {
+                        Text(buttonTitle).font(.system(size: 19))
+                            .foregroundColor(.white)
+                            .padding(20)
+                            .frame(minWidth: 243, minHeight: 58, alignment: .center)
+                            .background(Color(red: 0.325, green: 0.326, blue: 0.325))
+                            .cornerRadius(29)
+                    }
                 }
                 Spacer()
                 }.frame(maxHeight: .infinity)
@@ -43,6 +58,7 @@ struct SignUpView_Previews: PreviewProvider {
         SignUpFormView(title: "타이틀을 입력해주세요.",
                        content: Text("Content View"),
                        buttonTitle: "다 음",
-                       destination: Text("Next View"))
+                       buttonDestination: Text("Next View"),
+                       buttonAction: nil)
     }
 }
