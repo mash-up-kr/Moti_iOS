@@ -388,6 +388,7 @@
 				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,
 				44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */,
 				9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */,
+				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
