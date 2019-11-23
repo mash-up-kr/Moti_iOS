@@ -14,7 +14,7 @@ DEPENDENCIES:
   - Moya
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Kingfisher
     - Moya
@@ -28,4 +28,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a5f97054d095659fdf22a6ed245bc72e4d138814
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3
