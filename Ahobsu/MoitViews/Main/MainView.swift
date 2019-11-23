@@ -13,55 +13,78 @@ struct MainView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                DayWeekView()
-                    .frame(height: 80, alignment: .center)
-                    .padding(EdgeInsets(top: 12,
+            ZStack {
+                Image("bgColor")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea([.top])
+                VStack {
+                    ZStack {
+                        Rectangle()
+                            .cornerRadius(16)
+                            .shadow(radius: 10)
+                            .foregroundColor(.white)
+                            .frame(height: 120, alignment: .center)
+                            .offset(x: 0, y: -15)
+
+                        DayWeekView()
+                            .frame(height: 80, alignment: .center)
+                            .padding(EdgeInsets(top: 12,
+                                                leading: 15,
+                                                bottom: 8,
+                                                trailing: 15))
+                    }
+                    Spacer()
+                    NavigationLink(destination: SelectQuestionView(isNavigationBarHidden: self.$isNavigationBarHidden)) {
+                        MotiView(color: Color(red: 143/255, green: 164/255, blue: 255/255))
+                            .padding(40)
+
+                    }
+                    Spacer()
+
+                    HStack {
+                        Button(action: goToCalendar) {
+                            Image(systemName: "calendar")
+                                .foregroundColor(.black)
+                                .frame(width: 48, height: 48, alignment: .center)
+                                .background(Circle()
+                                    .foregroundColor(.white))
+                            .shadow(radius: 10)
+                        }
+
+                        Spacer(minLength: 200)
+
+                        Text("2019. 08. 28.")
+                            .font(.system(size: 20, weight: .regular, design: .default))
+                            .background(Capsule()
+                                .padding(.horizontal, -39)
+                                .padding(.vertical, -12)
+                                .foregroundColor(.white))
+                            .shadow(radius: 10)
+
+                        Spacer()
+
+                        Button(action: goToMyPage) {
+                            Image(systemName: "person")
+                                .foregroundColor(.black)
+                                .frame(width: 48, height: 48, alignment: .center)
+                                .background(Circle()
+                                    .foregroundColor(.white))
+                            .shadow(radius: 10)
+                        }
+
+                    }
+                    .padding(EdgeInsets(top: 0,
                                         leading: 15,
-                                        bottom: 8,
+                                        bottom: 32,
                                         trailing: 15))
-                Spacer()
-                NavigationLink(destination: SelectQuestionView(isNavigationBarHidden: self.$isNavigationBarHidden)) {
-                    MotiView(color: .red)
-                        .padding(40)
                 }
-                Spacer()
-
-                HStack {
-                    Button(action: goToCalendar) {
-                        Image(systemName: "calendar")
-                            .foregroundColor(.black)
-                            .frame(width: 48, height: 48, alignment: .center)
-                            .background(Circle()
-                                .foregroundColor(.gray))
-                    }
-
-                    Spacer()
-
-                    Text("2019년 08월 28일")
-                        .font(.system(size: 20, weight: .regular, design: .default))
-
-                    Spacer()
-
-                    Button(action: goToMyPage) {
-                        Image(systemName: "person")
-                            .foregroundColor(.black)
-                            .frame(width: 48, height: 48, alignment: .center)
-                            .background(Circle()
-                                .foregroundColor(.gray))
-                    }
-
+                .navigationBarTitle(Text(""))
+                .onAppear {
+                    self.isNavigationBarHidden = true
                 }
-                .padding(EdgeInsets(top: 0,
-                                    leading: 15,
-                                    bottom: 32,
-                                    trailing: 15))
+                .navigationBarHidden(isNavigationBarHidden)
             }
-            .navigationBarTitle(Text(""))
-            .onAppear {
-                self.isNavigationBarHidden = true
-            }
-            .navigationBarHidden(isNavigationBarHidden)
         }
     }
 

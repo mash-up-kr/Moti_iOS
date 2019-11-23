@@ -18,8 +18,7 @@ struct WeekDayCellView: View {
                               weight: .regular,
                               design: .default)
             )
-            Circle()
-                .foregroundColor(color)
+            MotiView(color: color)
         }
     }
 }
