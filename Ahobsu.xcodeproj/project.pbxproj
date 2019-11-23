@@ -14,6 +14,8 @@
 		38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
 		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
+		421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */; };
+		671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
 		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
 		B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNickNameView.swift; sourceTree = "<group>"; };
 		33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuProvider.swift; sourceTree = "<group>"; };
+		3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
+>>>>>>> 60b5e25... feat: 성별 화면 생성
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */,
+				3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */,
 				175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */,
 			);
 			path = Sign;
@@ -349,6 +354,7 @@
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
 				421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */,
+				671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */,
 				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
