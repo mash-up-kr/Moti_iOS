@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct SelectQuestionView: View {
+    @Binding var isNavigationBarHidden: Bool
+
     var body: some View {
         VStack {
             Spacer()
@@ -19,13 +21,12 @@ struct SelectQuestionView: View {
                             design: .default))
                 .lineSpacing(6)
             Spacer(minLength: 24)
-            Circle()
+            MotiView(color: .red)
                 .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300, alignment: .center)
                 .offset(x: -140, y: 0)
             Spacer(minLength: 20)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
-
                     QuestionCellView()
                     QuestionCellView()
                     QuestionCellView()
@@ -36,12 +37,19 @@ struct SelectQuestionView: View {
             }
             .frame(height: 160)
             .padding(EdgeInsets(top: 0, leading: 3, bottom: 32, trailing: 0))
+//            .navigationBarTitle("")
+            .onAppear {
+//                withAnimation {
+                    self.isNavigationBarHidden = false
+//                }
+
+            }
         }
     }
 }
 
 struct SelectQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectQuestionView()
+        SelectQuestionView(isNavigationBarHidden: .constant(true))
     }
 }
