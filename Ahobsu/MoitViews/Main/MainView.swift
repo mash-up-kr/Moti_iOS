@@ -40,7 +40,7 @@ struct MainView: View {
                             .padding(40)
 
                     }
-                    Spacer()
+                    Spacer(minLength: 100)
 
                     HStack {
                         Button(action: goToCalendar) {
@@ -52,7 +52,7 @@ struct MainView: View {
                             .shadow(radius: 10)
                         }
 
-                        Spacer(minLength: 200)
+                        Spacer()
 
                         Text("2019. 08. 28.")
                             .font(.system(size: 20, weight: .regular, design: .default))
