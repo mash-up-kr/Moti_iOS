@@ -42,6 +42,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30D32EC3238924FD00DC5D91 /* MoitViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MoitViews;
+			sourceTree = "<group>";
+		};
 		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +91,7 @@
 				EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */,
 				E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */,
 				FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */,
+				30D32EC3238924FD00DC5D91 /* MoitViews */,
 			);
 			path = Ahobsu;
 			sourceTree = "<group>";
@@ -212,24 +220,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ahobsu/Pods-Ahobsu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4313117CF8BEE3B814064544DE21499 /* SwiftLint AutoCorrect */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLint AutoCorrect";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		9A4B74D6A6847D4F4E37800781393737 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +277,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "sh $SRCROOT/xuniqerun.sh\n";
+		};
+		D4313117CF8BEE3B814064544DE21499 /* SwiftLint AutoCorrect */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint AutoCorrect";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
