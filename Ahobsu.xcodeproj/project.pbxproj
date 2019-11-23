@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */; };
-		20A553E9B441D4F59C7AA0944E1DFF21 /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */; };
-		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
-		421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */; };
-		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
-		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
-		B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */; };
-		DDA0E631D33AC17514A6749FAA9F6F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442439CA50BE34489091510E78EB6EC5 /* LaunchScreen.storyboard */; };
+		30C138FB23816562008D5EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C138FA23816562008D5EA9 /* AppDelegate.swift */; };
+		30C138FD23816562008D5EA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C138FC23816562008D5EA9 /* SceneDelegate.swift */; };
+		30C138FF23816562008D5EA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C138FE23816562008D5EA9 /* ContentView.swift */; };
+		30C1390123816564008D5EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390023816564008D5EA9 /* Assets.xcassets */; };
+		30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390323816564008D5EA9 /* Preview Assets.xcassets */; };
+		30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390523816564008D5EA9 /* LaunchScreen.storyboard */; };
+		84D596E023891D2B00FBBF07 /* Networking in Resources */ = {isa = PBXBuildFile; fileRef = 84D596DF23891D2B00FBBF07 /* Networking */; };
+		E33792BF0CFEC284B6B383BA /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
-		89547C729FE9693E0BC39DFB3A317506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
-		F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = Ahobsu/MoitViews/Sign/SignInView.swift; sourceTree = SOURCE_ROOT; };
-		FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		08913CA02B12464FC484D84E /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
+		30C138F723816562008D5EA9 /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C138FA23816562008D5EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		30C138FC23816562008D5EA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		30C138FE23816562008D5EA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		30C1390023816564008D5EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30C1390323816564008D5EA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		30C1390623816564008D5EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30C1390823816564008D5EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D596DF23891D2B00FBBF07 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Networking; sourceTree = "<group>"; };
+		927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91312CDCCC47762D2AC3736 /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,29 +64,14 @@
 		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
-				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
-			isa = PBXGroup;
-			children = (
-				568E177EC003E48646C8E36071191FEF /* AppLifeCycles */,
-				EE810B349DEC4A45999182DF6FA41FDD /* MoitViews */,
-				C27E00B235EE98C2DD84FFBB365FE2C3 /* Preview Content */,
-				EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */,
-				E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */,
-				FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */,
+				84D596DF23891D2B00FBBF07 /* Networking */,
+				30C138FA23816562008D5EA9 /* AppDelegate.swift */,
+				30C138FC23816562008D5EA9 /* SceneDelegate.swift */,
+				30C138FE23816562008D5EA9 /* ContentView.swift */,
+				30C1390023816564008D5EA9 /* Assets.xcassets */,
+				30C1390523816564008D5EA9 /* LaunchScreen.storyboard */,
+				30C1390823816564008D5EA9 /* Info.plist */,
+				30C1390223816564008D5EA9 /* Preview Content */,
 			);
 			path = Ahobsu;
 			sourceTree = "<group>";
@@ -205,9 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */,
-				DDA0E631D33AC17514A6749FAA9F6F9B /* LaunchScreen.storyboard in Resources */,
-				B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */,
+				30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */,
+				30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */,
+				84D596E023891D2B00FBBF07 /* Networking in Resources */,
+				30C1390123816564008D5EA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
