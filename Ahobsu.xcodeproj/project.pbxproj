@@ -7,114 +7,157 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30C138FB23816562008D5EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C138FA23816562008D5EA9 /* AppDelegate.swift */; };
-		30C138FD23816562008D5EA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C138FC23816562008D5EA9 /* SceneDelegate.swift */; };
-		30C138FF23816562008D5EA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C138FE23816562008D5EA9 /* ContentView.swift */; };
-		30C1390123816564008D5EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390023816564008D5EA9 /* Assets.xcassets */; };
-		30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390323816564008D5EA9 /* Preview Assets.xcassets */; };
-		30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C1390523816564008D5EA9 /* LaunchScreen.storyboard */; };
-		84D596E023891D2B00FBBF07 /* Networking in Resources */ = {isa = PBXBuildFile; fileRef = 84D596DF23891D2B00FBBF07 /* Networking */; };
-		E33792BF0CFEC284B6B383BA /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */; };
+		08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */; };
+		165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */; };
+		20A553E9B441D4F59C7AA0944E1DFF21 /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */; };
+		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
+		38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */; };
+		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
+		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
+		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
+		B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */; };
+		DDA0E631D33AC17514A6749FAA9F6F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442439CA50BE34489091510E78EB6EC5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		08913CA02B12464FC484D84E /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
-		30C138F723816562008D5EA9 /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30C138FA23816562008D5EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		30C138FC23816562008D5EA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		30C138FE23816562008D5EA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		30C1390023816564008D5EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30C1390323816564008D5EA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		30C1390623816564008D5EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		30C1390823816564008D5EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84D596DF23891D2B00FBBF07 /* Networking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Networking; sourceTree = "<group>"; };
-		927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C91312CDCCC47762D2AC3736 /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
+		33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuProvider.swift; sourceTree = "<group>"; };
+		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
+		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
+		89547C729FE9693E0BC39DFB3A317506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
+		F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPI.swift; sourceTree = "<group>"; };
+		FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		30C138F423816562008D5EA9 /* Frameworks */ = {
+		19FD234B22B92982AF3D7DA637CF773B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E33792BF0CFEC284B6B383BA /* Pods_Ahobsu.framework in Frameworks */,
+				20A553E9B441D4F59C7AA0944E1DFF21 /* Pods_Ahobsu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30C138EE23816562008D5EA9 = {
+		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
-				30C138F923816562008D5EA9 /* Ahobsu */,
-				30C138F823816562008D5EA9 /* Products */,
-				E780C125017DAE8D01C87D1F /* Pods */,
-				3284E047EF896BCF762B1A93 /* Frameworks */,
+				F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */,
+				CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */,
 			);
+			path = AppLifeCycles;
 			sourceTree = "<group>";
 		};
-		30C138F823816562008D5EA9 /* Products */ = {
+		66B06056EC6306CB95E43D55EBB54D56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30C138F723816562008D5EA9 /* Ahobsu.app */,
+				B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		30C138F923816562008D5EA9 /* Ahobsu */ = {
+		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				84D596DF23891D2B00FBBF07 /* Networking */,
-				30C138FA23816562008D5EA9 /* AppDelegate.swift */,
-				30C138FC23816562008D5EA9 /* SceneDelegate.swift */,
-				30C138FE23816562008D5EA9 /* ContentView.swift */,
-				30C1390023816564008D5EA9 /* Assets.xcassets */,
-				30C1390523816564008D5EA9 /* LaunchScreen.storyboard */,
-				30C1390823816564008D5EA9 /* Info.plist */,
-				30C1390223816564008D5EA9 /* Preview Content */,
+				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
+				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
 			);
-			path = Ahobsu;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		30C1390223816564008D5EA9 /* Preview Content */ = {
+		CEE4D77D1F9972D987DC8CF22F47216D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				30C1390323816564008D5EA9 /* Preview Assets.xcassets */,
+				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
+				65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */,
+				41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */,
+				627D69417FFDB9370F8C58945F570844 /* Networking.swift */,
 			);
-			path = "Preview Content";
+			path = Networking;
 			sourceTree = "<group>";
 		};
-		3284E047EF896BCF762B1A93 /* Frameworks */ = {
+		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				927441C954C4A1B46B3AF802 /* Pods_Ahobsu.framework */,
+				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E780C125017DAE8D01C87D1F /* Pods */ = {
+		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
 			isa = PBXGroup;
 			children = (
-				08913CA02B12464FC484D84E /* Pods-Ahobsu.debug.xcconfig */,
-				C91312CDCCC47762D2AC3736 /* Pods-Ahobsu.release.xcconfig */,
+				568E177EC003E48646C8E36071191FEF /* AppLifeCycles */,
+				CEE4D77D1F9972D987DC8CF22F47216D /* Networking */,
+				C27E00B235EE98C2DD84FFBB365FE2C3 /* Preview Content */,
+				EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */,
+				E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */,
+				FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */,
 			);
-			path = Pods;
+			path = Ahobsu;
+			sourceTree = "<group>";
+		};
+		BF13CD4DB3E3C96C0A9006F517893B60 = {
+			isa = PBXGroup;
+			children = (
+				A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */,
+				8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */,
+				808AD775A1258F6539D357758F0C5D1D /* Pods */,
+				66B06056EC6306CB95E43D55EBB54D56 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C27E00B235EE98C2DD84FFBB365FE2C3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */,
+				442439CA50BE34489091510E78EB6EC5 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30C138F623816562008D5EA9 /* Ahobsu */ = {
+		4E7EA0F79A1DA7C88EE130EF142163E1 /* Ahobsu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30C1390B23816564008D5EA9 /* Build configuration list for PBXNativeTarget "Ahobsu" */;
+			buildConfigurationList = 664E1020637360D6BFCE7533F1A0C351 /* Build configuration list for PBXNativeTarget "Ahobsu" */;
 			buildPhases = (
-				4288A46051FB0281D9532C32 /* [CP] Check Pods Manifest.lock */,
-				30C1390E238166C5008D5EA9 /* SwiftLint */,
-				30C138F323816562008D5EA9 /* Sources */,
-				30C138F423816562008D5EA9 /* Frameworks */,
-				30C138F523816562008D5EA9 /* Resources */,
-				26AA5F46CB3099840E95A66F /* [CP] Embed Pods Frameworks */,
+				9A4B74D6A6847D4F4E37800781393737 /* [CP] Check Pods Manifest.lock */,
+				D4313117CF8BEE3B814064544DE21499 /* SwiftLint AutoCorrect */,
+				9FD54A6C1858EDB6CD735751C15700F1 /* SwiftLint */,
+				B54ED29C05F8A79A24CCE41D0BD0EC17 /* Xunique */,
+				EBB2A7C126D31D45C446FDBBE957F831 /* Sources */,
+				19FD234B22B92982AF3D7DA637CF773B /* Frameworks */,
+				4FA568E03DF54AAAD06064182D618C81 /* Resources */,
+				21DF4C65FF65ECCEB7D801FCC5BA6251 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,25 +165,25 @@
 			);
 			name = Ahobsu;
 			productName = Ahobsu;
-			productReference = 30C138F723816562008D5EA9 /* Ahobsu.app */;
+			productReference = B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		30C138EF23816562008D5EA9 /* Project object */ = {
+		83359751FA69E37FDD96344B6366BD34 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = ahobsu;
 				TargetAttributes = {
-					30C138F623816562008D5EA9 = {
+					4E7EA0F79A1DA7C88EE130EF142163E1 = {
 						CreatedOnToolsVersion = 11.2;
 					};
 				};
 			};
-			buildConfigurationList = 30C138F223816562008D5EA9 /* Build configuration list for PBXProject "Ahobsu" */;
+			buildConfigurationList = F8E17EFD124FED810A2BA92A78E2A4A6 /* Build configuration list for PBXProject "Ahobsu" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,32 +191,31 @@
 				en,
 				Base,
 			);
-			mainGroup = 30C138EE23816562008D5EA9;
-			productRefGroup = 30C138F823816562008D5EA9 /* Products */;
+			mainGroup = BF13CD4DB3E3C96C0A9006F517893B60;
+			productRefGroup = 66B06056EC6306CB95E43D55EBB54D56 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30C138F623816562008D5EA9 /* Ahobsu */,
+				4E7EA0F79A1DA7C88EE130EF142163E1 /* Ahobsu */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30C138F523816562008D5EA9 /* Resources */ = {
+		4FA568E03DF54AAAD06064182D618C81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C1390723816564008D5EA9 /* LaunchScreen.storyboard in Resources */,
-				30C1390423816564008D5EA9 /* Preview Assets.xcassets in Resources */,
-				84D596E023891D2B00FBBF07 /* Networking in Resources */,
-				30C1390123816564008D5EA9 /* Assets.xcassets in Resources */,
+				A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */,
+				DDA0E631D33AC17514A6749FAA9F6F9B /* LaunchScreen.storyboard in Resources */,
+				B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		26AA5F46CB3099840E95A66F /* [CP] Embed Pods Frameworks */ = {
+		21DF4C65FF65ECCEB7D801FCC5BA6251 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -190,25 +232,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ahobsu/Pods-Ahobsu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		30C1390E238166C5008D5EA9 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		4288A46051FB0281D9532C32 /* [CP] Check Pods Manifest.lock */ = {
+		9A4B74D6A6847D4F4E37800781393737 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -230,26 +254,84 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9FD54A6C1858EDB6CD735751C15700F1 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		B54ED29C05F8A79A24CCE41D0BD0EC17 /* Xunique */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Xunique;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/xuniqerun.sh\n";
+		};
+		D4313117CF8BEE3B814064544DE21499 /* SwiftLint AutoCorrect */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint AutoCorrect";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30C138F323816562008D5EA9 /* Sources */ = {
+		EBB2A7C126D31D45C446FDBBE957F831 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C138FB23816562008D5EA9 /* AppDelegate.swift in Sources */,
-				30C138FD23816562008D5EA9 /* SceneDelegate.swift in Sources */,
-				30C138FF23816562008D5EA9 /* ContentView.swift in Sources */,
+				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
+				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
+				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
+				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
+				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
+				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
+				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		30C1390523816564008D5EA9 /* LaunchScreen.storyboard */ = {
+		442439CA50BE34489091510E78EB6EC5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				30C1390623816564008D5EA9 /* Base */,
+				89547C729FE9693E0BC39DFB3A317506 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -257,7 +339,85 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		30C1390923816564008D5EA9 /* Debug */ = {
+		07864B81A2E64EE66E994A3DBC729A41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Ahobsu/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2956B03881800781D1D4ED439393ED67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		46FCEB994FFE015F44BA6A495F78F181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -317,63 +477,9 @@
 			};
 			name = Debug;
 		};
-		30C1390A23816564008D5EA9 /* Release */ = {
+		E23A6B7539C49CEDE5B102D04BB5DE2D /* Release */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		30C1390C23816564008D5EA9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08913CA02B12464FC484D84E /* Pods-Ahobsu.debug.xcconfig */;
+			baseConfigurationReference = E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -381,31 +487,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Ahobsu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		30C1390D23816564008D5EA9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C91312CDCCC47762D2AC3736 /* Pods-Ahobsu.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
-				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Ahobsu/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Ahobsu/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -422,25 +504,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30C138F223816562008D5EA9 /* Build configuration list for PBXProject "Ahobsu" */ = {
+		664E1020637360D6BFCE7533F1A0C351 /* Build configuration list for PBXNativeTarget "Ahobsu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30C1390923816564008D5EA9 /* Debug */,
-				30C1390A23816564008D5EA9 /* Release */,
+				07864B81A2E64EE66E994A3DBC729A41 /* Debug */,
+				E23A6B7539C49CEDE5B102D04BB5DE2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30C1390B23816564008D5EA9 /* Build configuration list for PBXNativeTarget "Ahobsu" */ = {
+		F8E17EFD124FED810A2BA92A78E2A4A6 /* Build configuration list for PBXProject "Ahobsu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30C1390C23816564008D5EA9 /* Debug */,
-				30C1390D23816564008D5EA9 /* Release */,
+				46FCEB994FFE015F44BA6A495F78F181 /* Debug */,
+				2956B03881800781D1D4ED439393ED67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 30C138EF23816562008D5EA9 /* Project object */;
+	rootObject = 83359751FA69E37FDD96344B6366BD34 /* Project object */;
 }
