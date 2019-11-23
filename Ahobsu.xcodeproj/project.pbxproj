@@ -25,6 +25,8 @@
 		51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
 		6C9386481CC157985B897ABD17731F6A /* AnswerComplete_Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCC1502F5B0A02023F0477DDC62377 /* AnswerComplete_Common.swift */; };
+		5B83C300AB70327D0A91226820F152B0 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58767712A13BF759341D51E350855FCC /* Mission.swift */; };
+		627BE14BB95E526E7D91939CBF74D995 /* MissionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D86867D089ED6F529A2FD7A55953F /* MissionData.swift */; };
 		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
 		6E5D6BFE4E62C3D82B3E94BDD172B1D5 /* AnswerCompletePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8889A44037417D9CC2CB812C85AD27E /* AnswerCompletePageControl.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
@@ -158,18 +160,18 @@
 		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
-				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
+				F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */,
+				CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */,
 			);
-			path = Pods;
+			path = AppLifeCycles;
 			sourceTree = "<group>";
 		};
-		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
+		66B06056EC6306CB95E43D55EBB54D56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
+				B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */,
 			);
-			name = Frameworks;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8D848B38A787F79BD8F0B4315BBF3C29 /* Main */ = {
@@ -242,6 +244,7 @@
 		CEE4D77D1F9972D987DC8CF22F47216D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7EC9B19E49698A9ED487734E855D7462 /* Service */,
 				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
 				65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */,
 				41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */,

@@ -22,4 +22,9 @@ class AhobsuProvider {
                         error: @escaping ((MoyaError) -> Void)) {
         provider.request(.testPost(postId: postId, data: data), completionHandler: completion, errorHandler: error)
     }
+
+    class func mission(completion: @escaping ((Response) -> Void),
+                       error: @escaping ((MoyaError) -> Void)) {
+        provider.request(.mission, completionHandler: completion, errorHandler: error)
+    }
 }

@@ -11,6 +11,8 @@ import Moya
 enum AhobsuAPI {
     case test
     case testPost(postId: Int, data: String)
+
+    case mission
 }
 
 extension AhobsuAPI: TargetType {
@@ -26,6 +28,8 @@ extension AhobsuAPI: TargetType {
             return "/"
         case let .testPost(postId):
             return "/\(postId)"
+        case .mission:
+            return "/missions"
         }
     }
 
@@ -35,6 +39,8 @@ extension AhobsuAPI: TargetType {
             return .get
         case .testPost:
             return .post
+        case .mission:
+            return .get
         }
     }
 
