@@ -23,6 +23,7 @@
 		9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */; };
 		A99F9A73626BDEAF6CFCD7254D588FC4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */; };
 		ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */; };
+		CE4BEEFCC96FA4C2E8F72EF7377C07C2 /* AnswerComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC46C8F206284B8A176CED21E8DA18 /* AnswerComplete.swift */; };
 		D82223B8B860A96464BE927F35260501 /* SignUpBirthdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */; };
 		E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */; };
 		F87C78B1BFD42D9039D0DA8332F78EB3 /* SignUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2342E0AF7C9A532B7236C864A992BD2 /* SignUpFormView.swift */; };
@@ -46,6 +47,7 @@
 		8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		9312E6E13FDD809B9878C356F45D4FE2 /* QuestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCellView.swift; sourceTree = "<group>"; };
 		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9ADC46C8F206284B8A176CED21E8DA18 /* AnswerComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete.swift; sourceTree = "<group>"; };
 		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,23 +71,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
-				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,11 +88,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
+		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
+				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
 			);
-			path = Ahobsu;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
@@ -124,12 +119,14 @@
 			path = Ahobsu;
 			sourceTree = "<group>";
 		};
-		B8833F95E768E819E4F8D0D22A1EB3FB /* Recovered References */ = {
+		0B524EB2B72357F2B05DBB4E88D416AC /* AnswerComplete */ = {
 			isa = PBXGroup;
 			children = (
+				9ADC46C8F206284B8A176CED21E8DA18 /* AnswerComplete.swift */,
 			);
-			name = "Recovered References";
-			sourceTree = "<group>";
+			name = AnswerComplete;
+			path = Ahobsu/MoitViews/AnswerComplete;
+			sourceTree = SOURCE_ROOT;
 		};
 		A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */ = {
 			isa = PBXGroup;
@@ -143,14 +140,11 @@
 			path = Sign;
 			sourceTree = "<group>";
 		};
-		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
+		B8833F95E768E819E4F8D0D22A1EB3FB /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */,
-				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
 			);
-			name = Pods;
-			path = Pods;
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		BF13CD4DB3E3C96C0A9006F517893B60 = {
@@ -203,6 +197,7 @@
 		EE810B349DEC4A45999182DF6FA41FDD /* MoitViews */ = {
 			isa = PBXGroup;
 			children = (
+				0B524EB2B72357F2B05DBB4E88D416AC /* AnswerComplete */,
 				FC288B4DD68EDE4832E309448571D2EA /* Main */,
 				A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */,
 			);
@@ -291,24 +286,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9FD54A6C1858EDB6CD735751C15700F1 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		21DF4C65FF65ECCEB7D801FCC5BA6251 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,6 +324,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9FD54A6C1858EDB6CD735751C15700F1 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		B54ED29C05F8A79A24CCE41D0BD0EC17 /* Xunique */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -394,6 +389,7 @@
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
+				CE4BEEFCC96FA4C2E8F72EF7377C07C2 /* AnswerComplete.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
 				ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */,
