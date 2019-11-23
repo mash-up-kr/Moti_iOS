@@ -1,4 +1,3 @@
-
 //
 //  AhobsuAPI.swift
 //  Ahobsu
@@ -11,25 +10,25 @@ import Moya
 
 enum AhobsuAPI {
     case test
-    case testPost(id: Int, data: String)
+    case testPost(postId: Int, data: String)
 }
 
 extension AhobsuAPI: TargetType {
     var baseURL: URL {
-        guard let url = URL(string: AHOBSU_API_URL)
+        guard let url = URL(string: AHOBSUAPIURL)
             else { fatalError() }
         return url
     }
-    
+
     var path: String {
         switch self {
         case .test:
             return "/"
-        case let .testPost(id):
-            return "/\(id)"
+        case let .testPost(postId):
+            return "/\(postId)"
         }
     }
-    
+
     var method: Method {
         switch self {
         case .test:
@@ -38,26 +37,26 @@ extension AhobsuAPI: TargetType {
             return .post
         }
     }
-    
+
     var sampleData: Data {
         return .init()
     }
-    
+
     var params: [String: Any] {
         var defaultParams: [String: Any] = [:]
-        
+
         switch self {
-        case let .testPost(id, data):
-            defaultParams["id"] = id
+        case let .testPost(postId, data):
+            defaultParams["id"] = postId
             defaultParams["data"] = data
-            
+
         default:
             break
         }
-        
+
         return defaultParams
     }
-    
+
     var task: Task {
         switch self {
         case .testPost:
@@ -67,9 +66,9 @@ extension AhobsuAPI: TargetType {
             return .requestPlain
         }
     }
-    
-    var headers: [String : String]? {
+
+    var headers: [String: String]? {
         return ["Accept": "application/json"]
     }
-    
+
 }
