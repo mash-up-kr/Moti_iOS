@@ -13,33 +13,20 @@ struct SignUpNickNameView: View {
     @State var nickName: String = ""
 
     var body: some View {
-        ZStack {
-            VStack {
-                Spacer()
-                Text("닉네임을 입력해주세요.").font(.system(size: 28))
-                Spacer()
-                TextField("",
-                          text: $nickName,
-                          onEditingChanged: { (_) in
-                            // Next Step
-                },
-                          onCommit: {
-                            // Next Step
-                }).background(Divider().foregroundColor(Color.black),
-                              alignment: .bottom)
-                    .padding(.horizontal, 66)
-                Spacer()
-                NavigationLink(destination: SignUpGenderView()) {
-                    Text("다 음").font(.system(size: 19))
-                        .foregroundColor(.white)
-                        .padding(20)
-                        .frame(minWidth: 243, minHeight: 58, alignment: .center)
-                        .background(Color(red: 0.325, green: 0.326, blue: 0.325))
-                        .cornerRadius(29)
-                }
-                Spacer()
-                }.frame(maxHeight: .infinity)
-        }
+        let contentView = TextField("",
+                  text: $nickName,
+                  onEditingChanged: { (_) in
+                    // Next Step
+        },
+                  onCommit: {
+                    // Next Step
+        }).background(Divider().foregroundColor(Color.black),
+                      alignment: .bottom)
+            .padding(.horizontal, 66)
+        return SignUpFormView(title: "닉네임을 입력해주세요.",
+                              content: contentView,
+                              buttonTitle: "다 음",
+                              destination: SignUpGenderView())
     }
 }
 
