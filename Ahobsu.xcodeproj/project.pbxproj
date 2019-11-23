@@ -8,19 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */; };
+		16A2863755DCB8DC9E54F9CDA1E5F6E1 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7533D079041E515F6A87A4581673A1F5 /* MotiView.swift */; };
 		20A553E9B441D4F59C7AA0944E1DFF21 /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */; };
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
 		44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
 		92C69078716DD61B3BCEEAC9964A53FF /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312E6E13FDD809B9878C356F45D4FE2 /* QuestionCellView.swift */; };
+		9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */; };
 		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
+		A99F9A73626BDEAF6CFCD7254D588FC4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */; };
+		ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */; };
 		B63F3492DAC8CEDC5DD756D83811243A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */; };
 		DDA0E631D33AC17514A6749FAA9F6F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442439CA50BE34489091510E78EB6EC5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayCellView.swift; sourceTree = "<group>"; };
+		1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeekView.swift; sourceTree = "<group>"; };
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
+		7533D079041E515F6A87A4581673A1F5 /* MotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotiView.swift; sourceTree = "<group>"; };
 		89547C729FE9693E0BC39DFB3A317506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
@@ -139,8 +147,12 @@
 		FC288B4DD68EDE4832E309448571D2EA /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */,
+				1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */,
+				7533D079041E515F6A87A4581673A1F5 /* MotiView.swift */,
 				9312E6E13FDD809B9878C356F45D4FE2 /* QuestionCellView.swift */,
 				8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */,
+				19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -319,9 +331,13 @@
 			files = (
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
+				ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */,
+				A99F9A73626BDEAF6CFCD7254D588FC4 /* MainView.swift in Sources */,
+				16A2863755DCB8DC9E54F9CDA1E5F6E1 /* MotiView.swift in Sources */,
 				92C69078716DD61B3BCEEAC9964A53FF /* QuestionCellView.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
 				44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */,
+				9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
