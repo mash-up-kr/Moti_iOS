@@ -24,18 +24,14 @@
 		581AB6A128B9BB263F37E64259C6D044 /* AnswerComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763B39A77D234158434519F60C3E538 /* AnswerComplete.swift */; };
 		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
-		8C3EAD1C31AF6F5C03C56E1277F6D0CA /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37359DDCD8148E26D7AE28349553497 /* QuestionCellView.swift */; };
-		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
-		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
-		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
-		AB4B8A1BFEB71E1EFCAF0DDB58F6B4E1 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1065FE026942688299841E06336F6F88 /* SplashView.swift */; };
-		C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313957CD8ACE10F3B06C60B5F361474E /* DayWeekView.swift */; };
-		D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */; };
-		DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */; };
-		DE8BDF24DD809376B8A04E8077644099 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5560BAB9A5FC327D51EA4F46311E87 /* PageControl.swift */; };
-		E52E2EF04CD8A0F71EAF572073C16F06 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43C473F274655F06AC8950953A0EB4C /* UIColor+Extension.swift */; };
-		F2BB15916706F46A836A63EFEED6FAAA /* SignUpCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF382A57134DDD162641DE9DCEC09B /* SignUpCompleteView.swift */; };
-		F82975B7D3C88179EF53D00EBDF8AFD6 /* SignUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7148FF6D03D89CDA149D1079E4CFE3C /* SignUpFormView.swift */; };
+		92C69078716DD61B3BCEEAC9964A53FF /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312E6E13FDD809B9878C356F45D4FE2 /* QuestionCellView.swift */; };
+		9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BF2E2E3FA482F047B2AC8D68932F5D /* WeekDayCellView.swift */; };
+		A99F9A73626BDEAF6CFCD7254D588FC4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7B197A7D3FAB51A67733FDCBFF4707 /* MainView.swift */; };
+		ABD1EE642D88127AC2FE4A401026061F /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBD488A53A5E601686FB7BC04E6F0C /* DayWeekView.swift */; };
+		CE4BEEFCC96FA4C2E8F72EF7377C07C2 /* AnswerCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC46C8F206284B8A176CED21E8DA18 /* AnswerCompleteView.swift */; };
+		D82223B8B860A96464BE927F35260501 /* SignUpBirthdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C7D8038A2A713A6EFAD135490FA85 /* SignUpBirthdateView.swift */; };
+		E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DADD9D7F3AF35CE5A6EB186D60F18 /* SignUpNickNameView.swift */; };
+		F87C78B1BFD42D9039D0DA8332F78EB3 /* SignUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2342E0AF7C9A532B7236C864A992BD2 /* SignUpFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +56,7 @@
 		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9302ED4D8249025596B4EFAE1580A395 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = Ahobsu/MotiViews/Sign/SignInView.swift; sourceTree = SOURCE_ROOT; };
+		9ADC46C8F206284B8A176CED21E8DA18 /* AnswerCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteView.swift; sourceTree = "<group>"; };
 		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
@@ -88,6 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
+=======
+		E782ED08BC8F351DC32F11E3D3D002EF /* AnswerComplete */ = {
+			isa = PBXGroup;
+			children = (
+<<<<<<< HEAD
+				8763B39A77D234158434519F60C3E538 /* AnswerComplete.swift */,
+=======
+				9ADC46C8F206284B8A176CED21E8DA18 /* AnswerCompleteView.swift */,
+>>>>>>> fix: AnswerCompleteView.swift로 이름 변경
+			);
+			name = AnswerComplete;
+			path = Ahobsu/MotiViews/AnswerComplete;
+			sourceTree = SOURCE_ROOT;
+		};
+>>>>>>> fix: AnswerCompleteView.swift로 이름 변경
 		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,7 +443,7 @@
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
-				581AB6A128B9BB263F37E64259C6D044 /* AnswerComplete.swift in Sources */,
+				CE4BEEFCC96FA4C2E8F72EF7377C07C2 /* AnswerCompleteView.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
