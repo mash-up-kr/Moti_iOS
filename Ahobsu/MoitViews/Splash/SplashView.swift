@@ -74,11 +74,13 @@ extension SplashView {
     var backgroundAnimationDuration: Double { 1.0 }
     var titleAnimationDuration: Double { 0.5 }
     var logoAnimationDuration: Double { 0.3 }
+    var logoAnimationEndDuration: Double { 1.0 }
 
     func handleAnimations() {
         runAnimationPart1()
         runAnimationPart2()
         runAnimationPart3()
+        goNextView()
     }
 
     func runAnimationPart1() {
@@ -88,7 +90,8 @@ extension SplashView {
     }
 
     func runAnimationPart2() {
-        let deadline: DispatchTime = .now() + backgroundAnimationDuration
+        let deadline: DispatchTime = .now()
+            + backgroundAnimationDuration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             withAnimation(.easeIn(duration: self.titleAnimationDuration)) {
                 self.textAlpha = 1.0
@@ -97,12 +100,25 @@ extension SplashView {
     }
 
     func runAnimationPart3() {
-        let deadline: DispatchTime = .now() + backgroundAnimationDuration + titleAnimationDuration
+        let deadline: DispatchTime = .now()
+            + backgroundAnimationDuration
+            + titleAnimationDuration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             withAnimation(.easeIn(duration: self.logoAnimationDuration)) {
                 self.logoAlpha = 1.0
                 self.logoScale = 1.5
             }
+        }
+    }
+
+    func goNextView() {
+        let deadline: DispatchTime = .now()
+            + backgroundAnimationDuration
+            + titleAnimationDuration
+            + logoAnimationDuration
+            + logoAnimationEndDuration
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
         }
     }
 }
