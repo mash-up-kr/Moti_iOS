@@ -16,6 +16,7 @@
 		421DAF9910B866FFA92A4B3A15AE7363 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4987F6E8EA0C59E5C0CA5A7A59983A /* SignInView.swift */; };
 		44F2E1D550E4FF2ADF847411A350A7C7 /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		64FE5CF66B309F8418380181F0A5934A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB4F20C45286493E15009B6327D051 /* SplashView.swift */; };
 		66B1CA6F45A8D130B036A0187A429B50 /* SignUpCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF71808CFE508C7E5154630E7FC5EB1 /* SignUpCompleteView.swift */; };
 		671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3A2FEAC368D6B24824233D076E03 /* SignUpGenderView.swift */; };
 		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
@@ -44,6 +45,7 @@
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
 		6BF71808CFE508C7E5154630E7FC5EB1 /* SignUpCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteView.swift; sourceTree = "<group>"; };
 		7533D079041E515F6A87A4581673A1F5 /* MotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotiView.swift; sourceTree = "<group>"; };
+		76FB4F20C45286493E15009B6327D051 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		89547C729FE9693E0BC39DFB3A317506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAF573C9A21D8D15953EC091F9C0DC6 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 				B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6D299CD21F1DCBCD68F8D30E19D36BE4 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				76FB4F20C45286493E15009B6327D051 /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		808AD775A1258F6539D357758F0C5D1D /* Pods */ = {
@@ -203,6 +213,7 @@
 				0B524EB2B72357F2B05DBB4E88D416AC /* AnswerComplete */,
 				FC288B4DD68EDE4832E309448571D2EA /* Main */,
 				A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */,
+				6D299CD21F1DCBCD68F8D30E19D36BE4 /* Splash */,
 			);
 			path = MoitViews;
 			sourceTree = "<group>";
@@ -408,6 +419,7 @@
 				F87C78B1BFD42D9039D0DA8332F78EB3 /* SignUpFormView.swift in Sources */,
 				671A07ABE4FE57E246E43418DCBDC678 /* SignUpGenderView.swift in Sources */,
 				E2B0A042481FA34EAEF4E86C8A8C0DDC /* SignUpNickNameView.swift in Sources */,
+				64FE5CF66B309F8418380181F0A5934A /* SplashView.swift in Sources */,
 				9C548CBDE7AA785D1724C0C7DB9D32B7 /* WeekDayCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
