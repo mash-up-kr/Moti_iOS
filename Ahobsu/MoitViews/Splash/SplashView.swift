@@ -37,8 +37,10 @@ struct BackgroundView: View {
 
     @Binding var backgroundAlpha: Double
 
+    var imageTitle: String { "bgSplash" }
+
     var body: some View {
-        Image("bgSplash")
+        Image(imageTitle)
         .resizable()
         .opacity(backgroundAlpha)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -51,21 +53,37 @@ struct LogoView: View {
     @Binding var logoAlpha: Double
     @Binding var logoScale: CGFloat
 
+    var logoText: String { "Moti" }
+    var logoSize: CGFloat { 24 }
+    var logoPaddingBottom: CGFloat { 12 }
+
+    var titleText: String { "일상의 동기를 부여하다" }
+    var titleColor: Color {
+        Color.init(.sRGB,
+                    red: 152/255,
+                    green: 10/255,
+                    blue: 135/255,
+                    opacity: 0.34)
+    }
+    var titleSize: CGFloat { 16 }
+
+    var logoViewPaddingTop: CGFloat { 226 }
+
     var body: some View {
         VStack {
-            Text("Moti")
+            Text(logoText)
             .foregroundColor(Color.white)
-            .font(.system(size: 24, weight: .bold, design: .default))
+                .font(.system(size: logoSize, weight: .bold, design: .default))
             .scaleEffect(logoScale)
             .opacity(logoAlpha)
-            .padding(.bottom, 12)
-            Text("일상의 동기를 부여하다")
-            .foregroundColor(Color.init(.sRGB, red: 152/255, green: 10/255, blue: 135/255, opacity: 0.34))
-            .font(.system(size: 16, weight: .bold, design: .default))
+            .padding(.bottom, logoPaddingBottom)
+            Text(titleText)
+            .foregroundColor(titleColor)
+            .font(.system(size: titleSize, weight: .bold, design: .default))
             .opacity(textAlpha)
             Spacer()
         }
-        .padding(.top, 226.0)
+        .padding(.top, logoViewPaddingTop)
     }
 }
 
@@ -76,6 +94,11 @@ extension SplashView {
     var logoAnimationDuration: Double { 0.3 }
     var logoAnimationEndDuration: Double { 1.0 }
 
+    var backgroundAlphaFinal: Double { 1.0 }
+    var textAlphaFinal: Double { 1.0 }
+    var logoAlphaFinal: Double { 1.0 }
+    var logoScaleFinal: Double { 1.5 }
+
     func handleAnimations() {
         runAnimationPart1()
         runAnimationPart2()
@@ -85,7 +108,7 @@ extension SplashView {
 
     func runAnimationPart1() {
         withAnimation(.easeIn(duration: backgroundAnimationDuration)) {
-            backgroundAlpha = 1.0
+            backgroundAlpha = self.backgroundAlphaFinal
         }
     }
 
@@ -94,7 +117,7 @@ extension SplashView {
             + backgroundAnimationDuration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             withAnimation(.easeIn(duration: self.titleAnimationDuration)) {
-                self.textAlpha = 1.0
+                self.textAlpha = self.textAlphaFinal
             }
         }
     }
@@ -105,8 +128,8 @@ extension SplashView {
             + titleAnimationDuration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             withAnimation(.easeIn(duration: self.logoAnimationDuration)) {
-                self.logoAlpha = 1.0
-                self.logoScale = 1.5
+                self.logoAlpha = self.logoAlphaFinal
+                self.logoScale = CGFloat(self.logoScaleFinal)
             }
         }
     }
