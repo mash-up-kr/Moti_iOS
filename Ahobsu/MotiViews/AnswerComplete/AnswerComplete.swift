@@ -15,7 +15,7 @@ enum AnswerMode {
     case essayCamera
 }
 
-struct AnswerComplete: View {
+struct AnswerCompleteView: View {
     
     var answerMode: AnswerMode
 
@@ -284,18 +284,18 @@ struct AnswerComplete_EssayCamera: View {
     }
 }
 
-struct AnswerComplete_Previews: PreviewProvider {
+struct AnswerCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AnswerComplete(answerMode: .essay)
+            AnswerCompleteView(answerMode: .essay)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
                 .previewDisplayName("iPhone 11 Pro Max - Essay")
 
-            AnswerComplete(answerMode: .camera)
+            AnswerCompleteView(answerMode: .camera)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
                 .previewDisplayName("iPhone 11 Pro Max - Camera")
 
-            AnswerComplete(answerMode: .essayCamera)
+            AnswerCompleteView(answerMode: .essayCamera)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
                 .previewDisplayName("iPhone 11 Pro Max - EssayCamera")
         }
