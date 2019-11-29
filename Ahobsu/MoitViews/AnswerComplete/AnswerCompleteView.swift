@@ -17,10 +17,14 @@ enum AnswerMode {
 
 struct AnswerCompleteView: View {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
 >>>>>>> fix: AnswerCompleteView.swift로 이름 변경
+=======
+
+>>>>>>> fix: 답변 완료 개별 화면 파일 구조 분리
     var answerMode: AnswerMode
 
     var contentView: some View {
@@ -44,10 +48,14 @@ struct AnswerCompleteView: View {
 
 struct Navigation: View {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     
 >>>>>>> fix: AnswerCompleteView.swift로 이름 변경
+=======
+
+>>>>>>> fix: 답변 완료 개별 화면 파일 구조 분리
     var buttonWidth: CGFloat { 44.0 }
     var buttonHeight: CGFloat { 44.0 }
 
@@ -70,6 +78,7 @@ struct Navigation: View {
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 struct QuestionView: View {
@@ -295,6 +304,8 @@ struct AnswerComplete_EssayCamera: View {
 }
 
 >>>>>>> fix: AnswerCompleteView.swift로 이름 변경
+=======
+>>>>>>> fix: 답변 완료 개별 화면 파일 구조 분리
 struct AnswerCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
