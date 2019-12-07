@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				568E177EC003E48646C8E36071191FEF /* AppLifeCycles */,
-				EE810B349DEC4A45999182DF6FA41FDD /* MoitViews */,
+				EE810B349DEC4A45999182DF6FA41FDD /* MotiViews */,
 				CEE4D77D1F9972D987DC8CF22F47216D /* Networking */,
 				C27E00B235EE98C2DD84FFBB365FE2C3 /* Preview Content */,
 				EDD3FADC122148DB4A77F0E30EEAFA50 /* Resource */,
@@ -208,7 +208,7 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		EE810B349DEC4A45999182DF6FA41FDD /* MoitViews */ = {
+		EE810B349DEC4A45999182DF6FA41FDD /* MotiViews */ = {
 			isa = PBXGroup;
 			children = (
 				0B524EB2B72357F2B05DBB4E88D416AC /* AnswerComplete */,
@@ -216,7 +216,7 @@
 				A62810CAA7D65A56D6D5A88E6BD442E1 /* Sign */,
 				6D299CD21F1DCBCD68F8D30E19D36BE4 /* Splash */,
 			);
-			path = MoitViews;
+			path = MotiViews;
 			sourceTree = "<group>";
 		};
 		FC288B4DD68EDE4832E309448571D2EA /* Main */ = {
