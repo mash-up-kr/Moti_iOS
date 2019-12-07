@@ -11,13 +11,13 @@ import SwiftUI
 struct AnswerComplete_Essay: View {
 
     var questionVStackSpacing: CGFloat { 16.0 }
-    
+
     var questionHStackSpacing: CGFloat { 10.0 }
-    
+
     var questionViewText: String {
         "오늘 비가와요.\n비를 주제로\n한줄 시를 써볼까요?"
     }
-    
+
     var questionViewShuffleWidth: CGFloat { 44.0 }
     var questionViewShuffleHeight: CGFloat { 44.0 }
 
