@@ -12,38 +12,26 @@ struct SelectQuestionView: View {
     @Binding var isNavigationBarHidden: Bool
 
     var body: some View {
-        VStack {
-            Spacer()
-            Text("오늘의 질문을 \n선택해주세요.")
-                .font(
-                    .system(size: 28,
-                            weight: .regular,
-                            design: .default))
-                .lineSpacing(6)
-            Spacer(minLength: 24)
-            MotiView(color: .red)
-                .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300, alignment: .center)
-                .offset(x: -140, y: 0)
-            Spacer(minLength: 20)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 0) {
-                    QuestionCellView()
-                    QuestionCellView()
-                    QuestionCellView()
-                    QuestionCellView()
-                    QuestionCellView()
-                    QuestionCellView()
+        ZStack {
+            Rectangle()
+                .edgesIgnoringSafeArea([.vertical])
+            HStack {
+                VStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(alignment: .top, spacing: 24) {
+                            QuestionCardView()
+                            QuestionCardView()
+//                                .opacity(0.5)
+                            QuestionCardView()
+                        }
+                        .padding([.vertical], 10)
+                        .padding([.horizontal], 60)
+                    }
+                    .frame(height: 450, alignment: .center)
                 }
             }
-            .frame(height: 160)
-            .padding(EdgeInsets(top: 0, leading: 3, bottom: 32, trailing: 0))
-//            .navigationBarTitle("")
-            .onAppear {
-//                withAnimation {
-                    self.isNavigationBarHidden = false
-//                }
 
-            }
+
         }
     }
 }
