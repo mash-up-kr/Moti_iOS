@@ -10,23 +10,33 @@ import SwiftUI
 
 struct WeekDayCellView: View {
     var weekDay: String
-    var color: Color
+    @State var isFill: Bool
+
     var body: some View {
-        VStack(alignment: .center, spacing: 4) {
+        VStack(alignment: .center, spacing: 8) {
             Text(weekDay)
+                .foregroundColor(Color(.rosegold))
                 .font(.system(size: 13,
                               weight: .regular,
                               design: .default)
+
             )
             Circle()
-                .foregroundColor(color)
+                .foregroundColor(isFill ? Color(.rosegold) : Color(.greyishBrown))
+                .frame(width: 16, height: 16, alignment: .center)
+                .shadow(
+                    color: Color(.shadowpink),
+                    radius: isFill ? 4 : 0,
+                    x: 0,
+                    y: 0
+            )
         }
     }
 }
 
 struct WeekDayCellView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekDayCellView(weekDay: "MON", color: .blue)
+        WeekDayCellView(weekDay: "MON", isFill: true)
             .previewLayout(.fixed(width: 39, height: 59))
 
     }
