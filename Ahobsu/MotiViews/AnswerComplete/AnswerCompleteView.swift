@@ -37,16 +37,16 @@ struct AnswerCompleteView: View {
     var answerMode: AnswerMode
     @State var currentPage: Int
 
-    //    var contentView: some View {
-    //        switch answerMode {
-    //        case .essay:
-    //            return AnyView(AnswerComplete_Essay())
-    //        case .camera:
-    //            return AnyView(AnswerComplete_Camera())
-    //        case .essayCamera:
-    //            return AnyView(AnswerComplete_EssayCamera())
-    //        }
-    //    }
+    var contentView: some View {
+        switch answerMode {
+        case .essay:
+            return AnyView(AnswerComplete_Essay())
+        case .camera:
+            return AnyView(AnswerComplete_Camera())
+        case .essayCamera:
+            return AnyView(AnswerComplete_EssayCamera())
+        }
+    }
 
     var btnBack : some View {
         Button(action: {
@@ -65,6 +65,7 @@ struct AnswerCompleteView: View {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
+                // PageControl은 스크롤 안됨
                 ScrollView {
                     VStack {
                         AnswerCompletePageControl(numberOfPages: 7,
@@ -84,7 +85,10 @@ struct AnswerCompleteView: View {
                         }
                         .padding([.leading], 20.0)
                         .padding([.trailing], 4.0)
-                        Spacer()
+                        contentView
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 480.0, maxHeight: 480.0)
+                            .padding([.leading, .trailing], 32.0)
+                            .padding([.top], 56.0)
                     }
                 }
             }
@@ -113,8 +117,8 @@ struct AnswerCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AnswerCompleteView(answerMode: .essay, currentPage: 0)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-                .previewDisplayName("iPhone 11 Pro Max - Essay")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+                .previewDisplayName("iPhone 8")
 
             //            AnswerCompleteView(answerMode: .camera)
             //                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
