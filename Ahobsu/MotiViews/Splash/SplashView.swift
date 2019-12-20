@@ -21,7 +21,7 @@ struct SplashView: View {
 
     var body: some View {
         ZStack {
-            BackgroundView(backgroundAlpha: $backgroundAlpha)
+            SplashBackgroundView(backgroundAlpha: $backgroundAlpha)
             LogoView(textAlpha: $textAlpha,
                      logoAlpha: $logoAlpha,
                      logoScale: $logoScale)
@@ -33,7 +33,7 @@ struct SplashView: View {
     }
 }
 
-struct BackgroundView: View {
+struct SplashBackgroundView: View {
 
     @Binding var backgroundAlpha: Double
 
