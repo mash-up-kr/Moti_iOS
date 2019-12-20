@@ -13,6 +13,9 @@ struct SignUpNickNameView: View {
     @Binding var window: UIWindow
     @State var nickName: String = ""
     @ObservedObject var keyboard: Keyboard = Keyboard()
+    var buttonEnabled: Bool {
+        return self.nickName.count == 8
+    }
 
     var body: some View {
         let contentView = TextField("",
@@ -28,7 +31,8 @@ struct SignUpNickNameView: View {
         return SignUpFormView(title: "닉네임을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다 음",
-            buttonDestination: SignUpGenderView(window: $window))
+                              buttonDestination: SignUpGenderView(window: $window),
+                              buttonEnabled: buttonEnabled)
             .padding([.bottom], keyboard.state.height)
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))

@@ -20,6 +20,7 @@
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
 		37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */; };
 		38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */; };
+		4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */; };
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
@@ -35,6 +36,7 @@
 		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
 		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
 		AB4B8A1BFEB71E1EFCAF0DDB58F6B4E1 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1065FE026942688299841E06336F6F88 /* SplashView.swift */; };
+		AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */; };
 		C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313957CD8ACE10F3B06C60B5F361474E /* DayWeekView.swift */; };
 		D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */; };
 		DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */; };
@@ -62,6 +64,7 @@
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
 		6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
+		70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		745BF09A80BF76150D826047C5B01DAF /* AnswerCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteView.swift; sourceTree = "<group>"; };
 		7D91FE8AB6F7FD7FFAE5B1281C899873 /* AnswerComplete_Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_Camera.swift; sourceTree = "<group>"; };
 		86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayCellView.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = Ahobsu/MotiViews/Sign/SignInView.swift; sourceTree = SOURCE_ROOT; };
 		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		CD699A3FD868F3AC1D349AD61BF66932 /* SignUpNickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNickNameView.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				E782ED08BC8F351DC32F11E3D3D002EF /* AnswerComplete */,
+				9B7A173A97D0463CC8BB42133ED4F71D /* Common */,
 				8D848B38A787F79BD8F0B4315BBF3C29 /* Main */,
 				774D46E963BA9ECE0857A02E8A09121B /* Sign */,
 				645CF92C67369895949156CC5233B4F0 /* Splash */,
@@ -193,6 +198,15 @@
 				86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		9B7A173A97D0463CC8BB42133ED4F71D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */,
+				70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
@@ -468,9 +482,11 @@
 				37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */,
 				93AFCE3FFF42F06B6555F90947C8B84C /* AnswerInsertCameraView.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
+				AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
 				D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */,
+				4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */,
 				23CC565B3F399647ED41AD1DBFEA5A9E /* MainCardView.swift in Sources */,
 				25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */,
 				AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */,

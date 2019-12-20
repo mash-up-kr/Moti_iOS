@@ -20,7 +20,8 @@ struct SignUpCompleteView: View {
                        buttonAction: {
                         self.window.rootViewController = UIHostingController(rootView: MainView())
         },
-                       shouldUseAction: true)
+                       shouldUseAction: true,
+                       buttonEnabled: true)
     }
 }
 

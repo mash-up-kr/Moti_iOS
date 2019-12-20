@@ -30,20 +30,6 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
     }
 }
 
-struct AnswerCompleteBackgroundView: View {
-    var body: some View {
-        VStack {
-            LinearGradient(gradient: Gradient(
-                colors: [Color(UIColor.init(red: 26/255, green: 22/255, blue: 22/255, alpha: 1.0)),
-                         Color.black]),
-                           startPoint: .top,
-                           endPoint: .bottom
-            )
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-    }
-}
-
 struct AnswerCompleteView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -77,7 +63,7 @@ struct AnswerCompleteView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                AnswerCompleteBackgroundView()
+                BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
                 ScrollView {
                     VStack {

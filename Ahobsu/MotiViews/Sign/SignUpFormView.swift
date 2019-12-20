@@ -16,40 +16,36 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
     var buttonDestination: Destination
     var buttonAction: (() -> Void)?
     var shouldUseAction: Bool = false
+    var buttonEnabled: Bool
 
     var body: some View {
         ZStack {
             VStack {
                 Spacer()
-                Text(title).font(.system(size: 28))
+                Text(title).font(.system(size: 28)).foregroundColor(Color(.rosegold))
                 Spacer()
                 content
                 Spacer()
                 // Next Step
                 if shouldUseAction {
-                    Button(action: {
-                        self.buttonAction?()
-                    }, label: {
-                        Text(buttonTitle).font(.system(size: 19))
-                            .foregroundColor(.white)
-                            .padding(20)
-                            .frame(minWidth: 243, minHeight: 58, alignment: .center)
-                            .background(Color(red: 0.325, green: 0.326, blue: 0.325))
-                            .cornerRadius(29)
-                    })
+                    MainButton(action: self.buttonAction, title: buttonTitle)
+                        .environment(\.isEnabled, buttonEnabled)
                 } else {
                     NavigationLink(destination: buttonDestination) {
-                        Text(buttonTitle).font(.system(size: 19))
-                            .foregroundColor(.white)
-                            .padding(20)
-                            .frame(minWidth: 243, minHeight: 58, alignment: .center)
-                            .background(Color(red: 0.325, green: 0.326, blue: 0.325))
-                            .cornerRadius(29)
+                        MainButton(title: buttonTitle)
+                            .environment(\.isEnabled, buttonEnabled)
                     }
                 }
                 Spacer()
                 }.frame(maxHeight: .infinity)
-        }
+            }
+        .edgesIgnoringSafeArea(.vertical)
+        .frame(maxWidth: .infinity)
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.black, Color(red: 26/255, green: 22/255, blue: 22/255)]),
+                           startPoint: .top,
+                           endPoint: .bottom))
+
     }
 }
 
@@ -59,6 +55,7 @@ struct SignUpView_Previews: PreviewProvider {
                        content: Text("Content View"),
                        buttonTitle: "다 음",
                        buttonDestination: Text("Next View"),
-                       buttonAction: nil)
+                       buttonAction: nil,
+                       buttonEnabled: false)
     }
 }
