@@ -35,9 +35,9 @@ struct BackgroindView: View {
         VStack {
             LinearGradient(gradient: Gradient(
                 colors: [Color(UIColor.init(red: 26/255, green: 22/255, blue: 22/255, alpha: 1.0)),
-                     Color.black]),
-               startPoint: .top,
-               endPoint: .bottom
+                         Color.black]),
+                           startPoint: .top,
+                           endPoint: .bottom
             )
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -51,25 +51,25 @@ struct AnswerCompleteView: View {
     var answerMode: AnswerMode
     @State var currentPage: Int
 
-//    var contentView: some View {
-//        switch answerMode {
-//        case .essay:
-//            return AnyView(AnswerComplete_Essay())
-//        case .camera:
-//            return AnyView(AnswerComplete_Camera())
-//        case .essayCamera:
-//            return AnyView(AnswerComplete_EssayCamera())
-//        }
-//    }
+    //    var contentView: some View {
+    //        switch answerMode {
+    //        case .essay:
+    //            return AnyView(AnswerComplete_Essay())
+    //        case .camera:
+    //            return AnyView(AnswerComplete_Camera())
+    //        case .essayCamera:
+    //            return AnyView(AnswerComplete_EssayCamera())
+    //        }
+    //    }
 
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
-        }) {
-            HStack {
+    }) {
+        HStack {
             Image("icArrowLeft") // set image here
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.white)
-            }
+        }
         }
     }
 
@@ -85,9 +85,9 @@ struct AnswerCompleteView: View {
                             .padding(.bottom, 16.0)
                         HStack {
                             Text("해커톤이 끝났어요.\n지금 기분으로\n글을 써볼까요?")
-                            .font(.custom("Baskerville", size: 24.0))
-                            .foregroundColor(Color(UIColor.rosegold))
-                            .lineSpacing(12.0)
+                                .font(.custom("Baskerville", size: 24.0))
+                                .foregroundColor(Color(UIColor.rosegold))
+                                .lineSpacing(12.0)
                             Spacer()
                             Button(action: update) {
                                 Image("icRewriteNormal")
@@ -100,13 +100,22 @@ struct AnswerCompleteView: View {
                         Spacer()
                     }
                 }
-        }.navigationBarItems(leading: btnBack)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitle(
-            Text("2019. Nov. 21")
-            .font(.custom("Baskerville", size: 24.0)), displayMode: .inline
-        )
+            }
+            .navigationBarItems(leading: btnBack)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitle(
+                    Text("2019. Nov. 21")
+                        .font(.custom("Baskerville", size: 24.0)), displayMode: .inline
+            )
+            .background(NavigationConfigurator { navConfig in
+                navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+                navConfig.navigationBar.titleTextAttributes = [
+                    .foregroundColor: UIColor.rosegold
+                ]
+                let bounds = navConfig.navigationController?.navigationBar.bounds
+            })
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     func update() {
@@ -121,13 +130,13 @@ struct AnswerCompleteView_Previews: PreviewProvider {
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
                 .previewDisplayName("iPhone 11 Pro Max - Essay")
 
-//            AnswerCompleteView(answerMode: .camera)
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-//                .previewDisplayName("iPhone 11 Pro Max - Camera")
-//
-//            AnswerCompleteView(answerMode: .essayCamera)
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-//                .previewDisplayName("iPhone 11 Pro Max - EssayCamera")
+            //            AnswerCompleteView(answerMode: .camera)
+            //                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
+            //                .previewDisplayName("iPhone 11 Pro Max - Camera")
+            //
+            //            AnswerCompleteView(answerMode: .essayCamera)
+            //                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
+            //                .previewDisplayName("iPhone 11 Pro Max - EssayCamera")
         }
     }
 }
