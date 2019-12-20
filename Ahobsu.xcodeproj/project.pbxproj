@@ -501,8 +501,8 @@
 			baseConfigurationReference = 5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
@@ -514,7 +514,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -639,8 +639,8 @@
 			baseConfigurationReference = E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
@@ -652,7 +652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
