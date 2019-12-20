@@ -31,24 +31,23 @@ extension View {
 }
 
 struct MainButton: View {
-    
+
     @Environment(\.isEnabled) var isEnabled
     var action: (() -> Void)?
     @State var title: String
 
     var body: some View {
-        VStack {
+        ZStack {
             if action != nil {
                 Button(action: action!) {
                     Text(title)
                         .mainButtonFeel(isEnabled: isEnabled)
-                }.disabled(!isEnabled)
+                }
             } else {
                 Text(title)
                     .mainButtonFeel(isEnabled: isEnabled)
-                    .disabled(!isEnabled)
             }
-        }
+        }.disabled(!isEnabled)      // 주호: disabled가 안먹힘 수정 필요
     }
 }
 
