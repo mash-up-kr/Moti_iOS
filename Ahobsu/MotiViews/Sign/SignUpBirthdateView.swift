@@ -11,7 +11,7 @@ import SwiftUI
 struct SignUpBirthdateView: View {
 
     @Binding var window: UIWindow
-    @State var birthdate: Date = Date()
+    @State var birthdate: Date = Date(timeIntervalSince1970: 0)
 
     var body: some View {
         let contentView = HStack {
@@ -25,7 +25,8 @@ struct SignUpBirthdateView: View {
         return SignUpFormView(title: "생년월일을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "가입하기",
-                              buttonDestination: SignUpCompleteView(window: $window))
+                              buttonDestination: SignUpCompleteView(window: $window),
+                              buttonEnabled: true)
     }
 }
 

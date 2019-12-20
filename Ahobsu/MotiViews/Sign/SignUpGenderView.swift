@@ -13,6 +13,9 @@ struct SignUpGenderView: View {
     @Binding var window: UIWindow
     var genders: [String] = ["남성", "여성"]
     @State var gender: String = ""
+    var buttonEnabled: Bool {
+        return !gender.isEmpty
+    }
 
     var body: some View {
         let contentView = HStack {
@@ -30,7 +33,8 @@ struct SignUpGenderView: View {
         return SignUpFormView(title: "성별을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다음",
-                              buttonDestination: SignUpBirthdateView(window: $window))
+                              buttonDestination: SignUpBirthdateView(window: $window),
+                              buttonEnabled: buttonEnabled)
     }
 }
 
