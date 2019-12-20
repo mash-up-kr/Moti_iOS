@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SelectQuestionView: View {
     @Binding var currentPage: Int
+    @Binding var isNavigationBarHidden: Bool
 
     @State var index: Int = 0
 
@@ -17,44 +18,43 @@ struct SelectQuestionView: View {
         ZStack {
             Rectangle()
                 .edgesIgnoringSafeArea([.vertical])
+
             VStack {
-//                HStack {
-//                    VStack {
-//                        ScrollView(.horizontal, showsIndicators: false) {
-//                            HStack(alignment: .top, spacing: 24) {
-//                                QuestionCardView()
-//                                QuestionCardView()
-//                                //                                .opacity(0.5)
-//                                QuestionCardView()
-//                            }
-//                            .padding([.vertical], 10)
-//                            .padding([.horizontal], 60)
-//                        }
-//                        .frame(height: 450, alignment: .center)
-//                    }
-//                }
-
-                VStack {
-                    SwiftUIPagerView(index: $index, pages: (0..<3).map { index in QuestionCardView(id: index) })
+                Spacer()
+                SwiftUIPagerView(index: $index, pages: (0..<3).map { index in QuestionCardView(id: index) })
                     .frame(height: 420, alignment: .center)
-
-//                    SwiftUIPagerView(index: $index, pages: [QuestionCardView(), QuestionCardView(), QuestionCardView()])
-
-                    PageControl(numberOfPages: 3, currentPage: $index)
-//                    Picker(selection: self.$index.animation(.easeInOut), label: Text("")) {
-//                        ForEach(0..<3) { page in Text("\(page + 1)").tag(page) }
-//                    }
-//                    .pickerStyle(SegmentedPickerStyle())
-//                    .padding()
+                Spacer().frame(height: 10)
+                PageControl(numberOfPages: 3, currentPage: $index)
+                Spacer().frame(height: 35)
+                Button(action: getNewQuestion) {
+                    Text("질문 다시받기   0/3")
+                        .font(.system(size: 16, weight: .regular, design: .default))
+                        .foregroundColor(Color(.lightgold))
+                        .padding([.vertical], 12)
+                        .padding([.horizontal], 24)
+                        .foregroundColor(.clear)
+                        .overlay(Capsule()
+                            .stroke(Color(.lightgold), lineWidth: 1)
+                    )
                 }
-
+                Spacer().frame(height: 32)
             }
+            .onAppear {
+                self.isNavigationBarHidden = false
+            }
+//            .onDisappear {
+//                self.isNavigationBarHidden = true
+//            }
         }
+    }
+
+    private func getNewQuestion() {
+
     }
 }
 
 struct SelectQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectQuestionView(currentPage: .constant(0))
+        SelectQuestionView(currentPage: .constant(0), isNavigationBarHidden: .constant(false))
     }
 }

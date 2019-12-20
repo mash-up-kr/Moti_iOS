@@ -13,8 +13,6 @@ struct DayWeekView: View {
     let weeks: [String] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
     let isFills: [Bool] = [false, true, true, false, true, false, true]
 
-//    let colors: [Color] = [.red, .orange, .yellow, .green, .blue, .pink, .purple]
-
     var body: some View {
         HStack {
             ForEach(0..<7) { index in
