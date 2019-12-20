@@ -24,7 +24,8 @@ struct AnswerCompletePageControl: UIViewRepresentable {
             context.coordinator,
             action: #selector(Coordinator.updateCurrentPage(sender:)),
             for: .valueChanged)
-
+        control.currentPageIndicatorTintColor = UIColor.rosegold
+        control.pageIndicatorTintColor = UIColor.greyishBrown
         return control
     }
 

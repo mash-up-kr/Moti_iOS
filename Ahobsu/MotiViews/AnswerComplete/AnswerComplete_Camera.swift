@@ -10,12 +10,16 @@ import SwiftUI
 
 struct AnswerComplete_Camera: View {
 
+    @State var imageURL: String
+
     var body: some View {
-        Text("Hi")
-    }
-}
-struct AnswerComplete_Camera_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerComplete_Camera()
+        ZStack {
+            MainCardView(isWithLine: true)
+            VStack {
+                ImageView(withURL: imageURL)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 424.0)
+                    .padding([.all], 28.0)
+            }
+        }
     }
 }
