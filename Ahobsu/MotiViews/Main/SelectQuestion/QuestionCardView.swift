@@ -8,7 +8,11 @@
 
 import SwiftUI
 
-struct QuestionCardView: View {
+struct QuestionCardView: View, Identifiable {
+    var id: Int
+
+//    @State var extraInfo: String
+
     var body: some View {
         ZStack {
             MainCardView(isWithLine: false)
@@ -66,8 +70,8 @@ struct QuestionCardView: View {
     }
 }
 
-struct QuestionCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionCardView()
-    }
-}
+//struct QuestionCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        QuestionCardView(id: ObjectIdentifier.init(<#T##x: AnyObject##AnyObject#>), extraInfo: "")
+//    }
+//}
