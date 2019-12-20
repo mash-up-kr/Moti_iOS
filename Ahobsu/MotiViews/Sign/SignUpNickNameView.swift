@@ -18,16 +18,24 @@ struct SignUpNickNameView: View {
     }
 
     var body: some View {
-        let contentView = TextField("",
-                  text: $nickName,
-                  onEditingChanged: { (_) in
-                    // Next Step
-        },
-                  onCommit: {
-                    // Next Step
-        }).background(Divider().foregroundColor(Color.black),
-                      alignment: .bottom)
-            .padding(.horizontal, 66)
+
+        let contentView = VStack {
+            TextField("",
+                      text: $nickName,
+                      onEditingChanged: { (_) in
+                        // Next Step
+            },
+                      onCommit: {
+                        // Next Step
+            }).background(Divider().foregroundColor(Color.black),
+                          alignment: .bottom)
+                .padding(.horizontal, 66)
+                .foregroundColor(Color(.rosegold))
+                .multilineTextAlignment(.center)
+            Text("8글자로 만들어주세요.")
+                .foregroundColor(Color(white: 121/255))
+                .font(.system(size: 14))
+        }
         return SignUpFormView(title: "닉네임을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다 음",
@@ -41,6 +49,15 @@ struct SignUpNickNameView: View {
 
 struct SignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpNickNameView(window: .constant(UIWindow()))
+        Group {
+            // Empty Nickname
+            SignUpNickNameView(window: .constant(UIWindow()))
+
+            // Invalid Nickname
+            SignUpNickNameView(window: .constant(UIWindow()), nickName: "8글자가안되는")
+
+            // Valid Nickname
+            SignUpNickNameView(window: .constant(UIWindow()), nickName: "아무거나입력한것")
+        }
     }
 }
