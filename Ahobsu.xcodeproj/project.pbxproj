@@ -34,6 +34,7 @@
 		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
 		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
 		AB4B8A1BFEB71E1EFCAF0DDB58F6B4E1 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1065FE026942688299841E06336F6F88 /* SplashView.swift */; };
+		AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */; };
 		C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313957CD8ACE10F3B06C60B5F361474E /* DayWeekView.swift */; };
 		D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */; };
 		DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */; };
@@ -72,6 +73,7 @@
 		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInView.swift; path = Ahobsu/MotiViews/Sign/SignInView.swift; sourceTree = SOURCE_ROOT; };
 		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
 		CD699A3FD868F3AC1D349AD61BF66932 /* SignUpNickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNickNameView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				E782ED08BC8F351DC32F11E3D3D002EF /* AnswerComplete */,
+				9B7A173A97D0463CC8BB42133ED4F71D /* Common */,
 				8D848B38A787F79BD8F0B4315BBF3C29 /* Main */,
 				774D46E963BA9ECE0857A02E8A09121B /* Sign */,
 				645CF92C67369895949156CC5233B4F0 /* Splash */,
@@ -157,6 +160,14 @@
 				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9B7A173A97D0463CC8BB42133ED4F71D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
@@ -456,6 +467,7 @@
 				9AA429A6321D6C2150F8CC0A591FBE2B /* AnswerComplete_Essay.swift in Sources */,
 				37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
+				AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
 				D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */,
