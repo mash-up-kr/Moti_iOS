@@ -30,7 +30,7 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
     }
 }
 
-struct BackgroindView: View {
+struct AnswerCompleteBackgroundView: View {
     var body: some View {
         VStack {
             LinearGradient(gradient: Gradient(
@@ -62,21 +62,22 @@ struct AnswerCompleteView: View {
     //        }
     //    }
 
-    var btnBack : some View { Button(action: {
+    var btnBack : some View {
+        Button(action: {
         self.presentationMode.wrappedValue.dismiss()
-    }) {
-        HStack {
-            Image("icArrowLeft") // set image here
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
-        }
-        }
+    }, label: {
+            HStack {
+                Image("icArrowLeft") // set image here
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.white)
+            }
+        })
     }
 
     var body: some View {
         NavigationView {
             ZStack {
-                BackgroindView()
+                AnswerCompleteBackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
                 ScrollView {
                     VStack {
@@ -112,7 +113,6 @@ struct AnswerCompleteView: View {
                 navConfig.navigationBar.titleTextAttributes = [
                     .foregroundColor: UIColor.rosegold
                 ]
-                let bounds = navConfig.navigationController?.navigationBar.bounds
             })
         }
         .navigationViewStyle(StackNavigationViewStyle())
