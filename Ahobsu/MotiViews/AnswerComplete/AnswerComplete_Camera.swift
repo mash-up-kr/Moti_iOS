@@ -18,6 +18,7 @@ struct AnswerComplete_Camera: View {
             VStack {
                 ImageView(withURL: imageURL)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 424.0)
+                    .cornerRadius(6.0)
                     .padding([.all], 28.0)
             }
         }

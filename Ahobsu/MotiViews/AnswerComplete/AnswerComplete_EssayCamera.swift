@@ -20,6 +20,7 @@ struct AnswerComplete_EssayCamera: View {
                 VStack {
                     ImageView(withURL: imageURL)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 255.0)
+                        .cornerRadius(6.0)
                         .padding([.bottom], 20.0)
                     Text(text)
                         .multilineTextAlignment(.center)
