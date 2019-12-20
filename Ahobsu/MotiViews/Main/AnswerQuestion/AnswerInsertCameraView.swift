@@ -25,10 +25,11 @@ struct AnswerInsertCameraView: View {
                 Spacer()
                 Image("imgCam")
                 Spacer()
-
+                MainButton(title: "제출하기")
+                Spacer()
             }
+            .padding([.horizontal], 20)
         }
-
     }
 }
 

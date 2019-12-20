@@ -20,6 +20,7 @@
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
 		37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */; };
 		38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */; };
+		3D5C9E6DEE7280FA647831FAB1EB9EA4 /* AnswerInsertEssayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */; };
 		4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */; };
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */; };
@@ -80,6 +81,7 @@
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
+		CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInsertEssayView.swift; sourceTree = "<group>"; };
 		CD699A3FD868F3AC1D349AD61BF66932 /* SignUpNickNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNickNameView.swift; sourceTree = "<group>"; };
 		CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D37359DDCD8148E26D7AE28349553497 /* QuestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCellView.swift; sourceTree = "<group>"; };
@@ -106,14 +108,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		80A42AABA8415A07400169474E7A6537 /* AnswerQuestion */ = {
-			isa = PBXGroup;
-			children = (
-				8FF51E4441F64A689799A49B611484E5 /* AnswerInsertCameraView.swift */,
-			);
-			path = AnswerQuestion;
-			sourceTree = "<group>";
-		};
 		568E177EC003E48646C8E36071191FEF /* AppLifeCycles */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +166,15 @@
 				E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		80A42AABA8415A07400169474E7A6537 /* AnswerQuestion */ = {
+			isa = PBXGroup;
+			children = (
+				8FF51E4441F64A689799A49B611484E5 /* AnswerInsertCameraView.swift */,
+				CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */,
+			);
+			path = AnswerQuestion;
 			sourceTree = "<group>";
 		};
 		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
@@ -481,6 +484,7 @@
 				9AA429A6321D6C2150F8CC0A591FBE2B /* AnswerComplete_Essay.swift in Sources */,
 				37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */,
 				93AFCE3FFF42F06B6555F90947C8B84C /* AnswerInsertCameraView.swift in Sources */,
+				3D5C9E6DEE7280FA647831FAB1EB9EA4 /* AnswerInsertEssayView.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
