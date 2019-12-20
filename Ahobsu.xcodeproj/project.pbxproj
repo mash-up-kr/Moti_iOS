@@ -549,6 +549,7 @@
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
+				A5A044E66DB4DF272D56995566EAEC7F /* AnswerCompleteCardView.swift in Sources */,
 				6E5D6BFE4E62C3D82B3E94BDD172B1D5 /* AnswerCompletePageControl.swift in Sources */,
 				A2C34900D1D32F3C1EDB3BEE4F87CE98 /* AnswerCompleteView.swift in Sources */,
 				F992A803DA9ACA785F26B3E2B96F712F /* AnswerComplete_Camera.swift in Sources */,
