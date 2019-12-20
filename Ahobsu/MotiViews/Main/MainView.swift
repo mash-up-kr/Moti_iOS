@@ -13,7 +13,6 @@ struct MainView: View {
 
     var body: some View {
         NavigationView {
-
             ZStack {
                 Rectangle()
                     .edgesIgnoringSafeArea([.vertical])
@@ -78,6 +77,18 @@ struct MainView: View {
             .onAppear {
                 self.isNavigationBarHidden = true
             }
+            .background(NavigationConfigurator { navConfig in
+                navConfig.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+                navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+                navConfig.navigationBar.shadowImage = UIImage()
+                navConfig.navigationBar.isTranslucent = true
+                navConfig.navigationBar.backgroundColor = .clear
+                navConfig.navigationBar.titleTextAttributes = [
+                    .foregroundColor: UIColor.rosegold
+                ]
+
+                }
+            )
             .navigationBarHidden(isNavigationBarHidden)
         }
     }
