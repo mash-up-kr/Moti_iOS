@@ -20,7 +20,7 @@ struct AnswerCompleteView: View {
 <<<<<<< HEAD
 
 =======
-    
+
 >>>>>>> fix: AnswerCompleteView.swift로 이름 변경
 =======
 
@@ -51,7 +51,7 @@ struct Navigation: View {
 <<<<<<< HEAD
 
 =======
-    
+
 >>>>>>> fix: AnswerCompleteView.swift로 이름 변경
 =======
 
@@ -82,9 +82,9 @@ struct Navigation: View {
 <<<<<<< HEAD
 =======
 struct QuestionView: View {
-    
+
     @State var text: String = ""
-    
+
     var questionSize: CGFloat { 28.0 }
     var questionLineSpacing: CGFloat { 16.0 }
 
@@ -96,12 +96,12 @@ struct QuestionView: View {
 }
 
 struct AnswerView: View {
-    
+
     @State var text: String = ""
 
     var answerSize: CGFloat { 16.0 }
     var answerLineSpacing: CGFloat { 8.0 }
-    
+
     var body: some View {
         Text(text)
             .font(.system(size: answerSize))
@@ -111,10 +111,10 @@ struct AnswerView: View {
 }
 
 struct ImageView: View {
-    
+
     @ObservedObject var imageLoader: ImageLoader
     @State var image: UIImage = UIImage()
-    
+
     var imageMaxHeight: CGFloat { 375.0 }
 
     init(withURL url: String) {
@@ -136,7 +136,7 @@ struct ImageView: View {
 }
 
 class ImageLoader: ObservableObject {
-    
+
     @Published var dataIsValid = false
     var data: Data?
 
@@ -154,26 +154,26 @@ class ImageLoader: ObservableObject {
 }
 
 struct AnswerComplete_Essay: View {
-    
+
     var questionViewText: String {
         "오늘 비가와요.\n비를 주제로\n한줄 시를 써볼까요?"
     }
-    
+
     var circleWidth: CGFloat { 268.0 }
     var circleHeight: CGFloat { 268.0 }
-    
+
     var questionPaddingTop: CGFloat { 80.0 }
     var questionPaddingLeading: CGFloat { 15.0 }
     var questionPaddingTrailing: CGFloat { 15.0 }
-    
+
     var answerViewText: String { "종로3가 순두부 식당 맛있어보인다.\n갈지 말지 고민됨\n밖은 너무 추워보임..." }
-    
+
     var answerPaddingTop: CGFloat { 20.0 }
     var answerMaxHeight: CGFloat { 272.0 }
     var answerBackgroundColor: Color {
         Color.init(red: 216/255, green: 216/255, blue: 216/255)
     }
-    
+
     var body: some View {
         ZStack {
             VStack(spacing: 16) {
@@ -208,19 +208,19 @@ struct AnswerComplete_Essay: View {
 struct AnswerComplete_Camera: View {
 
     var cameraViewSpacing: CGFloat { 60.0 }
-    
+
     var questionViewText: String {
         "오늘의 먹은 음식을\n사진으로 남겨보세요.\n세줄짜리"
     }
-    
+
     var questionPaddingTop: CGFloat { 80.0 }
     var questionPaddingLeading: CGFloat { 15.0 }
     var questionPaddingTrailing: CGFloat { 15.0 }
-    
+
     var sampleImageURL: String {
         "https://cdn.pixabay.com/photo/2018/09/02/14/42/river-3648947_1280.jpg"
     }
-    
+
     var body: some View {
         VStack(spacing: cameraViewSpacing) {
             VStack {
@@ -240,31 +240,31 @@ struct AnswerComplete_Camera: View {
 }
 
 struct AnswerComplete_EssayCamera: View {
-    
+
     var cameraViewSpacing: CGFloat { 0.0 }
-    
+
     var sampleImageURL: String {
         "https://cdn.pixabay.com/photo/2018/09/02/14/42/river-3648947_1280.jpg"
     }
-    
+
     var questionViewText: String {
         "오늘의 먹은 음식을\n사진으로 남겨보세요.\n세줄짜리"
     }
-    
+
     var questionViewColor: COlor { Color.white }
-    
+
     var questionPaddingLeading: CGFloat { 15.0 }
     var questionPaddingBottom: CGFloat { 15.0 }
-    
+
     var questionMaxHeight: CGFloat { 375.0 }
-    
+
     var answerViewText: String { "오늘 비가 와요.\n비를 주제로 사진과 함께\n한 줄 시를 써볼까요?" }
-    
+
     var answerPaddingTop: CGFloat { 20.0 }
     var answerBackgroundColor: Color {
         Color.init(red: 216/255, green: 216/255, blue: 216/255)
     }
-    
+
     var body: some View {
         VStack(spacing: cameraViewSpacing) {
             ZStack {

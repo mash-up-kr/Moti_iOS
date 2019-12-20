@@ -80,7 +80,7 @@ struct AnswerCompleteView: View {
                     .edgesIgnoringSafeArea([.vertical])
                 ScrollView {
                     VStack {
-                        PageControl(numberOfPages: 7,
+                        AnswerCompletePageControl(numberOfPages: 7,
                                     currentPage: $currentPage)
                             .padding(.bottom, 16.0)
                         HStack {

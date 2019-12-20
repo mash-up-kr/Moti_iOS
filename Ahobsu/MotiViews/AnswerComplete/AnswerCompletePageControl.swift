@@ -9,7 +9,7 @@
 import SwiftUI
 import UIKit
 
-struct PageControl: UIViewRepresentable {
+struct AnswerCompletePageControl: UIViewRepresentable {
     var numberOfPages: Int
     @Binding var currentPage: Int
 
@@ -33,9 +33,9 @@ struct PageControl: UIViewRepresentable {
     }
 
     class Coordinator: NSObject {
-        var control: PageControl
+        var control: AnswerCompletePageControl
 
-        init(_ control: PageControl) {
+        init(_ control: AnswerCompletePageControl) {
             self.control = control
         }
 
