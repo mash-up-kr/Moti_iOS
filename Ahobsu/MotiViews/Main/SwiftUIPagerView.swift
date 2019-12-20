@@ -20,7 +20,7 @@ struct SwiftUIPagerView<Content: View & Identifiable>: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: 0) {
+                HStack(alignment: .center, spacing: -20) {
                     ForEach(self.pages) { page in
                         page
                             .frame(width: geometry.size.width - 60, height: nil)
@@ -28,23 +28,23 @@ struct SwiftUIPagerView<Content: View & Identifiable>: View {
                 }
             }
             // 2
-            .content.offset(x: self.isGestureActive ? self.offset : -(geometry.size.width - 60) * CGFloat(self.index))
+            .content.offset(x: self.isGestureActive ? self.offset : -(geometry.size.width - 80) * CGFloat(self.index))
             // 3
             .frame(width: geometry.size.width, height: nil, alignment: .leading)
             .gesture(DragGesture().onChanged({ value in
                 // 4
                 self.isGestureActive = true
                 // 5
-                self.offset = value.translation.width + -(geometry.size.width - 60) * CGFloat(self.index)
+                self.offset = value.translation.width + -(geometry.size.width - 80) * CGFloat(self.index)
             }).onEnded({ value in
-                if -value.predictedEndTranslation.width > (geometry.size.width - 60) / 2, self.index < self.pages.endIndex - 1 {
+                if -value.predictedEndTranslation.width > (geometry.size.width - 80) / 2, self.index < self.pages.endIndex - 1 {
                     self.index += 1
                 }
-                if value.predictedEndTranslation.width > (geometry.size.width - 60) / 2, self.index > 0 {
+                if value.predictedEndTranslation.width > (geometry.size.width - 80) / 2, self.index > 0 {
                     self.index -= 1
                 }
                 // 6
-                withAnimation(.easeOut(duration: 0.2)) { self.offset = -(geometry.size.width - 60) * CGFloat(self.index) }
+                withAnimation(.easeOut(duration: 0.2)) { self.offset = -(geometry.size.width - 80) * CGFloat(self.index) }
 
                 // 7
                 DispatchQueue.main.async { self.isGestureActive = false }
