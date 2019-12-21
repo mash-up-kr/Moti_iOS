@@ -11,8 +11,14 @@ import SwiftUI
 struct SignUpGenderView: View {
 
     @Binding var window: UIWindow
-    var genders: [String] = ["남성", "여성"]
+    var genders: [Bool] = [true, false]
     @State var gender: String = ""
+    var isMaleSelected: Bool {
+        return (gender == "male")
+    }
+    var isFemaleSelected: Bool {
+        return (gender == "female")
+    }
     var buttonEnabled: Bool {
         return !gender.isEmpty
     }
@@ -21,13 +27,12 @@ struct SignUpGenderView: View {
         let contentView = HStack {
             ForEach(genders, id: \.self) { (gender) in
                 Button(action: {
-                    self.gender = gender
+                    self.gender = (gender == true) ? "male" : "female"
                 }, label: {
-                    Text(gender).foregroundColor(.black)
-                }).padding(.horizontal, 32)
-                    .padding(.vertical, 38)
-                    .background(Color.gray)
-                    .border(Color.black)
+                    GenderCardView(isMale: gender)
+                }).padding(.horizontal, 15)
+                    .opacity((gender == true) ? (self.isMaleSelected ? 1 : 0.5) : (self.isFemaleSelected ? 1 : 0.5))
+                    .animation(.easeOut)
             }
         }
         return SignUpFormView(title: "성별을 입력해주세요.",
@@ -35,6 +40,7 @@ struct SignUpGenderView: View {
                               buttonTitle: "다음",
                               buttonDestination: SignUpBirthdateView(window: $window),
                               buttonEnabled: buttonEnabled)
+            .buttonStyle(PlainButtonStyle())
     }
 }
 
