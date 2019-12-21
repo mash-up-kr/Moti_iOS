@@ -46,6 +46,9 @@ struct SignUpNickNameView: View {
             .padding([.bottom], keyboard.state.height)
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))
+            .onTapGesture {
+                self.window.endEditing(true)
+        }
     }
 }
 
