@@ -14,7 +14,7 @@ struct SignUpNickNameView: View {
     @State var nickName: String = ""
     @ObservedObject var keyboard: Keyboard = Keyboard()
     var buttonEnabled: Bool {
-        return self.nickName.count == 8
+        return !self.nickName.isEmpty && self.nickName.count < 8
     }
 
     var body: some View {
