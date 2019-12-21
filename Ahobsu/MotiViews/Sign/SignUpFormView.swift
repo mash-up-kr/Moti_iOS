@@ -22,7 +22,11 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
         ZStack {
             VStack {
                 Spacer()
-                Text(title).font(.system(size: 28)).foregroundColor(Color(.rosegold))
+                Text(title)
+                    .font(.system(size: 28))
+                    .foregroundColor(Color(.rosegold))
+                    .padding(.horizontal, 15)
+                    .multilineTextAlignment(.center)
                 Spacer()
                 content
                 Spacer()
