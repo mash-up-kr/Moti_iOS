@@ -22,8 +22,10 @@ struct SignUpNickNameView: View {
         let contentView = VStack {
             TextField("",
                       text: $nickName,
-                      onEditingChanged: { (_) in
-                        // Next Step
+                      onEditingChanged: { (onEditing) in
+                        if onEditing == false {
+                            UserDefaults.standard.setValue(self.nickName, forKey: "SignUp.Nickname")
+                        }
             },
                       onCommit: {
                         // Next Step
