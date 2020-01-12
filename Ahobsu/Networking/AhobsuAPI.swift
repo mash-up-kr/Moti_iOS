@@ -15,7 +15,7 @@ enum AhobsuAPI {
     case registerAnswer(missionId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case updateAnswer(answerId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case getWeekAnswers(mondayDate: String)
-    case getAnswer(date: String)
+    case getAnswer(missionDate: String)
 
     /* Missions */
     case getMission
