@@ -210,14 +210,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		8AEDA2C88CB721AE4BDEE232FCB84740 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
 			isa = PBXGroup;
 			children = (
