@@ -483,7 +483,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# sh $SRCROOT/xuniqerun.sh\n";
+			shellScript = "sh $SRCROOT/xuniqerun.sh\n";
 		};
 		D4313117CF8BEE3B814064544DE21499 /* SwiftLint AutoCorrect */ = {
 			isa = PBXShellScriptBuildPhase;
