@@ -21,7 +21,7 @@ final class MissionService: MissionServiceType {
 
   func getMissions(completion: @escaping (Result<Mission, MoyaError>) -> Void) {
     self.networking.request(
-        .mission,
+        .getMission,
       completionHandler: { response in
         completion(response.decodeJSON(Mission.self))
       }, errorHandler: { error in
