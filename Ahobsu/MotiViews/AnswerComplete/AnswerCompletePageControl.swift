@@ -26,6 +26,7 @@ struct AnswerCompletePageControl: UIViewRepresentable {
             for: .valueChanged)
         control.currentPageIndicatorTintColor = UIColor.rosegold
         control.pageIndicatorTintColor = UIColor.greyishBrown
+        control.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
         return control
     }
 
