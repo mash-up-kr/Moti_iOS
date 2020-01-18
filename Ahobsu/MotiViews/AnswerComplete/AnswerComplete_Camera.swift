@@ -17,6 +17,7 @@ struct AnswerComplete_Camera: View {
             MainCardView(isWithLine: true)
             VStack {
                 ImageView(withURL: imageURL)
+                    .scaledToFit()
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 424.0)
                     .cornerRadius(6.0)
                     .padding([.all], 28.0)
