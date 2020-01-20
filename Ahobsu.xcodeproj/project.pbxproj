@@ -34,8 +34,8 @@
 		6E5D6BFE4E62C3D82B3E94BDD172B1D5 /* AnswerCompletePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8889A44037417D9CC2CB812C85AD27E /* AnswerCompletePageControl.swift */; };
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
 		8C3EAD1C31AF6F5C03C56E1277F6D0CA /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37359DDCD8148E26D7AE28349553497 /* QuestionCellView.swift */; };
-		94BB90EFFCA20D44F07066103745BC6E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A848E34D6FCEBA103A7161668808DCF /* Keychain.swift */; };
 		93AFCE3FFF42F06B6555F90947C8B84C /* AnswerInsertCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF51E4441F64A689799A49B611484E5 /* AnswerInsertCameraView.swift */; };
+		94BB90EFFCA20D44F07066103745BC6E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A848E34D6FCEBA103A7161668808DCF /* Keychain.swift */; };
 		9AA429A6321D6C2150F8CC0A591FBE2B /* AnswerComplete_Essay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0D8E18C480767F6A1DA9F9A6D9A5C1 /* AnswerComplete_Essay.swift */; };
 		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
 		A2C34900D1D32F3C1EDB3BEE4F87CE98 /* AnswerCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BF09A80BF76150D826047C5B01DAF /* AnswerCompleteView.swift */; };
