@@ -46,6 +46,12 @@
 		F2BB15916706F46A836A63EFEED6FAAA /* SignUpCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF382A57134DDD162641DE9DCEC09B /* SignUpCompleteView.swift */; };
 		F82975B7D3C88179EF53D00EBDF8AFD6 /* SignUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7148FF6D03D89CDA149D1079E4CFE3C /* SignUpFormView.swift */; };
 		F992A803DA9ACA785F26B3E2B96F712F /* AnswerComplete_Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D91FE8AB6F7FD7FFAE5B1281C899873 /* AnswerComplete_Camera.swift */; };
+		FA79109523D07E2F00209E3A /* MissionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79109223D07E2F00209E3A /* MissionData.swift */; };
+		FA79109623D07E2F00209E3A /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79109323D07E2F00209E3A /* Mission.swift */; };
+		FA79109723D07E2F00209E3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79109423D07E2F00209E3A /* User.swift */; };
+		FA79109E23D07E4400209E3A /* MissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79109923D07E4400209E3A /* MissionService.swift */; };
+		FA79109F23D07E4400209E3A /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79109B23D07E4400209E3A /* TokenManager.swift */; };
+		FA7910A023D07E4400209E3A /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79109D23D07E4400209E3A /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +99,12 @@
 		F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPI.swift; sourceTree = "<group>"; };
 		F8889A44037417D9CC2CB812C85AD27E /* AnswerCompletePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCompletePageControl.swift; sourceTree = "<group>"; };
+		FA79109223D07E2F00209E3A /* MissionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionData.swift; sourceTree = "<group>"; };
+		FA79109323D07E2F00209E3A /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		FA79109423D07E2F00209E3A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA79109923D07E4400209E3A /* MissionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionService.swift; sourceTree = "<group>"; };
+		FA79109B23D07E4400209E3A /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		FA79109D23D07E4400209E3A /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +227,7 @@
 		A250D367CCC8C95FE431D9E52CAA331D /* Ahobsu */ = {
 			isa = PBXGroup;
 			children = (
+				FA79109123D07E2F00209E3A /* Model */,
 				568E177EC003E48646C8E36071191FEF /* AppLifeCycles */,
 				6DC8FB8D69543F8D1CCD22185EBFC0B4 /* MotiViews */,
 				CEE4D77D1F9972D987DC8CF22F47216D /* Networking */,
@@ -256,6 +269,9 @@
 		CEE4D77D1F9972D987DC8CF22F47216D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				FA79109C23D07E4400209E3A /* Keychain */,
+				FA79109823D07E4400209E3A /* Service */,
+				FA79109A23D07E4400209E3A /* TokenManager */,
 				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
 				65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */,
 				41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */,
@@ -302,6 +318,40 @@
 				33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		FA79109123D07E2F00209E3A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA79109223D07E2F00209E3A /* MissionData.swift */,
+				FA79109323D07E2F00209E3A /* Mission.swift */,
+				FA79109423D07E2F00209E3A /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FA79109823D07E4400209E3A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FA79109923D07E4400209E3A /* MissionService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FA79109A23D07E4400209E3A /* TokenManager */ = {
+			isa = PBXGroup;
+			children = (
+				FA79109B23D07E4400209E3A /* TokenManager.swift */,
+			);
+			path = TokenManager;
+			sourceTree = "<group>";
+		};
+		FA79109C23D07E4400209E3A /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				FA79109D23D07E4400209E3A /* Keychain.swift */,
+			);
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,13 +543,16 @@
 				4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */,
 				23CC565B3F399647ED41AD1DBFEA5A9E /* MainCardView.swift in Sources */,
 				25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */,
+				FA79109F23D07E4400209E3A /* TokenManager.swift in Sources */,
 				AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */,
+				FA79109723D07E2F00209E3A /* User.swift in Sources */,
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				DE8BDF24DD809376B8A04E8077644099 /* PageControl.swift in Sources */,
 				33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */,
 				AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */,
 				8C3EAD1C31AF6F5C03C56E1277F6D0CA /* QuestionCellView.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
+				FA79109523D07E2F00209E3A /* MissionData.swift in Sources */,
 				25D0017AA1CE29EE896C85FFD9F6F54C /* SelectQuestionView.swift in Sources */,
 				DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */,
 				12FE70886D975E99EF3971A9CB8B5D01 /* SignUpBirthdateView.swift in Sources */,
@@ -508,9 +561,12 @@
 				50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */,
 				090C72070F123EA33ED3983F38E7163C /* SignUpNickNameView.swift in Sources */,
 				AB4B8A1BFEB71E1EFCAF0DDB58F6B4E1 /* SplashView.swift in Sources */,
+				FA79109E23D07E4400209E3A /* MissionService.swift in Sources */,
 				0F707EE436F21924111B5FF45CDAAD44 /* SwiftUIPagerView.swift in Sources */,
 				E52E2EF04CD8A0F71EAF572073C16F06 /* UIColor+Extension.swift in Sources */,
 				51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */,
+				FA79109623D07E2F00209E3A /* Mission.swift in Sources */,
+				FA7910A023D07E4400209E3A /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
