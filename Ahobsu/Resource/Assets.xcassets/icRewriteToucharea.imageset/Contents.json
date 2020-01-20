@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icRewriteToucharea.png"
+      "filename" : "icRewriteToucharea.png",
+      "scale" : "1x"
     },
     {
-      "scale" : "2x",
       "idiom" : "universal",
-      "filename" : "icRewriteToucharea@2x.png"
+      "filename" : "icRewriteToucharea@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

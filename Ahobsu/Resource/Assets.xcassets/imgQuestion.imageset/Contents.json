@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "imgQuestion.png"
-    },
-    {
-      "scale" : "2x",
-      "filename" : "imgQuestion@2x.png",
-      "idiom" : "universal"
+      "filename" : "imgQuestion.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "imgQuestion@3x.png"
+      "filename" : "imgQuestion@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "imgQuestion@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

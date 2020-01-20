@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icProfileToucharea.png"
+      "filename" : "icProfileToucharea.png",
+      "scale" : "1x"
     },
     {
+      "idiom" : "universal",
       "filename" : "icProfileToucharea@2x.png",
-      "scale" : "2x",
-      "idiom" : "universal"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
