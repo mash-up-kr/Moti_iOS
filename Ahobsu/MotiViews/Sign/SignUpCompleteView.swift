@@ -23,6 +23,7 @@ struct SignUpCompleteView: View {
         },
                        shouldUseAction: true,
                        buttonEnabled: true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
