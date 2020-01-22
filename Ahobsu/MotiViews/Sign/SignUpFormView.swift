@@ -37,8 +37,7 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
                 } else {
                     NavigationLink(destination: buttonDestination) {
                         MainButton(title: buttonTitle)
-                            .environment(\.isEnabled, buttonEnabled)
-                    }
+                    }.environment(\.isEnabled, buttonEnabled)
                 }
                 Spacer()
                 }.frame(maxHeight: .infinity)
