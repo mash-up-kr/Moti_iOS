@@ -11,12 +11,13 @@ import SwiftUI
 struct SignUpBirthdateView: View {
 
     @Binding var window: UIWindow
-    @State var birthdate: Date = Date(timeIntervalSince1970: 0)
+
+    @ObservedObject var signUp: SignUp
 
     var body: some View {
         let contentView = HStack {
             HStack {
-                DatePicker(selection: $birthdate,
+                DatePicker(selection: $signUp.birthdate,
                            displayedComponents: .date) {
                     EmptyView()
                 }.labelsHidden()
@@ -32,6 +33,8 @@ struct SignUpBirthdateView: View {
 
 struct SignUpBirthdateView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpBirthdateView(window: .constant(UIWindow())).environment(\.horizontalSizeClass, .compact)
+        SignUpBirthdateView(window: .constant(UIWindow()),
+                            signUp: SignUp())
+            .environment(\.horizontalSizeClass, .compact)
     }
 }

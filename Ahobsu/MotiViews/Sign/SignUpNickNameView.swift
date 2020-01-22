@@ -7,24 +7,25 @@
 //
 
 import SwiftUI
+import Combine
 
 struct SignUpNickNameView: View {
 
+    @State var buttonEnabled: Bool = false
+
     @Binding var window: UIWindow
-    @State var nickName: String = ""
+
     @ObservedObject var keyboard: Keyboard = Keyboard()
-    var buttonEnabled: Bool {
-        return !self.nickName.isEmpty && self.nickName.count < 8
-    }
+    @ObservedObject var signUp = SignUp()
 
     var body: some View {
 
         let contentView = VStack {
             TextField("",
-                      text: $nickName,
+                      text: $signUp.nickname,
                       onEditingChanged: { (onEditing) in
                         if onEditing == false {
-                            UserDefaults.standard.setValue(self.nickName, forKey: "SignUp.Nickname")
+                            UserDefaults.standard.setValue(self.signUp.nickname, forKey: "SignUp.Nickname")
                         }
             },
                       onCommit: {
@@ -41,13 +42,15 @@ struct SignUpNickNameView: View {
         return SignUpFormView(title: "닉네임을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다 음",
-                              buttonDestination: SignUpGenderView(window: $window),
+                              buttonDestination: SignUpGenderView(window: $window, signUp: signUp),
                               buttonEnabled: buttonEnabled)
             .padding([.bottom], keyboard.state.height)
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))
             .onTapGesture {
                 self.window.endEditing(true)
+        }.onReceive(signUp.validatedNickname) {
+            self.buttonEnabled = $0 != nil
         }
     }
 }
@@ -59,10 +62,10 @@ struct SignUpNameView_Previews: PreviewProvider {
             SignUpNickNameView(window: .constant(UIWindow()))
 
             // Invalid Nickname
-            SignUpNickNameView(window: .constant(UIWindow()), nickName: "8글자가안되는")
+            SignUpNickNameView(window: .constant(UIWindow()))
 
             // Valid Nickname
-            SignUpNickNameView(window: .constant(UIWindow()), nickName: "아무거나입력한것")
+            SignUpNickNameView(window: .constant(UIWindow()))
         }
     }
 }

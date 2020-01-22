@@ -10,7 +10,10 @@ import SwiftUI
 
 struct GenderCardView: View {
 
-    var isMale: Bool
+    var gender: SignUp.Gender
+    private var isMale: Bool {
+        return gender == .male
+    }
 
     var body: some View {
         ZStack {
@@ -29,9 +32,9 @@ struct GenderCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             // Male Card
-            GenderCardView(isMale: true)
+            GenderCardView(gender: .male)
             // Female Card
-            GenderCardView(isMale: false)
+            GenderCardView(gender: .female)
         }.previewLayout(.fixed(width: 133, height: 204))
 
     }
