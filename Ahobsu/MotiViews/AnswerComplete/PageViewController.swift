@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 
 struct PageViewController: UIViewControllerRepresentable {
+    
     var controllers: [UIViewController]
     @Binding var currentPage: Int
 
@@ -23,7 +24,6 @@ struct PageViewController: UIViewControllerRepresentable {
             navigationOrientation: .horizontal)
         pageViewController.dataSource = context.coordinator
         pageViewController.delegate = context.coordinator
-
         return pageViewController
     }
 

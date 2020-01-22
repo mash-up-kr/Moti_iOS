@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct AnswerComplete_Camera: View {
-
+    
     @State var imageURL: String
-
+    
     var body: some View {
         ZStack {
             MainCardView(isWithLine: true)

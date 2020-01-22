@@ -14,8 +14,9 @@ enum AnswerMode {
 }
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
+    
     var configure: (UINavigationController) -> Void = { _ in }
-
+    
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
         UIViewController()
@@ -30,27 +31,31 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 }
 
 struct AnswerCompleteView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var viewControllers: [UIHostingController<AnswerCompleteCardView>]
-
+    
     var models: [AnswerCompleteModel]
-
+    
     @State var currentPage = 0
-
+    
     init(_ model: [AnswerCompleteModel]) {
         self.models = model
-
+        
         self.viewControllers = model.map({
-            UIHostingController(rootView: AnswerCompleteCardView(answerCompleteModel: $0))
+            let controller = UIHostingController(rootView: AnswerCompleteCardView(answerCompleteModel: $0))
+            
+            controller.view.backgroundColor = UIColor.clear
+            
+            return controller
         })
     }
-
+    
     var btnBack : some View {
         Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
-    }, label: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
             HStack {
                 Image("icArrowLeft")
                     .aspectRatio(contentMode: .fit)
@@ -58,7 +63,7 @@ struct AnswerCompleteView: View {
             }
         })
     }
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -66,31 +71,30 @@ struct AnswerCompleteView: View {
                     .edgesIgnoringSafeArea([.vertical])
                 VStack {
                     AnswerCompletePageControl(numberOfPages: viewControllers.count,
-                            currentPage: $currentPage)
+                                              currentPage: $currentPage)
                         .padding(.bottom, 16.0)
                     PageViewController(controllers: viewControllers, currentPage: $currentPage)
                 }
-            }
-            .navigationBarItems(leading: btnBack)
+                .navigationBarItems(leading: btnBack)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarTitle(
-                    Text(models[currentPage].date)
-                        .font(.custom("Baskerville", size: 24.0)), displayMode: .inline
-            )
-            .background(NavigationConfigurator { navConfig in
-                navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-                navConfig.navigationBar.titleTextAttributes = [
-                    .foregroundColor: UIColor.rosegold
-                ]
-            })
+                .navigationBarTitle(Text(models[currentPage].date)
+                .font(.custom("Baskerville", size: 24.0)), displayMode: .inline)
+                .background(NavigationConfigurator { navConfig in
+                    navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+                    navConfig.navigationBar.titleTextAttributes = [
+                        .foregroundColor: UIColor.rosegold
+                    ]
+                })
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct AnswerCompleteView_Previews: PreviewProvider {
+    
     static var previews: some View {
-
+        
         return Group {
             AnswerCompleteView(AnswerCompleteModel.dummyCardView())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))

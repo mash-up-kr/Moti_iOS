@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct AnswerCompleteCardView: View {
-
+    
     @State var answerCompleteModel: AnswerCompleteModel
-
+    
     var contentView: some View {
         switch answerCompleteModel.answerCompleteType {
         case .essay:
@@ -23,10 +23,9 @@ struct AnswerCompleteCardView: View {
                                                       imageURL: answerCompleteModel.imageURL))
         }
     }
-
+    
     var body: some View {
         ZStack {
-            BackgroundView()
             ScrollView {
                 VStack {
                     HStack {
@@ -53,9 +52,9 @@ struct AnswerCompleteCardView: View {
             }
         }
     }
-
+    
     func update() {
-
+        
     }
 }
 

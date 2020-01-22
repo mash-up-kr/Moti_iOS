@@ -40,7 +40,6 @@ struct MainCardView: View {
                         }
                     }
             )
-
             .background(Color.black)
         }
     }
