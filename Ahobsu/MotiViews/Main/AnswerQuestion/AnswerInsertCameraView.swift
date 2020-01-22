@@ -25,7 +25,9 @@ struct AnswerInsertCameraView: View {
                 Spacer()
                 Image("imgCam")
                 Spacer()
-                MainButton(title: "제출하기")
+                MainButton(action: {
+
+                }, title: "제출하기").environment(\.isEnabled, true)
                 Spacer()
             }
             .padding([.horizontal], 20)

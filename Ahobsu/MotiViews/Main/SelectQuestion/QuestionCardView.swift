@@ -44,23 +44,10 @@ struct QuestionCardView: View, Identifiable {
                     Spacer()
                 }
                 .padding([.horizontal], 16)
-
                 Spacer()
-
-                Text("답변하기")
-                    .font(.system(size: 16,
-                                  weight: .regular,
-                                  design: .default)
-                )
-                    .foregroundColor(Color(.rosegold))
-                .background(
-                    Capsule()
-                        .foregroundColor(.white)
-                        .padding([.horizontal], -60)
-                        .padding([.vertical], -10)
-                        .shadow(color: Color(.shadowpink), radius: 10, x: 0, y: 0)
-                )
-                    .padding([.bottom], 20)
+                NavigationLink(destination: AnswerInsertEssayView()) {
+                    MainButton(title: "답변하기").environment(\.isEnabled, true)
+                }
             }
             .padding([.vertical], 20)
         }

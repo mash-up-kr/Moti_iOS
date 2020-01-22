@@ -11,11 +11,26 @@ import SwiftUI
 struct MainView: View {
     @State var isNavigationBarHidden: Bool = true
     @State var isAnswered: Bool = false
+//
+    //    init() {
+    //           UINavigationBar.appearance().backgroundColor = .red // Or any other color
+    //           UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+    //       }
+    //
+    init() {
+        UINavigationBar.appearance().tintColor = .rosegold
+        UINavigationBar.appearance().barTintColor = .black
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().backgroundColor = .black
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.rosegold, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)]
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
-                BackgroundView()
+                Rectangle()
+                    .foregroundColor(.black)
                     .edgesIgnoringSafeArea([.vertical])
                 VStack {
                     DayWeekView()
@@ -85,18 +100,18 @@ struct MainView: View {
             .onAppear {
                 self.isNavigationBarHidden = true
             }
-            .background(NavigationConfigurator { navConfig in
-                navConfig.navigationBar.backIndicatorTransitionMaskImage = UIImage()
-                navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-                navConfig.navigationBar.shadowImage = UIImage()
-                navConfig.navigationBar.isTranslucent = true
-                navConfig.navigationBar.backgroundColor = .clear
-                navConfig.navigationBar.titleTextAttributes = [
-                    .foregroundColor: UIColor.rosegold
-                ]
-
-                }
-            )
+//            .background(NavigationConfigurator { navConfig in
+//                navConfig.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+//                navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//                navConfig.navigationBar.shadowImage = UIImage()
+//                navConfig.navigationBar.isTranslucent = true
+//                navConfig.navigationBar.backgroundColor = .black
+//                navConfig.navigationBar.titleTextAttributes = [
+//                    .foregroundColor: UIColor.rosegold
+//                ]
+//
+//                }
+//            )
             .navigationBarHidden(isNavigationBarHidden)
         }
     }

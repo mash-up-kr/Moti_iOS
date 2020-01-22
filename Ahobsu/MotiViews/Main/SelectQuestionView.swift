@@ -29,7 +29,8 @@ struct SelectQuestionView: View {
 
     var body: some View {
             ZStack {
-                BackgroundView()
+                Rectangle()
+                    .foregroundColor(.black)
                     .edgesIgnoringSafeArea([.vertical])
 
                 VStack {
@@ -69,7 +70,7 @@ struct SelectQuestionView: View {
                     navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
                     navConfig.navigationBar.shadowImage = UIImage()
                     navConfig.navigationBar.isTranslucent = true
-                    navConfig.navigationBar.backgroundColor = .clear
+                    navConfig.navigationBar.backgroundColor = .black
                     navConfig.navigationBar.titleTextAttributes = [
                         .foregroundColor: UIColor.rosegold
                     ]

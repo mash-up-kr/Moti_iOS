@@ -19,9 +19,23 @@ struct AnswerInsertEssayView: View {
 
     @ObservedObject var keyboard: Keyboard = Keyboard()
 
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image("icArrowLeft") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(Color(.rosegold))
+        }
+        }
+    }
+
     var body: some View {
         ZStack {
-            BackgroundView()
+            Rectangle()
+                .foregroundColor(.black)
                 .edgesIgnoringSafeArea([.vertical])
             ZStack {
                 VStack {
@@ -65,6 +79,26 @@ struct AnswerInsertEssayView: View {
         .onTapGesture {
             self.endEditing()
         }
+
+        .navigationBarItems(leading: btnBack)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle(
+                Text("답변 하기")
+                    .font(.system(size: 16, weight: .regular, design: .default)),
+                displayMode: .inline
+            )
+                .background(NavigationConfigurator { navConfig in
+                    navConfig.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+                    navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+                    navConfig.navigationBar.shadowImage = UIImage()
+                    navConfig.navigationBar.isTranslucent = true
+                    navConfig.navigationBar.backgroundColor = .black
+                    navConfig.navigationBar.titleTextAttributes = [
+                        .foregroundColor: UIColor.rosegold
+                    ]
+
+                    }
+        )
 
     }
 
