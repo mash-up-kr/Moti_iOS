@@ -12,9 +12,8 @@ struct MainCardView: View {
     @State var isWithLine: Bool = false
     var body: some View {
         ZStack {
-            Rectangle()
-                .edgesIgnoringSafeArea([.top, .bottom])
             RoundedRectangle(cornerRadius: 11)
+                .foregroundColor(.black)
                 .overlay(RoundedRectangle(cornerRadius: 11)
                     .stroke(Color(.lightgold), lineWidth: 1))
                 .shadow(color: Color(.shadowpink), radius: 10, x: 0, y: 0)
@@ -40,8 +39,7 @@ struct MainCardView: View {
                         }
                     }
             )
-
-            .background(Color.black)
+                .foregroundColor(.clear)
         }
     }
 }
@@ -49,5 +47,6 @@ struct MainCardView: View {
 struct MainCardView_Previews: PreviewProvider {
     static var previews: some View {
         MainCardView(isWithLine: true)
+            .padding(60)
     }
 }

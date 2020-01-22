@@ -29,7 +29,7 @@ struct SelectQuestionView: View {
 
     var body: some View {
             ZStack {
-                Rectangle()
+                BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
 
                 VStack {

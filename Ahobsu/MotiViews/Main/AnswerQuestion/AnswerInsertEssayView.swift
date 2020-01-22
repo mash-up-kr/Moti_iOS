@@ -21,7 +21,7 @@ struct AnswerInsertEssayView: View {
 
     var body: some View {
         ZStack {
-            Rectangle()
+            BackgroundView()
                 .edgesIgnoringSafeArea([.vertical])
             ZStack {
                 VStack {

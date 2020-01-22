@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Rectangle()
+                BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
                 VStack {
                     DayWeekView()
