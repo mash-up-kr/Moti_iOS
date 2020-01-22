@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MainView: View {
     @State var isNavigationBarHidden: Bool = true
+    @State var isAnswered: Bool = false
 
     var body: some View {
         NavigationView {
@@ -22,23 +23,30 @@ struct MainView: View {
                         .padding([.horizontal], 15)
                     Spacer()
                     NavigationLink(destination: SelectQuestionView(currentPage: .constant(0), isNavigationBarHidden: self.$isNavigationBarHidden)) {
-                        MainCardView()
+                        MainCardView(isWithLine: !isAnswered)
                             .aspectRatio(0.62, contentMode: .fit)
                             .padding([.horizontal], 59)
                             .overlay(
-                                VStack {
-                                    Text("Motivation")
-                                        .font(.custom("Baskerville", size: 16))
-                                        .foregroundColor(Color(.rosegold))
-                                    Spacer()
-                                    Image("imgQuestion")
-                                    Spacer()
-                                    Text("Today’s\nyour\nQuestion")
-                                        .font(.custom("Baskerville", size: 16))
-                                        .foregroundColor(Color(.rosegold))
-                                        .multilineTextAlignment(.center)
+                                ZStack {
+                                    if isAnswered {
+                                        VStack {
+                                            Text("Motivation")
+                                                .font(.custom("Baskerville", size: 16))
+                                                .foregroundColor(Color(.rosegold))
+                                            Spacer()
+                                            Image("imgQuestion")
+                                            Spacer()
+                                            Text("Today’s\nyour\nQuestion")
+                                                .font(.custom("Baskerville", size: 16))
+                                                .foregroundColor(Color(.rosegold))
+                                                .multilineTextAlignment(.center)
+                                        }
+                                        .padding([.vertical], 32)
+                                    } else {
+                                        // 이미지 배열 받아서 ZStack 에 추가
+                                    }
+
                                 }
-                                .padding([.vertical], 32)
                         )
                     }
                     .buttonStyle(PlainButtonStyle())
