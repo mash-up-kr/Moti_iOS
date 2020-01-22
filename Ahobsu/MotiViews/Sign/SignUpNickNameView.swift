@@ -18,6 +18,8 @@ struct SignUpNickNameView: View {
     @ObservedObject var keyboard: Keyboard = Keyboard()
     @ObservedObject var signUp = SignUp()
 
+    @State var pushNextView: Bool = false
+
     var body: some View {
 
         let contentView = VStack {
@@ -43,7 +45,11 @@ struct SignUpNickNameView: View {
                               content: contentView,
                               buttonTitle: "다 음",
                               buttonDestination: SignUpGenderView(window: $window, signUp: signUp),
-                              buttonEnabled: buttonEnabled)
+                              buttonAction: {
+                                self.pushNextView = true
+        },
+                              buttonEnabled: buttonEnabled,
+                              pushDestination: $pushNextView)
             .padding([.bottom], keyboard.state.height)
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))
