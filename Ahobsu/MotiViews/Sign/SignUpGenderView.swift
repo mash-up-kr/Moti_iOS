@@ -11,35 +11,32 @@ import SwiftUI
 struct SignUpGenderView: View {
 
     @Binding var window: UIWindow
-    var genders: [String] = ["남성", "여성"]
-    @State var gender: String = ""
-    var buttonEnabled: Bool {
-        return !gender.isEmpty
-    }
+
+    @ObservedObject var signUp: SignUp
 
     var body: some View {
         let contentView = HStack {
-            ForEach(genders, id: \.self) { (gender) in
+            ForEach(SignUp.Gender.allCases, id: \.self) { (gender) in
                 Button(action: {
-                    self.gender = gender
+                    self.signUp.gender = gender
                 }, label: {
-                    Text(gender).foregroundColor(.black)
-                }).padding(.horizontal, 32)
-                    .padding(.vertical, 38)
-                    .background(Color.gray)
-                    .border(Color.black)
+                    GenderCardView(gender: gender)
+                }).padding(.horizontal, 15.0)
+                    .opacity((gender == self.signUp.gender) ? 1 : 0.5)
+                    .animation(.easeOut)
             }
         }
         return SignUpFormView(title: "성별을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "다음",
-                              buttonDestination: SignUpBirthdateView(window: $window),
-                              buttonEnabled: buttonEnabled)
+                              buttonDestination: SignUpBirthdateView(window: $window, signUp: signUp),
+                              buttonEnabled: signUp.gender != nil)
+            .buttonStyle(PlainButtonStyle())
     }
 }
 
 struct SignUpGenderView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpGenderView(window: .constant(UIWindow()))
+        SignUpGenderView(window: .constant(UIWindow()), signUp: SignUp())
     }
 }
