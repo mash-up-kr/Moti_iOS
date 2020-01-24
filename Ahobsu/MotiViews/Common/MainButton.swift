@@ -47,7 +47,7 @@ struct MainButton: View {
                 Text(title)
                     .mainButtonFeel(isEnabled: isEnabled)
             }
-        }.disabled(!isEnabled)      // 주호: disabled가 안먹힘 수정 필요
+        }.disabled(!isEnabled)
     }
 }
 
