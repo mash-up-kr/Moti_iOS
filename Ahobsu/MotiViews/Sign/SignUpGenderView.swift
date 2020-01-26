@@ -14,6 +14,8 @@ struct SignUpGenderView: View {
 
     @ObservedObject var signUp: SignUp
 
+    @State var pushNextView: Bool = false
+
     var body: some View {
         let contentView = HStack {
             ForEach(SignUp.Gender.allCases, id: \.self) { (gender) in
@@ -30,7 +32,11 @@ struct SignUpGenderView: View {
                               content: contentView,
                               buttonTitle: "다음",
                               buttonDestination: SignUpBirthdateView(window: $window, signUp: signUp),
-                              buttonEnabled: signUp.gender != nil)
+                              buttonAction: {
+                                self.pushNextView = true
+        },
+                              buttonEnabled: signUp.gender != nil,
+                              pushDestination: $pushNextView)
             .buttonStyle(PlainButtonStyle())
     }
 }

@@ -21,8 +21,8 @@ struct SignUpCompleteView: View {
                        buttonAction: {
                         self.window.rootViewController = UIHostingController(rootView: MainView())
         },
-                       shouldUseAction: true,
-                       buttonEnabled: true)
+                       buttonEnabled: true,
+                       pushDestination: .constant(false))
         .navigationBarBackButtonHidden(true)
     }
 }

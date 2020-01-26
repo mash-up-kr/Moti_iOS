@@ -7,6 +7,7 @@
 //
 
 import Moya
+import Combine
 
 typealias AhobsuNetworking = Networking<AhobsuAPI>
 
@@ -22,12 +23,27 @@ final class Networking<Target: TargetType>: MoyaProvider<Target> {
         super.init(manager: manager, plugins: plugins)
     }
 
+    func requestPublisher(_ target: Target, callbackQueue: DispatchQueue? = nil) -> AnyPublisher<Response, MoyaError> {
+        return MoyaPublisher { [weak self] subscriber in
+                return self?.request(target, callbackQueue: callbackQueue, progress: nil) { result in
+                    switch result {
+                    case let .success(response):
+                        _ = subscriber.receive(response)
+                        subscriber.receive(completion: .finished)
+                    case let .failure(error):
+                        subscriber.receive(completion: .failure(error))
+                    }
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
     @discardableResult
     func request(
         _ target: Target,
         completionHandler: @escaping (Response) -> Void,
         errorHandler: @escaping (MoyaError) -> Void
-    ) -> Cancellable {
+    ) -> Moya.Cancellable {
         return self.request(target) { result in
             switch result {
             case let .success(response):
