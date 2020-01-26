@@ -26,6 +26,7 @@
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */; };
 		5B83C300AB70327D0A91226820F152B0 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58767712A13BF759341D51E350855FCC /* Mission.swift */; };
 		627BE14BB95E526E7D91939CBF74D995 /* MissionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D86867D089ED6F529A2FD7A55953F /* MissionData.swift */; };
 		6675DA914AB268309BC9390ED0487711 /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21028E6C7A9E457DA7D2AC3F90B21995 /* SignInWithAppleDelegates.swift */; };
@@ -70,6 +71,7 @@
 		3E2089666AA18C82A56D827DBC68747F /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		3E5560BAB9A5FC327D51EA4F46311E87 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuProvider.swift; sourceTree = "<group>"; };
+		44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaPublisher.swift; sourceTree = "<group>"; };
 		470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		49BF382A57134DDD162641DE9DCEC09B /* SignUpCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompleteView.swift; sourceTree = "<group>"; };
 		4C2B2F23BAC4441E6696E0BA8E772B62 /* MissionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionService.swift; sourceTree = "<group>"; };
@@ -287,6 +289,14 @@
 			path = Ahobsu;
 			sourceTree = "<group>";
 		};
+		E512B42F8AF9D0419A17022C4C3F2BEE /* Networking+Combine */ = {
+			isa = PBXGroup;
+			children = (
+				44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */,
+			);
+			path = "Networking+Combine";
+			sourceTree = "<group>";
+		};
 		B8833F95E768E819E4F8D0D22A1EB3FB /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				12A42B36DE69A8247AA28629FE121959 /* Keychain */,
+				E512B42F8AF9D0419A17022C4C3F2BEE /* Networking+Combine */,
 				7EC9B19E49698A9ED487734E855D7462 /* Service */,
 				0A5097B3D4A3599932610119E0FEA95A /* TokenManager */,
 				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
@@ -571,6 +582,7 @@
 				627BE14BB95E526E7D91939CBF74D995 /* MissionData.swift in Sources */,
 				D67F8AFE72DBF9BA11A5B6EBD3E20E15 /* MissionService.swift in Sources */,
 				AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */,
+				586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */,
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				DE8BDF24DD809376B8A04E8077644099 /* PageControl.swift in Sources */,
 				33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */,
