@@ -29,11 +29,11 @@ struct SignUpBirthdateView: View {
                               content: contentView,
                               buttonTitle: "가입하기",
                               buttonDestination: SignUpCompleteView(window: self.$window),
-                              buttonAction: {
-                                self.pushNextView = true
-        },
+                              buttonAction: { self.signUp.inputComplete = true },
                               buttonEnabled: true,
-                              pushDestination: $pushNextView)
+                              pushDestination: $pushNextView).onReceive(signUp.signUpSuccess) { (success) in
+                                self.pushNextView = success
+        }
     }
 }
 
