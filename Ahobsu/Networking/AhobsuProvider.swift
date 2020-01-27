@@ -90,19 +90,6 @@ class AhobsuProvider {
 
     /* Users */
 
-    class func signUp(user: User,
-                      completion: @escaping ((Response) -> Void),
-                      error: @escaping ((MoyaError) -> Void)) {
-        provider.request(.signUp(name: user.name,
-                                 birthday: user.birthday,
-                                 email: user.email,
-                                 gender: user.gender,
-                                 snsId: user.snsId,
-                                 snsType: user.snsType),
-                         completionHandler: completion,
-                         errorHandler: error)
-    }
-
     class func updateProfile(user: User,
                              completion: @escaping ((Response) -> Void),
                              error: @escaping ((MoyaError) -> Void)) {

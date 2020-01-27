@@ -55,12 +55,12 @@ class SignUp: ObservableObject {
                 else {
                     throw CocoaError(.propertyListReadCorrupt)
                 }
-                return AhobsuAPI.signUp(name: nickName,
-                                        birthday: self.dateFormatter.string(from: self.birthdate),
-                                        email: "",
-                                        gender: gender.rawValue,
-                                        snsId: 1,
-                                        snsType: "apple") }
+                return AhobsuAPI.updateProfile(name: nickName,
+                                               birthday: self.dateFormatter.string(from: self.birthdate),
+                                               email: "",
+                                               gender: gender.rawValue,
+                                               snsId: 1,
+                                               snsType: "apple") }
             .flatMap { (signUpAPI) -> Future<Bool, Error> in
                 Future<Bool, Error> { (promise) in
                     AhobsuProvider.provider.requestPublisher(signUpAPI)
