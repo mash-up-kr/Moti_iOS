@@ -61,8 +61,7 @@ extension MyPageView {
         var body: some View {
             Rectangle()
                 .frame(minHeight: 1, maxHeight: 1)
-                .background(Color(.lightgold))
-                .foregroundColor(Color(.rosegold))
+                .foregroundColor(Color(UIColor.lightgold.withAlphaComponent(0.5)))
         }
     }
 
