@@ -20,6 +20,7 @@
 		33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF829C4542B7CF5676CC37E1CA2A75 /* PageViewController.swift */; };
 		34DAE4F0F8EB836107D9C7645622267D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */; };
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
+		377D0EC362AEA71B21629AEA8798BEFD /* MyPageEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */; };
 		37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */; };
 		38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */; };
 		3D5C9E6DEE7280FA647831FAB1EB9EA4 /* AnswerInsertEssayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */; };
@@ -113,6 +114,7 @@
 		CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D37359DDCD8148E26D7AE28349553497 /* QuestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCellView.swift; sourceTree = "<group>"; };
 		DABCC1502F5B0A02023F0477DDC62377 /* AnswerComplete_Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_Common.swift; sourceTree = "<group>"; };
+		DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEdit.swift; sourceTree = "<group>"; };
 		E43C473F274655F06AC8950953A0EB4C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E7148FF6D03D89CDA149D1079E4CFE3C /* SignUpFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormView.swift; sourceTree = "<group>"; };
 		E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		A6DAAB51AAC8B9343FFACC94F12FC6F7 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */,
 				57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */,
 				325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */,
 			);
@@ -597,6 +600,7 @@
 				D67F8AFE72DBF9BA11A5B6EBD3E20E15 /* MissionService.swift in Sources */,
 				AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */,
 				586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */,
+				377D0EC362AEA71B21629AEA8798BEFD /* MyPageEdit.swift in Sources */,
 				8F3D759C5F892A8F9E4045CD74A7115D /* MyPageEditView.swift in Sources */,
 				34DAE4F0F8EB836107D9C7645622267D /* MyPageView.swift in Sources */,
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
