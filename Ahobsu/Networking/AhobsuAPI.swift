@@ -28,13 +28,6 @@ enum AhobsuAPI {
     case refreshToken
 
     /* Users */
-    case signUp(name: String,
-                birthday: String,
-                email: String,
-                gender: String,
-                snsId: Int,
-                snsType: String
-    )
     case updateProfile(name: String,
                 birthday: String,
                 email: String,
@@ -80,8 +73,6 @@ extension AhobsuAPI: TargetType {
             return "/signin/refresh"
 
         /* Users */
-        case .signUp:
-            return "/users"
         case .updateProfile:
             return "/users"
         case .deleteProfile:
@@ -118,8 +109,6 @@ extension AhobsuAPI: TargetType {
             return .post
 
         /* Users */
-        case .signUp:
-            return .post
         case .updateProfile:
             return .put
         case .deleteProfile:
@@ -172,18 +161,6 @@ extension AhobsuAPI: TargetType {
             break
 
         /* Users */
-        case let .signUp(name,
-                    birthday,
-                    email,
-                    gender,
-                    snsId,
-                    snsType):
-            defaultParams["name"] = name
-            defaultParams["birthday"] = birthday
-            defaultParams["email"] = email
-            defaultParams["gender"] = gender
-            defaultParams["snsId"] = snsId
-            defaultParams["snsType"] = snsType
         case let .updateProfile(name,
                     birthday,
                     email,
@@ -287,7 +264,7 @@ extension AhobsuAPI: TargetType {
             }
 
             return .uploadMultipart(formData)
-        case .signIn, .updateProfile, .signUp:
+        case .signIn, .updateProfile:
             return .requestParameters(parameters: params,
                                       encoding: JSONEncoding.default)
         default:
