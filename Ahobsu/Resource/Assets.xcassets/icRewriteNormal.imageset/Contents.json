@@ -1,18 +1,18 @@
 {
   "images" : [
     {
+      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "icRewriteNormal.png",
-      "scale" : "1x"
+      "filename" : "icRewriteNormal.png"
     },
     {
-      "idiom" : "universal",
       "filename" : "icRewriteNormal@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
       "filename" : "icRewriteNormal@3x.png",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],
