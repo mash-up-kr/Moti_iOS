@@ -25,7 +25,12 @@ struct MyPageEditView: View {
                 MyPageView.Separator().opacity(0.5)
                 ListCell(title: "성별", detail: user.gender)
                 MyPageView.Separator()
-                ListCell(title: "", detail: "로그아웃")
+                Button(action: {
+                    self.deleteToken()
+                    self.navigateRootView()
+                }, label: {
+                    ListCell(title: "", detail: "로그아웃")
+                })
                 Button(action: {
                     self.myPageEdit.deleteUser()
                 }, label: {
@@ -44,6 +49,11 @@ struct MyPageEditView: View {
 
 // Helper
 extension MyPageEditView {
+    
+    private func deleteToken() {
+        // TODO: - 토큰 제거를 통한 로그아웃
+    }
+    
     private func navigateRootView() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
             let window = sceneDelegate.window {
