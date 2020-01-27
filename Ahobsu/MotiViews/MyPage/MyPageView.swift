@@ -10,12 +10,7 @@ import SwiftUI
 
 struct MyPageView: View {
 
-    var user: User = User(name: "임의 닉네임",
-                          birthday: "2020-02-02",
-                          email: "xoxoinsight@gmail.com",
-                          gender: "남",
-                          snsId: 1,
-                          snsType: "google")
+    @State var user: User = User.sampleData
 
     var body: some View {
         ScrollView {
@@ -34,9 +29,8 @@ struct MyPageView: View {
         .padding(.horizontal, 15)
         .navigationBarTitle("마이페이지", displayMode: .inline)
         .font(.system(size: 16))
-        .foregroundColor(Color(.rosegold))
         .background(BackgroundView())
-        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView()) {
+        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(user: $user)) {
             Image("icRewriteNormal").frame(width: 48, height: 48, alignment: .center)
         })
     }
@@ -49,7 +43,7 @@ struct MyPageView_Previews: PreviewProvider {
 }
 
 extension MyPageView {
-    
+
     struct HeaderView: View {
         var name: String
         var body: some View {
@@ -59,7 +53,7 @@ extension MyPageView {
                 Spacer(minLength: 16)
                 Text("\(name) 님")
                 Spacer(minLength: 26)
-            }
+            }.foregroundColor(Color(.rosegold))
         }
     }
 
@@ -68,6 +62,7 @@ extension MyPageView {
             Rectangle()
                 .frame(minHeight: 1, maxHeight: 1)
                 .background(Color(.lightgold))
+                .foregroundColor(Color(.rosegold))
         }
     }
 
@@ -80,6 +75,7 @@ extension MyPageView {
                 Spacer()
                 Text(detail)
             }.frame(minHeight: 52)
+            .foregroundColor(Color(.rosegold))
         }
     }
 }
