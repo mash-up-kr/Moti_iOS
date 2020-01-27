@@ -36,6 +36,9 @@ struct MyPageView: View {
         .font(.system(size: 16))
         .foregroundColor(Color(.rosegold))
         .background(BackgroundView())
+        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView()) {
+            Image("icRewriteNormal").frame(width: 48, height: 48, alignment: .center)
+        })
     }
 }
 
