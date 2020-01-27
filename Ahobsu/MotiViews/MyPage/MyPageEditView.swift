@@ -27,17 +27,12 @@ struct MyPageEditView: View {
                 MyPageView.Separator().opacity(0.5)
                 ListCell(title: "성별", content: Text(user.gender))
                 MyPageView.Separator()
-                Button(action: {
-                    self.deleteToken()
-                    self.navigateRootView()
-                }, label: {
-                    ListCell(title: "", content: Text("로그아웃"))
-                })
-                Button(action: {
-                    self.myPageEdit.deleteUser()
-                }, label: {
-                    ListCell(title: "", content: Text("탈퇴하기")).opacity(0.5)
-                })
+                ListCell(title: "",
+                         content: Button(action: { self.deleteToken(); self.navigateRootView() },
+                                         label: { Text("로그아웃") }))
+                ListCell(title: "",
+                         content: Button(action: { self.myPageEdit.deleteUser() },
+                                         label: { Text("탈퇴하기").opacity(0.5) }))
             }
         }
         .padding(.horizontal, 15)
