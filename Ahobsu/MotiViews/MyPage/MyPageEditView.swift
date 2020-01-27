@@ -12,6 +12,8 @@ import Combine
 struct MyPageEditView: View {
 
     @Binding var user: User
+
+    @ObservedObject var keyboard = Keyboard()
     @ObservedObject var myPageEdit = MyPageEdit()
 
     var body: some View {
@@ -19,26 +21,29 @@ struct MyPageEditView: View {
             VStack {
                 Spacer(minLength: 30)
                 MyPageView.Separator()
-                ListCell(title: "닉네임", detail: user.name)
+                ListCell(title: "닉네임", content: TextField("", text: $user.name))
                 MyPageView.Separator().opacity(0.5)
-                ListCell(title: "생년월일", detail: user.birthday)
+                ListCell(title: "생년월일", content: Text(user.birthday))
                 MyPageView.Separator().opacity(0.5)
-                ListCell(title: "성별", detail: user.gender)
+                ListCell(title: "성별", content: Text(user.gender))
                 MyPageView.Separator()
                 Button(action: {
                     self.deleteToken()
                     self.navigateRootView()
                 }, label: {
-                    ListCell(title: "", detail: "로그아웃")
+                    ListCell(title: "", content: Text("로그아웃"))
                 })
                 Button(action: {
                     self.myPageEdit.deleteUser()
                 }, label: {
-                    ListCell(title: "", detail: "탈퇴하기").opacity(0.5)
+                    ListCell(title: "", content: Text("탈퇴하기")).opacity(0.5)
                 })
             }
         }
         .padding(.horizontal, 15)
+        .padding([.bottom], keyboard.state.height)
+        .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
+        .animation(.easeOut(duration: keyboard.state.animationDuration))
         .navigationBarTitle("수정하기").onReceive(myPageEdit.$deletingUserSucccess) { (success) in
             if success {
                 self.navigateRootView()
@@ -49,11 +54,11 @@ struct MyPageEditView: View {
 
 // Helper
 extension MyPageEditView {
-    
+
     private func deleteToken() {
         // TODO: - 토큰 제거를 통한 로그아웃
     }
-    
+
     private func navigateRootView() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
             let window = sceneDelegate.window {
@@ -74,14 +79,16 @@ struct MyPageEditView_Previews: PreviewProvider {
 }
 
 extension MyPageEditView {
-    struct ListCell: View {
+    struct ListCell<Content>: View where Content: View {
         var title: String
-        var detail: String
+        var content: Content
         var body: some View {
-            HStack {
-                Text(title)
-                Spacer()
-                Text(detail)
+            HStack(spacing: 50) {
+                Text(title).frame(minWidth: 60, alignment: .leading)
+                if title.isEmpty {
+                    Spacer()
+                }
+                content
                 if title.isEmpty == false {
                     Spacer()
                 }
