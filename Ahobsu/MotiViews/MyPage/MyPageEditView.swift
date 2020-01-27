@@ -25,7 +25,7 @@ struct MyPageEditView: View {
                 MyPageView.Separator().opacity(0.5)
                 ListCell(title: "생년월일", content: DateField(dateString: $user.birthday))
                 MyPageView.Separator().opacity(0.5)
-                ListCell(title: "성별", content: Text(user.gender))
+                ListCell(title: "성별", content: GenderField(gender: $user.gender))
                 MyPageView.Separator()
                 ListCell(title: "",
                          content: Button(action: { self.deleteToken(); self.navigateRootView() },

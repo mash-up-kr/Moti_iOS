@@ -53,6 +53,7 @@
 		BC9D2D84230ACE29C410531F7F0B0D49 /* GenderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */; };
 		C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313957CD8ACE10F3B06C60B5F361474E /* DayWeekView.swift */; };
 		C986522E598DB7AB70378B9B64F8F0C8 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2089666AA18C82A56D827DBC68747F /* SignInWithApple.swift */; };
+		CF92B5DC5BDED7ED70B3C2A30AB05487 /* GenderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B25912115DF9A2EE38602845E13D25E /* GenderField.swift */; };
 		D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */; };
 		D67F8AFE72DBF9BA11A5B6EBD3E20E15 /* MissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B2F23BAC4441E6696E0BA8E772B62 /* MissionService.swift */; };
 		DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */; };
@@ -90,6 +91,7 @@
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
+		6B25912115DF9A2EE38602845E13D25E /* GenderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderField.swift; sourceTree = "<group>"; };
 		6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCardView.swift; sourceTree = "<group>"; };
 		70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		745BF09A80BF76150D826047C5B01DAF /* AnswerCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteView.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				D277F7B0CAE93B58CE7675B5D9908414 /* DateField.swift */,
+				6B25912115DF9A2EE38602845E13D25E /* GenderField.swift */,
 				DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */,
 				57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */,
 				325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */,
@@ -594,6 +597,7 @@
 				28F77E6C503B96E5C0FB03B69FEAE13D /* DateField.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
 				BC9D2D84230ACE29C410531F7F0B0D49 /* GenderCardView.swift in Sources */,
+				CF92B5DC5BDED7ED70B3C2A30AB05487 /* GenderField.swift in Sources */,
 				D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */,
 				94BB90EFFCA20D44F07066103745BC6E /* Keychain.swift in Sources */,
 				4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */,
