@@ -23,7 +23,7 @@ struct MyPageEditView: View {
                 MyPageView.Separator()
                 ListCell(title: "닉네임", content: TextField("", text: $user.name))
                 MyPageView.Separator().opacity(0.5)
-                ListCell(title: "생년월일", content: Text(user.birthday))
+                ListCell(title: "생년월일", content: DateField(dateString: $user.birthday))
                 MyPageView.Separator().opacity(0.5)
                 ListCell(title: "성별", content: Text(user.gender))
                 MyPageView.Separator()
@@ -48,6 +48,8 @@ struct MyPageEditView: View {
             if success {
                 self.navigateRootView()
             }
+        }.onTapGesture {
+            self.endEditing()
         }
     }
 }
@@ -68,6 +70,12 @@ extension MyPageEditView {
                               options: .transitionCrossDissolve,
                               animations: nil,
                               completion: nil)
+        }
+    }
+    private func endEditing() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+            let window = sceneDelegate.window {
+            window.endEditing(true)
         }
     }
 }
