@@ -15,15 +15,19 @@ struct MyPageEditView: View {
     var body: some View {
         ScrollView {
             VStack {
+                Spacer(minLength: 30)
                 MyPageView.Separator()
                 ListCell(title: "닉네임", detail: user.name)
-                MyPageView.Separator()
+                MyPageView.Separator().opacity(0.5)
                 ListCell(title: "생년월일", detail: user.birthday)
-                MyPageView.Separator()
+                MyPageView.Separator().opacity(0.5)
                 ListCell(title: "성별", detail: user.gender)
                 MyPageView.Separator()
+                ListCell(title: "", detail: "로그아웃")
+                ListCell(title: "", detail: "탈퇴하기").opacity(0.5)
             }
-        }
+        }.padding(.horizontal, 15)
+        .navigationBarTitle("수정하기")
     }
 }
 
@@ -42,7 +46,9 @@ extension MyPageEditView {
                 Text(title)
                 Spacer()
                 Text(detail)
-                Spacer()
+                if title.isEmpty == false {
+                    Spacer()
+                }
             }.frame(minHeight: 52)
             .foregroundColor(Color(.rosegold))
         }
