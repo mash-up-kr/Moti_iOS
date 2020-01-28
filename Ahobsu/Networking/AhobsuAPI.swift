@@ -279,7 +279,7 @@ extension AhobsuAPI: TargetType {
     }
 
     var headers: [String: String]? {
-        var authToken: String = "TokenManager.sharedInstance.getToken()"
+        var authToken: String = TokenManager.sharedInstance.getToken()
         switch self {
         case let .signIn(_, auth):
             authToken = auth
