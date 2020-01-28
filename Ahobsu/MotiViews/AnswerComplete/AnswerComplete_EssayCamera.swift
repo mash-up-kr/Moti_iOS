@@ -5,18 +5,32 @@
 //  Created by admin on 2019/11/29.
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
-
 import SwiftUI
 
 struct AnswerComplete_EssayCamera: View {
 
-    var body: some View {
-        Text("Hi")
-    }
-}
+    @State var text: String
+    @State var imageURL: String
 
-struct AnswerComplete_EssayCamera_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerComplete_EssayCamera()
+    var body: some View {
+        ZStack {
+            MainCardView(isWithLine: true)
+            VStack {
+                VStack {
+                    ImageView(withURL: imageURL)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 255.0)
+                        .cornerRadius(6.0)
+                        .padding([.bottom], 20.0)
+                    Text(text)
+                        .multilineTextAlignment(.center)
+                        .font(.custom("Baskerville", size: 16.0))
+                        .foregroundColor(Color(UIColor.rosegold))
+                        .lineSpacing(8.0)
+                    Spacer()
+                    }
+                .padding([.all], 16.0)
+            }
+            .padding([.all], 12.0)
+        }
     }
 }

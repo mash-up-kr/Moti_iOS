@@ -42,8 +42,6 @@ struct ImageView: View {
     @ObservedObject var imageLoader: ImageLoader
     @State var image: UIImage = UIImage()
 
-    var imageMaxHeight: CGFloat { 375.0 }
-
     init(withURL url: String) {
         imageLoader = ImageLoader(urlString: url)
     }
@@ -53,12 +51,8 @@ struct ImageView: View {
     }
 
     var body: some View {
-        VStack {
-            Image(uiImage: imageLoader.dataIsValid ? imageFromData(imageLoader.data!) : UIImage())
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: imageMaxHeight)
-        }
+        Image(uiImage: imageLoader.dataIsValid ? imageFromData(imageLoader.data!) : UIImage())
+        .resizable()
     }
 }
 

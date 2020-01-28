@@ -5,7 +5,6 @@
 //  Created by admin on 2019/11/23.
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
-
 import SwiftUI
 
 enum AnswerMode {
@@ -15,8 +14,9 @@ enum AnswerMode {
 }
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
+    
     var configure: (UINavigationController) -> Void = { _ in }
-
+    
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
         UIViewController()
@@ -31,98 +31,74 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 }
 
 struct AnswerCompleteView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    var answerMode: AnswerMode
-    @State var currentPage: Int
-
-    //    var contentView: some View {
-    //        switch answerMode {
-    //        case .essay:
-    //            return AnyView(AnswerComplete_Essay())
-    //        case .camera:
-    //            return AnyView(AnswerComplete_Camera())
-    //        case .essayCamera:
-    //            return AnyView(AnswerComplete_EssayCamera())
-    //        }
-    //    }
-
+    
+    var viewControllers: [UIHostingController<AnswerCompleteCardView>]
+    
+    var models: [AnswerCompleteModel]
+    
+    @State var currentPage = 0
+    
+    init(_ model: [AnswerCompleteModel]) {
+        self.models = model
+        
+        self.viewControllers = model.map({
+            let controller = UIHostingController(rootView: AnswerCompleteCardView(answerCompleteModel: $0))
+            
+            controller.view.backgroundColor = UIColor.clear
+            
+            return controller
+        })
+    }
+    
     var btnBack : some View {
         Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
-    }, label: {
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: {
             HStack {
-                Image("icArrowLeft") // set image here
+                Image("icArrowLeft")
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.white)
             }
         })
     }
-
+    
     var body: some View {
         NavigationView {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
-                ScrollView {
-                    VStack {
-                        AnswerCompletePageControl(numberOfPages: 7,
-                                    currentPage: $currentPage)
-                            .padding(.bottom, 16.0)
-                        HStack {
-                            Text("해커톤이 끝났어요.\n지금 기분으로\n글을 써볼까요?")
-                                .font(.custom("Baskerville", size: 24.0))
-                                .foregroundColor(Color(UIColor.rosegold))
-                                .lineSpacing(12.0)
-                            Spacer()
-                            Button(action: update) {
-                                Image("icRewriteNormal")
-                                    .renderingMode(.original)
-                                    .frame(width: 48.0, height: 48.0)
-                            }
-                        }
-                        .padding([.leading], 20.0)
-                        .padding([.trailing], 4.0)
-                        Spacer()
-                    }
+                VStack {
+                    AnswerCompletePageControl(numberOfPages: viewControllers.count,
+                                              currentPage: $currentPage)
+                        .padding(.bottom, 16.0)
+                    PageViewController(controllers: viewControllers, currentPage: $currentPage)
                 }
-            }
-            .navigationBarItems(leading: btnBack)
+                .navigationBarItems(leading: btnBack)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarTitle(
-                    Text("2019. Nov. 21")
-                        .font(.custom("Baskerville", size: 24.0)), displayMode: .inline
-            )
-            .background(NavigationConfigurator { navConfig in
-                navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-                navConfig.navigationBar.titleTextAttributes = [
-                    .foregroundColor: UIColor.rosegold
-                ]
-            })
+                .navigationBarTitle(Text(models[currentPage].date)
+                .font(.custom("Baskerville", size: 24.0)), displayMode: .inline)
+                .background(NavigationConfigurator { navConfig in
+                    navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+                    navConfig.navigationBar.titleTextAttributes = [
+                        .foregroundColor: UIColor.rosegold
+                    ]
+                })
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-    }
-
-    func update() {
-
     }
 }
 
 struct AnswerCompleteView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        Group {
-            AnswerCompleteView(answerMode: .essay, currentPage: 0)
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-                .previewDisplayName("iPhone 11 Pro Max - Essay")
-
-            //            AnswerCompleteView(answerMode: .camera)
-            //                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-            //                .previewDisplayName("iPhone 11 Pro Max - Camera")
-            //
-            //            AnswerCompleteView(answerMode: .essayCamera)
-            //                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
-            //                .previewDisplayName("iPhone 11 Pro Max - EssayCamera")
+        
+        return Group {
+            AnswerCompleteView(AnswerCompleteModel.dummyCardView())
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+                .previewDisplayName("iPhone 8")
         }
     }
 }

@@ -273,7 +273,6 @@ extension AhobsuAPI: TargetType {
                 "snsType": "apple"
             ]
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-
         default:
             return .requestPlain
         }
