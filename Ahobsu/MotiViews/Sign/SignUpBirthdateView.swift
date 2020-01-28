@@ -11,12 +11,15 @@ import SwiftUI
 struct SignUpBirthdateView: View {
 
     @Binding var window: UIWindow
-    @State var birthdate: Date = Date(timeIntervalSince1970: 0)
+
+    @ObservedObject var signUp: SignUp
+
+    @State var pushNextView: Bool = false
 
     var body: some View {
         let contentView = HStack {
             HStack {
-                DatePicker(selection: $birthdate,
+                DatePicker(selection: $signUp.birthdate,
                            displayedComponents: .date) {
                     EmptyView()
                 }.labelsHidden()
@@ -25,13 +28,19 @@ struct SignUpBirthdateView: View {
         return SignUpFormView(title: "생년월일을 입력해주세요.",
                               content: contentView,
                               buttonTitle: "가입하기",
-                              buttonDestination: SignUpCompleteView(window: $window),
-                              buttonEnabled: true)
+                              buttonDestination: SignUpCompleteView(window: self.$window),
+                              buttonAction: { self.signUp.inputComplete = true },
+                              buttonEnabled: true,
+                              pushDestination: $pushNextView).onReceive(signUp.signUpSuccess) { (success) in
+                                self.pushNextView = success
+        }
     }
 }
 
 struct SignUpBirthdateView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpBirthdateView(window: .constant(UIWindow())).environment(\.horizontalSizeClass, .compact)
+        SignUpBirthdateView(window: .constant(UIWindow()),
+                            signUp: SignUp())
+            .environment(\.horizontalSizeClass, .compact)
     }
 }
