@@ -71,10 +71,11 @@ class AhobsuProvider {
 
     /* SignIn */
 
-    class func signIn(snsId: Int,
+    class func signIn(snsId: String,
+                      auth: String,
                       completion: @escaping ((Response) -> Void),
                       error: @escaping ((MoyaError) -> Void)) {
-        provider.request(.signIn(snsId: snsId),
+        provider.request(.signIn(snsId: snsId, auth: auth),
                          completionHandler: completion,
                          errorHandler: error)
     }

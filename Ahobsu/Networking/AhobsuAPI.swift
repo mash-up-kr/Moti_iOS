@@ -22,7 +22,7 @@ enum AhobsuAPI {
     case refreshMission
 
     /* SignIn */
-    case signIn(snsId: Int)
+    case signIn(snsId: String, auth: String)
 
     /* Token */
     case refreshToken
@@ -154,7 +154,7 @@ extension AhobsuAPI: TargetType {
         case let .signIn(snsId):
             /* Empty */
             defaultParams["snsId"] = snsId
-
+            defaultParams["snsType"] = "apple"
         /* Token */
         case .refreshToken:
             /* Empty */
@@ -264,16 +264,29 @@ extension AhobsuAPI: TargetType {
             }
 
             return .uploadMultipart(formData)
-        case .signIn, .updateProfile:
+        case .updateProfile:
             return .requestParameters(parameters: params,
-                                      encoding: JSONEncoding.default)
+                                      encoding: URLEncoding.default)
+        case let .signIn(snsId, _):
+            let params = [
+                "snsId": snsId,
+                "snsType": "apple"
+            ]
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+
         default:
             return .requestPlain
         }
     }
 
     var headers: [String: String]? {
-        let authToken: String = TokenManager.sharedInstance.getToken()
+        var authToken: String = "TokenManager.sharedInstance.getToken()"
+        switch self {
+        case let .signIn(_, auth):
+            authToken = auth
+        default:
+            break
+        }
 
         return ["Accept": "application/json",
                 "Content-Type": "application/json",

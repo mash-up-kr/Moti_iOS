@@ -10,6 +10,18 @@ import Foundation
 import AuthenticationServices
 import Contacts
 
+struct SignIn: Codable {
+    var status: Int
+    var message: String
+    var data: TokenData
+
+    struct TokenData: Codable {
+        var accessToken: String
+        var refreshToken: String
+        var signUp: Bool
+    }
+}
+
 class SignInWithAppleDelegates: NSObject {
     private let signInSucceeded: (Bool) -> Void
     private weak var window: UIWindow!
@@ -22,26 +34,29 @@ class SignInWithAppleDelegates: NSObject {
 
 extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
     private func registerNewAccount(credential: ASAuthorizationAppleIDCredential) {
-        //    do {
-        //      let success = try WebApi.Register(user: userData,
-        //                                        identityToken: credential.identityToken,
-        //                                        authorizationCode: credential.authorizationCode)
-        //      self.signInSucceeded(success)
-        //    } catch {
-        //      self.signInSucceeded(false)
-        //    }
-
-        self.signInSucceeded(true)
+        let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
+        let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
+        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { response in
+            let signInToken = try? response.map(SignIn.self).data
+            //TODO: 키체인에 토큰 저장허가
+            self.signInSucceeded(true)
+        }) { err in
+            print(err)
+            self.signInSucceeded(false)
+        }
     }
 
     private func signInWithExistingAccount(credential: ASAuthorizationAppleIDCredential) {
-        // You *should* have a fully registered account here.  If you get back an error from your server
-        // that the account doesn't exist, you can look in the keychain for the credentials and rerun setup
-
-        // if (WebAPI.Login(credential.user, credential.identityToken, credential.authorizationCode)) {
-        //   ...
-        // }
-        self.signInSucceeded(true)
+        let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
+        let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
+        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { response in
+            let signInToken = try? response.map(SignIn.self).data
+            //TODO: 키체인에 토큰 저장허가
+            self.signInSucceeded(true)
+        }) { err in
+            print(err)
+            self.signInSucceeded(false)
+        }
     }
 
     private func signInWithUserAndPassword(credential: ASPasswordCredential) {
