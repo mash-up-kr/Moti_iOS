@@ -30,7 +30,7 @@ struct AnswerCompleteCardView: View {
                 VStack {
                     HStack {
                         Text(answerCompleteModel.question)
-                            .font(.custom("Baskerville", size: 24.0))
+                            .font(.custom("IropkeBatangM", size: 24.0))
                             .foregroundColor(Color(UIColor.rosegold))
                             .lineSpacing(12.0)
                         Spacer()

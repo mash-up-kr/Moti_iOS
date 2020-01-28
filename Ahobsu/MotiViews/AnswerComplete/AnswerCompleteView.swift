@@ -78,7 +78,7 @@ struct AnswerCompleteView: View {
                 .navigationBarItems(leading: btnBack)
                 .navigationBarBackButtonHidden(true)
                 .navigationBarTitle(Text(models[currentPage].date)
-                .font(.custom("Baskerville", size: 24.0)), displayMode: .inline)
+                .font(.custom("IropkeBatangM", size: 24.0)), displayMode: .inline)
                 .background(NavigationConfigurator { navConfig in
                     navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
                     navConfig.navigationBar.titleTextAttributes = [

@@ -17,7 +17,7 @@ struct AnswerComplete_Essay: View {
             VStack {
                 Text(text)
                     .multilineTextAlignment(.center)
-                    .font(.custom("Baskerville", size: 16.0))
+                    .font(.custom("IropkeBatangM", size: 16.0))
                     .foregroundColor(Color(UIColor.rosegold))
                     .lineSpacing(8.0)
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
