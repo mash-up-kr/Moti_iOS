@@ -5,18 +5,23 @@
 //  Created by admin on 2019/11/29.
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
-
 import SwiftUI
 
 struct AnswerComplete_Essay: View {
 
-    var body: some View {
-        Text("Hi")
-    }
-}
+    @State var text: String
 
-struct AnswerComplete_Essay_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerComplete_Essay()
+    var body: some View {
+        ZStack {
+            MainCardView(isWithLine: true)
+            VStack {
+                Text(text)
+                    .multilineTextAlignment(.center)
+                    .font(.custom("Baskerville", size: 16.0))
+                    .foregroundColor(Color(UIColor.rosegold))
+                    .lineSpacing(8.0)
+            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .padding([.all], 16.0)
+        }
     }
 }

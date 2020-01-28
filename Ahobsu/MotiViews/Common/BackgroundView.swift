@@ -28,10 +28,13 @@ extension BackgroundView {
             switch self {
             case .black:
                 return LinearGradient(gradient: Gradient(
-                            colors: [Color.black,
-                                    Color(UIColor.init(red: 26/255, green: 22/255, blue: 22/255, alpha: 1.0))]),
-                       startPoint: .top,
-                       endPoint: .bottom
+                    colors: [Color(UIColor.init(red: 26/255,
+                                                green: 22/255,
+                                                blue: 22/255,
+                                                alpha: 1.0)),
+                             Color.black]),
+                   startPoint: .top,
+                   endPoint: .bottom
                 )
             }
         }
