@@ -28,6 +28,10 @@ final class TokenManager {
     private var neededTokenType: TokenType = .access
 
     private init() {
+        loadTokensFormKeyChain()
+    }
+    
+    func loadTokensFormKeyChain() {
         if let receivedData = KeyChain.load(key: "ahobsu_accesstoken") {
             let result = receivedData.to(type: String.self)
             tokens.accessToken = result
@@ -44,7 +48,9 @@ final class TokenManager {
                              error: ((OSStatus) -> Void)?) {
         let tokenData: Data = Data(from: token)
         let status: OSStatus = KeyChain.save(key: "ahobsu_accesstoken", data: tokenData)
-
+        
+        loadTokensFormKeyChain()
+        
         if status == errSecSuccess {
             completion?(status)
         } else {
@@ -58,6 +64,8 @@ final class TokenManager {
         let tokenData: Data = Data(from: token)
         let status: OSStatus = KeyChain.save(key: "ahobsu_refreshtoken", data: tokenData)
 
+        loadTokensFormKeyChain()
+        
         if status == errSecSuccess {
             completion?(status)
         } else {
@@ -76,9 +84,18 @@ final class TokenManager {
     func setNeededTokenType(tokenType: TokenType) {
         neededTokenType = tokenType
     }
-
+    
     func getToken() -> String {
         switch neededTokenType {
+        case .access:
+            return getAccessToken()
+        case .refresh:
+            return getRefreshToken()
+        }
+    }
+    
+    func getToken(tokenType: TokenType) -> String {
+        switch tokenType {
         case .access:
             return getAccessToken()
         case .refresh:
