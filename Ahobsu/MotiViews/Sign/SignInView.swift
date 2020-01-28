@@ -14,6 +14,7 @@ struct SignInView: View {
     @State var window: UIWindow
     @State var appleSignInDelegates: SignInWithAppleDelegates! = nil
     @State var isDone = false
+    @State var showingOnBordingView = true
 
     var body: some View {
         NavigationView {
@@ -40,6 +41,9 @@ struct SignInView: View {
         }
         .onAppear {
             self.performExistingAccountSetupFlows()
+        }
+        .sheet(isPresented: $showingOnBordingView) {
+            OnBordingView(self.window, OnBordingModel.createOnBordingModel())
         }
     }
 

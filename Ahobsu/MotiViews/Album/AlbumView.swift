@@ -2,7 +2,7 @@
 //  AlbumView.swift
 //  Ahobsu
 //
-//  Created by 한종호 on 28/01/2020.
+//  Created by admin on 28/01/2020.
 //  Copyright © 2020 ahobsu. All rights reserved.
 //
 
