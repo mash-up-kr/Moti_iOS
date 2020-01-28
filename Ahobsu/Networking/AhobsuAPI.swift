@@ -266,7 +266,7 @@ extension AhobsuAPI: TargetType {
             return .uploadMultipart(formData)
         case .signIn, .updateProfile:
             return .requestParameters(parameters: params,
-                                      encoding: JSONEncoding.default)
+                                      encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
