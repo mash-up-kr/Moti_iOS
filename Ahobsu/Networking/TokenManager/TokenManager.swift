@@ -19,7 +19,7 @@ struct Tokens {
     var refreshToken: String
 }
 
-class TokenManager {
+final class TokenManager {
 
     static let sharedInstance = TokenManager()
 
