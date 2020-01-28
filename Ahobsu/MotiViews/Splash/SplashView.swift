@@ -53,37 +53,37 @@ struct LogoView: View {
     @Binding var logoAlpha: Double
     @Binding var logoScale: CGFloat
 
-    var logoText: String { "Moti" }
-    var logoSize: CGFloat { 24 }
-    var logoPaddingBottom: CGFloat { 12 }
+    var logoName: String { "motiLogo" }
+    var logoPaddingBottom: CGFloat { 24 }
 
-    var titleText: String { "일상의 동기를 부여하다" }
+    var titleText: String { "Make Own True Identity" }
     var titleColor: Color {
         Color.init(.sRGB,
-                    red: 152/255,
-                    green: 10/255,
-                    blue: 135/255,
-                    opacity: 0.34)
+                    red: 245/255,
+                    green: 219/255,
+                    blue: 203/255,
+                    opacity: 1.0)
     }
     var titleSize: CGFloat { 16 }
 
-    var logoViewPaddingTop: CGFloat { 226 }
+    var logoViewPaddingTop: CGFloat { 224 }
 
     var body: some View {
-        VStack {
-            Text(logoText)
-            .foregroundColor(Color.white)
-                .font(.system(size: logoSize, weight: .bold, design: .default))
-            .scaleEffect(logoScale)
-            .opacity(logoAlpha)
-            .padding(.bottom, logoPaddingBottom)
-            Text(titleText)
-            .foregroundColor(titleColor)
-            .font(.system(size: titleSize, weight: .bold, design: .default))
-            .opacity(textAlpha)
-            Spacer()
+        ZStack {
+            BackgroundView()
+            VStack {
+                Image(logoName)
+                .scaleEffect(logoScale)
+                .opacity(logoAlpha)
+                .padding(.bottom, logoPaddingBottom)
+                Text(titleText)
+                .foregroundColor(titleColor)
+                .font(.custom("TTNorms-Bold", size: 16.0))
+                .opacity(textAlpha)
+                Spacer()
+            }
+            .padding(.top, logoViewPaddingTop)
         }
-        .padding(.top, logoViewPaddingTop)
     }
 }
 
@@ -97,7 +97,7 @@ extension SplashView {
     var backgroundAlphaFinal: Double { 1.0 }
     var textAlphaFinal: Double { 1.0 }
     var logoAlphaFinal: Double { 1.0 }
-    var logoScaleFinal: Double { 1.5 }
+    var logoScaleFinal: Double { 1.0 }
 
     func handleAnimations() {
         runAnimationPart1()
