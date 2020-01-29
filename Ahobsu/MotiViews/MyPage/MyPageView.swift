@@ -11,6 +11,7 @@ import SwiftUI
 struct MyPageView: View {
 
     @State var user: User = User.sampleData
+    @ObservedObject var appVersion = AppVersion()
 
     var body: some View {
         ScrollView {
@@ -21,7 +22,7 @@ struct MyPageView: View {
                 ListCell(title: "생년월일", detail: user.birthday)
                 ListCell(title: "성별", detail: user.gender)
                 Separator()
-                ListCell(title: "버전정보", detail: "현재 0.0.0 / 최신 0.0.0")
+                ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion) / 최신 \(appVersion.latestVersion)")
                 ListCell(title: "", detail: "문의하기")
                 Spacer()
             }

@@ -45,6 +45,7 @@
 		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
 		A2C34900D1D32F3C1EDB3BEE4F87CE98 /* AnswerCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745BF09A80BF76150D826047C5B01DAF /* AnswerCompleteView.swift */; };
 		A578EF4623E1CEA300176F2A /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */; };
+		A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4723E1D17C00176F2A /* AppVersion.swift */; };
 		A648DF3461539354CC185908E911E614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */; };
 		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
 		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
@@ -136,6 +137,7 @@
 		9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		A5522BA54F90499741CB425243D12D45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		A578EF4723E1D17C00176F2A /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */,
 				57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */,
 				325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */,
+				A578EF4723E1D17C00176F2A /* AppVersion.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */,
 				C986522E598DB7AB70378B9B64F8F0C8 /* SignInWithApple.swift in Sources */,
 				6675DA914AB268309BC9390ED0487711 /* SignInWithAppleDelegates.swift in Sources */,
+				A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */,
 				B73773F77586E4FA7DF3C1F2FFE8CB3B /* SignUp.swift in Sources */,
 				12FE70886D975E99EF3971A9CB8B5D01 /* SignUpBirthdateView.swift in Sources */,
 				F2BB15916706F46A836A63EFEED6FAAA /* SignUpCompleteView.swift in Sources */,
