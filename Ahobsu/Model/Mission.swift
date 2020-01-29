@@ -10,14 +10,17 @@ import Foundation
 
 struct Mission: Decodable {
     let status: Int
-    let error: String
     let message: String
-    let data: [MissionData]
+    let data: Data
 
   enum CodingKeys: String, CodingKey {
     case status
-    case error
     case message
     case data
   }
+    
+    struct Data: Decodable {
+        let refresh: Bool
+        let missions: [MissionData]
+    }
 }

@@ -9,13 +9,13 @@
 import Foundation
 
 struct MissionData: Decodable {
-    let missionId: Int
+    let id: Int
     let title: String
-    let isContent: Bool
-    let isImage: Bool
+    let isContent: Int
+    let isImage: Int
 
   enum CodingKeys: String, CodingKey {
-    case missionId
+    case id
     case title
     case isContent
     case isImage

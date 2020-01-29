@@ -13,6 +13,11 @@ struct SelectQuestionView: View {
     @Binding var isNavigationBarHidden: Bool
 
     @State var index: Int = 0
+    @State var missions = [MissionData(id: 1, title: "", isContent: 1, isImage: 1),
+                           MissionData(id: 1, title: "", isContent: 1, isImage: 1),
+                           MissionData(id: 1, title: "", isContent: 1, isImage: 1),
+                           MissionData(id: 1, title: "", isContent: 1, isImage: 1)]
+    @State var refreshAvailable = true
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -34,13 +39,13 @@ struct SelectQuestionView: View {
 
                 VStack {
                     Spacer()
-                    SwiftUIPagerView(index: $index, pages: (0..<3).map { index in QuestionCardView(id: index) })
+                    SwiftUIPagerView(index: $index, pages: (0..<3).map { index in QuestionCardView(id: index, missionData: missions[index]) })
                         .frame(height: 420, alignment: .center)
                     Spacer().frame(height: 10)
                     PageControl(numberOfPages: 3, currentPage: $index)
                     Spacer().frame(minHeight: 35, idealHeight: 50, maxHeight: 60)
                     Button(action: getNewQuestion) {
-                        Text("질문 다시받기   0/3")
+                        Text("질문 다시받기   \(refreshAvailable ? 0 : 1)/1")
                             .font(.system(size: 16, weight: .regular, design: .default))
                             .foregroundColor(Color(.lightgold))
                             .padding([.vertical], 12)
@@ -54,9 +59,11 @@ struct SelectQuestionView: View {
                 }
                 .onAppear {
                     self.isNavigationBarHidden = false
+                    if self.missions.count == 4 {
+                        self.getNewQuestion()
+                    }
                 }
             }
-
             .navigationBarItems(leading: btnBack)
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle(
@@ -79,7 +86,16 @@ struct SelectQuestionView: View {
     }
 
     private func getNewQuestion() {
-
+        AhobsuProvider.getMission(completion: { response in
+            if let data = try? response.map(Mission.self).data {
+                print(data.missions)
+                self.missions = data.missions
+                self.refreshAvailable = data.refresh
+            }
+            
+        }) { err in
+            print(err)
+        }
     }
 }
 

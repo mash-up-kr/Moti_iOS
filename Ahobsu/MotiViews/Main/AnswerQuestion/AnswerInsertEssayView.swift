@@ -16,7 +16,7 @@ extension UIApplication {
 
 struct AnswerInsertEssayView: View {
     @State var text = "sadasjdkaljdlajd\ndsifsifha\nasdufhuah\nsdhfusadh\nsfjslijfsladj"
-
+    var missonData: MissionData
     @ObservedObject var keyboard: Keyboard = Keyboard()
 
     var body: some View {
@@ -26,7 +26,7 @@ struct AnswerInsertEssayView: View {
             ZStack {
                 VStack {
                     HStack {
-                        Text("오늘 비가와요.\n비를 주제로\n한줄 시를 써볼까요?")
+                        Text(missonData.title)
                             .font(.system(size: 24))
                             .lineSpacing(6)
                             .foregroundColor(Color(.rosegold))
@@ -76,7 +76,7 @@ struct AnswerInsertEssayView: View {
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertEssayView()
+        AnswerInsertEssayView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
     }
 }
 

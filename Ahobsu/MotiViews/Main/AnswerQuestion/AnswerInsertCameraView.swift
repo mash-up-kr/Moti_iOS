@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct AnswerInsertCameraView: View {
+    var missonData: MissionData
     var body: some View {
         ZStack {
             BackgroundView()
@@ -25,7 +26,7 @@ struct AnswerInsertCameraView: View {
                 Spacer()
                 Image("imgCam")
                 Spacer()
-                MainButton(title: "제출하기")
+                MainButton(title: "촬영하기")
                 Spacer()
             }
             .padding([.horizontal], 20)
@@ -35,6 +36,6 @@ struct AnswerInsertCameraView: View {
 
 struct AnswerInsertCameraView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertCameraView()
+        AnswerInsertCameraView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
     }
 }
