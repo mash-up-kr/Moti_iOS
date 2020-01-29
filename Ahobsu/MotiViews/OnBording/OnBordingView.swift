@@ -10,13 +10,13 @@ import SwiftUI
 struct OnBordingView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     @State var currentPage = 0
-    
+
     var window: UIWindow
-    
+
     var viewControllers: [UIHostingController<OnBordingCardView>]
-    
+
     var models: [OnBordingModel]
 
     init(_ window: UIWindow, _ model: [OnBordingModel]) {
@@ -24,7 +24,7 @@ struct OnBordingView: View {
         self.window = window
 
         self.viewControllers = model.map({
-            let controller = UIHostingController(rootView: OnBordingCardView(OnBordingModel: $0))
+            let controller = UIHostingController(rootView: OnBordingCardView(onBordingModel: $0))
 
             controller.view.backgroundColor = UIColor.clear
 
