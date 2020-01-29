@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupViewAppearance()
+
         return true
     }
 
@@ -25,5 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+    }
+}
+
+extension AppDelegate {
+
+    private func setupViewAppearance() {
+        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
+        UINavigationBar.appearance().tintColor = .rosegold
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.rosegold]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.rosegold]
     }
 }

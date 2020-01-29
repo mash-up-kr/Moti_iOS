@@ -38,6 +38,7 @@ struct SignUpGenderView: View {
                               buttonEnabled: signUp.gender != nil,
                               pushDestination: $pushNextView)
             .buttonStyle(PlainButtonStyle())
+            .navigationBarTitle("성별 선택", displayMode: .inline)
     }
 }
 

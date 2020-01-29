@@ -24,6 +24,7 @@ struct SignUpCompleteView: View {
                        buttonEnabled: true,
                        pushDestination: .constant(false))
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("회원가입 완료", displayMode: .inline)
     }
 }
 

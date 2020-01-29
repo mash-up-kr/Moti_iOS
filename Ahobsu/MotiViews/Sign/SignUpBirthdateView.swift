@@ -33,7 +33,7 @@ struct SignUpBirthdateView: View {
                               buttonEnabled: true,
                               pushDestination: $pushNextView).onReceive(signUp.signUpSuccess) { (success) in
                                 self.pushNextView = success
-        }
+        }.navigationBarTitle("생년월일 선택", displayMode: .inline)
     }
 }
 

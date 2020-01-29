@@ -57,7 +57,7 @@ struct SignUpNickNameView: View {
                 self.window.endEditing(true)
         }.onReceive(signUp.validatedNickname) {
             self.buttonEnabled = $0 != nil
-        }
+        }.navigationBarTitle("닉네임 설정", displayMode: .inline)
     }
 }
 
