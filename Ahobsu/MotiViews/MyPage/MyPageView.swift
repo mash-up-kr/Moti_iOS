@@ -11,6 +11,7 @@ import SwiftUI
 struct MyPageView: View {
 
     @State var user: User = User.sampleData
+    private var mailCompose = MailCompose()
     @ObservedObject var appVersion = AppVersion()
 
     var body: some View {
@@ -23,7 +24,15 @@ struct MyPageView: View {
                 ListCell(title: "성별", detail: user.gender)
                 Separator()
                 ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion) / 최신 \(appVersion.latestVersion)")
-                ListCell(title: "", detail: "문의하기")
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.mailCompose.open()
+                    }, label: {
+                        Text("문의하기")
+                    })
+                }.frame(minHeight: 52)
+                .foregroundColor(Color(.rosegold))
                 Spacer()
             }
         }
