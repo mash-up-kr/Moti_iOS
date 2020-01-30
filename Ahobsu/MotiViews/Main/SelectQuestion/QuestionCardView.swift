@@ -10,7 +10,7 @@ import SwiftUI
 
 struct QuestionCardView: View, Identifiable {
     var id: Int
-    @State var missionData: MissionData = MissionData(id: 1, title: "", isContent: 1, isImage: 1)
+    var missionData: MissionData
 
     var body: some View {
         ZStack {
@@ -55,7 +55,7 @@ struct QuestionCardView: View, Identifiable {
                 Spacer()
                 if missionData.isContent == 1 {
                     if missionData.isImage == 1 {
-                        NavigationLink(destination: AnswerInsertCameraView(missonData: missionData)) {
+                        NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
                             MainButton(title: "답변하기").environment(\.isEnabled, true)
                         }
                     } else {
@@ -64,7 +64,7 @@ struct QuestionCardView: View, Identifiable {
                         }
                     }
                 } else if missionData.isImage == 1 {
-                    NavigationLink(destination: AnswerInsertCameraView(missonData: missionData)) {
+                    NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
                         MainButton(title: "답변하기").environment(\.isEnabled, true)
                     }
                 }

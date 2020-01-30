@@ -8,8 +8,10 @@
 
 import SwiftUI
 
-struct AnswerInsertCameraView: View {
+struct AnswerCameraView: View {
     var missonData: MissionData
+    @State var showImagePicker: Bool = false
+    @State var image: UIImage?
     var body: some View {
         ZStack {
             BackgroundView()
@@ -26,7 +28,24 @@ struct AnswerInsertCameraView: View {
                 Spacer()
                 Image("imgCam")
                 Spacer()
-                MainButton(title: "촬영하기")
+                
+                NavigationLink(destination: AnswerInsertCamaraView(image: image)) {
+                    MainButton(action: {
+                        self.showImagePicker = true
+                    }, title: "촬영하기")
+                }
+                    
+                .sheet(isPresented: self.$showImagePicker,
+                       onDismiss: {
+                        
+                        print(self.image) },
+                       content: {
+                        ImagePicker(image: self.$image) }
+                        
+                )
+                
+                    
+                
                 Spacer()
             }
             .padding([.horizontal], 20)
@@ -34,8 +53,8 @@ struct AnswerInsertCameraView: View {
     }
 }
 
-struct AnswerInsertCameraView_Previews: PreviewProvider {
+struct AnswerCameraView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertCameraView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
+        AnswerCameraView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
     }
 }

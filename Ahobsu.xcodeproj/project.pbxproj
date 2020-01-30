@@ -29,6 +29,9 @@
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		575E67A623E19DFE00B2C300 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575E67A523E19DFE00B2C300 /* Card.swift */; };
+		575E67A823E1AD0400B2C300 /* AnswerInsertCamaraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */; };
+		575E67AA23E1B66000B2C300 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575E67A923E1B66000B2C300 /* ImagePicker.swift */; };
 		586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */; };
 		5B83C300AB70327D0A91226820F152B0 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58767712A13BF759341D51E350855FCC /* Mission.swift */; };
 		627BE14BB95E526E7D91939CBF74D995 /* MissionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D86867D089ED6F529A2FD7A55953F /* MissionData.swift */; };
@@ -39,7 +42,7 @@
 		7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */; };
 		8C3EAD1C31AF6F5C03C56E1277F6D0CA /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37359DDCD8148E26D7AE28349553497 /* QuestionCellView.swift */; };
 		8F3D759C5F892A8F9E4045CD74A7115D /* MyPageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */; };
-		93AFCE3FFF42F06B6555F90947C8B84C /* AnswerInsertCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF51E4441F64A689799A49B611484E5 /* AnswerInsertCameraView.swift */; };
+		93AFCE3FFF42F06B6555F90947C8B84C /* AnswerCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF51E4441F64A689799A49B611484E5 /* AnswerCameraView.swift */; };
 		94BB90EFFCA20D44F07066103745BC6E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A848E34D6FCEBA103A7161668808DCF /* Keychain.swift */; };
 		9AA429A6321D6C2150F8CC0A591FBE2B /* AnswerComplete_Essay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0D8E18C480767F6A1DA9F9A6D9A5C1 /* AnswerComplete_Essay.swift */; };
 		A01F75F6E1F1F9043B1CDB3306F55148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */; };
@@ -111,6 +114,9 @@
 		4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_EssayCamera.swift; sourceTree = "<group>"; };
 		4DD3DE9138430832870090EA6B4EC95E /* Ahobsu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ahobsu.entitlements; sourceTree = "<group>"; };
 		4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotiView.swift; sourceTree = "<group>"; };
+		575E67A523E19DFE00B2C300 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInsertCamaraView.swift; sourceTree = "<group>"; };
+		575E67A923E1B66000B2C300 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditView.swift; sourceTree = "<group>"; };
 		58767712A13BF759341D51E350855FCC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,7 +135,7 @@
 		8A848E34D6FCEBA103A7161668808DCF /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ahobsu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0D8E18C480767F6A1DA9F9A6D9A5C1 /* AnswerComplete_Essay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_Essay.swift; sourceTree = "<group>"; };
-		8FF51E4441F64A689799A49B611484E5 /* AnswerInsertCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInsertCameraView.swift; sourceTree = "<group>"; };
+		8FF51E4441F64A689799A49B611484E5 /* AnswerCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCameraView.swift; sourceTree = "<group>"; };
 		9302ED4D8249025596B4EFAE1580A395 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9A1F8CD740348BE97C508C37D55A3BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -218,6 +224,7 @@
 				2A3D86867D089ED6F529A2FD7A55953F /* MissionData.swift */,
 				2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */,
 				FA75AC1323D08640001B04B6 /* AnswerCompleteModel.swift */,
+				575E67A523E19DFE00B2C300 /* Card.swift */,
 				FAB0F08C23E0913E00336EA5 /* OnBordingModel.swift */,
 			);
 			path = Model;
@@ -299,7 +306,9 @@
 		80A42AABA8415A07400169474E7A6537 /* AnswerQuestion */ = {
 			isa = PBXGroup;
 			children = (
-				8FF51E4441F64A689799A49B611484E5 /* AnswerInsertCameraView.swift */,
+				8FF51E4441F64A689799A49B611484E5 /* AnswerCameraView.swift */,
+				575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */,
+				575E67A923E1B66000B2C300 /* ImagePicker.swift */,
 				CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */,
 			);
 			path = AnswerQuestion;
@@ -675,7 +684,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "#if which swiftlint >/dev/null; then\n#  swiftlint\n#else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
 		B54ED29C05F8A79A24CCE41D0BD0EC17 /* Xunique */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -711,7 +720,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "#if which swiftlint >/dev/null; then\n#swiftlint autocorrect\n#else\n#echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -723,6 +732,7 @@
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
+				575E67A823E1AD0400B2C300 /* AnswerInsertCamaraView.swift in Sources */,
 				6E5D6BFE4E62C3D82B3E94BDD172B1D5 /* AnswerCompletePageControl.swift in Sources */,
 				A2C34900D1D32F3C1EDB3BEE4F87CE98 /* AnswerCompleteView.swift in Sources */,
 				F992A803DA9ACA785F26B3E2B96F712F /* AnswerComplete_Camera.swift in Sources */,
@@ -730,7 +740,7 @@
 				FAB0F08D23E0913E00336EA5 /* OnBordingModel.swift in Sources */,
 				9AA429A6321D6C2150F8CC0A591FBE2B /* AnswerComplete_Essay.swift in Sources */,
 				37EB7E085617313B840B8ACEDB65B03A /* AnswerComplete_EssayCamera.swift in Sources */,
-				93AFCE3FFF42F06B6555F90947C8B84C /* AnswerInsertCameraView.swift in Sources */,
+				93AFCE3FFF42F06B6555F90947C8B84C /* AnswerCameraView.swift in Sources */,
 				3D5C9E6DEE7280FA647831FAB1EB9EA4 /* AnswerInsertEssayView.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				FA75AC1423D08640001B04B6 /* AnswerCompleteModel.swift in Sources */,
@@ -759,10 +769,12 @@
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				DE8BDF24DD809376B8A04E8077644099 /* PageControl.swift in Sources */,
 				33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */,
+				575E67A623E19DFE00B2C300 /* Card.swift in Sources */,
 				AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */,
 				8C3EAD1C31AF6F5C03C56E1277F6D0CA /* QuestionCellView.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
 				FAB0F08523E0901900336EA5 /* OnBordingPageControl.swift in Sources */,
+				575E67AA23E1B66000B2C300 /* ImagePicker.swift in Sources */,
 				FA75AC1623D087E1001B04B6 /* AnswerCompleteCardView.swift in Sources */,
 				25D0017AA1CE29EE896C85FFD9F6F54C /* SelectQuestionView.swift in Sources */,
 				DC92FAAC92374479E5721EA54CFE0D6C /* SignInView.swift in Sources */,

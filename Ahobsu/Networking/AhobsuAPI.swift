@@ -16,7 +16,8 @@ enum AhobsuAPI {
     case updateAnswer(answerId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case getWeekAnswers(mondayDate: String)
     case getAnswer(missionDate: String)
-
+    case getAnswersWeek
+    
     /* Missions */
     case getMission
     case refreshMission
@@ -57,6 +58,8 @@ extension AhobsuAPI: TargetType {
             return "/answers/week/\(mondayDate)"
         case let .getAnswer(missionDate):
             return "/answers/\(missionDate)"
+        case .getAnswersWeek:
+            return "/answers/week"
 
         /* Missions */
         case .getMission:
@@ -92,6 +95,8 @@ extension AhobsuAPI: TargetType {
         case .getWeekAnswers:
             return .get
         case .getAnswer:
+            return .get
+        case .getAnswersWeek:
             return .get
 
         /* Missions */
@@ -139,6 +144,9 @@ extension AhobsuAPI: TargetType {
             /* Empty */
             break
         case .getAnswer:
+            /* Empty */
+            break
+        case .getAnswersWeek:
             /* Empty */
             break
 
@@ -279,7 +287,7 @@ extension AhobsuAPI: TargetType {
     }
 
     var headers: [String: String]? {
-        var authToken: String = TokenManager.sharedInstance.getToken()
+        var authToken: String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJiaXJ0aGRheSI6IjE5OTctMDEtMTYiLCJlbWFpbCI6Inl1Y2hvY29waWVAZ21haWwuY29tIiwibmFtZSI6IuycoOyglSIsImdlbmRlciI6IuyXrCIsInJlZnJlc2hEYXRlIjoiMjAyMC0wMS0yOCIsInJlZnJlc2hUb2tlbiI6bnVsbCwibWlzc2lvbiI6IntcImRhdGVcIjpcIjIwMjAtMDEtMjhcIixcIm1pc3Npb25zXCI6W3tcImlkXCI6MSxcInRpdGxlXCI6XCLrrLjsoJxcIixcImlzQ29udGVudFwiOjEsXCJpc0ltYWdlXCI6MCxcImN5Y2xlXCI6MSxcImNyZWF0ZWRBdFwiOlwiMjAyMC0wMS0xMiAyMDo1NDozNFwiLFwidXBkYXRlZEF0XCI6XCIyMDIwLTAxLTEyIDIwOjU0OjM0XCJ9LHtcImlkXCI6NjcsXCJ0aXRsZVwiOlwi7JWI64WVMlwiLFwiaXNDb250ZW50XCI6MSxcImlzSW1hZ2VcIjowLFwiY3ljbGVcIjoxLFwiY3JlYXRlZEF0XCI6XCIyMDIwLTAxLTI3IDIyOjQ0OjU4XCIsXCJ1cGRhdGVkQXRcIjpcIjIwMjAtMDEtMjcgMjI6NDQ6NThcIn0se1wiaWRcIjo2OCxcInRpdGxlXCI6XCLslYjrhZUyXCIsXCJpc0NvbnRlbnRcIjoxLFwiaXNJbWFnZVwiOjAsXCJjeWNsZVwiOjEsXCJjcmVhdGVkQXRcIjpcIjIwMjAtMDEtMjcgMjI6NDQ6NTlcIixcInVwZGF0ZWRBdFwiOlwiMjAyMC0wMS0yNyAyMjo0NDo1OVwifV19Iiwic25zSWQiOiIxIiwic25zVHlwZSI6ImFwcGxlIiwiY3JlYXRlZEF0IjoiMjAyMC0wMS0yOCAwMDo0OTo0MSIsInVwZGF0ZWRBdCI6IjIwMjAtMDEtMjggMDk6MTI6NDcifSwiaWF0IjoxNTgwMjY3NzEwLCJleHAiOjE1ODA4NzI1MTB9.or-4T0F5uKL_JCJGERk9p5gooUzmTGfsrGoCZqKNa6M"
         switch self {
         case let .signIn(_, auth):
             authToken = auth

@@ -52,6 +52,13 @@ class AhobsuProvider {
                          completionHandler: completion,
                          errorHandler: error)
     }
+    
+    class func getAnswersWeek(completion: @escaping ((Response) -> Void),
+                         error: @escaping ((MoyaError) -> Void)) {
+        provider.request(.getAnswersWeek,
+                         completionHandler: completion,
+                         errorHandler: error)
+    }
 
     /* Missions */
 

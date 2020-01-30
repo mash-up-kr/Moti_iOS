@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     @State var isNavigationBarHidden: Bool = true
     @State var isAnswered: Bool = false
+    @State var cards = [Card]()
 
     var body: some View {
         NavigationView {
@@ -106,6 +107,16 @@ struct MainView: View {
 
     func goToMyPage() {
 
+    }
+    
+    func getWeeksData() {
+        AhobsuProvider.getAnswersWeek(completion: { response in
+            if let data = try? response.map(CardData.self) {
+                self.cards = data.data
+            }
+        }) { err in
+            print(err)
+        }
     }
 }
 
