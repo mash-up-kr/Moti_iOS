@@ -56,7 +56,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
             self.signInSucceeded(false, nil)
         }, expireTokenAction: {
             
-        })
+        }, filteredStatusCode: nil)
     }
 
     private func signInWithExistingAccount(credential: ASAuthorizationAppleIDCredential) {
@@ -81,7 +81,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
             self.signInSucceeded(false, nil)
         }, expireTokenAction: {
             
-        })
+        }, filteredStatusCode: nil)
     }
 
     private func signInWithUserAndPassword(credential: ASPasswordCredential) {

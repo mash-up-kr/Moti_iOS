@@ -54,6 +54,7 @@ class AhobsuProvider {
         case users_id_get_success
         
         /* Token */
+        case token_valid
         case token_invalid
         
         func value() -> Int {
@@ -109,7 +110,9 @@ class AhobsuProvider {
                 return 200
             case .users_id_get_success:
                 return 200
-                
+            
+            case .token_valid:
+                return 200
             case .token_invalid:
                 return 1100
             }
@@ -145,6 +148,7 @@ class AhobsuProvider {
                 return
             }
             
+            /* Access Token 재발급 */
             return completion(StatusDataWrapper(model: model, status: status, message: message))
         }
         
@@ -153,7 +157,8 @@ class AhobsuProvider {
     
     class func statusDataOrNil<S: Decodable>(_ response: Response,
                                              _ completion: @escaping ((StatusDataWrapper<S>?) -> Void),
-                                             _ expireTokenAction: @escaping () -> Void) where S: Decodable {
+                                             _ expireTokenAction: @escaping () -> Void,
+                                             _ filteredStatusCode: [StatusEnum]) where S: Decodable {
         if let data = try? response.map(APIData<S>.self) {
             let status = data.status
             let message = data.message
@@ -174,7 +179,11 @@ class AhobsuProvider {
                 TokenManager.sharedInstance.setNeededTokenType(tokenType: .access)
             }
             
-            return completion(StatusDataWrapper(model: model, status: status, message: message))
+            let filteredCode = filteredStatusCode.map { $0.value() }
+            
+            if filteredCode.contains(status) {
+                return completion(StatusDataWrapper(model: model, status: status, message: message))
+            }
         }
         
         return completion(nil)
@@ -186,7 +195,8 @@ class AhobsuProvider {
                               contentOrNil: String?,
                               imageOrNil: UIImage?,
                               completion: @escaping ((Response) -> Void),
-                              error: @escaping ((MoyaError) -> Void)) {
+                              error: @escaping ((MoyaError) -> Void),
+                              filteredStatusCode: [StatusEnum]?) {
         provider.request(.registerAnswer(missionId: missionId,
                                          contentOrNil: contentOrNil,
                                          imageOrNil: imageOrNil),
@@ -198,7 +208,8 @@ class AhobsuProvider {
                             contentOrNil: String?,
                             imageOrNil: UIImage?,
                             completion: @escaping ((Response) -> Void),
-                            error: @escaping ((MoyaError) -> Void)) {
+                            error: @escaping ((MoyaError) -> Void),
+                            filteredStatusCode: [StatusEnum]?) {
         provider.request(.updateAnswer(answerId: answerId,
                                        contentOrNil: contentOrNil,
                                        imageOrNil: imageOrNil),
@@ -208,7 +219,8 @@ class AhobsuProvider {
 
     class func getWeekAnswer(mondayDate: String,
                              completion: @escaping ((Response) -> Void),
-                             error: @escaping ((MoyaError) -> Void)) {
+                             error: @escaping ((MoyaError) -> Void),
+                             filteredStatusCode: [StatusEnum]?) {
         provider.request(.getWeekAnswers(mondayDate: mondayDate),
                          completionHandler: completion,
                          errorHandler: error)
@@ -216,14 +228,16 @@ class AhobsuProvider {
 
     class func getAnswer(missionDate: String,
                          completion: @escaping ((Response) -> Void),
-                         error: @escaping ((MoyaError) -> Void)) {
+                         error: @escaping ((MoyaError) -> Void),
+                         filteredStatusCode: [StatusEnum]?) {
         provider.request(.getAnswer(missionDate: missionDate),
                          completionHandler: completion,
                          errorHandler: error)
     }
     
     class func getAnswersWeek(completion: @escaping ((Response) -> Void),
-                         error: @escaping ((MoyaError) -> Void)) {
+                         error: @escaping ((MoyaError) -> Void),
+                         filteredStatusCode: [StatusEnum]?) {
         provider.request(.getAnswersWeek,
                          completionHandler: completion,
                          errorHandler: error)
@@ -233,24 +247,29 @@ class AhobsuProvider {
 
     class func getMission(completion: @escaping ((StatusDataWrapper<Mission>?) -> Void),
                           error: @escaping ((MoyaError) -> Void),
-                          expireTokenAction: @escaping () -> Void) {
+                          expireTokenAction: @escaping () -> Void,
+                          filteredStatusCode: [StatusEnum]?) {
         provider.request(.getMission,
                          completionHandler: { response in
                             self.statusDataOrNil(response,
                                                  completion,
-                                                 expireTokenAction)
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.missions_get_success])
                         },
                          errorHandler: error)
     }
 
     class func refreshMission(completion: @escaping ((StatusDataWrapper<Mission>?) -> Void),
                               error: @escaping ((MoyaError) -> Void),
-                              expireTokenAction: @escaping () -> Void) {
+                              expireTokenAction: @escaping () -> Void,
+                              filteredStatusCode: [StatusEnum]?) {
         provider.request(.refreshMission,
                         completionHandler: { response in
                             self.statusDataOrNil(response,
                                                  completion,
-                                                 expireTokenAction)
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.missions_refresh_get_success,
+                                                                        .missions_refresh_get_error_notable])
                         },
                         errorHandler: error)
     }
@@ -261,12 +280,14 @@ class AhobsuProvider {
                       auth: String,
                       completion: @escaping ((StatusDataWrapper<Token>?) -> Void),
                       error: @escaping ((MoyaError) -> Void),
-                      expireTokenAction: @escaping () -> Void) {
+                      expireTokenAction: @escaping () -> Void,
+                      filteredStatusCode: [StatusEnum]?) {
         provider.request(.signIn(snsId: snsId, auth: auth),
                          completionHandler: { response in
                             self.statusDataOrNil(response,
                                                  completion,
-                                                 expireTokenAction)
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.signin_post_success])
                          },
                          errorHandler: error)
     }
@@ -290,7 +311,8 @@ class AhobsuProvider {
     class func updateProfile(user: User,
                              completion: @escaping ((StatusDataWrapper<User>?) -> Void),
                              error: @escaping ((MoyaError) -> Void),
-                             expireTokenAction: @escaping () -> Void) {
+                             expireTokenAction: @escaping () -> Void,
+                             filteredStatusCode: [StatusEnum]?) {
         provider.request(.updateProfile(name: user.name,
                                         birthday: user.birthday,
                                         email: user.email,
@@ -298,31 +320,38 @@ class AhobsuProvider {
                         completionHandler: { response in
                             self.statusDataOrNil(response,
                                                  completion,
-                                                 expireTokenAction)
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.users_put_success])
                         },
                         errorHandler: error)
     }
 
     class func deleteProfile(completion: @escaping ((StatusDataWrapper<User>?) -> Void),
                              error: @escaping ((MoyaError) -> Void),
-                             expireTokenAction: @escaping () -> Void) {
+                             expireTokenAction: @escaping () -> Void,
+                             filteredStatusCode: [StatusEnum]?) {
         provider.request(.deleteProfile,
                          completionHandler: { response in
                             self.statusDataOrNil(response,
                                                  completion,
-                                                 expireTokenAction)
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.users_delete_success,
+                                                                        .users_delete_error_notfound,
+                                                                        .users_delete_error_invalid_id])
                          },
                          errorHandler: error)
     }
 
     class func getProfile(completion: @escaping ((StatusDataWrapper<User>?) -> Void),
                           error: @escaping ((MoyaError) -> Void),
-                          expireTokenAction: @escaping () -> Void) {
+                          expireTokenAction: @escaping () -> Void,
+                          filteredStatusCode: [StatusEnum]?) {
         provider.request(.getProfile,
                          completionHandler: { response in
                             self.statusDataOrNil(response,
                                                  completion,
-                                                 expireTokenAction)
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.users_get_success])
                          },
                          errorHandler: error)
     }

@@ -86,7 +86,7 @@ struct SelectQuestionView: View {
         }, expireTokenAction: {
             /* 토큰 만료 시 */
             self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
-        })
+        }, filteredStatusCode: nil)
     }
 }
 

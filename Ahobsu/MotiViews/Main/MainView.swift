@@ -102,9 +102,9 @@ struct MainView: View {
                     self.todayCard = data.data
                 }
             }
-        }) { err in
+        }, error: { err in
             print(err)
-        }
+        }, filteredStatusCode: nil)
     }
     
     func goToCalendar() {
@@ -118,9 +118,9 @@ struct MainView: View {
             } else {
                 
             }
-        }) { err in
+        }, error: { err in
             print(err)
-        }
+        }, filteredStatusCode: nil)
     }
 }
 
