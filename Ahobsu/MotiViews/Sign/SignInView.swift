@@ -70,7 +70,7 @@ struct SignInView: View {
                 if shouldSignUp {
                     self.window.rootViewController = UIHostingController(rootView: NavigationView { SignUpNickNameView(window: self.$window) })
                 } else {
-                    self.window.rootViewController = UIHostingController(rootView: MainView())
+                    self.window.rootViewController = UIHostingController(rootView: MainView(window: self.window))
                 }
             } else {
                 // show the user an error

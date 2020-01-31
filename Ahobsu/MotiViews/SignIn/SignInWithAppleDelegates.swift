@@ -37,33 +37,51 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
     private func registerNewAccount(credential: ASAuthorizationAppleIDCredential) {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
-        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { response in
-            if let signInToken = try? response.map(SignIn.self).data {
-                //TODO: 키체인에 토큰 저장허가
+        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { wrapper in
+            if let signInToken = wrapper?.model {
+                TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
+                                                                completion: nil,
+                                                                error: nil)
+                
+                TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
+                                                                 completion: nil,
+                                                                 error: nil)
+                
                 self.signInSucceeded(true, signInToken.signUp)
             } else {
                 self.signInSucceeded(false, nil)
             }
-        }) { err in
+        }, error: { err in
             print(err)
             self.signInSucceeded(false, nil)
-        }
+        }, expireTokenAction: {
+            
+        })
     }
 
     private func signInWithExistingAccount(credential: ASAuthorizationAppleIDCredential) {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
-        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { response in
-            if let signInToken = try? response.map(SignIn.self).data {
-                //TODO: 키체인에 토큰 저장허가
+        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { wrapper in
+            if let signInToken = wrapper?.model {
+                TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
+                                                                completion: nil,
+                                                                error: nil)
+                
+                TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
+                                                                 completion: nil,
+                                                                 error: nil)
+                
                 self.signInSucceeded(true, signInToken.signUp)
             } else {
                 self.signInSucceeded(false, nil)
             }
-        }) { err in
+        }, error: { err in
             print(err)
             self.signInSucceeded(false, nil)
-        }
+        }, expireTokenAction: {
+            
+        })
     }
 
     private func signInWithUserAndPassword(credential: ASPasswordCredential) {

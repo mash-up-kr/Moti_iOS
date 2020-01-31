@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @State var window: UIWindow
     @State var isNavigationBarHidden: Bool = true
     @State var isAnswered: Bool = false
     @State var todayCard: Card?
@@ -24,7 +25,9 @@ struct MainView: View {
                         .frame(height: 72, alignment: .center)
                         .padding([.horizontal], 15)
                     Spacer()
-                    NavigationLink(destination: SelectQuestionView(currentPage: .constant(0), isNavigationBarHidden: self.$isNavigationBarHidden)) {
+                    NavigationLink(destination: SelectQuestionView(window: $window,
+                                                                   currentPage: .constant(0),
+                                                                   isNavigationBarHidden: self.$isNavigationBarHidden)) {
                         MainCardView(isWithLine: !isAnswered)
                             .aspectRatio(0.62, contentMode: .fit)
                             .padding([.horizontal], 59)
@@ -35,13 +38,13 @@ struct MainView: View {
                                     } else {
                                         VStack {
                                             Text("Motivation")
-                                                .font(.custom("Baskerville", size: 16))
+//                                                .font(.custom("Baskerville", size: 16.0))
                                                 .foregroundColor(Color(.rosegold))
                                             Spacer()
                                             Image("imgQuestion")
                                             Spacer()
                                             Text("Today’s\nyour\nQuestion")
-                                                .font(.custom("Baskerville", size: 16))
+//                                                .font(.custom("Baskerville", size: 16.0))
                                                 .foregroundColor(Color(.rosegold))
                                                 .multilineTextAlignment(.center)
                                         }
@@ -105,7 +108,7 @@ struct MainView: View {
     }
     
     func goToCalendar() {
-
+        
     }
     
     func getWeeksData() {
@@ -123,6 +126,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(window: UIWindow())
     }
 }

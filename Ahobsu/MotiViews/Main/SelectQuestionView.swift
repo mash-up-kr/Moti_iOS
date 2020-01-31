@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SelectQuestionView: View {
+    @Binding var window: UIWindow
     @Binding var currentPage: Int
     @Binding var isNavigationBarHidden: Bool
     @State var selectQuestionActive: Bool = true
@@ -58,7 +59,7 @@ struct SelectQuestionView: View {
                     Spacer().frame(height: 32)
                 }
                 .onAppear {
-                    self.isNavigationBarHidden = false
+                    self.isNavigationBarHidden = true
                     if self.missions.count == 4 {
                         self.getNewQuestion()
                     }
@@ -72,24 +73,25 @@ struct SelectQuestionView: View {
 
     private func getNewQuestion() {
         self.missions = emptyMissions
-        AhobsuProvider.getMission(completion: { response in
-            if let data = try? response.map(Mission.self).data {
-                print(data.missions)
+        AhobsuProvider.getMission(completion: { wrapper in
+            if let mission = wrapper?.model {
+                print(mission.missions)
                 withAnimation(.easeOut) {
-                    self.missions = data.missions
-                    self.refreshAvailable = data.refresh
+                    self.missions = mission.missions
+                    self.refreshAvailable = mission.refresh
                 }
-            } else {
-
             }
-        }) { err in
+        }, error: { err in
             print(err)
-        }
+        }, expireTokenAction: {
+            /* 토큰 만료 시 */
+            self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
+        })
     }
 }
 
 struct SelectQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectQuestionView(currentPage: .constant(0), isNavigationBarHidden: .constant(false))
+        SelectQuestionView(window: .constant(UIWindow()), currentPage: .constant(0), isNavigationBarHidden: .constant(false))
     }
 }

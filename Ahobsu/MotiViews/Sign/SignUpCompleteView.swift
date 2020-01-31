@@ -19,7 +19,7 @@ struct SignUpCompleteView: View {
                        buttonTitle: "시작하기",
                        buttonDestination: EmptyView(),
                        buttonAction: {
-                        self.window.rootViewController = UIHostingController(rootView: MainView())
+                        self.window.rootViewController = UIHostingController(rootView: MainView(window: self.window))
         },
                        buttonEnabled: true,
                        pushDestination: .constant(false))

@@ -62,9 +62,7 @@ class SignUp: ObservableObject {
                 return AhobsuAPI.updateProfile(name: nickName,
                                                birthday: self.dateFormatter.string(from: self.birthdate),
                                                email: self.email,
-                                               gender: gender.rawValue,
-                                               snsId: 1,
-                                               snsType: "apple") }
+                                               gender: gender.rawValue) }
             .flatMap { (signUpAPI) -> Future<Bool, Error> in
                 Future<Bool, Error> { (promise) in
                     AhobsuProvider.provider.requestPublisher(signUpAPI)
