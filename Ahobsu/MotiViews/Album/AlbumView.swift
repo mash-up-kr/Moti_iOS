@@ -12,6 +12,10 @@ struct AlbumView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    var loadAlbums = {
+        
+    }
+    
     var btnBack : some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -32,6 +36,7 @@ struct AlbumView: View {
                  VStack {
                      Text("Hi")
                  }
+                 .onAppear(perform: loadAlbums)
                  .navigationBarItems(leading: btnBack)
                  .navigationBarBackButtonHidden(true)
                  .navigationBarTitle(Text("앨범")

@@ -42,9 +42,6 @@ struct SignInView: View {
         .onAppear {
             self.performExistingAccountSetupFlows()
         }
-        .sheet(isPresented: $showingOnBordingView) {
-            OnBordingView(self.window, OnBordingModel.createOnBordingModel())
-        }
     }
 
     private func showAppleLogin() {

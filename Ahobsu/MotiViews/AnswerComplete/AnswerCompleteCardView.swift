@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AnswerCompleteCardView: View {
-
+    
     @State var answerCompleteModel: AnswerCompleteModel
 
     var contentView: some View {
@@ -54,7 +55,7 @@ struct AnswerCompleteCardView: View {
     }
 
     func update() {
-
+        
     }
 }
 
