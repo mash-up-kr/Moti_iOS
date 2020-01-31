@@ -16,7 +16,7 @@ extension UINavigationController {
         navigationBar.backIndicatorImage = backButtonImage
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         navigationBar.isTranslucent = true
-        navigationBar.setBackgroundImage(UIImage(color: .black), for: .default)
+        navigationBar.setBackgroundImage(UIImage(color: .clear), for: .default)
         navigationBar.shadowImage = UIImage()
     }
 }

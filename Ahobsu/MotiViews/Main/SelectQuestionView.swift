@@ -21,17 +21,6 @@ struct SelectQuestionView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    var btnBack : some View { Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
-    }) {
-        HStack {
-            Image("icArrowLeft") // set image here
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color(.rosegold))
-        }
-        }
-    }
-
     var body: some View {
             ZStack {
                 BackgroundView()
@@ -64,25 +53,7 @@ struct SelectQuestionView: View {
                     }
                 }
             }
-            .navigationBarItems(leading: btnBack)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitle(
-                Text("질문 선택")
-                    .font(.system(size: 16, weight: .regular, design: .default)),
-                displayMode: .inline
-            )
-                .background(NavigationConfigurator { navConfig in
-                    navConfig.navigationBar.backIndicatorTransitionMaskImage = UIImage()
-                    navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-                    navConfig.navigationBar.shadowImage = UIImage()
-                    navConfig.navigationBar.isTranslucent = true
-                    navConfig.navigationBar.backgroundColor = .clear
-                    navConfig.navigationBar.titleTextAttributes = [
-                        .foregroundColor: UIColor.rosegold
-                    ]
-
-                    }
-        )
+            .navigationBarTitle("질문 선택")
     }
 
     private func getNewQuestion() {

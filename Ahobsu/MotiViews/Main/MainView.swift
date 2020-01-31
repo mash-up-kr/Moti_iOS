@@ -67,45 +67,23 @@ struct MainView: View {
                             .font(.system(size: 20, weight: .regular, design: .default))
 
                         Spacer()
-
-                        Button(action: goToMyPage) {
+                        NavigationLink(destination: MyPageView(isNavigationBarHidden: self.$isNavigationBarHidden)) {
                             Image("icProfileNormal")
                                 .foregroundColor(Color(.rosegold))
                                 .frame(width: 48, height: 48, alignment: .center)
-
                         }
-
                     }
                     .padding(.horizontal, 15)
                     .padding([.top], 11)
                 }
                 .padding([.bottom], 30)
-
             }
-            .navigationBarTitle(Text(""))
-            .onAppear {
-                self.isNavigationBarHidden = true
-            }
-            .background(NavigationConfigurator { navConfig in
-                navConfig.navigationBar.backIndicatorTransitionMaskImage = UIImage()
-                navConfig.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-                navConfig.navigationBar.shadowImage = UIImage()
-                navConfig.navigationBar.isTranslucent = true
-                navConfig.navigationBar.backgroundColor = .clear
-                navConfig.navigationBar.titleTextAttributes = [
-                    .foregroundColor: UIColor.rosegold
-                ]
-
-                }
-            )
+            .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarHidden(isNavigationBarHidden)
+            .onAppear(perform: { self.isNavigationBarHidden = true })
         }
     }
     func goToCalendar() {
-
-    }
-
-    func goToMyPage() {
 
     }
     

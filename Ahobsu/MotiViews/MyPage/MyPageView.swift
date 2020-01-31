@@ -10,8 +10,10 @@ import SwiftUI
 
 struct MyPageView: View {
 
+    @Binding var isNavigationBarHidden: Bool
+    
     @State var user: User = User.sampleData
-    private var mailCompose = MailCompose()
+    var mailCompose = MailCompose()
     @ObservedObject var appVersion = AppVersion()
 
     var body: some View {
@@ -43,12 +45,13 @@ struct MyPageView: View {
         .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(user: $user)) {
             Image("icRewriteNormal").frame(width: 48, height: 48, alignment: .center)
         })
+        .onAppear { self.isNavigationBarHidden = false }
     }
 }
 
 struct MyPageView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView()
+        MyPageView(isNavigationBarHidden: .constant(false))
     }
 }
 
