@@ -56,17 +56,17 @@ struct QuestionCardView: View, Identifiable {
                 if missionData.isContent == true {
                     if missionData.isImage == true {
                         NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
-                            MainButton(title: "답변하기").environment(\.isEnabled, true)
-                        }
+                            MainButton(title: "답변하기")
+                        }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
                         NavigationLink(destination: AnswerInsertEssayView(missonData: missionData)) {
-                            MainButton(title: "답변하기").environment(\.isEnabled, true)
-                        }
+                            MainButton(title: "답변하기")
+                        }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
                 } else if missionData.isImage == true {
                     NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
-                        MainButton(title: "답변하기").environment(\.isEnabled, true)
-                    }
+                        MainButton(title: "답변하기")
+                    }.environment(\.isEnabled, !missionData.title.isEmpty)
                 }
             }
             .padding([.vertical], 20)

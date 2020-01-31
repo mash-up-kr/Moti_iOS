@@ -13,10 +13,12 @@ struct SelectQuestionView: View {
     @Binding var isNavigationBarHidden: Bool
 
     @State var index: Int = 0
-    @State var missions = [MissionData(id: 1, title: "", isContent: 1, isImage: 1),
-                           MissionData(id: 1, title: "", isContent: 1, isImage: 1),
-                           MissionData(id: 1, title: "", isContent: 1, isImage: 1),
-                           MissionData(id: 1, title: "", isContent: 1, isImage: 1)]
+    var emptyMissions: [MissionData] {
+        return [MissionData(id: 1, title: "", isContent: false, isImage: false),
+                MissionData(id: 1, title: "", isContent: false, isImage: false),
+                MissionData(id: 1, title: "", isContent: false, isImage: false),
+                MissionData(id: 1, title: "", isContent: false, isImage: false)]
+    }
     @State var missions = [MissionData(id: 1, title: "", isContent: false, isImage: false),
                            MissionData(id: 1, title: "", isContent: false, isImage: false),
                            MissionData(id: 1, title: "", isContent: false, isImage: false),
@@ -47,7 +49,7 @@ struct SelectQuestionView: View {
                             .overlay(Capsule()
                                 .stroke(Color(.lightgold), lineWidth: 1)
                         )
-                    }
+                    }.environment(\.isEnabled, !(missions.first?.title.isEmpty ?? true))
                     Spacer().frame(height: 32)
                 }
                 .onAppear {
@@ -61,13 +63,17 @@ struct SelectQuestionView: View {
     }
 
     private func getNewQuestion() {
+        self.missions = emptyMissions
         AhobsuProvider.getMission(completion: { response in
             if let data = try? response.map(Mission.self).data {
                 print(data.missions)
-                self.missions = data.missions
-                self.refreshAvailable = data.refresh
+                withAnimation(.easeOut) {
+                    self.missions = data.missions
+                    self.refreshAvailable = data.refresh
+                }
+            } else {
+                
             }
-            
         }) { err in
             print(err)
         }
