@@ -33,12 +33,14 @@ final class TokenManager {
 
     func loadTokensFormKeyChain() {
         if let receivedData = KeyChain.load(key: "ahobsu_accesstoken") {
-            let result = receivedData.to(type: String.self)
+            let result = String(data: receivedData, encoding: .utf8) ?? ""
+            print("accesstoken : \(result)")
             tokens.accessToken = result
         }
 
         if let receivedData = KeyChain.load(key: "ahobsu_refreshtoken") {
-            let result = receivedData.to(type: String.self)
+            let result = String(data: receivedData, encoding: .utf8) ?? ""
+            print("refreshtoken : \(result)")
             tokens.refreshToken = result
         }
     }
@@ -46,9 +48,11 @@ final class TokenManager {
     func registerAccessToken(token: String,
                              completion: ((OSStatus) -> Void)?,
                              error: ((OSStatus) -> Void)?) {
-        let tokenData: Data = Data(from: token)
+        let tokenData: Data = token.data(using: .utf8)!
         let status: OSStatus = KeyChain.save(key: "ahobsu_accesstoken", data: tokenData)
 
+        print("registerAccessToken : \(status)")
+        
         loadTokensFormKeyChain()
 
         if status == errSecSuccess {
@@ -61,8 +65,10 @@ final class TokenManager {
     func registerRefreshToken(token: String,
                               completion: ((OSStatus) -> Void)?,
                               error: ((OSStatus) -> Void)?) {
-        let tokenData: Data = Data(from: token)
+        let tokenData: Data = token.data(using: .utf8)!
         let status: OSStatus = KeyChain.save(key: "ahobsu_refreshtoken", data: tokenData)
+        
+        print("registerRefreshToken : \(status)")
 
         loadTokensFormKeyChain()
 
