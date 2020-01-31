@@ -11,7 +11,7 @@ import SwiftUI
 struct DayWeekView: View {
 
     let weeks: [String] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-    let isFills: [Bool] = [false, true, true, false, true, false, true]
+    var isFills: [Bool] = [false, true, true, false, true, false, true]
 
     var body: some View {
         HStack {

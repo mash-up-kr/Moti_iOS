@@ -8,10 +8,16 @@
 
 import Foundation
 
+struct SingleCardData: Codable {
+    let status: Int
+    let message: String
+    let data: Card
+}
+
 struct CardData: Codable {
     let status: Int
     let message: String
-    let data: [Card]
+    let data: [Card?]
 }
 
 struct Card: Codable {

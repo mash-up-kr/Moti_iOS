@@ -11,7 +11,8 @@ import SwiftUI
 struct MainView: View {
     @State var isNavigationBarHidden: Bool = true
     @State var isAnswered: Bool = false
-    @State var cards = [Card]()
+    @State var todayCard: Card?
+    @State var cards: [Card?] = [nil, nil, nil, nil, nil, nil, nil]
 
     var body: some View {
         NavigationView {
@@ -19,7 +20,7 @@ struct MainView: View {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
                 VStack {
-                    DayWeekView()
+                    DayWeekView(isFills: cards.map { $0 != nil })
                         .frame(height: 72, alignment: .center)
                         .padding([.horizontal], 15)
                     Spacer()
@@ -29,7 +30,7 @@ struct MainView: View {
                             .padding([.horizontal], 59)
                             .overlay(
                                 ZStack {
-                                    if isAnswered {
+                                    if todayCard != nil {
                                         // 이미지 배열 받아서 ZStack 에 추가
                                     } else {
                                         VStack {
@@ -80,9 +81,29 @@ struct MainView: View {
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarHidden(isNavigationBarHidden)
-            .onAppear(perform: { self.isNavigationBarHidden = true })
+            .onAppear(perform: {
+                self.isNavigationBarHidden = true
+                self.getTodayData()
+                self.getWeeksData()
+            })
         }
     }
+    
+    func getTodayData() {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        let dateString = formatter.string(from: Date())
+        AhobsuProvider.getAnswer(missionDate: dateString, completion: { response in
+            if let data = try? response.map(SingleCardData.self) {
+                withAnimation(.easeOut) {
+                    self.todayCard = data.data
+                }
+            }
+        }) { err in
+            print(err)
+        }
+    }
+    
     func goToCalendar() {
 
     }
@@ -91,6 +112,8 @@ struct MainView: View {
         AhobsuProvider.getAnswersWeek(completion: { response in
             if let data = try? response.map(CardData.self) {
                 self.cards = data.data
+            } else {
+                
             }
         }) { err in
             print(err)
