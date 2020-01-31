@@ -161,6 +161,8 @@ class AhobsuProvider {
             
             if (status == StatusEnum.value(.token_invalid)()) {
                 /* Access Token 만료 */
+                TokenManager.sharedInstance.setNeededTokenType(tokenType: .refresh)
+                
                 AhobsuProvider.refreshToken(completion: updateRefreshToken,
                                             error: { error in
                                                 /* Handling error */
@@ -168,6 +170,8 @@ class AhobsuProvider {
                                             expireTokenAction: {
                                                 expireTokenAction()
                 })
+                
+                TokenManager.sharedInstance.setNeededTokenType(tokenType: .access)
             }
             
             return completion(StatusDataWrapper(model: model, status: status, message: message))
