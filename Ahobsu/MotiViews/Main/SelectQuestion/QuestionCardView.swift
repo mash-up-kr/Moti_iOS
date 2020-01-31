@@ -35,7 +35,7 @@ struct QuestionCardView: View, Identifiable {
 
                 HStack {
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("질문 \(id)")
+                        Text("질문 \(id + 1)")
                             .font(.system(size: 16,
                                           weight: .bold,
                                           design: .default)
