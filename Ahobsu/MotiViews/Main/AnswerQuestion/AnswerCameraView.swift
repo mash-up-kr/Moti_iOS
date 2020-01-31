@@ -55,6 +55,6 @@ struct AnswerCameraView: View {
 
 struct AnswerCameraView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerCameraView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
+        AnswerCameraView(missonData: MissionData(id: 1, title: "", isContent: true, isImage: true))
     }
 }

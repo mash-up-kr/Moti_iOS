@@ -76,7 +76,7 @@ struct AnswerInsertEssayView: View {
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertEssayView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
+        AnswerInsertEssayView(missonData: MissionData(id: 1, title: "", isContent: true, isImage: true))
     }
 }
 

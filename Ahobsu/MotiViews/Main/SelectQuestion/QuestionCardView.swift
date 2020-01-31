@@ -18,10 +18,10 @@ struct QuestionCardView: View, Identifiable {
             VStack {
                 HStack {
                     Spacer()
-                    if missionData.isImage == 1 {
+                    if missionData.isImage == true {
                         Image("icCameraNormal")
                     }
-                    if missionData.isContent == 1 {
+                    if missionData.isContent == true {
                         Image("icTextformNormal")
                     } else {
                         
@@ -53,8 +53,8 @@ struct QuestionCardView: View, Identifiable {
                 }
                 .padding([.horizontal], 16)
                 Spacer()
-                if missionData.isContent == 1 {
-                    if missionData.isImage == 1 {
+                if missionData.isContent == true {
+                    if missionData.isImage == true {
                         NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
                             MainButton(title: "답변하기").environment(\.isEnabled, true)
                         }
@@ -63,7 +63,7 @@ struct QuestionCardView: View, Identifiable {
                             MainButton(title: "답변하기").environment(\.isEnabled, true)
                         }
                     }
-                } else if missionData.isImage == 1 {
+                } else if missionData.isImage == true {
                     NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
                         MainButton(title: "답변하기").environment(\.isEnabled, true)
                     }

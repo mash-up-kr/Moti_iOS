@@ -17,6 +17,10 @@ struct SelectQuestionView: View {
                            MissionData(id: 1, title: "", isContent: 1, isImage: 1),
                            MissionData(id: 1, title: "", isContent: 1, isImage: 1),
                            MissionData(id: 1, title: "", isContent: 1, isImage: 1)]
+    @State var missions = [MissionData(id: 1, title: "", isContent: false, isImage: false),
+                           MissionData(id: 1, title: "", isContent: false, isImage: false),
+                           MissionData(id: 1, title: "", isContent: false, isImage: false),
+                           MissionData(id: 1, title: "", isContent: false, isImage: false)]
     @State var refreshAvailable = true
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
