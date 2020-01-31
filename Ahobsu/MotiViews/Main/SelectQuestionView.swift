@@ -11,6 +11,7 @@ import SwiftUI
 struct SelectQuestionView: View {
     @Binding var currentPage: Int
     @Binding var isNavigationBarHidden: Bool
+    @State var selectQuestionActive: Bool = true
 
     @State var index: Int = 0
     var emptyMissions: [MissionData] {
@@ -34,12 +35,15 @@ struct SelectQuestionView: View {
 
                 VStack {
                     Spacer()
-                    SwiftUIPagerView(index: $index, pages: (0..<3).map { index in QuestionCardView(id: index, missionData: missions[index]) })
+                    SwiftUIPagerView(index: $index, pages: (0..<3).map { index in
+                        QuestionCardView(id: index,
+                                         missionData: missions[index],
+                                         selectQuestionActive: $selectQuestionActive) })
                         .frame(height: 420, alignment: .center)
                     Spacer().frame(height: 10)
                     PageControl(numberOfPages: 3, currentPage: $index)
                     Spacer().frame(minHeight: 35, idealHeight: 50, maxHeight: 60)
-                    Button(action: getNewQuestion) {
+                    Button(action: {self.selectQuestionActive = false}) {
                         Text("질문 다시받기   \(refreshAvailable ? 0 : 1)/1")
                             .font(.system(size: 16, weight: .regular, design: .default))
                             .foregroundColor(Color(.lightgold))
@@ -50,12 +54,16 @@ struct SelectQuestionView: View {
                                 .stroke(Color(.lightgold), lineWidth: 1)
                         )
                     }.environment(\.isEnabled, !(missions.first?.title.isEmpty ?? true))
+                        .opacity(!(missions.first?.title.isEmpty ?? true) ? 1 : 0.4)
                     Spacer().frame(height: 32)
                 }
                 .onAppear {
                     self.isNavigationBarHidden = false
                     if self.missions.count == 4 {
                         self.getNewQuestion()
+                    }
+                    if self.selectQuestionActive == false {
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
@@ -72,7 +80,7 @@ struct SelectQuestionView: View {
                     self.refreshAvailable = data.refresh
                 }
             } else {
-                
+
             }
         }) { err in
             print(err)

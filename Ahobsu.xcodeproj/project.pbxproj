@@ -50,6 +50,7 @@
 		A578EF4623E1CEA300176F2A /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */; };
 		A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4723E1D17C00176F2A /* AppVersion.swift */; };
 		A578EF4C23E1EE8400176F2A /* MailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4B23E1EE8400176F2A /* MailCompose.swift */; };
+		A5D7621E23E48365008AA3D5 /* AnswerQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */; };
 		A648DF3461539354CC185908E911E614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */; };
 		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
 		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
@@ -146,6 +147,7 @@
 		A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		A578EF4723E1D17C00176F2A /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		A578EF4B23E1EE8400176F2A /* MailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailCompose.swift; sourceTree = "<group>"; };
+		A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */,
 				575E67A923E1B66000B2C300 /* ImagePicker.swift */,
 				CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */,
+				A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */,
 			);
 			path = AnswerQuestion;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */,
 				5B83C300AB70327D0A91226820F152B0 /* Mission.swift in Sources */,
 				627BE14BB95E526E7D91939CBF74D995 /* MissionData.swift in Sources */,
+				A5D7621E23E48365008AA3D5 /* AnswerQuestion.swift in Sources */,
 				D67F8AFE72DBF9BA11A5B6EBD3E20E15 /* MissionService.swift in Sources */,
 				AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */,
 				586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */,

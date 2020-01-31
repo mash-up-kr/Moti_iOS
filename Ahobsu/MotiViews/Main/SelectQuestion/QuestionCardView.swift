@@ -11,6 +11,7 @@ import SwiftUI
 struct QuestionCardView: View, Identifiable {
     var id: Int
     var missionData: MissionData
+    @Binding var selectQuestionActive: Bool
 
     var body: some View {
         ZStack {
@@ -59,7 +60,8 @@ struct QuestionCardView: View, Identifiable {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
-                        NavigationLink(destination: AnswerInsertEssayView(missonData: missionData)) {
+                        NavigationLink(destination: AnswerInsertEssayView(selectQuestionActive: $selectQuestionActive,
+                                                                          missonData: missionData)) {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
