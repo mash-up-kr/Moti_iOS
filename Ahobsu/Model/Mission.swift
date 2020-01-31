@@ -9,18 +9,11 @@
 import Foundation
 
 struct Mission: Decodable {
-    let status: Int
-    let message: String
-    let data: Data
+    let refresh: Bool
+    let missions: [MissionData]
 
-  enum CodingKeys: String, CodingKey {
-    case status
-    case message
-    case data
-  }
-    
-    struct Data: Decodable {
-        let refresh: Bool
-        let missions: [MissionData]
+    enum CodingKeys: String, CodingKey {
+    case refresh
+    case missions
     }
 }
