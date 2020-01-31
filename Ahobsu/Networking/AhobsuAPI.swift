@@ -207,6 +207,7 @@ extension AhobsuAPI: TargetType {
                     name: "file",
                     fileName: "answer.jpeg",
                     mimeType: "image/jpeg"))
+                    
                     formData.append(MultipartFormData(provider: .data(Data(from: content)),
                                                       name: "content"))
                     formData.append(MultipartFormData(provider: .data(Data(from: missionId)),
@@ -222,10 +223,12 @@ extension AhobsuAPI: TargetType {
                 }
             } else {
                 /* 주관식 */
-                if let content = contentOrNil {
-                    formData.append(MultipartFormData(provider: .data(Data(from: content)),
+                if let content = contentOrNil,
+                    let contentData = content.data(using: .utf8),
+                    let missionData = "\(missionId)".data(using: .utf8) {
+                    formData.append(MultipartFormData(provider: .data(contentData),
                                                       name: "content"))
-                    formData.append(MultipartFormData(provider: .data(Data(from: missionId)),
+                    formData.append(MultipartFormData(provider: .data(missionData),
                                                       name: "missionId"))
                 } else {
                     fatalError("Both Content and Image must not be nil")

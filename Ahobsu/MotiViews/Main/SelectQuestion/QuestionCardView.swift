@@ -11,6 +11,7 @@ import SwiftUI
 struct QuestionCardView: View, Identifiable {
     var id: Int
     var missionData: MissionData
+    @Binding var selectQuestionActive: Bool
 
     var body: some View {
         ZStack {
@@ -18,10 +19,10 @@ struct QuestionCardView: View, Identifiable {
             VStack {
                 HStack {
                     Spacer()
-                    if missionData.isImage == 1 {
+                    if missionData.isImage == true {
                         Image("icCameraNormal")
                     }
-                    if missionData.isContent == 1 {
+                    if missionData.isContent == true {
                         Image("icTextformNormal")
                     } else {
                         
@@ -53,20 +54,21 @@ struct QuestionCardView: View, Identifiable {
                 }
                 .padding([.horizontal], 16)
                 Spacer()
-                if missionData.isContent == 1 {
-                    if missionData.isImage == 1 {
+                if missionData.isContent == true {
+                    if missionData.isImage == true {
                         NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
-                            MainButton(title: "답변하기").environment(\.isEnabled, true)
-                        }
+                            MainButton(title: "답변하기")
+                        }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
-                        NavigationLink(destination: AnswerInsertEssayView(missonData: missionData)) {
-                            MainButton(title: "답변하기").environment(\.isEnabled, true)
-                        }
+                        NavigationLink(destination: AnswerInsertEssayView(selectQuestionActive: $selectQuestionActive,
+                                                                          missonData: missionData)) {
+                            MainButton(title: "답변하기")
+                        }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
-                } else if missionData.isImage == 1 {
+                } else if missionData.isImage == true {
                     NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
-                        MainButton(title: "답변하기").environment(\.isEnabled, true)
-                    }
+                        MainButton(title: "답변하기")
+                    }.environment(\.isEnabled, !missionData.title.isEmpty)
                 }
             }
             .padding([.vertical], 20)

@@ -15,10 +15,18 @@ extension UIApplication {
 }
 
 struct AnswerInsertEssayView: View {
-    @State var text = "sadasjdkaljdlajd\ndsifsifha\nasdufhuah\nsdhfusadh\nsfjslijfsladj"
-    var missonData: MissionData
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @ObservedObject var keyboard: Keyboard = Keyboard()
-
+    @ObservedObject var answerQuestion = AnswerQuestion()
+    
+    @Binding var selectQuestionActive: Bool
+    
+    @State var text = "?"
+    
+    var missonData: MissionData
+    
     var body: some View {
         ZStack {
             BackgroundView()
@@ -47,7 +55,8 @@ struct AnswerInsertEssayView: View {
 
                             //                            .padding([.horizontal], 28)
                             Spacer()
-                            MainButton(title: "제출하기")
+                            MainButton(action: { self.requestAnswer() },
+                                       title: "제출하기")
                             Spacer().frame(height: 32)
                         }
                     }
@@ -59,13 +68,26 @@ struct AnswerInsertEssayView: View {
                 .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
                 .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
                 .animation(.easeOut(duration: keyboard.state.animationDuration))
-
         }
 
         .onTapGesture {
             self.endEditing()
         }
-
+    }
+    
+    private func requestAnswer() {
+        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missonData.id,
+                                                                 contentOrNil: text,
+                                                                 imageOrNil: nil))
+            .map { $0.statusCode == 201 }
+            .replaceError(with: false)
+            .sink(receiveValue: { (success) in
+                if success {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.selectQuestionActive = false
+                }
+            })
+            .store(in: &answerQuestion.cancels)
     }
 
     private func endEditing() {
@@ -76,7 +98,7 @@ struct AnswerInsertEssayView: View {
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertEssayView(missonData: MissionData(id: 1, title: "", isContent: 1, isImage: 1))
+        AnswerInsertEssayView(selectQuestionActive: .constant(false), missonData: MissionData(id: 1, title: "", isContent: true, isImage: true))
     }
 }
 
