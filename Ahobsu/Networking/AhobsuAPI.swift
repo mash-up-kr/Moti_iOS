@@ -32,9 +32,7 @@ enum AhobsuAPI {
     case updateProfile(name: String,
                 birthday: String,
                 email: String,
-                gender: String,
-                snsId: Int,
-                snsType: String
+                gender: String
     )
     case deleteProfile
     case getProfile
@@ -172,9 +170,7 @@ extension AhobsuAPI: TargetType {
         case let .updateProfile(name,
                     birthday,
                     email,
-                    gender,
-                    snsId,
-                    snsType):
+                    gender):
             defaultParams["name"] = name
             defaultParams["birthday"] = birthday
             defaultParams["email"] = email

@@ -47,12 +47,7 @@ final class Networking<Target: TargetType>: MoyaProvider<Target> {
         return self.request(target) { result in
             switch result {
             case let .success(response):
-                do {
-                    let filteredResponse = try response.filterSuccessfulStatusCodes()
-                    completionHandler(filteredResponse)
-                } catch {
-                    errorHandler(MoyaError.statusCode(response))
-                }
+                completionHandler(response)
             case let .failure(error):
                 if let response = error.response {
                     if let jsonObject = try? response.mapJSON(failsOnEmptyData: false) {
