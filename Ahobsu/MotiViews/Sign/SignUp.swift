@@ -42,6 +42,10 @@ class SignUp: ObservableObject {
     @Published var birthdate: Date = Date(timeIntervalSince1970: 0)
 
     @Published var inputComplete: Bool = false
+    
+    var email: String {
+        return UserDefaults.standard.value(forKey: "com.ahobsu.AppleID") as? String ?? ""
+    }
 
     private var cancels: Set<AnyCancellable> = []
 
@@ -57,7 +61,7 @@ class SignUp: ObservableObject {
                 }
                 return AhobsuAPI.updateProfile(name: nickName,
                                                birthday: self.dateFormatter.string(from: self.birthdate),
-                                               email: "",
+                                               email: self.email,
                                                gender: gender.rawValue,
                                                snsId: 1,
                                                snsType: "apple") }

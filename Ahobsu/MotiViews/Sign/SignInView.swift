@@ -64,12 +64,14 @@ struct SignInView: View {
     }
 
     private func performSignIn(using requests: [ASAuthorizationRequest]) {
-        appleSignInDelegates = SignInWithAppleDelegates(window: window) { success in
-            if success {
+        appleSignInDelegates = SignInWithAppleDelegates(window: window) { (success, shouldSignUp) in
+            if success, let shouldSignUp = shouldSignUp {
                 // update UI
-                self.window.rootViewController = UIHostingController(
-                    rootView: NavigationView { SignUpNickNameView(window: self.$window) }
-                )
+                if shouldSignUp {
+                    self.window.rootViewController = UIHostingController(rootView: NavigationView { SignUpNickNameView(window: self.$window) })
+                } else {
+                    self.window.rootViewController = UIHostingController(rootView: MainView())
+                }
             } else {
                 // show the user an error
             }
