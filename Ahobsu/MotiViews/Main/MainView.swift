@@ -30,6 +30,8 @@ struct MainView: View {
                             .overlay(
                                 ZStack {
                                     if isAnswered {
+                                        // 이미지 배열 받아서 ZStack 에 추가
+                                    } else {
                                         VStack {
                                             Text("Motivation")
                                                 .font(.custom("Baskerville", size: 16))
@@ -43,8 +45,6 @@ struct MainView: View {
                                                 .multilineTextAlignment(.center)
                                         }
                                         .padding([.vertical], 32)
-                                    } else {
-                                        // 이미지 배열 받아서 ZStack 에 추가
                                     }
 
                                 }
