@@ -141,7 +141,11 @@ extension SplashView {
             + logoAnimationDuration
             + logoAnimationEndDuration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
-            self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
+            if KeyChain.load(key: "ahobsu_onbording") != nil {
+                self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
+            } else {
+                self.window.rootViewController = UIHostingController(rootView: OnBordingView(window: self.window,  model: OnBordingModel.createOnBordingModel()))
+            }
         }
     }
 }

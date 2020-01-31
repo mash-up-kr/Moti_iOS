@@ -19,7 +19,7 @@ struct OnBordingView: View {
 
     var models: [OnBordingModel]
 
-    init(_ window: UIWindow, _ model: [OnBordingModel]) {
+    init(window: UIWindow, model: [OnBordingModel]) {
         self.models = model
         self.window = window
 
@@ -45,7 +45,8 @@ struct OnBordingView: View {
                 if currentPage == models.count - 1 {
                     Spacer()
                     MainButton(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        KeyChain.save(key: "ahobsu_onbording", data: Data.init(from: "success"))
+                        self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
                     }, title: "시작하기")
                 }
             }
@@ -60,7 +61,7 @@ struct OnBordingView_Previews: PreviewProvider {
     static var previews: some View {
 
         return Group {
-            OnBordingView(UIWindow(), OnBordingModel.createOnBordingModel())
+            OnBordingView(window: UIWindow(), model: OnBordingModel.createOnBordingModel())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
         }
