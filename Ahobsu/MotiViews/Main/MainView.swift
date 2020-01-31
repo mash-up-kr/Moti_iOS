@@ -12,8 +12,8 @@ struct MainView: View {
     @State var window: UIWindow
     @State var isNavigationBarHidden: Bool = true
     @State var isAnswered: Bool = false
-    @State var todayCard: Card?
-    @State var cards: [Card?] = [nil, nil, nil, nil, nil, nil, nil]
+    @State var todayCard: Answer?
+    @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil, nil]
 
     var body: some View {
         NavigationView {
@@ -96,14 +96,16 @@ struct MainView: View {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = .withFullDate
         let dateString = formatter.string(from: Date())
-        AhobsuProvider.getAnswer(missionDate: dateString, completion: { response in
-            if let data = try? response.map(SingleCardData.self) {
+        AhobsuProvider.getAnswer(missionDate: dateString, completion: { wrapper in
+            if let answer = wrapper?.model {
                 withAnimation(.easeOut) {
-                    self.todayCard = data.data
+                    self.todayCard = answer
                 }
             }
         }, error: { err in
             print(err)
+        }, expireTokenAction: {
+            
         }, filteredStatusCode: nil)
     }
     
@@ -112,14 +114,16 @@ struct MainView: View {
     }
     
     func getWeeksData() {
-        AhobsuProvider.getAnswersWeek(completion: { response in
-            if let data = try? response.map(CardData.self) {
-                self.cards = data.data
+        AhobsuProvider.getAnswersWeek(completion: { wrapper in
+            if let answerWeek = wrapper?.model {
+                self.cards = answerWeek.answers
             } else {
                 
             }
         }, error: { err in
             print(err)
+        }, expireTokenAction: {
+            
         }, filteredStatusCode: nil)
     }
 }

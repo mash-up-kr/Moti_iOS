@@ -194,52 +194,83 @@ class AhobsuProvider {
     class func registerAnswer(missionId: Int,
                               contentOrNil: String?,
                               imageOrNil: UIImage?,
-                              completion: @escaping ((Response) -> Void),
+                              completion: @escaping ((StatusDataWrapper<Answer>?) -> Void),
                               error: @escaping ((MoyaError) -> Void),
+                              expireTokenAction: @escaping () -> Void,
                               filteredStatusCode: [StatusEnum]?) {
         provider.request(.registerAnswer(missionId: missionId,
                                          contentOrNil: contentOrNil,
                                          imageOrNil: imageOrNil),
-                         completionHandler: completion,
+                         completionHandler: { response in
+                            self.statusDataOrNil(response,
+                                                 completion,
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.answers_post_success,
+                                                                        .answers_post_error_exist])
+                         },
                          errorHandler: error)
     }
 
     class func updateAnswer(answerId: Int,
                             contentOrNil: String?,
                             imageOrNil: UIImage?,
-                            completion: @escaping ((Response) -> Void),
+                            completion: @escaping ((StatusDataWrapper<Answer>?) -> Void),
                             error: @escaping ((MoyaError) -> Void),
+                            expireTokenAction: @escaping () -> Void,
                             filteredStatusCode: [StatusEnum]?) {
         provider.request(.updateAnswer(answerId: answerId,
                                        contentOrNil: contentOrNil,
                                        imageOrNil: imageOrNil),
-                        completionHandler: completion,
+                        completionHandler: { response in
+                           self.statusDataOrNil(response,
+                                                completion,
+                                                expireTokenAction,
+                                                filteredStatusCode ?? [.answers_id_put_success])
+                        },
                         errorHandler: error)
     }
 
     class func getWeekAnswer(mondayDate: String,
-                             completion: @escaping ((Response) -> Void),
+                             completion: @escaping ((StatusDataWrapper<AnswerWeek>?) -> Void),
                              error: @escaping ((MoyaError) -> Void),
+                             expireTokenAction: @escaping () -> Void,
                              filteredStatusCode: [StatusEnum]?) {
         provider.request(.getWeekAnswers(mondayDate: mondayDate),
-                         completionHandler: completion,
+                         completionHandler: { response in
+                            self.statusDataOrNil(response,
+                                                 completion,
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.answers_week_get_success])
+                         },
                          errorHandler: error)
     }
 
     class func getAnswer(missionDate: String,
-                         completion: @escaping ((Response) -> Void),
+                         completion: @escaping ((StatusDataWrapper<Answer>?) -> Void),
                          error: @escaping ((MoyaError) -> Void),
+                         expireTokenAction: @escaping () -> Void,
                          filteredStatusCode: [StatusEnum]?) {
         provider.request(.getAnswer(missionDate: missionDate),
-                         completionHandler: completion,
+                         completionHandler: { response in
+                            self.statusDataOrNil(response,
+                                                 completion,
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.answers_date_get_success])
+                         },
                          errorHandler: error)
     }
     
-    class func getAnswersWeek(completion: @escaping ((Response) -> Void),
+    class func getAnswersWeek(completion: @escaping ((StatusDataWrapper<AnswerWeek>?) -> Void),
                          error: @escaping ((MoyaError) -> Void),
+                         expireTokenAction: @escaping () -> Void,
                          filteredStatusCode: [StatusEnum]?) {
         provider.request(.getAnswersWeek,
-                         completionHandler: completion,
+                         completionHandler: { response in
+                            self.statusDataOrNil(response,
+                                                 completion,
+                                                 expireTokenAction,
+                                                 filteredStatusCode ?? [.answers_week_get_success])
+                         },
                          errorHandler: error)
     }
 

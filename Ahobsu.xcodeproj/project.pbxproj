@@ -29,7 +29,6 @@
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		51C1E6BC05D480FADB300114CA70D5FF /* WeekDayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D45F1DC04C0F4A8D5222E900210625 /* WeekDayCellView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
-		575E67A623E19DFE00B2C300 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575E67A523E19DFE00B2C300 /* Card.swift */; };
 		575E67A823E1AD0400B2C300 /* AnswerInsertCamaraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */; };
 		575E67AA23E1B66000B2C300 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575E67A923E1B66000B2C300 /* ImagePicker.swift */; };
 		586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */; };
@@ -72,6 +71,7 @@
 		FA26A10F23E4BAFD009D668D /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26A10E23E4BAFD009D668D /* APIData.swift */; };
 		FA26A11123E4CB99009D668D /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26A11023E4CB99009D668D /* Token.swift */; };
 		FA26A11523E4DEE4009D668D /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26A11423E4DEE4009D668D /* Answer.swift */; };
+		FA26A11723E4ED0B009D668D /* AnswerWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26A11623E4ED0B009D668D /* AnswerWeek.swift */; };
 		FA75AC1423D08640001B04B6 /* AnswerCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75AC1323D08640001B04B6 /* AnswerCompleteModel.swift */; };
 		FA75AC1623D087E1001B04B6 /* AnswerCompleteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75AC1523D087E1001B04B6 /* AnswerCompleteCardView.swift */; };
 		FAB0F05923DFF0DA00336EA5 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F05823DFF0DA00336EA5 /* AlbumView.swift */; };
@@ -121,7 +121,6 @@
 		4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_EssayCamera.swift; sourceTree = "<group>"; };
 		4DD3DE9138430832870090EA6B4EC95E /* Ahobsu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ahobsu.entitlements; sourceTree = "<group>"; };
 		4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotiView.swift; sourceTree = "<group>"; };
-		575E67A523E19DFE00B2C300 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInsertCamaraView.swift; sourceTree = "<group>"; };
 		575E67A923E1B66000B2C300 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditView.swift; sourceTree = "<group>"; };
@@ -173,6 +172,7 @@
 		FA26A10E23E4BAFD009D668D /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		FA26A11023E4CB99009D668D /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		FA26A11423E4DEE4009D668D /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		FA26A11623E4ED0B009D668D /* AnswerWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWeek.swift; sourceTree = "<group>"; };
 		FA75AC1323D08640001B04B6 /* AnswerCompleteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteModel.swift; sourceTree = "<group>"; };
 		FA75AC1523D087E1001B04B6 /* AnswerCompleteCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteCardView.swift; sourceTree = "<group>"; };
 		FAB0F05823DFF0DA00336EA5 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
@@ -235,11 +235,11 @@
 			isa = PBXGroup;
 			children = (
 				58767712A13BF759341D51E350855FCC /* Mission.swift */,
+				FA26A11623E4ED0B009D668D /* AnswerWeek.swift */,
 				FA26A11423E4DEE4009D668D /* Answer.swift */,
 				2A3D86867D089ED6F529A2FD7A55953F /* MissionData.swift */,
 				2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */,
 				FA75AC1323D08640001B04B6 /* AnswerCompleteModel.swift */,
-				575E67A523E19DFE00B2C300 /* Card.swift */,
 				FAB0F08C23E0913E00336EA5 /* OnBordingModel.swift */,
 				FA26A10E23E4BAFD009D668D /* APIData.swift */,
 				FA26A11023E4CB99009D668D /* Token.swift */,
@@ -773,6 +773,7 @@
 				FAB0F08723E0902D00336EA5 /* OnBordingPageViewController.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
 				BC9D2D84230ACE29C410531F7F0B0D49 /* GenderCardView.swift in Sources */,
+				FA26A11723E4ED0B009D668D /* AnswerWeek.swift in Sources */,
 				CF92B5DC5BDED7ED70B3C2A30AB05487 /* GenderField.swift in Sources */,
 				D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */,
 				FAB0F08923E090BF00336EA5 /* OnBordingView.swift in Sources */,
@@ -793,7 +794,6 @@
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,
 				DE8BDF24DD809376B8A04E8077644099 /* PageControl.swift in Sources */,
 				33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */,
-				575E67A623E19DFE00B2C300 /* Card.swift in Sources */,
 				AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */,
 				8C3EAD1C31AF6F5C03C56E1277F6D0CA /* QuestionCellView.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,

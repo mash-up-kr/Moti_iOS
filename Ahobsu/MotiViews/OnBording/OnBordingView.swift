@@ -45,7 +45,7 @@ struct OnBordingView: View {
                 if currentPage == models.count - 1 {
                     Spacer()
                     MainButton(action: {
-                        KeyChain.save(key: "ahobsu_onbording", data: Data.init(from: "success"))
+                        KeyChain.save(key: "ahobsu_onbording", data: "success".data(using: .utf8)!)
                         self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
                     }, title: "시작하기")
                 }
