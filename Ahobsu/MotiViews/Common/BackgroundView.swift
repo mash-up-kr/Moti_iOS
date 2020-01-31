@@ -33,8 +33,8 @@ extension BackgroundView {
                                                 blue: 22/255,
                                                 alpha: 1.0)),
                              Color.black]),
-                   startPoint: .top,
-                   endPoint: .bottom
+                   startPoint: .bottom,
+                   endPoint: .top
                 )
             }
         }
