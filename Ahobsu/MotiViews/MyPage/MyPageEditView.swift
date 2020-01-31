@@ -37,6 +37,7 @@ struct MyPageEditView: View {
         }
         .padding(.horizontal, 15)
         .padding([.bottom], keyboard.state.height)
+        .background(BackgroundView())
         .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
         .animation(.easeOut(duration: keyboard.state.animationDuration))
         .navigationBarTitle("수정하기").onReceive(myPageEdit.$deletingUserSucccess) { (success) in

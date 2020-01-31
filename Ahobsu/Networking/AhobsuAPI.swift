@@ -179,8 +179,6 @@ extension AhobsuAPI: TargetType {
             defaultParams["birthday"] = birthday
             defaultParams["email"] = email
             defaultParams["gender"] = gender
-            defaultParams["snsId"] = snsId
-            defaultParams["snsType"] = snsType
         case .deleteProfile:
             /* Empty */
             break
@@ -274,7 +272,7 @@ extension AhobsuAPI: TargetType {
             return .uploadMultipart(formData)
         case .updateProfile:
             return .requestParameters(parameters: params,
-                                      encoding: URLEncoding.default)
+                                      encoding: JSONEncoding.default)
         case let .signIn(snsId, _):
             let params = [
                 "snsId": snsId,

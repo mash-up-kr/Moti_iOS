@@ -23,10 +23,11 @@ struct SignIn: Codable {
 }
 
 class SignInWithAppleDelegates: NSObject {
-    private let signInSucceeded: (Bool) -> Void
+    typealias SignInResult = (Bool, Bool?) -> Void
+    private let signInSucceeded: SignInResult
     private weak var window: UIWindow!
 
-    init(window: UIWindow?, onSignedIn: @escaping (Bool) -> Void) {
+    init(window: UIWindow?, onSignedIn: @escaping SignInResult) {
         self.window = window
         self.signInSucceeded = onSignedIn
     }
@@ -37,12 +38,15 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
         AhobsuProvider.signIn(snsId: id, auth: auth, completion: { response in
-            let signInToken = try? response.map(SignIn.self).data
-            //TODO: 키체인에 토큰 저장허가
-            self.signInSucceeded(true)
+            if let signInToken = try? response.map(SignIn.self).data {
+                //TODO: 키체인에 토큰 저장허가
+                self.signInSucceeded(true, signInToken.signUp)
+            } else {
+                self.signInSucceeded(false, nil)
+            }
         }) { err in
             print(err)
-            self.signInSucceeded(false)
+            self.signInSucceeded(false, nil)
         }
     }
 
@@ -50,12 +54,15 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
         AhobsuProvider.signIn(snsId: id, auth: auth, completion: { response in
-            let signInToken = try? response.map(SignIn.self).data
-            //TODO: 키체인에 토큰 저장허가
-            self.signInSucceeded(true)
+            if let signInToken = try? response.map(SignIn.self).data {
+                //TODO: 키체인에 토큰 저장허가
+                self.signInSucceeded(true, signInToken.signUp)
+            } else {
+                self.signInSucceeded(false, nil)
+            }
         }) { err in
             print(err)
-            self.signInSucceeded(false)
+            self.signInSucceeded(false, nil)
         }
     }
 
@@ -66,7 +73,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         // if (WebAPI.Login(credential.user, credential.password)) {
         //   ...
         // }
-        self.signInSucceeded(true)
+        self.signInSucceeded(true, nil)
     }
 
     func authorizationController(
@@ -74,7 +81,8 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIdCredential as ASAuthorizationAppleIDCredential:
-            if let _ = appleIdCredential.email, let _ = appleIdCredential.fullName {
+            if let email = appleIdCredential.email, let _ = appleIdCredential.fullName {
+                UserDefaults.standard.set(email, forKey: "com.ahobsu.AppleID")
                 registerNewAccount(credential: appleIdCredential)
             } else {
                 signInWithExistingAccount(credential: appleIdCredential)
