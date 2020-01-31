@@ -82,8 +82,10 @@ struct AnswerInsertEssayView: View {
             .map { $0.statusCode == 201 }
             .replaceError(with: false)
             .sink(receiveValue: { (success) in
-                self.presentationMode.wrappedValue.dismiss()
-                self.selectQuestionActive = false
+                if success {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.selectQuestionActive = false
+                }
             })
             .store(in: &answerQuestion.cancels)
     }
