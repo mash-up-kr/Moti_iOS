@@ -38,13 +38,13 @@ struct MainView: View {
                                     } else {
                                         VStack {
                                             Text("Motivation")
-//                                                .font(.custom("Baskerville", size: 16.0))
+                                                .font(.custom("Baskerville", size: 16.0))
                                                 .foregroundColor(Color(.rosegold))
                                             Spacer()
                                             Image("imgQuestion")
                                             Spacer()
                                             Text("Today’s\nyour\nQuestion")
-//                                                .font(.custom("Baskerville", size: 16.0))
+                                                .font(.custom("Baskerville", size: 16.0))
                                                 .foregroundColor(Color(.rosegold))
                                                 .multilineTextAlignment(.center)
                                         }
