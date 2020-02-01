@@ -59,7 +59,7 @@ struct SelectQuestionView: View {
                     Spacer().frame(height: 32)
                 }
                 .onAppear {
-                    self.isNavigationBarHidden = true
+                    self.isNavigationBarHidden = false
                     if self.missions.count == 4 {
                         self.getNewQuestion()
                     }
