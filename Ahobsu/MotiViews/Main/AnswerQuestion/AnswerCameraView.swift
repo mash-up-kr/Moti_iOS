@@ -9,16 +9,22 @@
 import SwiftUI
 
 struct AnswerCameraView: View {
-    var missonData: MissionData
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
+    
+    var missonData: MissionData
+    @State var isNetworking: Bool = false
+    
     var body: some View {
         ZStack {
             BackgroundView()
                 .edgesIgnoringSafeArea([.vertical])
             VStack {
                 HStack {
-                    Text("오늘 먹은 음식을 \n사진으로 남겨볼까요?")
+                    Text(missonData.title)
                         .font(.system(size: 24))
                         .lineSpacing(6)
                         .foregroundColor(Color(.rosegold))
@@ -26,30 +32,62 @@ struct AnswerCameraView: View {
                     Spacer()
                 }
                 Spacer()
-                Image("imgCam")
+                if image != nil {
+                    MainCardView(isWithLine: true)
+                        .overlay(Image(uiImage: image!)
+                            .resizable()
+                            .padding(.horizontal, 34)
+                            .padding(.vertical, 22))
+                        .padding(32)
+                } else {
+                    Image("imgCam")
+                }
                 Spacer()
                 
-                NavigationLink(destination: AnswerInsertCamaraView(image: image)) {
+                NavigationLink(destination: AnswerInsertCamaraView(image: $image)) {
                     MainButton(action: {
-                        self.showImagePicker = true
-                    }, title: "촬영하기")
+                        if self.image == nil {
+                            self.showImagePicker = true
+                        } else {
+                            self.registerCameraAnswer()
+                        }},
+                               title: image == nil ? "촬영하기" : "제출하기")
                 }
-                    
+                .environment(\.isEnabled, !isNetworking)
                 .sheet(isPresented: self.$showImagePicker,
                        onDismiss: {
-                        
                         print(self.image) },
                        content: {
                         ImagePicker(image: self.$image) }
                         
                 )
-                
-                    
-                
-                Spacer()
+                Spacer(minLength: 32)
             }
             .padding([.horizontal], 20)
         }
+    }
+}
+
+extension AnswerCameraView {
+    func registerCameraAnswer() {
+        guard let image = image else { return }
+        self.isNetworking = true
+        AhobsuProvider.provider.request(.registerAnswer(missionId: missonData.id,
+                                                        contentOrNil: nil,
+                                                        imageOrNil: image),
+                                        completionHandler: { (response) in
+                                            defer {
+                                                self.isNetworking = false
+                                            }
+                                            if response.statusCode == 201 {
+                                                self.presentationMode.wrappedValue.dismiss()
+                                            } else {
+                                                
+                                            }
+        },
+                                        errorHandler: { (error) in
+                                            self.isNetworking = false
+        })
     }
 }
 

@@ -50,6 +50,7 @@
 		A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4723E1D17C00176F2A /* AppVersion.swift */; };
 		A578EF4C23E1EE8400176F2A /* MailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4B23E1EE8400176F2A /* MailCompose.swift */; };
 		A5D7621E23E48365008AA3D5 /* AnswerQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */; };
+		A5D7622023E537FE008AA3D5 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */; };
 		A648DF3461539354CC185908E911E614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */; };
 		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
 		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
@@ -150,6 +151,7 @@
 		A578EF4723E1D17C00176F2A /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		A578EF4B23E1EE8400176F2A /* MailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailCompose.swift; sourceTree = "<group>"; };
 		A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
+		A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */,
 				57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */,
 				325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */,
+				A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */,
 				A578EF4B23E1EE8400176F2A /* MailCompose.swift */,
 				A578EF4723E1D17C00176F2A /* AppVersion.swift */,
 			);
@@ -776,6 +779,7 @@
 				FA26A11723E4ED0B009D668D /* AnswerWeek.swift in Sources */,
 				CF92B5DC5BDED7ED70B3C2A30AB05487 /* GenderField.swift in Sources */,
 				D27F7AB43FFD7B95A6CBD756C455CC66 /* Keyboard.swift in Sources */,
+				A5D7622023E537FE008AA3D5 /* MyPageViewModel.swift in Sources */,
 				FAB0F08923E090BF00336EA5 /* OnBordingView.swift in Sources */,
 				94BB90EFFCA20D44F07066103745BC6E /* Keychain.swift in Sources */,
 				4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */,

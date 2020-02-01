@@ -35,16 +35,16 @@ struct User: Decodable {
 }
 
 extension User {
-    static var sampleData: User {
+    static var placeholderData: User {
         return User(id: 0,
-                    birthday: "1990-09-05",
-                    email: "kimyuna90@gmail.com",
-                    name: "얼음판위의연아킴",
-                    gender: "여",
+                    birthday: "-",
+                    email: "-",
+                    name: "-",
+                    gender: "-",
                     refreshDate: nil,
                     refreshToken: nil,
                     mission: nil,
                     snsId: 1,
-                    snsType: "google")
+                    snsType: "-")
     }
 }

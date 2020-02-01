@@ -78,7 +78,7 @@ extension MyPageEditView {
 
 struct MyPageEditView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageEditView(user: .constant(.sampleData))
+        MyPageEditView(user: .constant(.placeholderData))
     }
 }
 
