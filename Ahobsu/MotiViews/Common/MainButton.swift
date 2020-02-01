@@ -34,7 +34,7 @@ struct MainButton: View {
 
     @Environment(\.isEnabled) var isEnabled
     var action: (() -> Void)?
-    @State var title: String
+    var title: String
 
     var body: some View {
         ZStack {
