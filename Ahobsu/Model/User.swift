@@ -16,8 +16,8 @@ struct User: Decodable {
     var gender: String
     var refreshDate: String?
     var refreshToken: String?
-    var mission: [Mission]?
-    var snsId: Int
+    var mission: [Mission?]?
+    var snsId: String
     var snsType: String
     
     enum CodingKeys: String, CodingKey {
