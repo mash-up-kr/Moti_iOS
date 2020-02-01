@@ -25,7 +25,7 @@ struct SelectQuestionView: View {
                            MissionData(id: 1, title: "", isContent: false, isImage: false),
                            MissionData(id: 1, title: "", isContent: false, isImage: false),
                            MissionData(id: 1, title: "", isContent: false, isImage: false)]
-    @State var refreshAvailable = true
+    @State var refreshAvailable = false
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -44,7 +44,7 @@ struct SelectQuestionView: View {
                     Spacer().frame(height: 10)
                     PageControl(numberOfPages: 3, currentPage: $index)
                     Spacer().frame(minHeight: 35, idealHeight: 50, maxHeight: 60)
-                    Button(action: {self.selectQuestionActive = false}) {
+                    Button(action: { self.getNewQuestion() }) {
                         Text("질문 다시받기   \(refreshAvailable ? 0 : 1)/1")
                             .font(.system(size: 16, weight: .regular, design: .default))
                             .foregroundColor(Color(.lightgold))
@@ -54,8 +54,8 @@ struct SelectQuestionView: View {
                             .overlay(Capsule()
                                 .stroke(Color(.lightgold), lineWidth: 1)
                         )
-                    }.environment(\.isEnabled, !(missions.first?.title.isEmpty ?? true))
-                        .opacity(!(missions.first?.title.isEmpty ?? true) ? 1 : 0.4)
+                    }.environment(\.isEnabled, refreshAvailable)
+                        .opacity(refreshAvailable ? 1 : 0.4)
                     Spacer().frame(height: 32)
                 }
                 .onAppear {
