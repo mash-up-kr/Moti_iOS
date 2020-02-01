@@ -9,7 +9,7 @@
 import Moya
 
 struct StatusDataWrapper<S> where S: Decodable {
-    var model: S
+    var model: S?
     var status: Int
     var message: String
 }
@@ -62,7 +62,7 @@ class AhobsuProvider {
             case .answers_post_success:
                 return 201
             case .answers_post_error_exist:
-                return 404
+                return 400
             case .answers_id_put_success:
                 return 200
             case .answers_id_delete_success:

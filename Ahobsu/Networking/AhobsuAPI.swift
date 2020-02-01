@@ -200,13 +200,13 @@ extension AhobsuAPI: TargetType {
                 if let content = contentOrNil {
                     /* 주관식 + 사진 (혼합형) */
                     formData.append(MultipartFormData(provider: .data(imageData),
-                    name: "file",
+                    name: "answer",
                     fileName: "answer.jpeg",
                     mimeType: "image/jpeg"))
                     
-                    formData.append(MultipartFormData(provider: .data(Data(from: content)),
+                    formData.append(MultipartFormData(provider: .data(content.data(using: .utf8)!),
                                                       name: "content"))
-                    formData.append(MultipartFormData(provider: .data(Data(from: missionId)),
+                    formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
                                                       name: "missionId"))
                 } else {
                     /* 사진 */
@@ -214,23 +214,21 @@ extension AhobsuAPI: TargetType {
                     name: "file",
                     fileName: "answer.jpeg",
                     mimeType: "image/jpeg"))
-                    formData.append(MultipartFormData(provider: .data(Data(from: missionId)),
+                    formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
                                                       name: "missionId"))
                 }
             } else {
                 /* 주관식 */
-                if let content = contentOrNil,
-                    let contentData = content.data(using: .utf8),
-                    let missionData = "\(missionId)".data(using: .utf8) {
-                    formData.append(MultipartFormData(provider: .data(contentData),
+                if let content = contentOrNil {
+                    formData.append(MultipartFormData(provider: .data(content.data(using: .utf8)!),
                                                       name: "content"))
-                    formData.append(MultipartFormData(provider: .data(missionData),
+                    formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
                                                       name: "missionId"))
                 } else {
                     fatalError("Both Content and Image must not be nil")
                 }
             }
-
+            
             return .uploadMultipart(formData)
         case let .updateAnswer(answerId, contentOrNil, imageOrNil):
 

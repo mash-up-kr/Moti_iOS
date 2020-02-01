@@ -11,7 +11,7 @@ import Foundation
 struct APIData<T : Decodable>: Decodable {
     let status: Int
     let message: String
-    let data: T
+    let data: T?
 
   enum CodingKeys: String, CodingKey {
     case status

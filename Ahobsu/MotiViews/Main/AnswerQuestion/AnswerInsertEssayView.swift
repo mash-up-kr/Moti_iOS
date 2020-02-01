@@ -76,18 +76,34 @@ struct AnswerInsertEssayView: View {
     }
     
     private func requestAnswer() {
-        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missonData.id,
-                                                                 contentOrNil: text,
-                                                                 imageOrNil: nil))
-            .map { $0.statusCode == 201 }
-            .replaceError(with: false)
-            .sink(receiveValue: { (success) in
-                if success {
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.selectQuestionActive = false
-                }
-            })
-            .store(in: &answerQuestion.cancels)
+//        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missonData.id,
+//                                                                 contentOrNil: text,
+//                                                                 imageOrNil: nil))
+//            .map { $0.statusCode == 201 }
+//            .replaceError(with: false)
+//            .sink(receiveValue: { (success) in
+//                if success {
+//                    self.presentationMode.wrappedValue.dismiss()
+//                    self.selectQuestionActive = false
+//                }
+//            })
+//            .store(in: &answerQuestion.cancels)
+        
+        AhobsuProvider.registerAnswer(missionId: missonData.id,
+                                      contentOrNil: text,
+                                      imageOrNil: nil,
+                                      completion: { wrapper in
+                                        if let _ = wrapper?.model {
+                                            self.presentationMode.wrappedValue.dismiss()
+                                            self.selectQuestionActive = false
+                                        } else {
+                                            print(wrapper?.message ?? "None")
+                                        }
+        }, error: { _ in
+            
+        }, expireTokenAction: {
+            
+        }, filteredStatusCode: nil)
     }
 
     private func endEditing() {
