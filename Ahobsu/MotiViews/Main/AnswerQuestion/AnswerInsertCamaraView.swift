@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AnswerInsertCamaraView: View {
-    @State var image: UIImage?
+    @Binding var image: UIImage?
     
     var body: some View {
         ZStack {
@@ -46,6 +46,6 @@ struct AnswerInsertCamaraView: View {
 
 struct AnswerInsertCamaraView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertCamaraView(image: UIImage())
+        AnswerInsertCamaraView(image: .constant(UIImage()))
     }
 }
