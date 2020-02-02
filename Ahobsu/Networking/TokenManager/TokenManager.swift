@@ -30,6 +30,16 @@ final class TokenManager {
     private init() {
         loadTokensFormKeyChain()
     }
+    
+    func resetTokensFromKeyChain(completion: ((OSStatus) -> Void)?,
+                                 error: ((OSStatus) -> Void)?) {
+        let status: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
+        if status == errSecSuccess {
+            completion?(status)
+        } else {
+            error?(status)
+        }
+    }
 
     func loadTokensFormKeyChain() {
         if let receivedData = KeyChain.load(key: "ahobsu_accesstoken") {

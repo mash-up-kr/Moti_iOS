@@ -28,7 +28,7 @@ struct MyPageEditView: View {
                 ListCell(title: "성별", content: GenderField(gender: $user.gender))
                 MyPageView.Separator()
                 ListCell(title: "",
-                         content: Button(action: { self.deleteToken(); self.navigateRootView() },
+                         content: Button(action: { self.logout() },
                                          label: { Text("로그아웃") }))
                 ListCell(title: "",
                          content: Button(action: { self.myPageEdit.deleteUser() },
@@ -53,8 +53,14 @@ struct MyPageEditView: View {
 // Helper
 extension MyPageEditView {
 
-    private func deleteToken() {
-        // TODO: - 토큰 제거를 통한 로그아웃
+    private func logout() {
+        // 토큰 제거
+        TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
+            // SignIn 화면으로 이동
+            self.navigateRootView()
+        }, error: { (status) in
+            
+        })
     }
 
     private func navigateRootView() {
