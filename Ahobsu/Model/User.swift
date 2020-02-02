@@ -44,7 +44,7 @@ extension User {
                     refreshDate: nil,
                     refreshToken: nil,
                     mission: nil,
-                    snsId: 1,
+                    snsId: "1",
                     snsType: "-")
     }
 }
