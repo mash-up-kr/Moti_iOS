@@ -34,7 +34,13 @@ struct MainView: View {
                             .overlay(
                                 ZStack {
                                     if todayCard != nil {
-                                        // 이미지 배열 받아서 ZStack 에 추가
+                                        ZStack {
+                                            ForEach(cards.compactMap { $0?.cardUrl },
+                                                    id: \.self,
+                                                    content: { (cardUrl) in
+                                                ImageView(withURL: cardUrl)
+                                            })
+                                        }
                                     } else {
                                         VStack {
                                             Text("Motivation")
@@ -55,6 +61,7 @@ struct MainView: View {
                         )
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .environment(\.isEnabled, todayCard == nil)
 
                     Spacer()
                     HStack {
