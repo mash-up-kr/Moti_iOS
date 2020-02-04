@@ -44,7 +44,7 @@ struct MyPageView: View {
         .navigationBarTitle("마이페이지", displayMode: .inline)
         .font(.system(size: 16))
         .background(BackgroundView())
-        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(user: $user)) {
+        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(sourceUser: $user, editingUser: user)) {
             Image("icRewriteNormal").frame(width: 48, height: 48, alignment: .center)
         })
         .onAppear {

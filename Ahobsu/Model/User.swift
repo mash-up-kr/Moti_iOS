@@ -48,3 +48,6 @@ extension User {
                     snsType: "-")
     }
 }
+
+extension User: Equatable {
+}

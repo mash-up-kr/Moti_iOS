@@ -11,21 +11,25 @@ import Combine
 
 struct MyPageEditView: View {
 
-    @Binding var user: User
-
     @ObservedObject var keyboard = Keyboard()
     @ObservedObject var myPageEdit = MyPageEdit()
+    
+    @Binding var sourceUser: User
+    @State var editingUser: User
+    @State var isNetworking = false
 
     var body: some View {
         ScrollView {
             VStack {
                 Spacer(minLength: 30)
                 MyPageView.Separator()
-                ListCell(title: "닉네임", content: TextField("", text: $user.name))
-                MyPageView.Separator().opacity(0.5)
-                ListCell(title: "생년월일", content: DateField(dateString: $user.birthday))
-                MyPageView.Separator().opacity(0.5)
-                ListCell(title: "성별", content: GenderField(gender: $user.gender))
+                VStack {
+                    ListCell(title: "닉네임", content: TextField("", text: $editingUser.name))
+                    MyPageView.Separator().opacity(0.5)
+                    ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday))
+                    MyPageView.Separator().opacity(0.5)
+                    ListCell(title: "성별", content: GenderField(gender: $editingUser.gender))
+                }
                 MyPageView.Separator()
                 ListCell(title: "",
                          content: Button(action: { self.logout() },
@@ -33,6 +37,11 @@ struct MyPageEditView: View {
                 ListCell(title: "",
                          content: Button(action: { self.myPageEdit.deleteUser() },
                                          label: { Text("탈퇴하기").opacity(0.5) }))
+                Spacer()
+                MainButton(action: { self.updateUser() },
+                           title: "저장하기")
+                    .environment(\.isEnabled, (!isNetworking && (sourceUser != editingUser)))
+                Spacer(minLength: 75)
             }
         }
         .padding(.horizontal, 15)
@@ -46,12 +55,29 @@ struct MyPageEditView: View {
             }
         }.onTapGesture {
             self.endEditing()
+        }.onDisappear {
+            self.editingUser = self.sourceUser
         }
     }
 }
 
 // Helper
 extension MyPageEditView {
+    
+    private func updateUser() {
+        guard isNetworking == false else { return }
+        isNetworking = true
+        AhobsuProvider.updateProfile(user: editingUser, completion: { (response) in
+            if response?.status == 200 {
+                self.sourceUser = self.editingUser
+            }
+            self.isNetworking = false
+        }, error: { (error) in
+            self.isNetworking = false
+        }, expireTokenAction: {
+            self.isNetworking = false
+        }, filteredStatusCode: nil)
+    }
 
     private func logout() {
         // 토큰 제거
@@ -84,7 +110,7 @@ extension MyPageEditView {
 
 struct MyPageEditView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageEditView(user: .constant(.placeholderData))
+        MyPageEditView(sourceUser: .constant(.placeholderData), editingUser: .placeholderData)
     }
 }
 
