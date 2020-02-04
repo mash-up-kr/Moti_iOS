@@ -102,6 +102,7 @@ struct MainView: View {
     func getTodayData() {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = .withFullDate
+        formatter.timeZone = TimeZone.current
         let dateString = formatter.string(from: Date())
         AhobsuProvider.getAnswer(missionDate: dateString, completion: { wrapper in
             if let answer = wrapper?.model {
