@@ -23,7 +23,7 @@ struct AnswerInsertEssayView: View {
     
     @Binding var selectQuestionActive: Bool
     
-    @State var text = "?"
+    @State var text = ""
     
     var missonData: MissionData
     
@@ -47,13 +47,26 @@ struct AnswerInsertEssayView: View {
                             .padding([.horizontal], 12)
                             .offset(x: 0, y: 60)
                         VStack {
-                            TextView(text: $text)
-                                .padding(EdgeInsets(top: 150 + 28,
-                                                    leading: 28,
-                                                    bottom: 32,
-                                                    trailing: 28))
-
-                            //                            .padding([.horizontal], 28)
+                            ZStack {
+                                
+                                if text == "" && keyboard.state.height == 0 {
+                                    VStack {
+                                        Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
+                                            .foregroundColor(Color(.placeholderblack))
+                                            .multilineTextAlignment(.center)
+                                            .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
+                                                                leading: 28,
+                                                                bottom: 32,
+                                                                trailing: 28))
+                                        Spacer()
+                                    }
+                                }
+                                TextView(text: $text)
+                                    .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
+                                                        leading: 28,
+                                                        bottom: 32,
+                                                        trailing: 28))
+                            }
                             Spacer()
                             MainButton(action: { self.requestAnswer() },
                                        title: "제출하기")
@@ -63,8 +76,6 @@ struct AnswerInsertEssayView: View {
                 }
                 .padding([.horizontal], 20)
             }
-
-                //            .padding([.bottom], keyboard.state.height)
                 .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
                 .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
                 .animation(.easeOut(duration: keyboard.state.animationDuration))
@@ -133,6 +144,7 @@ struct TextView: UIViewRepresentable {
         myTextView.font = .systemFont(ofSize: 16)
         myTextView.textAlignment = .center
         myTextView.textColor = .rosegold
+        myTextView.tintColor = .rosegold
         myTextView.isScrollEnabled = true
         myTextView.isEditable = true
         myTextView.isUserInteractionEnabled = true
