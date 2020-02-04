@@ -293,8 +293,6 @@
 		774D46E963BA9ECE0857A02E8A09121B /* Sign */ = {
 			isa = PBXGroup;
 			children = (
-				470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */,
-				9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */,
 				C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */,
 				39F7952BE5013E514FD2DE9B4EF248EC /* SignUpBirthdateView.swift */,
 				49BF382A57134DDD162641DE9DCEC09B /* SignUpCompleteView.swift */,
@@ -363,6 +361,7 @@
 		9B7A173A97D0463CC8BB42133ED4F71D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */,
 				B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */,
 				60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */,
 				70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */,
@@ -432,6 +431,7 @@
 		CE5C16BD2ECACC61B82357AC52C428DF /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
+				9F738AAA118AB7B39E4C8B4A725D843C /* SignInView.swift */,
 				3E2089666AA18C82A56D827DBC68747F /* SignInWithApple.swift */,
 				21028E6C7A9E457DA7D2AC3F90B21995 /* SignInWithAppleDelegates.swift */,
 			);

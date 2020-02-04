@@ -8,7 +8,7 @@
 
 import Moya
 
-struct StatusDataWrapper<S>: Decodable where S: Decodable {
+struct StatusDataWrapper<S> where S: Decodable {
     var model: S?
     var status: Int
     var message: String

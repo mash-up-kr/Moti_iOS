@@ -16,7 +16,7 @@ struct User: Decodable {
     var gender: String
     var refreshDate: String?
     var refreshToken: String?
-    var mission: [Mission?]?
+//    var mission: Mission?
     var snsId: String
     var snsType: String
     
@@ -28,7 +28,7 @@ struct User: Decodable {
         case gender
         case refreshDate
         case refreshToken
-        case mission
+//        case mission
         case snsId
         case snsType
     }
@@ -43,8 +43,11 @@ extension User {
                     gender: "-",
                     refreshDate: nil,
                     refreshToken: nil,
-                    mission: nil,
+//                    mission: nil,
                     snsId: "1",
                     snsType: "-")
     }
+}
+
+extension User: Equatable {
 }

@@ -9,6 +9,14 @@
 import Foundation
 
 class KeyChain {
+    
+    class func delete(key: String) -> OSStatus {
+        let query = [
+            kSecClass as String: kSecClassGenericPassword as String,
+            kSecAttrAccount as String: key
+        ]
+        return SecItemDelete(query as CFDictionary)
+    }
 
     class func save(key: String, data: Data) -> OSStatus {
         let query = [

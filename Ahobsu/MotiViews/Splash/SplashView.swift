@@ -37,13 +37,8 @@ struct SplashBackgroundView: View {
 
     @Binding var backgroundAlpha: Double
 
-    var imageTitle: String { "bgSplash" }
-
     var body: some View {
-        Image(imageTitle)
-        .resizable()
-        .opacity(backgroundAlpha)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        EmptyView()
     }
 }
 

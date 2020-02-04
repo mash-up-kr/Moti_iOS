@@ -7,24 +7,25 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MyPageView: View {
 
-    @ObservedObject var myPageViewModel = MyPageViewModel()
-    @ObservedObject var appVersion = AppVersion()
-    
     @Binding var isNavigationBarHidden: Bool
     
+    @State var user: User = .placeholderData
+    @State var appVersion: AppVersion = .placeholderData
+
     var mailCompose = MailCompose()
     
     var body: some View {
         ScrollView {
             VStack {
-                HeaderView(name: myPageViewModel.user.name)
+                HeaderView(name: user.name)
                 Separator()
-                ListCell(title: "닉네임", detail: myPageViewModel.user.name)
-                ListCell(title: "생년월일", detail: myPageViewModel.user.birthday)
-                ListCell(title: "성별", detail: myPageViewModel.user.gender)
+                ListCell(title: "닉네임", detail: user.name)
+                ListCell(title: "생년월일", detail: user.birthday)
+                ListCell(title: "성별", detail: user.gender)
                 Separator()
                 ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion) / 최신 \(appVersion.latestVersion)")
                 HStack {
@@ -43,12 +44,15 @@ struct MyPageView: View {
         .navigationBarTitle("마이페이지", displayMode: .inline)
         .font(.system(size: 16))
         .background(BackgroundView())
-        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(user: $myPageViewModel.user)) {
+        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(sourceUser: $user, editingUser: user)) {
             Image("icRewriteNormal").frame(width: 48, height: 48, alignment: .center)
         })
         .onAppear {
             self.isNavigationBarHidden = false
-            self.myPageViewModel.getUser()
+        }.onReceive(MyPageViewModel.userPublisher) { (fetchedUser) in
+            self.user = fetchedUser
+        }.onReceive(AppVersion.versionPubliser) { (fetchedVersion) in
+            self.appVersion = fetchedVersion
         }
     }
 }

@@ -30,6 +30,17 @@ final class TokenManager {
     private init() {
         loadTokensFormKeyChain()
     }
+    
+    func resetTokensFromKeyChain(completion: ((OSStatus) -> Void)?,
+                                 error: ((OSStatus) -> Void)?) {
+        let accessTokenStatus: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
+        let refreshTokenStatus = KeyChain.delete(key: "ahobsu_refreshtoken")
+        if accessTokenStatus == errSecSuccess && refreshTokenStatus == errSecSuccess {
+            completion?(accessTokenStatus)
+        } else {
+            error?((accessTokenStatus != errSecSuccess) ? accessTokenStatus : refreshTokenStatus)
+        }
+    }
 
     func loadTokensFormKeyChain() {
         if let receivedData = KeyChain.load(key: "ahobsu_accesstoken") {
