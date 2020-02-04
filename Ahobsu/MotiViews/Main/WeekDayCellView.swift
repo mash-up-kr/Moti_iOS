@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WeekDayCellView: View {
     var weekDay: String
-    @State var isFill: Bool
+    var isFill: Bool
 
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
