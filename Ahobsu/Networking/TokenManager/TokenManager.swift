@@ -33,11 +33,12 @@ final class TokenManager {
     
     func resetTokensFromKeyChain(completion: ((OSStatus) -> Void)?,
                                  error: ((OSStatus) -> Void)?) {
-        let status: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
-        if status == errSecSuccess {
-            completion?(status)
+        let accessTokenStatus: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
+        let refreshTokenStatus = KeyChain.delete(key: "ahobsu_refreshtoken")
+        if accessTokenStatus == errSecSuccess && refreshTokenStatus == errSecSuccess {
+            completion?(accessTokenStatus)
         } else {
-            error?(status)
+            error?((accessTokenStatus != errSecSuccess) ? accessTokenStatus : refreshTokenStatus)
         }
     }
 
