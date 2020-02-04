@@ -12,11 +12,11 @@ struct Answer: Decodable {
     var id: Int
     var userId: Int
     var missionId: Int
-    var imageUrl: String
+    var imageUrl: String?
     var cardUrl: String
     var content: String
     var date: String
-    var mission: [MissionData]
+    var mission: MissionData
 
   enum CodingKeys: String, CodingKey {
     case id
