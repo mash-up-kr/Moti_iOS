@@ -11,19 +11,14 @@ import Combine
 
 class MyPageViewModel: ObservableObject {
     
-    @Published var user: User = .placeholderData
-    
-    private var cancels: Set<AnyCancellable> = []
-    
-    func getUser() {
+    static var userPublisher: AnyPublisher<User, Never> {
         AhobsuProvider.provider.requestPublisher(.getProfile)
             .retry(2)
             .map { $0.data }
-            .decode(type: StatusDataWrapper<User>.self, decoder: JSONDecoder())
-            .tryCompactMap { $0.model }
+            .decode(type: APIData<User>.self, decoder: JSONDecoder())
+            .tryCompactMap { $0.data }
             .replaceError(with: .placeholderData)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.user, on: self)
-            .store(in: &cancels)
+            .eraseToAnyPublisher()
     }
 }

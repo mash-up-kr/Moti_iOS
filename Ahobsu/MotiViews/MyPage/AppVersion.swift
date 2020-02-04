@@ -9,27 +9,32 @@
 import Foundation
 import Combine
 
-class AppVersion: ObservableObject {
+struct AppVersion {
+    var latestVersion: String
+    var currentVersion: String
+    
+}
 
-    @Published var latestVersion: String = "0.0.0"
-    @Published var currentVersion: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
-
-    private var cancels = Set<AnyCancellable>()
-
-    init() {
-        fetchVersion()
+extension AppVersion {
+    static var placeholderData: AppVersion {
+        return AppVersion(latestVersion: "-", currentVersion: "-")
     }
-
-    func fetchVersion() {
+}
+ 
+extension AppVersion {
+    
+    static var versionPubliser: AnyPublisher<AppVersion, Never> {
         // TODO: Change 아홉수 Bundle ID `let bundleID = "com.mashup.ahobsu.Ahobsu"`
         let bundleID = "com.yjh.Instavent"
-        URLSession.shared.dataTaskPublisher(for: URL(string: "http://itunes.apple.com/lookup?bundleId=\(bundleID)")!)
+        let bundleShortVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
+        return URLSession.shared.dataTaskPublisher(for: URL(string: "http://itunes.apple.com/lookup?bundleId=\(bundleID)")!)
             .map { $0.data }
             .decode(type: ItunesLooup.Response.self, decoder: JSONDecoder())
             .compactMap { $0.results.first?.version }
             .replaceError(with: "0.0.0")
-            .assign(to: \.latestVersion, on: self)
-            .store(in: &cancels)
+            .map { AppVersion(latestVersion: $0,
+                              currentVersion: bundleShortVersionString) }
+            .eraseToAnyPublisher()
     }
 }
 
