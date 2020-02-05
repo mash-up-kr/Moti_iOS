@@ -61,7 +61,7 @@ struct ImageView: View {
         let pageRect = page.getBoxRect(.mediaBox)
         let renderer = UIGraphicsImageRenderer(size: pageRect.size)
         let img = renderer.image { ctx in
-            UIColor.white.set()
+            UIColor.clear.set()
             ctx.fill(pageRect)
 
             ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
