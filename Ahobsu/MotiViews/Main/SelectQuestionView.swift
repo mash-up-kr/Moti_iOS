@@ -11,7 +11,6 @@ import SwiftUI
 struct SelectQuestionView: View {
     @Binding var window: UIWindow
     @Binding var currentPage: Int
-    @Binding var isNavigationBarHidden: Bool
     @State var selectQuestionActive: Bool = true
 
     @State var index: Int = 0
@@ -30,6 +29,7 @@ struct SelectQuestionView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
+        NavigationMaskingView(titleItem: Text("질문 선택"), trailingItem: EmptyView()) {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
@@ -59,7 +59,6 @@ struct SelectQuestionView: View {
                     Spacer().frame(height: 32)
                 }
                 .onAppear {
-                    self.isNavigationBarHidden = false
                     if self.missions.count == 4 {
                         self.getNewQuestion()
                     }
@@ -68,7 +67,7 @@ struct SelectQuestionView: View {
                     }
                 }
             }
-            .navigationBarTitle("질문 선택")
+        }
     }
 
     private func getNewQuestion() {
@@ -92,6 +91,6 @@ struct SelectQuestionView: View {
 
 struct SelectQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectQuestionView(window: .constant(UIWindow()), currentPage: .constant(0), isNavigationBarHidden: .constant(false))
+        SelectQuestionView(window: .constant(UIWindow()), currentPage: .constant(0))
     }
 }

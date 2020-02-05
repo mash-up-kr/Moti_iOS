@@ -12,7 +12,7 @@ extension UINavigationController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        let backButtonImage = UIImage(named: "icArrowLeft")?.withRenderingMode(.alwaysOriginal)
+        let backButtonImage = UIImage(color: .clear)
         navigationBar.backIndicatorImage = backButtonImage
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         navigationBar.isTranslucent = true
