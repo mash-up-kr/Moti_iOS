@@ -49,6 +49,7 @@
 		A578EF4623E1CEA300176F2A /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */; };
 		A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4723E1D17C00176F2A /* AppVersion.swift */; };
 		A578EF4C23E1EE8400176F2A /* MailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4B23E1EE8400176F2A /* MailCompose.swift */; };
+		A584768823EAE10600341058 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584768723EAE10600341058 /* WebView.swift */; };
 		A5D7621E23E48365008AA3D5 /* AnswerQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */; };
 		A5D7622023E537FE008AA3D5 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */; };
 		A648DF3461539354CC185908E911E614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */; };
@@ -150,6 +151,7 @@
 		A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		A578EF4723E1D17C00176F2A /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		A578EF4B23E1EE8400176F2A /* MailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailCompose.swift; sourceTree = "<group>"; };
+		A584768723EAE10600341058 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
 		A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */,
+				A584768723EAE10600341058 /* WebView.swift */,
 				B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */,
 				60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */,
 				70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */,
@@ -753,6 +756,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A584768823EAE10600341058 /* WebView.swift in Sources */,
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,

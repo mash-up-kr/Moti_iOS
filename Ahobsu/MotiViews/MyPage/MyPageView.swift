@@ -15,8 +15,10 @@ struct MyPageView: View {
     
     @State var user: User = .placeholderData
     @State var appVersion: AppVersion = .placeholderData
+    @State var privacyIsPresented = false
 
     var mailCompose = MailCompose()
+    let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
     
     var body: some View {
         ScrollView {
@@ -37,6 +39,15 @@ struct MyPageView: View {
                     })
                 }.frame(minHeight: 52)
                 .foregroundColor(Color(.rosegold))
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.privacyIsPresented.toggle()
+                    }, label: {
+                        Text("개인정보취급방침 및 이용약관")
+                    })
+                }.frame(minHeight: 52)
+                .foregroundColor(Color(.rosegold))
                 Spacer()
             }
         }
@@ -49,6 +60,12 @@ struct MyPageView: View {
         })
         .onAppear {
             self.isNavigationBarHidden = false
+        }.sheet(isPresented: $privacyIsPresented) {
+            NavigationView {
+                WebView(url: self.privacyURL)
+                    .navigationBarItems(trailing: Button(action: { self.privacyIsPresented.toggle() },
+                                                         label: { Text("OK") })).navigationBarTitle("", displayMode: .inline)
+            }
         }.onReceive(MyPageViewModel.userPublisher) { (fetchedUser) in
             self.user = fetchedUser
         }.onReceive(AppVersion.versionPubliser) { (fetchedVersion) in
