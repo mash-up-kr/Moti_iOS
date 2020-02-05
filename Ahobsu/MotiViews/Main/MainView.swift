@@ -38,7 +38,10 @@ struct MainView: View {
                                             ForEach(cards.compactMap { $0?.cardUrl },
                                                     id: \.self,
                                                     content: { (cardUrl) in
+
                                                 ImageView(withURL: cardUrl)
+                                                    .aspectRatio(0.62, contentMode: .fit)
+                                                        .padding(20)
                                             })
                                         }
                                     } else {
@@ -124,7 +127,10 @@ struct MainView: View {
     func getWeeksData() {
         AhobsuProvider.getAnswersWeek(completion: { wrapper in
             if let answerWeek = wrapper?.model {
-                self.cards = answerWeek.answers
+                withAnimation {
+                    self.cards = answerWeek.answers
+                }
+                print(self.cards[1]?.cardUrl)
             } else {
                 
             }

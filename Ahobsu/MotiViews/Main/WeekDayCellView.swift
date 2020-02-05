@@ -25,8 +25,8 @@ struct WeekDayCellView: View {
                 .foregroundColor(isFill ? Color(.rosegold) : Color(.greyishBrown))
                 .frame(width: 16, height: 16, alignment: .center)
                 .shadow(
-                    color: Color(.shadowpink),
-                    radius: isFill ? 4 : 0,
+                    color: isFill ? Color(.shadowpink) : Color(.greyishBrown),
+                    radius: isFill ? 4 : .zero,
                     x: 0,
                     y: 0
             )
