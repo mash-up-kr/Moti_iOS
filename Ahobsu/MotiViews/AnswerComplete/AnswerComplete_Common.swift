@@ -86,6 +86,7 @@ struct ImageView: View {
     
     var body: some View {
         Image(uiImage: pdfToUIImage(urlString: url) ?? UIImage())
+            .renderingMode(.original)
             .resizable()
     }
 }
