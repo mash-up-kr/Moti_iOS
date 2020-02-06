@@ -10,95 +10,94 @@ import SwiftUI
 
 struct MainView: View {
     @State var window: UIWindow
-    @State var isNavigationBarHidden: Bool = true
     @State var isAnswered: Bool = false
     @State var todayCard: Answer?
     @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil, nil]
 
     var body: some View {
         NavigationView {
-            ZStack {
-                BackgroundView()
-                    .edgesIgnoringSafeArea([.vertical])
-                VStack {
-                    DayWeekView(isFills: cards.map { $0 != nil })
-                        .frame(height: 72, alignment: .center)
-                        .padding([.horizontal], 15)
-                    Spacer()
-                    NavigationLink(destination: SelectQuestionView(window: $window,
-                                                                   currentPage: .constant(0),
-                                                                   isNavigationBarHidden: self.$isNavigationBarHidden)) {
-                        MainCardView(isWithLine: !isAnswered)
-                            .aspectRatio(0.62, contentMode: .fit)
-                            .padding([.horizontal], 59)
-                            .overlay(
-                                ZStack {
-                                    if todayCard != nil {
-                                        ZStack {
-                                            ForEach(cards.compactMap { $0?.cardUrl },
-                                                    id: \.self,
-                                                    content: { (cardUrl) in
+            NavigationMaskingView(isRoot: true,
+                                  titleItem: DayWeekView(isFills: cards.map { $0 != nil }).frame(height: 72, alignment: .center),
+                                  trailingItem: EmptyView())
+            {
+                ZStack {
+                    BackgroundView()
+                        .edgesIgnoringSafeArea([.vertical])
+                    VStack {
+                        
+                        Spacer()
+                        NavigationLink(destination: SelectQuestionView(window: $window,
+                                                                       currentPage: .constant(0))) {
+                            MainCardView(isWithLine: !isAnswered)
+                                .aspectRatio(0.62, contentMode: .fit)
+                                .padding([.horizontal], 59)
+                                .overlay(
+                                    ZStack {
+                                        if todayCard != nil {
+                                            ZStack {
+                                                ForEach(cards.compactMap { $0?.cardUrl },
+                                                        id: \.self,
+                                                        content: { (cardUrl) in
 
-                                                ImageView(withURL: cardUrl)
-                                                    .aspectRatio(0.62, contentMode: .fit)
-                                                        .padding(20)
-                                            })
+                                                    ImageView(withURL: cardUrl)
+                                                        .aspectRatio(0.62, contentMode: .fit)
+                                                            .padding(20)
+                                                })
+                                            }
+                                        } else {
+                                            VStack {
+                                                Text("Motivation")
+                                                    .font(.custom("Baskerville", size: 16.0))
+                                                    .foregroundColor(Color(.rosegold))
+                                                Spacer()
+                                                Image("imgQuestion")
+                                                Spacer()
+                                                Text("Today’s\nyour\nQuestion")
+                                                    .font(.custom("Baskerville", size: 16.0))
+                                                    .foregroundColor(Color(.rosegold))
+                                                    .multilineTextAlignment(.center)
+                                            }
+                                            .padding([.vertical], 32)
                                         }
-                                    } else {
-                                        VStack {
-                                            Text("Motivation")
-                                                .font(.custom("Baskerville", size: 16.0))
-                                                .foregroundColor(Color(.rosegold))
-                                            Spacer()
-                                            Image("imgQuestion")
-                                            Spacer()
-                                            Text("Today’s\nyour\nQuestion")
-                                                .font(.custom("Baskerville", size: 16.0))
-                                                .foregroundColor(Color(.rosegold))
-                                                .multilineTextAlignment(.center)
-                                        }
-                                        .padding([.vertical], 32)
+
                                     }
-
-                                }
-                        )
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .environment(\.isEnabled, todayCard == nil)
-
-                    Spacer()
-                    HStack {
-                        Button(action: goToCalendar) {
-                            Image("icAlbumNormal")
-                                .foregroundColor(Color(.rosegold))
-                                .frame(width: 48, height: 48, alignment: .center)
+                            )
                         }
+                        .buttonStyle(PlainButtonStyle())
+                        .environment(\.isEnabled, todayCard == nil)
 
                         Spacer()
+                        HStack {
+                            Button(action: goToCalendar) {
+                                Image("icAlbumNormal")
+                                    .foregroundColor(Color(.rosegold))
+                                    .frame(width: 48, height: 48, alignment: .center)
+                            }
 
-                        Text("Nov. 2nd week")
-                            .foregroundColor(Color(.rosegold))
-                            .font(.system(size: 20, weight: .regular, design: .default))
+                            Spacer()
 
-                        Spacer()
-                        NavigationLink(destination: MyPageView(isNavigationBarHidden: self.$isNavigationBarHidden)) {
-                            Image("icProfileNormal")
+                            Text("Nov. 2nd week")
                                 .foregroundColor(Color(.rosegold))
-                                .frame(width: 48, height: 48, alignment: .center)
+                                .font(.system(size: 20, weight: .regular, design: .default))
+
+                            Spacer()
+                            NavigationLink(destination: MyPageView()) {
+                                Image("icProfileNormal")
+                                    .foregroundColor(Color(.rosegold))
+                                    .frame(width: 48, height: 48, alignment: .center)
+                            }
                         }
+                        .padding(.horizontal, 15)
+                        .padding([.top], 11)
                     }
-                    .padding(.horizontal, 15)
-                    .padding([.top], 11)
+                    .padding([.bottom], 30)
                 }
-                .padding([.bottom], 30)
+                .navigationBarTitle(Text(""), displayMode: .inline)
+                .onAppear(perform: {
+                    self.getTodayData()
+                    self.getWeeksData()
+                })
             }
-            .navigationBarTitle(Text(""), displayMode: .inline)
-            .navigationBarHidden(isNavigationBarHidden)
-            .onAppear(perform: {
-                self.isNavigationBarHidden = true
-                self.getTodayData()
-                self.getWeeksData()
-            })
         }
     }
     

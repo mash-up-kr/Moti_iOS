@@ -10,45 +10,63 @@ import SwiftUI
 import Combine
 
 struct MyPageView: View {
-
-    @Binding var isNavigationBarHidden: Bool
     
-    @State var user: User = .placeholderData
-    @State var appVersion: AppVersion = .placeholderData
+    @State private var user: User = .placeholderData
+    @State private var appVersion: AppVersion = .placeholderData
+    @State private var privacyIsPresented = false
 
     var mailCompose = MailCompose()
+    let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
     
     var body: some View {
-        ScrollView {
-            VStack {
-                HeaderView(name: user.name)
-                Separator()
-                ListCell(title: "닉네임", detail: user.name)
-                ListCell(title: "생년월일", detail: user.birthday)
-                ListCell(title: "성별", detail: user.gender)
-                Separator()
-                ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion) / 최신 \(appVersion.latestVersion)")
-                HStack {
+        NavigationMaskingView(titleItem: Text("마이페이지"),
+                              trailingItem: NavigationLink(destination: MyPageEditView(sourceUser: $user, editingUser: user),
+                                                           label: {
+                                                            Image("icRewriteNormal")
+                                                                .renderingMode(.original)
+                                                                .frame(width: 48, height: 48)
+                              }))
+        {
+            ScrollView {
+                VStack {
+                    HeaderView(name: user.name)
+                    Separator()
+                    ListCell(title: "닉네임", detail: user.name)
+                    ListCell(title: "생년월일", detail: user.birthday)
+                    ListCell(title: "성별", detail: user.gender)
+                    Separator()
+                    ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion) / 최신 \(appVersion.latestVersion)")
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.mailCompose.open()
+                        }, label: {
+                            Text("문의하기")
+                        })
+                    }.frame(minHeight: 52)
+                        .foregroundColor(Color(.rosegold))
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.privacyIsPresented.toggle()
+                        }, label: {
+                            Text("개인정보취급방침 및 이용약관")
+                        })
+                    }.frame(minHeight: 52)
+                        .foregroundColor(Color(.rosegold))
                     Spacer()
-                    Button(action: {
-                        self.mailCompose.open()
-                    }, label: {
-                        Text("문의하기")
-                    })
-                }.frame(minHeight: 52)
-                .foregroundColor(Color(.rosegold))
-                Spacer()
+                }
             }
+            .padding(.horizontal, 15)
+            .font(.system(size: 16))
         }
-        .padding(.horizontal, 15)
-        .navigationBarTitle("마이페이지", displayMode: .inline)
-        .font(.system(size: 16))
         .background(BackgroundView())
-        .navigationBarItems(trailing: NavigationLink(destination: MyPageEditView(sourceUser: $user, editingUser: user)) {
-            Image("icRewriteNormal").frame(width: 48, height: 48, alignment: .center)
-        })
-        .onAppear {
-            self.isNavigationBarHidden = false
+        .sheet(isPresented: $privacyIsPresented) {
+            NavigationView {
+                WebView(url: self.privacyURL)
+                    .navigationBarItems(trailing: Button(action: { self.privacyIsPresented.toggle() },
+                                                         label: { Text("OK") })).navigationBarTitle("", displayMode: .inline)
+            }
         }.onReceive(MyPageViewModel.userPublisher) { (fetchedUser) in
             self.user = fetchedUser
         }.onReceive(AppVersion.versionPubliser) { (fetchedVersion) in
@@ -59,7 +77,13 @@ struct MyPageView: View {
 
 struct MyPageView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageView(isNavigationBarHidden: .constant(false))
+        Group {
+            MyPageView()
+                .previewDevice(.init(rawValue: "iPhone 8"))
+            
+            MyPageView()
+                .previewDevice(.init(rawValue: "iPhone 11"))
+        }
     }
 }
 
@@ -69,7 +93,7 @@ extension MyPageView {
         var name: String
         var body: some View {
             VStack {
-                Spacer(minLength: 20)
+                Spacer(minLength: 8)
                 Image("imgMypage")
                 Spacer(minLength: 16)
                 Text("\(name) 님")

@@ -49,8 +49,11 @@
 		A578EF4623E1CEA300176F2A /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */; };
 		A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4723E1D17C00176F2A /* AppVersion.swift */; };
 		A578EF4C23E1EE8400176F2A /* MailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = A578EF4B23E1EE8400176F2A /* MailCompose.swift */; };
+		A584768823EAE10600341058 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584768723EAE10600341058 /* WebView.swift */; };
+		A584768A23EAF8A600341058 /* NavigationMaskingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584768923EAF8A600341058 /* NavigationMaskingView.swift */; };
 		A5D7621E23E48365008AA3D5 /* AnswerQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */; };
 		A5D7622023E537FE008AA3D5 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */; };
+		A5F39C0D23EC444000766F82 /* MainNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F39C0C23EC444000766F82 /* MainNavigationBar.swift */; };
 		A648DF3461539354CC185908E911E614 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */; };
 		AA9063282AF6461A3655EB680460CA5B /* QuestionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70C294A51BFE043BBAABC4B3818F06 /* QuestionCardView.swift */; };
 		AAE5855F0334B2FF1179F4F91A4E7E96 /* MotiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */; };
@@ -150,8 +153,11 @@
 		A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		A578EF4723E1D17C00176F2A /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		A578EF4B23E1EE8400176F2A /* MailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailCompose.swift; sourceTree = "<group>"; };
+		A584768723EAE10600341058 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		A584768923EAF8A600341058 /* NavigationMaskingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMaskingView.swift; sourceTree = "<group>"; };
 		A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
 		A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		A5F39C0C23EC444000766F82 /* MainNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBar.swift; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -362,10 +368,13 @@
 			isa = PBXGroup;
 			children = (
 				470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */,
+				A584768723EAE10600341058 /* WebView.swift */,
 				B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */,
 				60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */,
 				70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */,
 				A578EF4523E1CEA300176F2A /* UINavigationController+Extension.swift */,
+				A584768923EAF8A600341058 /* NavigationMaskingView.swift */,
+				A5F39C0C23EC444000766F82 /* MainNavigationBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -753,6 +762,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A584768823EAE10600341058 /* WebView.swift in Sources */,
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
@@ -772,6 +782,7 @@
 				FA75AC1423D08640001B04B6 /* AnswerCompleteModel.swift in Sources */,
 				AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
+				A5F39C0D23EC444000766F82 /* MainNavigationBar.swift in Sources */,
 				28F77E6C503B96E5C0FB03B69FEAE13D /* DateField.swift in Sources */,
 				FAB0F08723E0902D00336EA5 /* OnBordingPageViewController.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
@@ -811,6 +822,7 @@
 				6675DA914AB268309BC9390ED0487711 /* SignInWithAppleDelegates.swift in Sources */,
 				A578EF4823E1D17C00176F2A /* AppVersion.swift in Sources */,
 				B73773F77586E4FA7DF3C1F2FFE8CB3B /* SignUp.swift in Sources */,
+				A584768A23EAF8A600341058 /* NavigationMaskingView.swift in Sources */,
 				12FE70886D975E99EF3971A9CB8B5D01 /* SignUpBirthdateView.swift in Sources */,
 				F2BB15916706F46A836A63EFEED6FAAA /* SignUpCompleteView.swift in Sources */,
 				F82975B7D3C88179EF53D00EBDF8AFD6 /* SignUpFormView.swift in Sources */,

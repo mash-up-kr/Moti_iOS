@@ -12,12 +12,19 @@ extension UINavigationController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        let backButtonImage = UIImage(named: "icArrowLeft")?.withRenderingMode(.alwaysOriginal)
+        let backButtonImage = UIImage(color: .clear)
         navigationBar.backIndicatorImage = backButtonImage
         navigationBar.backIndicatorTransitionMaskImage = backButtonImage
         navigationBar.isTranslucent = true
         navigationBar.setBackgroundImage(UIImage(color: .clear), for: .default)
         navigationBar.shadowImage = UIImage()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+}
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
     }
 }
 

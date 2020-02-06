@@ -32,6 +32,7 @@ extension AppVersion {
             .decode(type: ItunesLooup.Response.self, decoder: JSONDecoder())
             .compactMap { $0.results.first?.version }
             .replaceError(with: "0.0.0")
+            .receive(on: DispatchQueue.main)
             .map { AppVersion(latestVersion: $0,
                               currentVersion: bundleShortVersionString) }
             .eraseToAnyPublisher()
