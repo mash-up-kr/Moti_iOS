@@ -38,7 +38,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
         AhobsuProvider.signIn(snsId: id, auth: auth, completion: { wrapper in
-            if let signInToken = wrapper?.model {
+            if let signInToken = wrapper?.data {
                 TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
                                                                 completion: nil,
                                                                 error: nil)
@@ -63,7 +63,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
         AhobsuProvider.signIn(snsId: id, auth: auth, completion: { wrapper in
-            if let signInToken = wrapper?.model {
+            if let signInToken = wrapper?.data {
                 TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
                                                                 completion: nil,
                                                                 error: nil)

@@ -104,7 +104,7 @@ struct AnswerInsertEssayView: View {
                                       contentOrNil: text,
                                       imageOrNil: nil,
                                       completion: { wrapper in
-                                        if let _ = wrapper?.model {
+                                        if let _ = wrapper?.data {
                                             self.presentationMode.wrappedValue.dismiss()
                                             self.selectQuestionActive = false
                                         } else {

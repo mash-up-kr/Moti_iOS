@@ -8,12 +8,6 @@
 
 import Moya
 
-struct StatusDataWrapper<S> where S: Decodable {
-    var model: S?
-    var status: Int
-    var message: String
-}
-
 class AhobsuProvider {
     static let provider = AhobsuNetworking()
 
@@ -119,8 +113,8 @@ class AhobsuProvider {
         }
     }
     
-    static let updateRefreshToken: (StatusDataWrapper<Token>?) -> Void = { wrapper in
-        guard let refreshToken = wrapper?.model else {
+    static let updateRefreshToken: (APIData<Token>?) -> Void = { wrapper in
+        guard let refreshToken = wrapper?.data else {
             /* refreshToken 받아오기 실패 */
             return
         }
@@ -135,12 +129,10 @@ class AhobsuProvider {
     }
     
     class func updateRefreshTokenOrLogin<S: Decodable>(_ response: Response,
-                                                       _ completion: @escaping (StatusDataWrapper<S>?) -> Void,
+                                                       _ completion: @escaping (APIData<S>?) -> Void,
                                                        _ expireTokenAction: @escaping () -> Void) -> Void {
         if let data = try? response.map(APIData<S>.self) {
             let status = data.status
-            let message = data.message
-            let model = data.data
             
             if (status == StatusEnum.value(.token_invalid)()) {
                 /* Refresh Token 만료 */
@@ -149,20 +141,18 @@ class AhobsuProvider {
             }
             
             /* Access Token 재발급 */
-            return completion(StatusDataWrapper(model: model, status: status, message: message))
+            return completion(data)
         }
         
         return completion(nil)
     }
     
     class func statusDataOrNil<S: Decodable>(_ response: Response,
-                                             _ completion: @escaping ((StatusDataWrapper<S>?) -> Void),
+                                             _ completion: @escaping ((APIData<S>?) -> Void),
                                              _ expireTokenAction: @escaping () -> Void,
                                              _ filteredStatusCode: [StatusEnum]) where S: Decodable {
         if let data = try? response.map(APIData<S>.self) {
             let status = data.status
-            let message = data.message
-            let model = data.data
             
             if (status == StatusEnum.value(.token_invalid)()) {
                 /* Access Token 만료 */
@@ -182,7 +172,7 @@ class AhobsuProvider {
             let filteredCode = filteredStatusCode.map { $0.value() }
             
             if filteredCode.contains(status) {
-                return completion(StatusDataWrapper(model: model, status: status, message: message))
+                return completion(data)
             }
         }
         
@@ -194,7 +184,7 @@ class AhobsuProvider {
     class func registerAnswer(missionId: Int,
                               contentOrNil: String?,
                               imageOrNil: UIImage?,
-                              completion: @escaping ((StatusDataWrapper<Answer>?) -> Void),
+                              completion: @escaping ((APIData<Answer>?) -> Void),
                               error: @escaping ((MoyaError) -> Void),
                               expireTokenAction: @escaping () -> Void,
                               filteredStatusCode: [StatusEnum]?) {
@@ -214,7 +204,7 @@ class AhobsuProvider {
     class func updateAnswer(answerId: Int,
                             contentOrNil: String?,
                             imageOrNil: UIImage?,
-                            completion: @escaping ((StatusDataWrapper<Answer>?) -> Void),
+                            completion: @escaping ((APIData<Answer>?) -> Void),
                             error: @escaping ((MoyaError) -> Void),
                             expireTokenAction: @escaping () -> Void,
                             filteredStatusCode: [StatusEnum]?) {
@@ -231,7 +221,7 @@ class AhobsuProvider {
     }
 
     class func getWeekAnswer(mondayDate: String,
-                             completion: @escaping ((StatusDataWrapper<AnswerWeek>?) -> Void),
+                             completion: @escaping ((APIData<AnswerWeek>?) -> Void),
                              error: @escaping ((MoyaError) -> Void),
                              expireTokenAction: @escaping () -> Void,
                              filteredStatusCode: [StatusEnum]?) {
@@ -246,7 +236,7 @@ class AhobsuProvider {
     }
 
     class func getAnswer(missionDate: String,
-                         completion: @escaping ((StatusDataWrapper<Answer>?) -> Void),
+                         completion: @escaping ((APIData<Answer>?) -> Void),
                          error: @escaping ((MoyaError) -> Void),
                          expireTokenAction: @escaping () -> Void,
                          filteredStatusCode: [StatusEnum]?) {
@@ -260,7 +250,7 @@ class AhobsuProvider {
                          errorHandler: error)
     }
     
-    class func getAnswersWeek(completion: @escaping ((StatusDataWrapper<AnswerWeek>?) -> Void),
+    class func getAnswersWeek(completion: @escaping ((APIData<AnswerWeek>?) -> Void),
                          error: @escaping ((MoyaError) -> Void),
                          expireTokenAction: @escaping () -> Void,
                          filteredStatusCode: [StatusEnum]?) {
@@ -276,7 +266,7 @@ class AhobsuProvider {
 
     /* Missions */
 
-    class func getMission(completion: @escaping ((StatusDataWrapper<Mission>?) -> Void),
+    class func getMission(completion: @escaping ((APIData<Mission>?) -> Void),
                           error: @escaping ((MoyaError) -> Void),
                           expireTokenAction: @escaping () -> Void,
                           filteredStatusCode: [StatusEnum]?) {
@@ -290,7 +280,7 @@ class AhobsuProvider {
                          errorHandler: error)
     }
 
-    class func refreshMission(completion: @escaping ((StatusDataWrapper<Mission>?) -> Void),
+    class func refreshMission(completion: @escaping ((APIData<Mission>?) -> Void),
                               error: @escaping ((MoyaError) -> Void),
                               expireTokenAction: @escaping () -> Void,
                               filteredStatusCode: [StatusEnum]?) {
@@ -309,7 +299,7 @@ class AhobsuProvider {
 
     class func signIn(snsId: String,
                       auth: String,
-                      completion: @escaping ((StatusDataWrapper<Token>?) -> Void),
+                      completion: @escaping ((APIData<Token>?) -> Void),
                       error: @escaping ((MoyaError) -> Void),
                       expireTokenAction: @escaping () -> Void,
                       filteredStatusCode: [StatusEnum]?) {
@@ -325,7 +315,7 @@ class AhobsuProvider {
 
     /* Token */
 
-    class func refreshToken(completion: @escaping ((StatusDataWrapper<Token>?) -> Void),
+    class func refreshToken(completion: @escaping ((APIData<Token>?) -> Void),
                             error: @escaping ((MoyaError) -> Void),
                             expireTokenAction: @escaping () -> Void) {
         provider.request(.refreshToken,
@@ -340,7 +330,7 @@ class AhobsuProvider {
     /* Users */
 
     class func updateProfile(user: User,
-                             completion: @escaping ((StatusDataWrapper<User>?) -> Void),
+                             completion: @escaping ((APIData<User>?) -> Void),
                              error: @escaping ((MoyaError) -> Void),
                              expireTokenAction: @escaping () -> Void,
                              filteredStatusCode: [StatusEnum]?) {
@@ -357,7 +347,7 @@ class AhobsuProvider {
                         errorHandler: error)
     }
 
-    class func deleteProfile(completion: @escaping ((StatusDataWrapper<User>?) -> Void),
+    class func deleteProfile(completion: @escaping ((APIData<User>?) -> Void),
                              error: @escaping ((MoyaError) -> Void),
                              expireTokenAction: @escaping () -> Void,
                              filteredStatusCode: [StatusEnum]?) {
@@ -373,7 +363,7 @@ class AhobsuProvider {
                          errorHandler: error)
     }
 
-    class func getProfile(completion: @escaping ((StatusDataWrapper<User>?) -> Void),
+    class func getProfile(completion: @escaping ((APIData<User>?) -> Void),
                           error: @escaping ((MoyaError) -> Void),
                           expireTokenAction: @escaping () -> Void,
                           filteredStatusCode: [StatusEnum]?) {

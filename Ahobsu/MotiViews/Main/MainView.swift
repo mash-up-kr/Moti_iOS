@@ -108,7 +108,7 @@ struct MainView: View {
         formatter.timeZone = TimeZone.current
         let dateString = formatter.string(from: Date())
         AhobsuProvider.getAnswer(missionDate: dateString, completion: { wrapper in
-            if let answer = wrapper?.model {
+            if let answer = wrapper?.data {
                 withAnimation(.easeOut) {
                     self.todayCard = answer
                 }
@@ -126,7 +126,7 @@ struct MainView: View {
     
     func getWeeksData() {
         AhobsuProvider.getAnswersWeek(completion: { wrapper in
-            if let answerWeek = wrapper?.model {
+            if let answerWeek = wrapper?.data {
                 withAnimation {
                     self.cards = answerWeek.answers
                 }

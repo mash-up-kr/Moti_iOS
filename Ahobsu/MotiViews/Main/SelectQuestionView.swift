@@ -74,7 +74,7 @@ struct SelectQuestionView: View {
     private func getNewQuestion() {
         self.missions = emptyMissions
         AhobsuProvider.getMission(completion: { wrapper in
-            if let mission = wrapper?.model {
+            if let mission = wrapper?.data {
                 print(mission.missions)
                 withAnimation(.easeOut) {
                     self.missions = mission.missions
