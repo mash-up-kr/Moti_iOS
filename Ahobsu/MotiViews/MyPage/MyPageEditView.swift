@@ -19,44 +19,46 @@ struct MyPageEditView: View {
     @State var isNetworking = false
 
     var body: some View {
-        ScrollView {
-            VStack {
-                Spacer(minLength: 30)
-                MyPageView.Separator()
+        NavigationMaskingView(titleItem: Text("수정하기"), trailingItem: Text("")) {
+            ScrollView {
                 VStack {
-                    ListCell(title: "닉네임", content: TextField("", text: $editingUser.name))
-                    MyPageView.Separator().opacity(0.5)
-                    ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday))
-                    MyPageView.Separator().opacity(0.5)
-                    ListCell(title: "성별", content: GenderField(gender: $editingUser.gender))
+                    Spacer(minLength: 30)
+                    MyPageView.Separator()
+                    VStack {
+                        ListCell(title: "닉네임", content: TextField("", text: $editingUser.name))
+                        MyPageView.Separator().opacity(0.5)
+                        ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday))
+                        MyPageView.Separator().opacity(0.5)
+                        ListCell(title: "성별", content: GenderField(gender: $editingUser.gender))
+                    }
+                    MyPageView.Separator()
+                    ListCell(title: "",
+                             content: Button(action: { self.logout() },
+                                             label: { Text("로그아웃") }))
+                    ListCell(title: "",
+                             content: Button(action: { self.myPageEdit.deleteUser() },
+                                             label: { Text("탈퇴하기").opacity(0.5) }))
+                    Spacer()
+                    MainButton(action: { self.updateUser() },
+                               title: "저장하기")
+                        .environment(\.isEnabled, (!isNetworking && (sourceUser != editingUser)))
+                    Spacer(minLength: 75)
                 }
-                MyPageView.Separator()
-                ListCell(title: "",
-                         content: Button(action: { self.logout() },
-                                         label: { Text("로그아웃") }))
-                ListCell(title: "",
-                         content: Button(action: { self.myPageEdit.deleteUser() },
-                                         label: { Text("탈퇴하기").opacity(0.5) }))
-                Spacer()
-                MainButton(action: { self.updateUser() },
-                           title: "저장하기")
-                    .environment(\.isEnabled, (!isNetworking && (sourceUser != editingUser)))
-                Spacer(minLength: 75)
             }
-        }
-        .padding(.horizontal, 15)
-        .padding([.bottom], keyboard.state.height)
-        .background(BackgroundView())
-        .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
-        .animation(.easeOut(duration: keyboard.state.animationDuration))
-        .navigationBarTitle("수정하기").onReceive(myPageEdit.$deletingUserSucccess) { (success) in
-            if success {
-                self.navigateRootView()
+            .padding(.horizontal, 15)
+            .padding([.bottom], keyboard.state.height)
+            .background(BackgroundView())
+            .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
+            .animation(.easeOut(duration: keyboard.state.animationDuration))
+            .onReceive(myPageEdit.$deletingUserSucccess) { (success) in
+                if success {
+                    self.navigateRootView()
+                }
+            }.onTapGesture {
+                self.endEditing()
+            }.onDisappear {
+                self.editingUser = self.sourceUser
             }
-        }.onTapGesture {
-            self.endEditing()
-        }.onDisappear {
-            self.editingUser = self.sourceUser
         }
     }
 }

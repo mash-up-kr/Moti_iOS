@@ -19,8 +19,6 @@ struct NavigationMaskingView<TitleItem: View, TrailingItem: View, Content: View>
     var content: Content
     
     private let customHeight: CGFloat = 72
-    private let originalHeight: CGFloat = 44
-    private var contentPadding: CGFloat { return customHeight - originalHeight }
     
     init(isRoot: Bool = false, titleItem: TitleItem, trailingItem: TrailingItem, @ViewBuilder content: () -> Content) {
         self.isRoot = isRoot
@@ -30,31 +28,25 @@ struct NavigationMaskingView<TitleItem: View, TrailingItem: View, Content: View>
     }
     
     var body: some View {
-        ZStack {
-            content
-                .padding(.top, contentPadding)
-            GeometryReader { geometry in
-                HStack {
+        VStack(spacing: 0) {
+            HStack(alignment: .center) {
+                MainNavigationBar(left: {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         if !self.isRoot {
-                            Image("icArrowLeft").renderingMode(.original).frame(width: 44, height: 44)
+                            Image("icArrowLeft").renderingMode(.original).frame(width: 48, height: 48)
                         }
                     })
-                    Spacer()
-                    self.titleItem
-                    Spacer()
+                }, center: {
+                    self.titleItem.foregroundColor(Color(.rosegold))
+                }, right: {
                     self.trailingItem
-                }
-                .frame(width: geometry.size.width, height: self.customHeight)
-                .position(x: geometry.size.width / 2, y: self.customHeight / 2)
-                .offset(x: 0, y: -self.originalHeight)
-            }
-        }.navigationBarTitle("", displayMode: .inline)
+                })
+            }.frame(height: self.customHeight)
+            content
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
-}
-
-class ff: NSObject, UINavigationControllerDelegate {
-    
 }

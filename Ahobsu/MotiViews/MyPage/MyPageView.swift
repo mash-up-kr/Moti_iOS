@@ -24,7 +24,8 @@ struct MyPageView: View {
                                                            label: {
                                                             Image("icRewriteNormal")
                                                                 .renderingMode(.original)
-                                                                .frame(width: 48, height: 48, alignment: .center) }))
+                                                                .frame(width: 48, height: 48)
+                              }))
         {
             ScrollView {
                 VStack {

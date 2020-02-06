@@ -18,6 +18,13 @@ extension UINavigationController {
         navigationBar.isTranslucent = true
         navigationBar.setBackgroundImage(UIImage(color: .clear), for: .default)
         navigationBar.shadowImage = UIImage()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+}
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
     }
 }
 
