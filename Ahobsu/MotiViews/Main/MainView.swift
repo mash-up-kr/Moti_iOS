@@ -23,66 +23,6 @@ extension String {
             }
         }()
         
-        enum MonthEnum: String {
-            case Jan
-            case Feb
-            case Mar
-            case Apr
-            case May
-            case Jun
-            case Jul
-            case Aug
-            case Sep
-            case Oct
-            case Nov
-            case Dec
-            case None
-            
-            init(month: Int) {
-                switch (month) {
-                case 1:
-                    self = .Jan
-                    break
-                case 2:
-                    self = .Feb
-                    break
-                case 3:
-                    self = .Mar
-                    break
-                case 4:
-                    self = .Apr
-                    break
-                case 5:
-                    self = .May
-                    break
-                case 6:
-                    self = .Jun
-                    break
-                case 7:
-                    self = .Jul
-                    break
-                case 8:
-                    self = .Aug
-                    break
-                case 9:
-                    self = .Sep
-                    break
-                case 10:
-                    self = .Oct
-                    break
-                case 11:
-                    self = .Nov
-                    break
-                case 12:
-                    self = .Dec
-                    break
-                default:
-                    self = .None
-                    break
-                }
-            }
-        }
-        
         let monthEnum = MonthEnum(month: month)
         let returnStr = "\(monthEnum.rawValue). \(strWeekOfMonth)"
         

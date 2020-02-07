@@ -8,25 +8,35 @@
 
 import SwiftUI
 
+extension String {
+    static func toAlbumDateString(from date: Date) -> String {
+        let calendar = Calendar.current
+        
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        
+        let monthEnum = MonthEnum(month: month)
+        let returnStr = "\(year). \(monthEnum.longMonthString())"
+        
+        return returnStr
+    }
+    
+    static func toAlbumDateString(year: Int, month: Int) -> String {
+        let monthEnum = MonthEnum(month: month)
+        let returnStr = "\(year). \(monthEnum.longMonthString())"
+        
+        return returnStr
+    }
+}
+
 struct AlbumView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State var answerMonth: AnswerMonth?
+    @State private var answerMonth: AnswerMonth?
     
-    var currentYear: Int = 0
-    var currentMonth: Int = 0
-
-    
-    init() {
-        let calendar = Calendar.current
-        let date = Date()
-        
-        self.currentYear = calendar.component(.year, from: date)
-        self.currentMonth = calendar.component(.month, from: date)
-        
-        print("currentYear : \(self.currentYear) and currentMonth : \(self.currentMonth)")
-    }
+    @State private var currentYear: Int = 0
+    @State private var currentMonth: Int = 0
     
     func loadAlbums() {
         AhobsuProvider.getAnswersMonth(year: self.currentYear,
@@ -48,6 +58,7 @@ struct AlbumView: View {
         }, label: {
             HStack {
                 Image("icArrowLeft")
+                    .renderingMode(.original)
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.white)
             }
@@ -67,8 +78,16 @@ struct AlbumView: View {
                     .padding([.leading, .trailing], 15.0)
                     .padding(.top, 30.0)
                 }
+                PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
             .onAppear {
+                let calendar = Calendar.current
+                let date = Date()
+                
+                self.currentYear = calendar.component(.year, from: date)
+                self.currentMonth = calendar.component(.month, from: date)
+                
                 self.loadAlbums()
             }
             .navigationBarItems(leading: btnBack)
@@ -113,7 +132,7 @@ struct PartsCombinedAnswer: View {
                     .frame(height: 1.0)
                 if week == 1 {
                     Text("1st week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
-                    .fixedSize(horizontal: true, vertical: false)
+                        .fixedSize(horizontal: true, vertical: false)
                 } else if week == 2 {
                     Text("2nd week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
                         .fixedSize(horizontal: true, vertical: false)
@@ -163,6 +182,57 @@ struct GridStack<Content: View>: View {
                     }
                 }
             }
+        }
+    }
+}
+
+struct PaginationView: View {
+    
+    var loadAlbumsDelegate: () -> Void
+    
+    @Binding var year: Int
+    @Binding var month: Int
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack(alignment: .center, spacing: 8.0) {
+                Button(action: {
+                    /* 뒤로 가기 */
+                    if self.month == 1 {
+                        self.month = 12
+                        self.year -= 1
+                    } else {
+                        self.month -= 1
+                    }
+                    
+                    self.loadAlbumsDelegate()
+                }, label: {
+                    Image("icArrowLeft")
+                        .renderingMode(.original)
+                })
+                    .frame(width: 48.0, height: 48.0)
+                Text(String.toAlbumDateString(year: year, month: month))
+                    .lineSpacing(16.0).lineLimit(1)
+                    .font(.custom("IropkeBatangM", size: 20.0))
+                    .frame(width: 160.0)
+                Button(action: {
+                    /* 앞으로 가기 */
+                    if self.month == 12 {
+                        self.month = 1
+                        self.year += 1
+                    } else {
+                        self.month += 1
+                    }
+                    
+                    self.loadAlbumsDelegate()
+                }, label: {
+                    Image("icArrowRight")
+                        .renderingMode(.original)
+                })
+                    .frame(width: 48.0, height: 48.0)
+            }
+                .frame(height: 88.0)
         }
     }
 }
