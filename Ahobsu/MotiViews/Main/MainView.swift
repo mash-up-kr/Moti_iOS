@@ -68,7 +68,7 @@ struct MainView: View {
                         
                         Spacer()
                         HStack {
-                            Button(action: goToCalendar) {
+                            NavigationLink(destination: AlbumView()) {
                                 Image("icAlbumNormal")
                                     .foregroundColor(Color(.rosegold))
                                     .frame(width: 48, height: 48, alignment: .center)
@@ -117,10 +117,6 @@ struct MainView: View {
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)
-    }
-    
-    func goToCalendar() {
-        
     }
     
     func getWeeksData() {

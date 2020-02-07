@@ -12,25 +12,20 @@ struct AlbumView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var answerMonth: AnswerMonth?
+    @State var answerMonth: AnswerMonth?
     
-    @State private var currentYear = 0
-    @State private var currentMonth = 0
-    
-    let formatter: ISO8601DateFormatter = {
-        let formatter = ISO8601DateFormatter()
-        formatter.timeZone = TimeZone.current
-        return formatter
-    }()
+    var currentYear: Int = 0
+    var currentMonth: Int = 0
+
     
     init() {
-        formatter.formatOptions = .withYear
-        self.currentYear = Int(formatter.string(from: Date()))!
+        let calendar = Calendar.current
+        let date = Date()
         
-        formatter.formatOptions = .withMonth
-        self.currentMonth = Int(formatter.string(from: Date()))!
+        self.currentYear = calendar.component(.year, from: date)
+        self.currentMonth = calendar.component(.month, from: date)
         
-        print("currentYear : \(currentYear) and currentMonth : \(currentMonth)")
+        print("currentYear : \(self.currentYear) and currentMonth : \(self.currentMonth)")
     }
     
     func loadAlbums() {
@@ -64,47 +59,88 @@ struct AlbumView: View {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
-                AlbumList(answerMonth: $answerMonth)
-                    .onAppear {
-                        self.loadAlbums()
+                ScrollView {
+                    VStack {
+                        AlbumList(answerMonth: answerMonth)
+                        Spacer()
+                    }
+                    .padding([.leading, .trailing], 15.0)
+                    .padding(.top, 30.0)
                 }
-                .navigationBarItems(leading: btnBack)
-                .navigationBarBackButtonHidden(true)
-                .navigationBarTitle(Text("앨범")
-                .font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), displayMode: .inline)
-                .background(NavigationConfigurator { navConfig in
-                    navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-                    navConfig.navigationBar.titleTextAttributes = [
-                        .foregroundColor: UIColor.rosegold
-                    ]
-                })
             }
-            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear {
+                self.loadAlbums()
+            }
+            .navigationBarItems(leading: btnBack)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle(Text("앨범")
+            .font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), displayMode: .inline)
+            .background(NavigationConfigurator { navConfig in
+                navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+                navConfig.navigationBar.titleTextAttributes = [
+                    .foregroundColor: UIColor.rosegold
+                ]
+            })
+                .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
 
-struct AlbumList {
+struct AlbumList: View {
     
-    @Binding var answerMonth: AnswerMonth?
+    var answerMonth: AnswerMonth?
     
     var body: some View {
         VStack {
             if answerMonth != nil {
-                GridStack(rows: self.answerMonth.answers.count / 2, columns: 2) { (row, column) -> _ in
-                    if self.answerMonth.answers[row * 2 + column] != nil {
-                        ForEach(self.answerMonth.answers[row * 2 + column].compactMap { $0?.cardUrl },
-                                id: \.self,
-                                content: { (cardUrl) in
-                                    ImageView(withURL: cardUrl)
-                                        .aspectRatio(0.62, contentMode: .fit)
-                                        .padding(20)
-                        })
-                    }
+                GridStack(rows: self.answerMonth!.answers.count / 2, columns: 2) { (row, column) in
+                    PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column], week: row * 2 + column + 1)
                 }
             }
         }
     }
+}
+
+struct PartsCombinedAnswer: View {
+    
+    var answers: [Answer?]?
+    var week: Int
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12.0) {
+            HStack(alignment: .center) {
+                Rectangle().fill(Color(.rosegold))
+                    .frame(height: 1.0)
+                if week == 1 {
+                    Text("1st week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+                } else if week == 2 {
+                    Text("2nd week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
+                } else if week == 3 {
+                    Text("3rd week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
+                } else {
+                    Text("\(week)th week").lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
+                }
+                Rectangle().fill(Color(.rosegold))
+                    .frame(height: 1.0)
+            }
+            ZStack {
+                if answers != nil {
+                    ForEach(self.answers!.compactMap { $0?.cardUrl },
+                            id: \.self,
+                            content: { (cardUrl) in
+                                ImageView(withURL: cardUrl)
+                                    .aspectRatio(0.62, contentMode: .fit)
+                                    .padding(20)
+                    })
+                }
+            }.frame(height: 273.0)
+        }
+    }
+    
 }
 
 struct GridStack<Content: View>: View {
@@ -112,10 +148,16 @@ struct GridStack<Content: View>: View {
     let columns: Int
     let content: (Int, Int) -> Content
     
+    init(rows: Int, columns: Int, @ViewBuilder content: @escaping (Int, Int) -> Content) {
+        self.rows = rows
+        self.columns = columns
+        self.content = content
+    }
+    
     var body: some View {
         VStack {
             ForEach(0 ..< rows) { row in
-                HStack {
+                HStack(spacing: 25.0) {
                     ForEach(0 ..< self.columns) { column in
                         self.content(row, column)
                     }

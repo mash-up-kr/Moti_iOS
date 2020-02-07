@@ -55,7 +55,7 @@ extension AhobsuAPI: TargetType {
         case .getWeekAnswers:
             return "/answers/week"
         case let .getMonthAnswers(year, month):
-            return "/answers/month/\(year)-\(month)-01"
+            return "/answers/month"
         case let .getAnswer(missionDate):
             return "/answers/\(missionDate)"
             
@@ -141,8 +141,8 @@ extension AhobsuAPI: TargetType {
         case .getWeekAnswers:
             /* Empty */
             break
-        case .getMonthAnswers:
-            /* Empty */
+        case let .getMonthAnswers(year, month):
+            defaultParams["date"] = "\(year)-\(month)-01"
             break
         case .getAnswer:
             /* Empty */
