@@ -142,7 +142,7 @@ extension AhobsuAPI: TargetType {
             /* Empty */
             break
         case let .getMonthAnswers(year, month):
-            defaultParams["date"] = "\(year)-\(month)-01"
+            defaultParams["date"] = "\(year)-\(String(format: "%02d", month))-01"
             break
         case .getAnswer:
             /* Empty */
@@ -276,6 +276,8 @@ extension AhobsuAPI: TargetType {
                 "snsType": "apple"
             ]
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .getMonthAnswers:
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
