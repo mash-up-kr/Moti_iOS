@@ -7,12 +7,6 @@
 //
 import SwiftUI
 
-enum AnswerMode {
-    case essay
-    case camera
-    case essayCamera
-}
-
 struct NavigationConfigurator: UIViewControllerRepresentable {
     
     var configure: (UINavigationController) -> Void = { _ in }
@@ -36,15 +30,15 @@ struct AnswerCompleteView: View {
     
     var viewControllers: [UIHostingController<AnswerCompleteCardView>]
     
-    var models: [AnswerCompleteModel]
+    var models: [Answer?]
     
     @State var currentPage = 0
     
-    init(_ model: [AnswerCompleteModel]) {
+    init(_ model: [Answer?]) {
         self.models = model
         
         self.viewControllers = model.map({
-            let controller = UIHostingController(rootView: AnswerCompleteCardView(answerCompleteModel: $0))
+            let controller = UIHostingController(rootView: AnswerCompleteCardView(answer: $0))
             
             controller.view.backgroundColor = UIColor.clear
             
@@ -77,7 +71,7 @@ struct AnswerCompleteView: View {
                 }
                 .navigationBarItems(leading: btnBack)
                 .navigationBarBackButtonHidden(true)
-                .navigationBarTitle(Text(models[currentPage].date)
+                .navigationBarTitle(Text(models[currentPage]?.date ?? "")
                 .font(.custom("IropkeBatangM", size: 24.0)), displayMode: .inline)
                 .background(NavigationConfigurator { navConfig in
                     navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
@@ -96,7 +90,7 @@ struct AnswerCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         
         return Group {
-            AnswerCompleteView(AnswerCompleteModel.dummyCardView())
+            AnswerCompleteView(Answer.dummyCardView())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
         }

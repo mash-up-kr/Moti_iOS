@@ -11,17 +11,21 @@ import Combine
 
 struct AnswerCompleteCardView: View {
     
-    @State var answerCompleteModel: AnswerCompleteModel
+    @State var answer: Answer?
     
     var contentView: some View {
-        switch answerCompleteModel.answerCompleteType {
-        case .essay:
-            return AnyView(AnswerComplete_Essay(text: answerCompleteModel.answer))
-        case .camera:
-            return AnyView(AnswerComplete_Camera(imageURL: answerCompleteModel.imageURL))
-        case .essayCamera:
-            return AnyView(AnswerComplete_EssayCamera(text: answerCompleteModel.answer,
-                                                      imageURL: answerCompleteModel.imageURL))
+        if let answer = self.answer {
+            switch answer.getAnswerType() {
+                case .essay:
+                    return AnyView(AnswerComplete_Essay(text: answer.content))
+                case .camera:
+                    return AnyView(AnswerComplete_Camera(imageURL: answer.imageUrl ?? ""))
+                case .essayCamera:
+                    return AnyView(AnswerComplete_EssayCamera(text: answer.content,
+                                                              imageURL: answer.imageUrl ?? ""))
+            }
+        } else {
+            return AnyView(Text(""))
         }
     }
     
@@ -30,7 +34,7 @@ struct AnswerCompleteCardView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        Text(answerCompleteModel.question)
+                        Text(answer?.mission.title ?? "")
                             .font(.custom("IropkeBatangM", size: 24.0))
                             .foregroundColor(Color(UIColor.rosegold))
                             .lineSpacing(12.0)
@@ -62,12 +66,6 @@ struct AnswerCompleteCardView: View {
 struct AnswerCompleteCardView_Previews: PreviewProvider {
     static var previews: some View {
         AnswerCompleteCardView(
-            answerCompleteModel: AnswerCompleteModel(answerId: 0,
-                                                     question: "Test",
-                                                     answer: "Answer",
-                                                     answerCompleteType: .essay,
-                                                     imageURL: "",
-                                                     date: "2019. Nov. 21")
-        )
+            answer: Answer.dummyCardView()[0])
     }
 }

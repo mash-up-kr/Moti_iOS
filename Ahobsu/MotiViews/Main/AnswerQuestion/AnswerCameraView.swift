@@ -56,7 +56,7 @@ struct AnswerCameraView: View {
                 .environment(\.isEnabled, !isNetworking)
                 .sheet(isPresented: self.$showImagePicker,
                        onDismiss: {
-                        print(self.image) },
+                        print(self.image ?? UIImage()) },
                        content: {
                         ImagePicker(image: self.$image) }
                     

@@ -54,7 +54,7 @@ extension AhobsuAPI: TargetType {
             return "/answers/\(answerId)"
         case .getWeekAnswers:
             return "/answers/week"
-        case let .getMonthAnswers(year, month):
+        case .getMonthAnswers:
             return "/answers/month"
         case let .getAnswer(missionDate):
             return "/answers/\(missionDate)"

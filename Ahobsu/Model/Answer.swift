@@ -39,3 +39,44 @@ extension Answer: Hashable {
         hasher.combine(id)
     }
 }
+
+extension Answer {
+    enum AnswerType {
+        case essay
+        case camera
+        case essayCamera
+    }
+    
+    func getAnswerType() -> AnswerType {
+        if imageUrl == nil {
+            return .essay
+        } else {
+            if mission.isContent {
+                return .essayCamera
+            } else {
+                return .camera
+            }
+        }
+    }
+}
+
+extension Answer {
+    static func dummyCardView() -> [Answer] {
+        var answersData: [Answer] = []
+        
+        for idx in 0...7 {
+            answersData.append(
+                Answer(id: idx,
+                       userId: 0,
+                       missionId: 0,
+                       imageUrl: "https://wallpapershome.com/images/pages/pic_h/11603.jpg",
+                       cardUrl: "",
+                       content: "Hello",
+                       date: "2020-02-01",
+                       mission: Mission(id: 0, title: "더미 질문", isContent: true, isImage: true))
+            )
+        }
+        
+        return answersData
+    }
+}

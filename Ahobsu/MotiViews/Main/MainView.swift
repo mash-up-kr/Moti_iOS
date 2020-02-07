@@ -125,7 +125,7 @@ struct MainView: View {
                 withAnimation {
                     self.cards = answerWeek.answers
                 }
-                print(self.cards[1]?.cardUrl)
+                print(self.cards[1]?.cardUrl ?? "")
             } else {
                 
             }
