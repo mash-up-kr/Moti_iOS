@@ -6,12 +6,29 @@
 //  Copyright © 2020 ahobsu. All rights reserved.
 //
 
-struct OnBordingModel: Hashable, Codable {
+import Foundation
 
-    var headline: String
-    var detail: String
-    var imageName: String
+struct OnBordingModel: Codable, Identifiable {
+    let id = UUID()
+    let headline: String
+    let detail: String
+    let imageName: String
+    
+    enum enumCodingKeys: String, CodingKey {
+        case headline
+        case detail
+        case imageName
+    }
+}
 
+extension OnBordingModel: Hashable {
+    static func == (lhs: OnBordingModel, rhs: OnBordingModel) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 extension OnBordingModel {

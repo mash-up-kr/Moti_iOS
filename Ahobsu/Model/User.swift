@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct User: Decodable {
-    var id: Int
+struct User: Decodable, Identifiable {
+    let id: Int
     var birthday: String
-    var email: String
+    let email: String
     var name: String
     var gender: String
-    var refreshDate: String?
-    var refreshToken: String?
-//    var mission: Mission?
-    var snsId: String
-    var snsType: String
+    let refreshDate: String?
+    let refreshToken: String?
+    let mission: Mission?
+    let snsId: String
+    let snsType: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,9 +28,15 @@ struct User: Decodable {
         case gender
         case refreshDate
         case refreshToken
-//        case mission
+        case mission
         case snsId
         case snsType
+    }
+}
+
+extension User: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 
@@ -43,7 +49,7 @@ extension User {
                     gender: "-",
                     refreshDate: nil,
                     refreshToken: nil,
-//                    mission: nil,
+                    mission: nil,
                     snsId: "1",
                     snsType: "-")
     }

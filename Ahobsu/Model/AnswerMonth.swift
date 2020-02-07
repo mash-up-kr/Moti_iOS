@@ -8,18 +8,22 @@
 
 import Foundation
 
-struct AnswerWeek: Decodable, Identifiable {
+struct AnswerMonth: Decodable, Identifiable {
     let id = UUID()
-    let today: String
-    let answers: [Answer?]
+    let date: String
+    let answers: [[Answer?]]
 
   enum CodingKeys: String, CodingKey {
-    case today
+    case date
     case answers
   }
 }
 
-extension AnswerWeek: Hashable {
+extension AnswerMonth: Hashable {
+    static func == (lhs: AnswerMonth, rhs: AnswerMonth) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

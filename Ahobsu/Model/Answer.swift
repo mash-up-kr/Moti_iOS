@@ -2,21 +2,21 @@
 //  Answer.swift
 //  Ahobsu
 //
-//  Created by 한종호 on 01/02/2020.
+//  Created by admin on 01/02/2020.
 //  Copyright © 2020 ahobsu. All rights reserved.
 //
 
 import Foundation
 
-struct Answer: Decodable {
-    var id: Int
-    var userId: Int
-    var missionId: Int
-    var imageUrl: String?
-    var cardUrl: String
+struct Answer: Decodable, Identifiable {
+    let id: Int
+    let userId: Int
+    let missionId: Int
+    let imageUrl: String?
+    let cardUrl: String
     var content: String
-    var date: String
-    var mission: MissionData
+    let date: String
+    let mission: Mission
 
   enum CodingKeys: String, CodingKey {
     case id
@@ -28,4 +28,14 @@ struct Answer: Decodable {
     case date
     case mission
   }
+}
+
+extension Answer: Hashable {
+    static func == (lhs: Answer, rhs: Answer) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
