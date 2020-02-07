@@ -10,14 +10,14 @@ import SwiftUI
 import UIKit
 
 struct OnBordingPageControl: UIViewRepresentable {
-
+    
     var numberOfPages: Int
     @Binding var currentPage: Int
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
     func makeUIView(context: Context) -> UIPageControl {
         let control = UIPageControl()
         control.numberOfPages = numberOfPages
@@ -30,18 +30,18 @@ struct OnBordingPageControl: UIViewRepresentable {
         control.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
         return control
     }
-
+    
     func updateUIView(_ uiView: UIPageControl, context: Context) {
         uiView.currentPage = currentPage
     }
-
+    
     class Coordinator: NSObject {
         var control: OnBordingPageControl
-
+        
         init(_ control: OnBordingPageControl) {
             self.control = control
         }
-
+        
         @objc
         func updateCurrentPage(sender: UIPageControl) {
             control.currentPage = sender.currentPage

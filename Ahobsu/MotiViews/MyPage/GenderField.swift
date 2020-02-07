@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct GenderInputView: View {
-
+    
     @Binding var genderRawValue: String
-
+    
     var body: some View {
         HStack {
             ForEach(SignUp.Gender.allCases, id: \.self) { (gender) in
@@ -28,19 +28,19 @@ struct GenderInputView: View {
 }
 
 struct GenderField: UIViewRepresentable {
-
+    
     typealias UIViewType = UITextField
-
+    
     @Binding var gender: String
-
+    
     var textFieldDelegator: UITextFieldDelegate = ReadOnlyTextFieldDelegate()
-
+    
     func makeUIView(context: UIViewRepresentableContext<GenderField>) -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.font = .monospacedDigitSystemFont(ofSize: 16, weight: .regular)
         textField.textColor = .rosegold
         textField.delegate = textFieldDelegator
-
+        
         let genderInputView = GenderInputView(genderRawValue: $gender)
         let hostingViewController = UIHostingController(rootView: genderInputView)
         hostingViewController.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 256)
@@ -51,19 +51,19 @@ struct GenderField: UIViewRepresentable {
                                                                alpha: 1.0).cgColor
         hostingViewController.view.tintColor = .rosegold
         textField.inputView = hostingViewController.view
-
+        
         return textField
     }
-
+    
     func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<GenderField>) {
         uiView.text = self.gender
     }
 }
 
 extension GenderField {
-
+    
     class ReadOnlyTextFieldDelegate: NSObject, UITextFieldDelegate {
-
+        
         func textFieldDidBeginEditing(_ textField: UITextField) {
             // Nothing
         }

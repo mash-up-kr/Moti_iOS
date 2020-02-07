@@ -17,10 +17,10 @@ extension MyPageEdit {
 }
 
 class MyPageEdit: ObservableObject {
-
+    
     private var cancels: Set<AnyCancellable> = []
     @Published var deletingUserSucccess: Bool = false
-
+    
     func deleteUser() {
         AhobsuProvider.provider.requestPublisher(.deleteProfile)
             .retry(2)

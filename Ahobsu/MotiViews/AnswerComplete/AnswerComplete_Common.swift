@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct QuestionView: View {
-
+    
     @State var text: String = ""
-
+    
     var questionSize: CGFloat { 28.0 }
     var questionLineSpacing: CGFloat { 16.0 }
-
+    
     var body: some View {
         Text(text)
             .font(.system(size: questionSize))
@@ -23,12 +23,12 @@ struct QuestionView: View {
 }
 
 struct AnswerView: View {
-
+    
     @State var text: String = ""
-
+    
     var answerSize: CGFloat { 16.0 }
     var answerLineSpacing: CGFloat { 8.0 }
-
+    
     var body: some View {
         Text(text)
             .font(.system(size: answerSize))
@@ -38,16 +38,16 @@ struct AnswerView: View {
 }
 
 struct ImageView: View {
-
+    
     @ObservedObject var imageLoader: ImageLoader
     @State var image: UIImage = UIImage()
     var url: String
-
+    
     init(withURL url: String) {
         imageLoader = ImageLoader(urlString: url)
         self.url = url
     }
-
+    
     func imageFromData(_ data: Data) -> UIImage {
         UIImage(data: data) ?? UIImage()
     }
@@ -56,22 +56,22 @@ struct ImageView: View {
         guard let document = CGPDFDocument(url as CFURL) else { return nil }
         guard let page = document.page(at: 1) else { return nil }
         
-//        let pdf = PDFDocument(data: data)
-
+        //        let pdf = PDFDocument(data: data)
+        
         let pageRect = page.getBoxRect(.mediaBox)
         let renderer = UIGraphicsImageRenderer(size: pageRect.size)
         let img = renderer.image { ctx in
             UIColor.clear.set()
             ctx.fill(pageRect)
-
+            
             ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
             ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
-
+            
             ctx.cgContext.drawPDFPage(page)
         }
         return img
         
-      
+        
     }
     
     func pdfToUIImage(urlString: String) -> UIImage? {
@@ -82,19 +82,19 @@ struct ImageView: View {
         
         return pngImage
     }
-
+    
     
     var body: some View {
         Image(uiImage: pdfToUIImage(urlString: url) ?? UIImage())
-        .resizable()
+            .resizable()
     }
 }
 
 class ImageLoader: ObservableObject {
-
+    
     @Published var dataIsValid = false
     var data: Data?
-
+    
     init(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, _ in

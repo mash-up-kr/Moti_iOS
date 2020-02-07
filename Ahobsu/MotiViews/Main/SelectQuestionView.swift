@@ -12,7 +12,7 @@ struct SelectQuestionView: View {
     @Binding var window: UIWindow
     @Binding var currentPage: Int
     @State var selectQuestionActive: Bool = true
-
+    
     @State var index: Int = 0
     var emptyMissions: [Mission] {
         return [Mission(id: 1, title: "", isContent: false, isImage: false),
@@ -25,15 +25,15 @@ struct SelectQuestionView: View {
                            Mission(id: 1, title: "", isContent: false, isImage: false),
                            Mission(id: 1, title: "", isContent: false, isImage: false)]
     @State var refreshAvailable = false
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var body: some View {
         NavigationMaskingView(titleItem: Text("질문 선택"), trailingItem: EmptyView()) {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
-
+                
                 VStack {
                     Spacer()
                     SwiftUIPagerView(index: $index, pages: (0..<3).map { index in
@@ -69,7 +69,7 @@ struct SelectQuestionView: View {
             }
         }
     }
-
+    
     private func getNewQuestion() {
         self.missions = emptyMissions
         AhobsuProvider.getTodayMission(completion: { wrapper in

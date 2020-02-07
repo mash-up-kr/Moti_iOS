@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct MainButtonFeel: ViewModifier {
-
+    
     var isEnabled: Bool
-
+    
     func body(content: Content) -> some View {
         content
             .foregroundColor(isEnabled ? Color(.pinkishTan) : Color(.disableText))
@@ -31,11 +31,11 @@ extension View {
 }
 
 struct MainButton: View {
-
+    
     @Environment(\.isEnabled) var isEnabled
     var action: (() -> Void)?
     var title: String
-
+    
     var body: some View {
         ZStack {
             if action != nil {
@@ -56,11 +56,11 @@ struct MainButton_Previews: PreviewProvider {
         Group {
             // 버튼 자체로 사용될 때, able
             MainButton(action: {
-
+                
             }, title: "Default Able Button").environment(\.isEnabled, true)
             // 버튼 자체로 사용될 때, disabled
             MainButton(action: {
-
+                
             }, title: "Default Disabled Button").environment(\.isEnabled, false)
             // NavigationLink로 활용될 때, able
             MainButton(title: "Text Able Button").environment(\.isEnabled, true)

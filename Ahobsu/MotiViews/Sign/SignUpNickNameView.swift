@@ -10,18 +10,18 @@ import SwiftUI
 import Combine
 
 struct SignUpNickNameView: View {
-
+    
     @State var buttonEnabled: Bool = false
-
+    
     @Binding var window: UIWindow
-
+    
     @ObservedObject var keyboard: Keyboard = Keyboard()
     @ObservedObject var signUp = SignUp()
-
+    
     @State var pushNextView: Bool = false
-
+    
     var body: some View {
-
+        
         let contentView = VStack {
             TextField("",
                       text: $signUp.nickname,
@@ -66,10 +66,10 @@ struct SignUpNameView_Previews: PreviewProvider {
         Group {
             // Empty Nickname
             SignUpNickNameView(window: .constant(UIWindow()))
-
+            
             // Invalid Nickname
             SignUpNickNameView(window: .constant(UIWindow()))
-
+            
             // Valid Nickname
             SignUpNickNameView(window: .constant(UIWindow()))
         }

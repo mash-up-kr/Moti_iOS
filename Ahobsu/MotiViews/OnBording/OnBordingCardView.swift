@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct OnBordingCardView: View {
-
+    
     @State var onBordingModel: OnBordingModel
-
+    
     var body: some View {
         VStack(alignment: .center, spacing: 16.0) {
             Text(onBordingModel.headline)
@@ -34,7 +34,7 @@ struct OnBordingCardView: View {
 struct OnBordingCardView_Previews: PreviewProvider {
     static var previews: some View {
         let models: [OnBordingModel] = OnBordingModel.createOnBordingModel()
-
+        
         return Group {
             ForEach(models, id: \.self) { model in
                 OnBordingCardView(onBordingModel: model)

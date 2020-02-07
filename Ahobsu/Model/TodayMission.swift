@@ -12,10 +12,10 @@ struct TodayMission: Decodable, Identifiable {
     let id = UUID()
     let refresh: Bool
     let missions: [Mission]
-
+    
     enum CodingKeys: String, CodingKey {
-    case refresh
-    case missions
+        case refresh
+        case missions
     }
 }
 

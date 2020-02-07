@@ -14,7 +14,7 @@ struct SignIn: Codable {
     var status: Int
     var message: String
     var data: TokenData
-
+    
     struct TokenData: Codable {
         var accessToken: String
         var refreshToken: String
@@ -26,7 +26,7 @@ class SignInWithAppleDelegates: NSObject {
     typealias SignInResult = (Bool, Bool?) -> Void
     private let signInSucceeded: SignInResult
     private weak var window: UIWindow!
-
+    
     init(window: UIWindow?, onSignedIn: @escaping SignInResult) {
         self.window = window
         self.signInSucceeded = onSignedIn
@@ -58,7 +58,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
             
         }, filteredStatusCode: nil)
     }
-
+    
     private func signInWithExistingAccount(credential: ASAuthorizationAppleIDCredential) {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
@@ -83,17 +83,17 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
             
         }, filteredStatusCode: nil)
     }
-
+    
     private func signInWithUserAndPassword(credential: ASPasswordCredential) {
         // You *should* have a fully registered account here.  If you get back an error from your server
         // that the account doesn't exist, you can look in the keychain for the credentials and rerun setup
-
+        
         // if (WebAPI.Login(credential.user, credential.password)) {
         //   ...
         // }
         self.signInSucceeded(true, nil)
     }
-
+    
     func authorizationController(
         controller: ASAuthorizationController,
         didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -105,15 +105,15 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
             } else {
                 signInWithExistingAccount(credential: appleIdCredential)
             }
-
+            
         case let passwordCredential as ASPasswordCredential:
             signInWithUserAndPassword(credential: passwordCredential)
-
+            
         default:
             break
         }
     }
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
     }

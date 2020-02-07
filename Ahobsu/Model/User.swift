@@ -16,7 +16,7 @@ struct User: Decodable, Identifiable {
     var gender: String
     let refreshDate: String?
     let refreshToken: String?
-    let mission: Mission?
+    let mission: String? // Mission?
     let snsId: String
     let snsType: String
     

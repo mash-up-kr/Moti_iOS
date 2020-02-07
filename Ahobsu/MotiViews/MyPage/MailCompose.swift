@@ -9,7 +9,7 @@
 import UIKit
 
 struct MailCompose {
-
+    
     private var toEmail: String {
         return "heesoo0203@gmail.com"
     }
@@ -23,7 +23,7 @@ struct MailCompose {
     private var query: String {
         return "subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
     }
-
+    
     func open() {
         let url = URL(string: "mailto:\(toEmail)?\(query)")!
         if UIApplication.shared.canOpenURL(url) {

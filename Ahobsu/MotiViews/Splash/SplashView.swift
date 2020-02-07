@@ -9,16 +9,16 @@
 import SwiftUI
 
 struct SplashView: View {
-
+    
     @State var window: UIWindow
-
+    
     @State var backgroundAlpha = 0.0
-
+    
     @State var textAlpha = 0.0
-
+    
     @State var logoAlpha = 0.0
     @State var logoScale: CGFloat = 1
-
+    
     var body: some View {
         ZStack {
             SplashBackgroundView(backgroundAlpha: $backgroundAlpha)
@@ -34,47 +34,47 @@ struct SplashView: View {
 }
 
 struct SplashBackgroundView: View {
-
+    
     @Binding var backgroundAlpha: Double
-
+    
     var body: some View {
         EmptyView()
     }
 }
 
 struct LogoView: View {
-
+    
     @Binding var textAlpha: Double
     @Binding var logoAlpha: Double
     @Binding var logoScale: CGFloat
-
+    
     var logoName: String { "motiLogo" }
     var logoPaddingBottom: CGFloat { 24 }
-
+    
     var titleText: String { "Make Own True Identity" }
     var titleColor: Color {
         Color.init(.sRGB,
-                    red: 245/255,
-                    green: 219/255,
-                    blue: 203/255,
-                    opacity: 1.0)
+                   red: 245/255,
+                   green: 219/255,
+                   blue: 203/255,
+                   opacity: 1.0)
     }
     var titleSize: CGFloat { 16 }
-
+    
     var logoViewPaddingTop: CGFloat { 224 }
-
+    
     var body: some View {
         ZStack {
             BackgroundView()
             VStack {
                 Image(logoName)
-                .scaleEffect(logoScale)
-                .opacity(logoAlpha)
-                .padding(.bottom, logoPaddingBottom)
+                    .scaleEffect(logoScale)
+                    .opacity(logoAlpha)
+                    .padding(.bottom, logoPaddingBottom)
                 Text(titleText)
-                .foregroundColor(titleColor)
-                .font(.custom("TTNorms-Bold", size: 16.0))
-                .opacity(textAlpha)
+                    .foregroundColor(titleColor)
+                    .font(.custom("TTNorms-Bold", size: 16.0))
+                    .opacity(textAlpha)
                 Spacer()
             }
             .padding(.top, logoViewPaddingTop)
@@ -83,30 +83,30 @@ struct LogoView: View {
 }
 
 extension SplashView {
-
+    
     var backgroundAnimationDuration: Double { 1.0 }
     var titleAnimationDuration: Double { 0.5 }
     var logoAnimationDuration: Double { 0.3 }
     var logoAnimationEndDuration: Double { 1.0 }
-
+    
     var backgroundAlphaFinal: Double { 1.0 }
     var textAlphaFinal: Double { 1.0 }
     var logoAlphaFinal: Double { 1.0 }
     var logoScaleFinal: Double { 1.0 }
-
+    
     func handleAnimations() {
         runAnimationPart1()
         runAnimationPart2()
         runAnimationPart3()
         goNextView()
     }
-
+    
     func runAnimationPart1() {
         withAnimation(.easeIn(duration: backgroundAnimationDuration)) {
             backgroundAlpha = self.backgroundAlphaFinal
         }
     }
-
+    
     func runAnimationPart2() {
         let deadline: DispatchTime = .now()
             + backgroundAnimationDuration
@@ -116,7 +116,7 @@ extension SplashView {
             }
         }
     }
-
+    
     func runAnimationPart3() {
         let deadline: DispatchTime = .now()
             + backgroundAnimationDuration
@@ -128,7 +128,7 @@ extension SplashView {
             }
         }
     }
-
+    
     func goNextView() {
         let deadline: DispatchTime = .now()
             + backgroundAnimationDuration

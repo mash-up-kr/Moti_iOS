@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct SwiftUIPagerView<Content: View & Identifiable>: View {
-
+    
     @Binding var index: Int
     @State private var offset: CGFloat = 0
     @State private var isGestureActive: Bool = false
-
+    
     // 1
     var pages: [Content]
-
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
@@ -48,7 +48,7 @@ struct SwiftUIPagerView<Content: View & Identifiable>: View {
                     withAnimation(.easeOut(duration: 0.2)) {
                         self.offset = -(geometry.size.width - 80) * CGFloat(self.index)
                     }
-
+                    
                     // 7
                     DispatchQueue.main.async { self.isGestureActive = false }
                 }))

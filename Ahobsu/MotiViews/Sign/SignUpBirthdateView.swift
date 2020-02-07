@@ -9,19 +9,19 @@
 import SwiftUI
 
 struct SignUpBirthdateView: View {
-
+    
     @Binding var window: UIWindow
-
+    
     @ObservedObject var signUp: SignUp
-
+    
     @State var pushNextView: Bool = false
-
+    
     var body: some View {
         let contentView = HStack {
             HStack {
                 DatePicker(selection: $signUp.birthdate,
                            displayedComponents: .date) {
-                    EmptyView()
+                            EmptyView()
                 }.labelsHidden()
             }
         }

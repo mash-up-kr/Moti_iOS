@@ -20,14 +20,14 @@ struct MainCardView: View {
                 .overlay(
                     ZStack {
                         if isWithLine {
-
+                            
                             RoundedRectangle(cornerRadius: 11)
                                 .overlay(RoundedRectangle(cornerRadius: 11)
                                     .stroke(Color(.lightgold), lineWidth: 1)
                                     .foregroundColor(.clear))
                                 .padding([.vertical], 13)
                                 .padding([.horizontal], 10)
-
+                                
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 11)
                                         .overlay(RoundedRectangle(cornerRadius: 11)
@@ -35,7 +35,7 @@ struct MainCardView: View {
                                         .foregroundColor(.clear)
                                         .padding([.vertical], 10)
                                         .padding([.horizontal], 13))
-
+                            
                         }
                     }
             )

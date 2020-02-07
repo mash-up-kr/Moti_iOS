@@ -25,7 +25,7 @@ extension SignUp {
 }
 
 class SignUp: ObservableObject {
-
+    
     // Nickname
     @Published var nickname: String = ""
     var validatedNickname: AnyPublisher<String?, Never> {
@@ -34,21 +34,21 @@ class SignUp: ObservableObject {
             return $0
         }.eraseToAnyPublisher()
     }
-
+    
     // Gende
     @Published var gender: Gender?
-
+    
     // Birthdate
     @Published var birthdate: Date = Date(timeIntervalSince1970: 0)
-
+    
     @Published var inputComplete: Bool = false
     
     var email: String {
         return UserDefaults.standard.value(forKey: "com.ahobsu.AppleID") as? String ?? ""
     }
-
+    
     private var cancels: Set<AnyCancellable> = []
-
+    
     var signUpSuccess: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest4(validatedNickname, $gender, $birthdate, $inputComplete)
             .tryMap { (nickName, gender, _, signUpComplete) -> AhobsuAPI in
@@ -56,8 +56,8 @@ class SignUp: ObservableObject {
                     let nickName = nickName,
                     let gender = gender,
                     signUpComplete == true
-                else {
-                    throw CocoaError(.propertyListReadCorrupt)
+                    else {
+                        throw CocoaError(.propertyListReadCorrupt)
                 }
                 return AhobsuAPI.updateProfile(name: nickName,
                                                birthday: self.dateFormatter.string(from: self.birthdate),

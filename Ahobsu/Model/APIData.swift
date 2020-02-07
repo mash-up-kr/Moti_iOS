@@ -13,7 +13,7 @@ struct APIData<T : Decodable>: Decodable, Identifiable {
     let status: Int
     let message: String
     let data: T?
-
+    
     enum CodingKeys: String, CodingKey {
         case status
         case message

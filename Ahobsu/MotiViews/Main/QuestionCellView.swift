@@ -25,7 +25,7 @@ struct QuestionCellView: View {
                                 weight: .regular,
                                 design: .default)
                 )
-
+                
             }
             Spacer()
             Text("오늘 비가와요. \n비를 주제로 사진과 함께 \n한줄 시를 써볼까요?")

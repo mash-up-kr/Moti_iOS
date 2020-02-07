@@ -12,7 +12,7 @@ import Combine
 struct AnswerCompleteCardView: View {
     
     @State var answerCompleteModel: AnswerCompleteModel
-
+    
     var contentView: some View {
         switch answerCompleteModel.answerCompleteType {
         case .essay:
@@ -24,7 +24,7 @@ struct AnswerCompleteCardView: View {
                                                       imageURL: answerCompleteModel.imageURL))
         }
     }
-
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -53,7 +53,7 @@ struct AnswerCompleteCardView: View {
             }
         }
     }
-
+    
     func update() {
         
     }

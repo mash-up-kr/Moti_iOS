@@ -59,7 +59,7 @@ struct AnswerCameraView: View {
                         print(self.image) },
                        content: {
                         ImagePicker(image: self.$image) }
-                        
+                    
                 )
                 Spacer(minLength: 32)
             }

@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct BackgroundView: View {
-
+    
     @State var colorType: ColorType = .black
-
+    
     var body: some View {
         VStack {
             colorType.extractLinearGradient()
@@ -23,7 +23,7 @@ struct BackgroundView: View {
 extension BackgroundView {
     enum ColorType {
         case black
-
+        
         func extractLinearGradient() -> LinearGradient {
             switch self {
             case .black:
@@ -33,8 +33,8 @@ extension BackgroundView {
                                                 blue: 22/255,
                                                 alpha: 1.0)),
                              Color.black]),
-                   startPoint: .bottom,
-                   endPoint: .top
+                                      startPoint: .bottom,
+                                      endPoint: .top
                 )
             }
         }

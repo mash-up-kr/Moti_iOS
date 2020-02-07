@@ -12,11 +12,11 @@ struct AnswerMonth: Decodable, Identifiable {
     let id = UUID()
     let date: String
     let answers: [[Answer?]]
-
-  enum CodingKeys: String, CodingKey {
-    case date
-    case answers
-  }
+    
+    enum CodingKeys: String, CodingKey {
+        case date
+        case answers
+    }
 }
 
 extension AnswerMonth: Hashable {

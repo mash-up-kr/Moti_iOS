@@ -16,8 +16,8 @@ struct MainNavigationBar<Left: View, Center: View, Right: View>: View {
     let right: () -> Right
     
     init(@ViewBuilder left: @escaping () -> Left,
-         @ViewBuilder center: @escaping () -> Center,
-         @ViewBuilder right: @escaping () -> Right) {
+                      @ViewBuilder center: @escaping () -> Center,
+                                   @ViewBuilder right: @escaping () -> Right) {
         self.left = left
         self.center = center
         self.right = right

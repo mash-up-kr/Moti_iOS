@@ -12,7 +12,7 @@ struct QuestionCardView: View, Identifiable {
     var id: Int
     var missionData: Mission
     @Binding var selectQuestionActive: Bool
-
+    
     var body: some View {
         ZStack {
             MainCardView(isWithLine: false)
@@ -30,9 +30,9 @@ struct QuestionCardView: View, Identifiable {
                     
                 }
                 .padding([.trailing], 16)
-
+                
                 Spacer()
-
+                
                 HStack {
                     VStack(alignment: .leading, spacing: 14) {
                         Text("질문 \(id + 1)")
@@ -41,7 +41,7 @@ struct QuestionCardView: View, Identifiable {
                                           design: .default)
                         )
                             .foregroundColor(Color(.rosegold))
-
+                        
                         Text(missionData.title)
                             .font(.system(size: 22,
                                           weight: .regular,
@@ -62,7 +62,7 @@ struct QuestionCardView: View, Identifiable {
                     } else {
                         NavigationLink(destination: AnswerInsertEssayView(selectQuestionActive: $selectQuestionActive,
                                                                           missonData: missionData)) {
-                            MainButton(title: "답변하기")
+                                                                            MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
                 } else if missionData.isImage == true {
@@ -75,19 +75,19 @@ struct QuestionCardView: View, Identifiable {
         }
         .aspectRatio(0.62, contentMode: .fit)
     }
-
-//    var destinationView: some View {
-//        if missionData.isContent == 1 {
-//            if missionData.isImage == 1 {
-//                return AnswerInsertCameraView(missonData: missionData)
-//            } else {
-//                return AnswerInsertEssayView(missonData: missionData)
-//            }
-//        } else if missionData.isImage == 1 {
-//            return AnswerInsertCameraView(missonData: missionData)
-//        }
-//        return AnswerInsertEssayView(missonData: missionData)
-//    }
+    
+    //    var destinationView: some View {
+    //        if missionData.isContent == 1 {
+    //            if missionData.isImage == 1 {
+    //                return AnswerInsertCameraView(missonData: missionData)
+    //            } else {
+    //                return AnswerInsertEssayView(missonData: missionData)
+    //            }
+    //        } else if missionData.isImage == 1 {
+    //            return AnswerInsertCameraView(missonData: missionData)
+    //        }
+    //        return AnswerInsertEssayView(missonData: missionData)
+    //    }
 }
 
 //struct QuestionCardView_Previews: PreviewProvider {

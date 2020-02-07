@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct AnswerComplete_EssayCamera: View {
-
+    
     @State var text: String
     @State var imageURL: String
-
+    
     var body: some View {
         ZStack {
             MainCardView(isWithLine: true)
@@ -27,7 +27,7 @@ struct AnswerComplete_EssayCamera: View {
                         .foregroundColor(Color(UIColor.rosegold))
                         .lineSpacing(8.0)
                     Spacer()
-                    }
+                }
                 .padding([.all], 16.0)
             }
             .padding([.all], 12.0)

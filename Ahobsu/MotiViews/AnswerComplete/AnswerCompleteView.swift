@@ -14,9 +14,9 @@ enum AnswerMode {
 }
 
 struct NavigationConfigurator: UIViewControllerRepresentable {
-
+    
     var configure: (UINavigationController) -> Void = { _ in }
-
+    
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
         UIViewController()
@@ -31,27 +31,27 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 }
 
 struct AnswerCompleteView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var viewControllers: [UIHostingController<AnswerCompleteCardView>]
-
+    
     var models: [AnswerCompleteModel]
-
+    
     @State var currentPage = 0
-
+    
     init(_ model: [AnswerCompleteModel]) {
         self.models = model
-
+        
         self.viewControllers = model.map({
             let controller = UIHostingController(rootView: AnswerCompleteCardView(answerCompleteModel: $0))
-
+            
             controller.view.backgroundColor = UIColor.clear
-
+            
             return controller
         })
     }
-
+    
     var btnBack : some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -63,7 +63,7 @@ struct AnswerCompleteView: View {
             }
         })
     }
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -92,9 +92,9 @@ struct AnswerCompleteView: View {
 }
 
 struct AnswerCompleteView_Previews: PreviewProvider {
-
+    
     static var previews: some View {
-
+        
         return Group {
             AnswerCompleteView(AnswerCompleteModel.dummyCardView())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))

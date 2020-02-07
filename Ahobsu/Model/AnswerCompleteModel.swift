@@ -7,16 +7,16 @@
 //
 
 struct AnswerCompleteModel: Hashable, Codable {
-
+    
     var answerId: Int
     var question: String
     var answer: String
     var answerCompleteType: AnswerCompleteType
-
+    
     var imageURL: String
-
+    
     var date: String
-
+    
 }
 
 extension AnswerCompleteModel {
@@ -28,13 +28,13 @@ extension AnswerCompleteModel {
 }
 
 extension AnswerCompleteModel {
-
+    
     static func dummyCardView() -> [AnswerCompleteModel] {
         var answerCompleteData: [AnswerCompleteModel] = []
-
+        
         for idx in 0...7 {
             answerCompleteData.append(
-                 AnswerCompleteModel(
+                AnswerCompleteModel(
                     answerId: idx,
                     question: "Test \(idx)",
                     answer: "Answer \(idx)",
@@ -44,8 +44,8 @@ extension AnswerCompleteModel {
                 )
             )
         }
-
+        
         return answerCompleteData
     }
-
+    
 }

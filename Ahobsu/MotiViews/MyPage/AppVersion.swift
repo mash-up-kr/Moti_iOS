@@ -20,7 +20,7 @@ extension AppVersion {
         return AppVersion(latestVersion: "-", currentVersion: "-")
     }
 }
- 
+
 extension AppVersion {
     
     static var versionPubliser: AnyPublisher<AppVersion, Never> {

@@ -13,12 +13,12 @@ struct Token: Decodable, Identifiable {
     let accessToken: String
     let refreshToken: String
     let signUp: Bool
-
-  enum CodingKeys: String, CodingKey {
-    case accessToken
-    case refreshToken
-    case signUp
-  }
+    
+    enum CodingKeys: String, CodingKey {
+        case accessToken
+        case refreshToken
+        case signUp
+    }
 }
 
 extension Token: Hashable {

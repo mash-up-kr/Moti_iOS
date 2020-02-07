@@ -10,14 +10,14 @@ import UIKit
 import SwiftUI
 
 struct OnBordingPageViewController: UIViewControllerRepresentable {
-
+    
     var controllers: [UIViewController]
     @Binding var currentPage: Int
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
     func makeUIViewController(context: Context) -> UIPageViewController {
         let pageViewController = UIPageViewController(
             transitionStyle: .scroll,
@@ -26,19 +26,19 @@ struct OnBordingPageViewController: UIViewControllerRepresentable {
         pageViewController.delegate = context.coordinator
         return pageViewController
     }
-
+    
     func updateUIViewController(_ pageViewController: UIPageViewController, context: Context) {
         pageViewController.setViewControllers(
             [controllers[currentPage]], direction: .forward, animated: true)
     }
-
+    
     class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         var parent: OnBordingPageViewController
-
+        
         init(_ pageViewController: OnBordingPageViewController) {
             self.parent = pageViewController
         }
-
+        
         func pageViewController(
             _ pageViewController: UIPageViewController,
             viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -50,7 +50,7 @@ struct OnBordingPageViewController: UIViewControllerRepresentable {
             }
             return parent.controllers[index - 1]
         }
-
+        
         func pageViewController(
             _ pageViewController: UIPageViewController,
             viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -62,7 +62,7 @@ struct OnBordingPageViewController: UIViewControllerRepresentable {
             }
             return parent.controllers[index + 1]
         }
-
+        
         func pageViewController(_ pageViewController: UIPageViewController,
                                 didFinishAnimating finished: Bool,
                                 previousViewControllers: [UIViewController],

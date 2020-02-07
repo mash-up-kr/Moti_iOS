@@ -14,7 +14,7 @@ struct MyPageView: View {
     @State private var user: User = .placeholderData
     @State private var appVersion: AppVersion = .placeholderData
     @State private var privacyIsPresented = false
-
+    
     var mailCompose = MailCompose()
     let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
     
@@ -88,7 +88,7 @@ struct MyPageView_Previews: PreviewProvider {
 }
 
 extension MyPageView {
-
+    
     struct HeaderView: View {
         var name: String
         var body: some View {
@@ -101,7 +101,7 @@ extension MyPageView {
             }.foregroundColor(Color(.rosegold))
         }
     }
-
+    
     struct Separator: View {
         var body: some View {
             Rectangle()
@@ -109,7 +109,7 @@ extension MyPageView {
                 .foregroundColor(Color(UIColor.lightgold.withAlphaComponent(0.5)))
         }
     }
-
+    
     struct ListCell: View {
         var title: String
         var detail: String
@@ -119,7 +119,7 @@ extension MyPageView {
                 Spacer()
                 Text(detail)
             }.frame(minHeight: 52)
-            .foregroundColor(Color(.rosegold))
+                .foregroundColor(Color(.rosegold))
         }
     }
 }

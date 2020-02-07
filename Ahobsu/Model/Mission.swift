@@ -13,13 +13,13 @@ struct Mission: Decodable, Identifiable {
     let title: String
     let isContent: Bool
     let isImage: Bool
-
-  enum CodingKeys: String, CodingKey {
-    case id
-    case title
-    case isContent
-    case isImage
-  }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case isContent
+        case isImage
+    }
 }
 
 extension Mission: Hashable {

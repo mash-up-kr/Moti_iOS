@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct SignUpGenderView: View {
-
+    
     @Binding var window: UIWindow
-
+    
     @ObservedObject var signUp: SignUp
-
+    
     @State var pushNextView: Bool = false
-
+    
     var body: some View {
         let contentView = HStack {
             ForEach(SignUp.Gender.allCases, id: \.self) { (gender) in

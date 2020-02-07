@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SignUpFormView<Content, Destination>: View where Content: View, Destination: View {
-
+    
     var title: String
     var content: Content
     var buttonTitle: String
@@ -17,7 +17,7 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
     var buttonAction: (() -> Void)?
     var buttonEnabled: Bool
     @Binding var pushDestination: Bool
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -35,15 +35,15 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
                     MainButton(action: buttonAction, title: buttonTitle)
                 }.environment(\.isEnabled, buttonEnabled)
                 Spacer()
-                }.frame(maxHeight: .infinity)
-            }
+            }.frame(maxHeight: .infinity)
+        }
         .edgesIgnoringSafeArea(.vertical)
         .frame(maxWidth: .infinity)
         .background(
             LinearGradient(gradient: Gradient(colors: [.black, Color(red: 26/255, green: 22/255, blue: 22/255)]),
                            startPoint: .top,
                            endPoint: .bottom))
-
+        
     }
 }
 

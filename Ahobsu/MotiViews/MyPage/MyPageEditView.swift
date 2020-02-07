@@ -10,14 +10,14 @@ import SwiftUI
 import Combine
 
 struct MyPageEditView: View {
-
+    
     @ObservedObject var keyboard = Keyboard()
     @ObservedObject var myPageEdit = MyPageEdit()
     
     @Binding var sourceUser: User
     @State var editingUser: User
     @State var isNetworking = false
-
+    
     var body: some View {
         NavigationMaskingView(titleItem: Text("수정하기"), trailingItem: Text("")) {
             ScrollView {
@@ -80,7 +80,7 @@ extension MyPageEditView {
             self.isNetworking = false
         }, filteredStatusCode: nil)
     }
-
+    
     private func logout() {
         // 토큰 제거
         TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
@@ -90,7 +90,7 @@ extension MyPageEditView {
             
         })
     }
-
+    
     private func navigateRootView() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
             let window = sceneDelegate.window {
@@ -131,7 +131,7 @@ extension MyPageEditView {
                     Spacer()
                 }
             }.frame(minHeight: 52)
-            .foregroundColor(Color(.rosegold))
+                .foregroundColor(Color(.rosegold))
         }
     }
 }

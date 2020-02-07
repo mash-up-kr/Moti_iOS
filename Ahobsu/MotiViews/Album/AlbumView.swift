@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct AlbumView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State private var answerMonth: AnswerMonth? = nil
+    @State private var answerMonth: AnswerMonth?
     
     @State private var currentYear = 0
     @State private var currentMonth = 0
@@ -58,36 +58,70 @@ struct AlbumView: View {
             }
         })
     }
-
+    
     var body: some View {
-         NavigationView {
-             ZStack {
-                 BackgroundView()
+        NavigationView {
+            ZStack {
+                BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
-                 VStack {
-                    if answerMonth != nil {
-                        ForEach(answerMonth!.answers,
-                                id: \.self) { week in
-                            Text("")
-                        }
+                AlbumList(answerMonth: $answerMonth)
+                    .onAppear {
+                        self.loadAlbums()
+                }
+                .navigationBarItems(leading: btnBack)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitle(Text("앨범")
+                .font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), displayMode: .inline)
+                .background(NavigationConfigurator { navConfig in
+                    navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
+                    navConfig.navigationBar.titleTextAttributes = [
+                        .foregroundColor: UIColor.rosegold
+                    ]
+                })
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+        }
+    }
+}
+
+struct AlbumList {
+    
+    @Binding var answerMonth: AnswerMonth?
+    
+    var body: some View {
+        VStack {
+            if answerMonth != nil {
+                GridStack(rows: self.answerMonth.answers.count / 2, columns: 2) { (row, column) -> _ in
+                    if self.answerMonth.answers[row * 2 + column] != nil {
+                        ForEach(self.answerMonth.answers[row * 2 + column].compactMap { $0?.cardUrl },
+                                id: \.self,
+                                content: { (cardUrl) in
+                                    ImageView(withURL: cardUrl)
+                                        .aspectRatio(0.62, contentMode: .fit)
+                                        .padding(20)
+                        })
                     }
-                 }
-                 .onAppear {
-                    self.loadAlbums()
-                 }
-                 .navigationBarItems(leading: btnBack)
-                 .navigationBarBackButtonHidden(true)
-                 .navigationBarTitle(Text("앨범")
-                 .font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), displayMode: .inline)
-                 .background(NavigationConfigurator { navConfig in
-                     navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-                     navConfig.navigationBar.titleTextAttributes = [
-                         .foregroundColor: UIColor.rosegold
-                     ]
-                 })
-             }
-             .navigationViewStyle(StackNavigationViewStyle())
-         }
+                }
+            }
+        }
+    }
+}
+
+struct GridStack<Content: View>: View {
+    let rows: Int
+    let columns: Int
+    let content: (Int, Int) -> Content
+    
+    var body: some View {
+        VStack {
+            ForEach(0 ..< rows) { row in
+                HStack {
+                    ForEach(0 ..< self.columns) { column in
+                        self.content(row, column)
+                    }
+                }
+            }
+        }
     }
 }
 

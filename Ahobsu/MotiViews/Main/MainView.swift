@@ -13,7 +13,7 @@ struct MainView: View {
     @State var isAnswered: Bool = false
     @State var todayCard: Answer?
     @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil, nil]
-
+    
     var body: some View {
         NavigationView {
             NavigationMaskingView(isRoot: true,
@@ -28,44 +28,44 @@ struct MainView: View {
                         Spacer()
                         NavigationLink(destination: SelectQuestionView(window: $window,
                                                                        currentPage: .constant(0))) {
-                            MainCardView(isWithLine: !isAnswered)
-                                .aspectRatio(0.62, contentMode: .fit)
-                                .padding([.horizontal], 59)
-                                .overlay(
-                                    ZStack {
-                                        if todayCard != nil {
-                                            ZStack {
-                                                ForEach(cards.compactMap { $0?.cardUrl },
-                                                        id: \.self,
-                                                        content: { (cardUrl) in
-
-                                                    ImageView(withURL: cardUrl)
-                                                        .aspectRatio(0.62, contentMode: .fit)
-                                                            .padding(20)
-                                                })
-                                            }
-                                        } else {
-                                            VStack {
-                                                Text("Motivation")
-                                                    .font(.custom("Baskerville", size: 16.0))
-                                                    .foregroundColor(Color(.rosegold))
-                                                Spacer()
-                                                Image("imgQuestion")
-                                                Spacer()
-                                                Text("Today’s\nyour\nQuestion")
-                                                    .font(.custom("Baskerville", size: 16.0))
-                                                    .foregroundColor(Color(.rosegold))
-                                                    .multilineTextAlignment(.center)
-                                            }
-                                            .padding([.vertical], 32)
-                                        }
-
-                                    }
-                            )
+                                                                        MainCardView(isWithLine: !isAnswered)
+                                                                            .aspectRatio(0.62, contentMode: .fit)
+                                                                            .padding([.horizontal], 59)
+                                                                            .overlay(
+                                                                                ZStack {
+                                                                                    if todayCard != nil {
+                                                                                        ZStack {
+                                                                                            ForEach(cards.compactMap { $0?.cardUrl },
+                                                                                                    id: \.self,
+                                                                                                    content: { (cardUrl) in
+                                                                                                        
+                                                                                                        ImageView(withURL: cardUrl)
+                                                                                                            .aspectRatio(0.62, contentMode: .fit)
+                                                                                                            .padding(20)
+                                                                                            })
+                                                                                        }
+                                                                                    } else {
+                                                                                        VStack {
+                                                                                            Text("Motivation")
+                                                                                                .font(.custom("Baskerville", size: 16.0))
+                                                                                                .foregroundColor(Color(.rosegold))
+                                                                                            Spacer()
+                                                                                            Image("imgQuestion")
+                                                                                            Spacer()
+                                                                                            Text("Today’s\nyour\nQuestion")
+                                                                                                .font(.custom("Baskerville", size: 16.0))
+                                                                                                .foregroundColor(Color(.rosegold))
+                                                                                                .multilineTextAlignment(.center)
+                                                                                        }
+                                                                                        .padding([.vertical], 32)
+                                                                                    }
+                                                                                    
+                                                                                }
+                                                                        )
                         }
                         .buttonStyle(PlainButtonStyle())
                         .environment(\.isEnabled, todayCard == nil)
-
+                        
                         Spacer()
                         HStack {
                             Button(action: goToCalendar) {
@@ -73,13 +73,13 @@ struct MainView: View {
                                     .foregroundColor(Color(.rosegold))
                                     .frame(width: 48, height: 48, alignment: .center)
                             }
-
+                            
                             Spacer()
-
+                            
                             Text("Nov. 2nd week")
                                 .foregroundColor(Color(.rosegold))
                                 .font(.system(size: 20, weight: .regular, design: .default))
-
+                            
                             Spacer()
                             NavigationLink(destination: MyPageView()) {
                                 Image("icProfileNormal")

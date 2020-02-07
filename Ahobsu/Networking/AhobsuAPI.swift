@@ -21,18 +21,18 @@ enum AhobsuAPI {
     /* Missions */
     case getMission
     case refreshMission
-
+    
     /* SignIn */
     case signIn(snsId: String, auth: String)
-
+    
     /* Token */
     case refreshToken
-
+    
     /* Users */
     case updateProfile(name: String,
-                birthday: String,
-                email: String,
-                gender: String
+        birthday: String,
+        email: String,
+        gender: String
     )
     case deleteProfile
     case getProfile
@@ -44,10 +44,10 @@ extension AhobsuAPI: TargetType {
             else { fatalError() }
         return url
     }
-
+    
     var path: String {
         switch self {
-        /* Answers */
+            /* Answers */
         case .registerAnswer:
             return "/answers"
         case let .updateAnswer(answerId):
@@ -58,22 +58,22 @@ extension AhobsuAPI: TargetType {
             return "/answers/month/\(year)-\(month)-01"
         case let .getAnswer(missionDate):
             return "/answers/\(missionDate)"
-
-        /* Missions */
+            
+            /* Missions */
         case .getMission:
             return "/missions"
         case .refreshMission:
             return "/missions/refresh"
-
-        /* SignIn */
+            
+            /* SignIn */
         case .signIn:
             return "/signin"
-
-        /* Token */
+            
+            /* Token */
         case .refreshToken:
             return "/signin/refresh"
-
-        /* Users */
+            
+            /* Users */
         case .updateProfile:
             return "/users"
         case .deleteProfile:
@@ -82,10 +82,10 @@ extension AhobsuAPI: TargetType {
             return "/users/my"
         }
     }
-
+    
     var method: Moya.Method {
         switch self {
-        /* Answers */
+            /* Answers */
         case .registerAnswer:
             return .post
         case .updateAnswer:
@@ -96,22 +96,22 @@ extension AhobsuAPI: TargetType {
             return .get
         case .getAnswer:
             return .get
-
-        /* Missions */
+            
+            /* Missions */
         case .getMission:
             return .get
         case .refreshMission:
             return .get
-
-        /* SignIn */
+            
+            /* SignIn */
         case .signIn:
             return .post
-
-        /* Token */
+            
+            /* Token */
         case .refreshToken:
             return .post
-
-        /* Users */
+            
+            /* Users */
         case .updateProfile:
             return .put
         case .deleteProfile:
@@ -120,16 +120,16 @@ extension AhobsuAPI: TargetType {
             return .get
         }
     }
-
+    
     var sampleData: Data {
         return .init()
     }
-
+    
     var params: [String: Any] {
         var defaultParams: [String: Any] = [:]
-
+        
         switch self {
-        /* Answers */
+            /* Answers */
         case let .registerAnswer(missionId, contentOrNil, imageOrNil):
             defaultParams["missionId"] = missionId
             defaultParams["content"] = contentOrNil
@@ -147,30 +147,30 @@ extension AhobsuAPI: TargetType {
         case .getAnswer:
             /* Empty */
             break
-
-        /* Missions */
+            
+            /* Missions */
         case .getMission:
             /* Empty */
             break
         case .refreshMission:
             /* Empty */
             break
-
-        /* SignIn */
+            
+            /* SignIn */
         case let .signIn(snsId):
             /* Empty */
             defaultParams["snsId"] = snsId
             defaultParams["snsType"] = "apple"
-        /* Token */
+            /* Token */
         case .refreshToken:
             /* Empty */
             break
-
-        /* Users */
+            
+            /* Users */
         case let .updateProfile(name,
-                    birthday,
-                    email,
-                    gender):
+                                birthday,
+                                email,
+                                gender):
             defaultParams["name"] = name
             defaultParams["birthday"] = birthday
             defaultParams["email"] = email
@@ -182,27 +182,27 @@ extension AhobsuAPI: TargetType {
             /* Empty */
             break
         }
-
+        
         return defaultParams
     }
-
+    
     var task: Task {
         switch self {
         case let .registerAnswer(missionId, contentOrNil, imageOrNil):
-
+            
             var formData: [MultipartFormData] = []
-
+            
             if let image = imageOrNil {
                 guard let imageData = image.jpegData(compressionQuality: 1.0) else {
                     fatalError("Cannot convert to JPEG")
                 }
-
+                
                 if let content = contentOrNil {
                     /* 주관식 + 사진 (혼합형) */
                     formData.append(MultipartFormData(provider: .data(imageData),
-                    name: "answer",
-                    fileName: "answer.jpeg",
-                    mimeType: "image/jpeg"))
+                                                      name: "answer",
+                                                      fileName: "answer.jpeg",
+                                                      mimeType: "image/jpeg"))
                     
                     formData.append(MultipartFormData(provider: .data(content.data(using: .utf8)!),
                                                       name: "content"))
@@ -211,9 +211,9 @@ extension AhobsuAPI: TargetType {
                 } else {
                     /* 사진 */
                     formData.append(MultipartFormData(provider: .data(imageData),
-                    name: "file",
-                    fileName: "answer.jpeg",
-                    mimeType: "image/jpeg"))
+                                                      name: "file",
+                                                      fileName: "answer.jpeg",
+                                                      mimeType: "image/jpeg"))
                     formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
                                                       name: "missionId"))
                 }
@@ -231,30 +231,30 @@ extension AhobsuAPI: TargetType {
             
             return .uploadMultipart(formData)
         case let .updateAnswer(answerId, contentOrNil, imageOrNil):
-
+            
             var formData: [MultipartFormData] = []
             formData.append(MultipartFormData(provider: .data(Data(from: answerId)),
                                               name: "answerId"))
-
+            
             if let image = imageOrNil {
                 guard let imageData = image.jpegData(compressionQuality: 1.0) else {
                     fatalError("Cannot convert to JPEG")
                 }
-
+                
                 if let content = contentOrNil {
                     /* 주관식 + 사진 (혼합형) */
                     formData.append(MultipartFormData(provider: .data(imageData),
-                    name: "file",
-                    fileName: "answer.jpeg",
-                    mimeType: "image/jpeg"))
+                                                      name: "file",
+                                                      fileName: "answer.jpeg",
+                                                      mimeType: "image/jpeg"))
                     formData.append(MultipartFormData(provider: .data(Data(from: content)),
                                                       name: "content"))
                 } else {
                     /* 사진 */
                     formData.append(MultipartFormData(provider: .data(imageData),
-                    name: "file",
-                    fileName: "answer.jpeg",
-                    mimeType: "image/jpeg"))
+                                                      name: "file",
+                                                      fileName: "answer.jpeg",
+                                                      mimeType: "image/jpeg"))
                 }
             } else {
                 /* 주관식 */
@@ -265,7 +265,7 @@ extension AhobsuAPI: TargetType {
                     fatalError("Both Content and Image must not be nil")
                 }
             }
-
+            
             return .uploadMultipart(formData)
         case .updateProfile:
             return .requestParameters(parameters: params,
@@ -280,7 +280,7 @@ extension AhobsuAPI: TargetType {
             return .requestPlain
         }
     }
-
+    
     var headers: [String: String]? {
         var authToken: String = TokenManager.sharedInstance.getToken()
         
@@ -290,10 +290,10 @@ extension AhobsuAPI: TargetType {
         default:
             break
         }
-
+        
         return ["Accept": "application/json",
                 "Content-Type": "application/json",
                 "Authorization": authToken]
     }
-
+    
 }

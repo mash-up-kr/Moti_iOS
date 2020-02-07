@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AnswerComplete_Essay: View {
-
+    
     @State var text: String
-
+    
     var body: some View {
         ZStack {
             MainCardView(isWithLine: true)
@@ -21,7 +21,7 @@ struct AnswerComplete_Essay: View {
                     .foregroundColor(Color(UIColor.rosegold))
                     .lineSpacing(8.0)
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .padding([.all], 16.0)
+                .padding([.all], 16.0)
         }
     }
 }

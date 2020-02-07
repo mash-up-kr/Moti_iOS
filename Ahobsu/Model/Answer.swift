@@ -17,17 +17,17 @@ struct Answer: Decodable, Identifiable {
     var content: String
     let date: String
     let mission: Mission
-
-  enum CodingKeys: String, CodingKey {
-    case id
-    case userId
-    case missionId
-    case imageUrl
-    case cardUrl
-    case content
-    case date
-    case mission
-  }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userId
+        case missionId
+        case imageUrl
+        case cardUrl
+        case content
+        case date
+        case mission
+    }
 }
 
 extension Answer: Hashable {

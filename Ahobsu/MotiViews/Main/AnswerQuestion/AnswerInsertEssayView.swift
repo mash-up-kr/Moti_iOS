@@ -76,29 +76,29 @@ struct AnswerInsertEssayView: View {
                 }
                 .padding([.horizontal], 20)
             }
-                .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
-                .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
-                .animation(.easeOut(duration: keyboard.state.animationDuration))
+            .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
+            .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
+            .animation(.easeOut(duration: keyboard.state.animationDuration))
         }
-
+            
         .onTapGesture {
             self.endEditing()
         }
     }
     
     private func requestAnswer() {
-//        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missonData.id,
-//                                                                 contentOrNil: text,
-//                                                                 imageOrNil: nil))
-//            .map { $0.statusCode == 201 }
-//            .replaceError(with: false)
-//            .sink(receiveValue: { (success) in
-//                if success {
-//                    self.presentationMode.wrappedValue.dismiss()
-//                    self.selectQuestionActive = false
-//                }
-//            })
-//            .store(in: &answerQuestion.cancels)
+        //        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missonData.id,
+        //                                                                 contentOrNil: text,
+        //                                                                 imageOrNil: nil))
+        //            .map { $0.statusCode == 201 }
+        //            .replaceError(with: false)
+        //            .sink(receiveValue: { (success) in
+        //                if success {
+        //                    self.presentationMode.wrappedValue.dismiss()
+        //                    self.selectQuestionActive = false
+        //                }
+        //            })
+        //            .store(in: &answerQuestion.cancels)
         
         AhobsuProvider.registerAnswer(missionId: missonData.id,
                                       contentOrNil: text,
@@ -116,11 +116,11 @@ struct AnswerInsertEssayView: View {
             
         }, filteredStatusCode: nil)
     }
-
+    
     private func endEditing() {
         UIApplication.shared.endEditing()
     }
-
+    
 }
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
@@ -131,16 +131,16 @@ struct AnswerInsertEssayView_Previews: PreviewProvider {
 
 struct TextView: UIViewRepresentable {
     @Binding var text: String
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
     func makeUIView(context: Context) -> UITextView {
-
+        
         let myTextView = UITextView()
         myTextView.delegate = context.coordinator
-
+        
         myTextView.font = .systemFont(ofSize: 16)
         myTextView.textAlignment = .center
         myTextView.textColor = .rosegold
@@ -149,26 +149,26 @@ struct TextView: UIViewRepresentable {
         myTextView.isEditable = true
         myTextView.isUserInteractionEnabled = true
         myTextView.backgroundColor = .clear
-
+        
         return myTextView
     }
-
+    
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
     }
-
+    
     class Coordinator: NSObject, UITextViewDelegate {
-
+        
         var parent: TextView
-
+        
         init(_ uiTextView: TextView) {
             self.parent = uiTextView
         }
-
+        
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
             return true
         }
-
+        
         func textViewDidChange(_ textView: UITextView) {
             print("text now: \(String(describing: textView.text!))")
             self.parent.text = textView.text

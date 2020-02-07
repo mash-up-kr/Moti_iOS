@@ -10,12 +10,12 @@ import SwiftUI
 import AuthenticationServices
 
 struct SignInView: View {
-
+    
     @State var window: UIWindow
     @State var appleSignInDelegates: SignInWithAppleDelegates! = nil
     @State var isDone = false
     @State var showingOnBordingView = true
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -43,11 +43,11 @@ struct SignInView: View {
             self.performExistingAccountSetupFlows()
         }
     }
-
+    
     private func showAppleLogin() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
-
+        
         performSignIn(using: [request])
     }
     private func performExistingAccountSetupFlows() {
@@ -58,11 +58,11 @@ struct SignInView: View {
             ASAuthorizationAppleIDProvider().createRequest(),
             ASAuthorizationPasswordProvider().createRequest()
         ]
-
+        
         performSignIn(using: requests)
         #endif
     }
-
+    
     private func performSignIn(using requests: [ASAuthorizationRequest]) {
         appleSignInDelegates = SignInWithAppleDelegates(window: window) { (success, haveAccount) in
             if success, let haveAccount = haveAccount {
@@ -76,14 +76,14 @@ struct SignInView: View {
                 // show the user an error
             }
         }
-
+        
         let controller = ASAuthorizationController(authorizationRequests: requests)
         controller.delegate = appleSignInDelegates
         controller.presentationContextProvider = appleSignInDelegates
-
+        
         controller.performRequests()
     }
-
+    
 }
 
 struct SignInView_Previews: PreviewProvider {

@@ -36,7 +36,7 @@ struct AnswerInsertCamaraView: View {
                     Spacer()
                     MainButton(title: "제출하기")
                     Spacer().frame(height: 32)
-                        
+                    
                 }
             }
             .padding(.horizontal, 20)
