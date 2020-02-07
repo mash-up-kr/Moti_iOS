@@ -15,7 +15,7 @@ struct AnswerCameraView: View {
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
-    var missonData: MissionData
+    var missonData: Mission
     @State var isNetworking: Bool = false
     
     var body: some View {
@@ -93,6 +93,6 @@ extension AnswerCameraView {
 
 struct AnswerCameraView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerCameraView(missonData: MissionData(id: 1, title: "", isContent: true, isImage: true))
+        AnswerCameraView(missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
     }
 }

@@ -22,7 +22,7 @@ struct MyPageEditView: View {
         NavigationMaskingView(titleItem: Text("수정하기"), trailingItem: Text("")) {
             ScrollView {
                 VStack {
-                    Spacer(minLength: 30)
+                    Spacer(minLength: CGFloat(30))
                     MyPageView.Separator()
                     VStack {
                         ListCell(title: "닉네임", content: TextField("", text: $editingUser.name))

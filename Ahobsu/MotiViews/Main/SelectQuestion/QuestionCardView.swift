@@ -10,7 +10,7 @@ import SwiftUI
 
 struct QuestionCardView: View, Identifiable {
     var id: Int
-    var missionData: MissionData
+    var missionData: Mission
     @Binding var selectQuestionActive: Bool
 
     var body: some View {

@@ -14,16 +14,16 @@ struct SelectQuestionView: View {
     @State var selectQuestionActive: Bool = true
 
     @State var index: Int = 0
-    var emptyMissions: [MissionData] {
-        return [MissionData(id: 1, title: "", isContent: false, isImage: false),
-                MissionData(id: 1, title: "", isContent: false, isImage: false),
-                MissionData(id: 1, title: "", isContent: false, isImage: false),
-                MissionData(id: 1, title: "", isContent: false, isImage: false)]
+    var emptyMissions: [Mission] {
+        return [Mission(id: 1, title: "", isContent: false, isImage: false),
+                Mission(id: 1, title: "", isContent: false, isImage: false),
+                Mission(id: 1, title: "", isContent: false, isImage: false),
+                Mission(id: 1, title: "", isContent: false, isImage: false)]
     }
-    @State var missions = [MissionData(id: 1, title: "", isContent: false, isImage: false),
-                           MissionData(id: 1, title: "", isContent: false, isImage: false),
-                           MissionData(id: 1, title: "", isContent: false, isImage: false),
-                           MissionData(id: 1, title: "", isContent: false, isImage: false)]
+    @State var missions = [Mission(id: 1, title: "", isContent: false, isImage: false),
+                           Mission(id: 1, title: "", isContent: false, isImage: false),
+                           Mission(id: 1, title: "", isContent: false, isImage: false),
+                           Mission(id: 1, title: "", isContent: false, isImage: false)]
     @State var refreshAvailable = false
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -72,7 +72,7 @@ struct SelectQuestionView: View {
 
     private func getNewQuestion() {
         self.missions = emptyMissions
-        AhobsuProvider.getMission(completion: { wrapper in
+        AhobsuProvider.getTodayMission(completion: { wrapper in
             if let mission = wrapper?.data {
                 print(mission.missions)
                 withAnimation(.easeOut) {

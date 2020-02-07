@@ -25,7 +25,7 @@ struct AnswerInsertEssayView: View {
     
     @State var text = ""
     
-    var missonData: MissionData
+    var missonData: Mission
     
     var body: some View {
         ZStack {
@@ -125,7 +125,7 @@ struct AnswerInsertEssayView: View {
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertEssayView(selectQuestionActive: .constant(false), missonData: MissionData(id: 1, title: "", isContent: true, isImage: true))
+        AnswerInsertEssayView(selectQuestionActive: .constant(false), missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
     }
 }
 
