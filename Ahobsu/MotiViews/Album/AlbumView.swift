@@ -11,9 +11,40 @@ import SwiftUI
 struct AlbumView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    var loadAlbums = {
+    
+    @State private var answerMonth: AnswerMonth? = nil
+    
+    @State private var currentYear = 0
+    @State private var currentMonth = 0
+    
+    let formatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+    
+    init() {
+        formatter.formatOptions = .withYear
+        self.currentYear = Int(formatter.string(from: Date()))!
         
+        formatter.formatOptions = .withMonth
+        self.currentMonth = Int(formatter.string(from: Date()))!
+        
+        print("currentYear : \(currentYear) and currentMonth : \(currentMonth)")
+    }
+    
+    func loadAlbums() {
+        AhobsuProvider.getAnswersMonth(year: self.currentYear,
+                                       month: self.currentMonth,
+                                       completion: { (wrapper) in
+                                        if let answerMonth = wrapper?.data {
+                                            self.answerMonth = answerMonth
+                                        }
+        }, error: { (error) in
+            print(error)
+        }, expireTokenAction: {
+            
+        }, filteredStatusCode: nil)
     }
     
     var btnBack : some View {
@@ -34,9 +65,16 @@ struct AlbumView: View {
                  BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
                  VStack {
-                     Text("Hi")
+                    if answerMonth != nil {
+                        ForEach(answerMonth!.answers,
+                                id: \.self) { week in
+                            Text("")
+                        }
+                    }
                  }
-                 .onAppear(perform: loadAlbums)
+                 .onAppear {
+                    self.loadAlbums()
+                 }
                  .navigationBarItems(leading: btnBack)
                  .navigationBarBackButtonHidden(true)
                  .navigationBarTitle(Text("앨범")
