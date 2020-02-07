@@ -112,8 +112,13 @@ struct AlbumList: View {
     var body: some View {
         VStack {
             if answerMonth != nil {
-                GridStack(rows: self.answerMonth!.answers.count / 2, columns: 2) { (row, column) in
-                    PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column], week: row * 2 + column + 1)
+                GridStack(rows: Int(Double(self.answerMonth!.answers.count) / 2.0 + 0.5), columns: 2) { (row, column) in
+                    if row * 2 + column + 1 <= self.answerMonth!.answers.count {
+                        PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column], week: row * 2 + column + 1)
+                    } else {
+                        Text("")
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                    }
                 }
             }
         }
@@ -232,7 +237,7 @@ struct PaginationView: View {
                 })
                     .frame(width: 48.0, height: 48.0)
             }
-                .frame(height: 88.0)
+            .frame(height: 88.0)
         }
     }
 }
