@@ -43,7 +43,9 @@ struct AlbumView: View {
                                        month: self.currentMonth,
                                        completion: { (wrapper) in
                                         if let answerMonth = wrapper?.data {
-                                            self.answerMonth = answerMonth
+                                            withAnimation(.easeIn(duration: 0.5)) {
+                                                self.answerMonth = answerMonth
+                                            }
                                         }
         }, error: { (error) in
             // print("loadAlbums() error")
