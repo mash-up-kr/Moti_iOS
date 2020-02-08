@@ -52,7 +52,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                 self.signInSucceeded(false, nil)
             }
         }, error: { err in
-            print(err)
+            // print(err)
             self.signInSucceeded(false, nil)
         }, expireTokenAction: {
             
@@ -77,7 +77,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                 self.signInSucceeded(false, nil)
             }
         }, error: { err in
-            print(err)
+            // print(err)
             self.signInSucceeded(false, nil)
         }, expireTokenAction: {
             

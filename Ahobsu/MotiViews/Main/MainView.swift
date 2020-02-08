@@ -135,7 +135,7 @@ struct MainView: View {
                 }
             }
         }, error: { err in
-            print(err)
+            // print(err)
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)
@@ -147,12 +147,12 @@ struct MainView: View {
                 withAnimation {
                     self.cards = answerWeek.answers
                 }
-                print(self.cards[1]?.cardUrl ?? "")
+                // print(self.cards[1]?.cardUrl ?? "")
             } else {
                 
             }
         }, error: { err in
-            print(err)
+            // print(err)
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)

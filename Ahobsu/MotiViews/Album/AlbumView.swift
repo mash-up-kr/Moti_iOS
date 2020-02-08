@@ -46,7 +46,8 @@ struct AlbumView: View {
                                             self.answerMonth = answerMonth
                                         }
         }, error: { (error) in
-            print(error)
+            // print("loadAlbums() error")
+            // print(error)
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)

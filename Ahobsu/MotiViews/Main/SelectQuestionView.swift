@@ -74,14 +74,14 @@ struct SelectQuestionView: View {
         self.missions = emptyMissions
         AhobsuProvider.getTodayMission(completion: { wrapper in
             if let mission = wrapper?.data {
-                print(mission.missions)
+                // print(mission.missions)
                 withAnimation(.easeOut) {
                     self.missions = mission.missions
                     self.refreshAvailable = mission.refresh
                 }
             }
         }, error: { err in
-            print(err)
+            // print(err)
         }, expireTokenAction: {
             /* 토큰 만료 시 */
             self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))

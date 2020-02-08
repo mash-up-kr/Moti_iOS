@@ -45,13 +45,11 @@ final class TokenManager {
     func loadTokensFormKeyChain() {
         if let receivedData = KeyChain.load(key: "ahobsu_accesstoken") {
             let result = String(data: receivedData, encoding: .utf8) ?? ""
-            print("accesstoken : \(result)")
             tokens.accessToken = result
         }
         
         if let receivedData = KeyChain.load(key: "ahobsu_refreshtoken") {
             let result = String(data: receivedData, encoding: .utf8) ?? ""
-            print("refreshtoken : \(result)")
             tokens.refreshToken = result
         }
     }
@@ -61,8 +59,6 @@ final class TokenManager {
                              error: ((OSStatus) -> Void)?) {
         let tokenData: Data = token.data(using: .utf8)!
         let status: OSStatus = KeyChain.save(key: "ahobsu_accesstoken", data: tokenData)
-        
-        print("registerAccessToken : \(status)")
         
         loadTokensFormKeyChain()
         
@@ -78,8 +74,6 @@ final class TokenManager {
                               error: ((OSStatus) -> Void)?) {
         let tokenData: Data = token.data(using: .utf8)!
         let status: OSStatus = KeyChain.save(key: "ahobsu_refreshtoken", data: tokenData)
-        
-        print("registerRefreshToken : \(status)")
         
         loadTokensFormKeyChain()
         

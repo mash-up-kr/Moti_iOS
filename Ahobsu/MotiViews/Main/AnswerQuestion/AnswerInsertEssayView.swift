@@ -108,7 +108,7 @@ struct AnswerInsertEssayView: View {
                                             self.presentationMode.wrappedValue.dismiss()
                                             self.selectQuestionActive = false
                                         } else {
-                                            print(wrapper?.message ?? "None")
+                                            // print(wrapper?.message ?? "None")
                                         }
         }, error: { _ in
             
@@ -170,7 +170,7 @@ struct TextView: UIViewRepresentable {
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            print("text now: \(String(describing: textView.text!))")
+            // print("text now: \(String(describing: textView.text!))")
             self.parent.text = textView.text
         }
     }
