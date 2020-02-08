@@ -39,10 +39,12 @@ struct AnswerCompleteCardView: View {
                             .foregroundColor(Color(UIColor.rosegold))
                             .lineSpacing(12.0)
                         Spacer()
-                        Button(action: update) {
-                            Image("icRewriteNormal")
-                                .renderingMode(.original)
-                                .frame(width: 48.0, height: 48.0)
+                        if answer?.isTodayAnswer() == true {
+                            Button(action: update) {
+                                Image("icRewriteNormal")
+                                    .renderingMode(.original)
+                                    .frame(width: 48.0, height: 48.0)
+                            }
                         }
                     }
                     .padding([.leading], 20.0)

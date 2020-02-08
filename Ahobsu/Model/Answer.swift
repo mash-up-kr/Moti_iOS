@@ -61,6 +61,17 @@ extension Answer {
 }
 
 extension Answer {
+    func isTodayAnswer() -> Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let todayStr = formatter.string(from: Date())
+        
+        return self.date == todayStr
+    }
+}
+
+extension Answer {
     static func dummyCardView() -> [Answer] {
         var answersData: [Answer] = []
         
