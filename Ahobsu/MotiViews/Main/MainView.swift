@@ -48,46 +48,51 @@ struct MainView: View {
                     VStack {
                         
                         Spacer()
-                        NavigationLink(destination: SelectQuestionView(window: $window,
-                                                                       currentPage: .constant(0))) {
-                                                                        MainCardView(isWithLine: !isAnswered)
-                                                                            .aspectRatio(0.62, contentMode: .fit)
-                                                                            .padding([.horizontal], 59)
-                                                                            .overlay(
-                                                                                ZStack {
-                                                                                    if todayCard != nil {
-                                                                                        ZStack {
-                                                                                            ForEach(cards.compactMap { $0?.cardUrl },
-                                                                                                    id: \.self,
-                                                                                                    content: { (cardUrl) in
-                                                                                                        
-                                                                                                        ImageView(withURL: cardUrl)
-                                                                                                            .aspectRatio(0.62, contentMode: .fit)
-                                                                                                            .padding(20)
-                                                                                            })
-                                                                                        }
-                                                                                    } else {
-                                                                                        VStack {
-                                                                                            Text("Motivation")
-                                                                                                .font(.custom("Baskerville", size: 16.0))
-                                                                                                .foregroundColor(Color(.rosegold))
-                                                                                            Spacer()
-                                                                                            Image("imgQuestion")
-                                                                                            Spacer()
-                                                                                            Text("Today’s\nyour\nQuestion")
-                                                                                                .font(.custom("Baskerville", size: 16.0))
-                                                                                                .foregroundColor(Color(.rosegold))
-                                                                                                .multilineTextAlignment(.center)
-                                                                                        }
-                                                                                        .padding([.vertical], 32)
-                                                                                    }
-                                                                                    
-                                                                                }
-                                                                        )
+                        if todayCard != nil {
+                            NavigationLink(destination: AnswerCompleteView(cards))
+                            {
+                                MainCardView(isWithLine: !isAnswered)
+                                    .aspectRatio(0.62, contentMode: .fit)
+                                    .padding([.horizontal], 59)
+                                    .overlay(
+                                        ZStack {
+                                            ForEach(cards.compactMap { $0?.cardUrl },
+                                                    id: \.self,
+                                                    content: { (cardUrl) in
+                                                        
+                                                        ImageView(withURL: cardUrl)
+                                                            .aspectRatio(0.62, contentMode: .fit)
+                                                            .padding(20)
+                                            })
+                                        }
+                                )
+                            }.buttonStyle(PlainButtonStyle())
+                        } else {
+                            NavigationLink(destination: SelectQuestionView(window: $window,
+                                                                           currentPage: .constant(0)))
+                            {
+                                MainCardView(isWithLine: !isAnswered)
+                                    .aspectRatio(0.62, contentMode: .fit)
+                                    .padding([.horizontal], 59)
+                                    .overlay(
+                                        ZStack {
+                                            VStack {
+                                                Text("Motivation")
+                                                    .font(.custom("Baskerville", size: 16.0))
+                                                    .foregroundColor(Color(.rosegold))
+                                                Spacer()
+                                                Image("imgQuestion")
+                                                Spacer()
+                                                Text("Today’s\nyour\nQuestion")
+                                                    .font(.custom("Baskerville", size: 16.0))
+                                                    .foregroundColor(Color(.rosegold))
+                                                    .multilineTextAlignment(.center)
+                                            }
+                                            .padding([.vertical], 32)
+                                        }
+                                )
+                            }.buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
-                        .environment(\.isEnabled, todayCard == nil)
-                        
                         Spacer()
                         HStack {
                             NavigationLink(destination: AlbumView()) {
