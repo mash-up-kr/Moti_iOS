@@ -28,61 +28,62 @@ struct AnswerInsertEssayView: View {
     var missonData: Mission
     
     var body: some View {
-        ZStack {
-            BackgroundView()
-                .edgesIgnoringSafeArea([.vertical])
+        NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
             ZStack {
-                VStack {
-                    HStack {
-                        Text(missonData.title)
-                            .font(.system(size: 24))
-                            .lineSpacing(6)
-                            .foregroundColor(Color(.rosegold))
-                            .multilineTextAlignment(.leading)
-                        Spacer()
-                    }
-                    Spacer()
-                    ZStack {
-                        MainCardView(isWithLine: true)
-                            .padding([.horizontal], 12)
-                            .offset(x: 0, y: 60)
-                        VStack {
-                            ZStack {
-                                
-                                if text == "" && keyboard.state.height == 0 {
-                                    VStack {
-                                        Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
-                                            .foregroundColor(Color(.placeholderblack))
-                                            .multilineTextAlignment(.center)
-                                            .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
-                                                                leading: 28,
-                                                                bottom: 32,
-                                                                trailing: 28))
-                                        Spacer()
-                                    }
-                                }
-                                TextView(text: $text)
-                                    .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
-                                                        leading: 28,
-                                                        bottom: 32,
-                                                        trailing: 28))
-                            }
+                BackgroundView()
+                    .edgesIgnoringSafeArea([.vertical])
+                ZStack {
+                    VStack {
+                        HStack {
+                            Text(missonData.title)
+                                .font(.system(size: 24))
+                                .lineSpacing(6)
+                                .foregroundColor(Color(.rosegold))
+                                .multilineTextAlignment(.leading)
                             Spacer()
-                            MainButton(action: { self.requestAnswer() },
-                                       title: "제출하기")
-                            Spacer().frame(height: 32)
+                        }
+                        Spacer()
+                        ZStack {
+                            MainCardView(isWithLine: true)
+                                .padding([.horizontal], 12)
+                                .offset(x: 0, y: 60)
+                            VStack {
+                                ZStack {
+                                    
+                                    if text == "" && keyboard.state.height == 0 {
+                                        VStack {
+                                            Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
+                                                .foregroundColor(Color(.placeholderblack))
+                                                .multilineTextAlignment(.center)
+                                                .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
+                                                                    leading: 28,
+                                                                    bottom: 32,
+                                                                    trailing: 28))
+                                            Spacer()
+                                        }
+                                    }
+                                    TextView(text: $text)
+                                        .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
+                                                            leading: 28,
+                                                            bottom: 32,
+                                                            trailing: 28))
+                                }
+                                Spacer()
+                                MainButton(action: { self.requestAnswer() },
+                                           title: "제출하기")
+                                Spacer().frame(height: 32)
+                            }
                         }
                     }
+                    .padding([.horizontal], 20)
                 }
-                .padding([.horizontal], 20)
+                .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
+                .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
+                .animation(.easeOut(duration: keyboard.state.animationDuration))
             }
-            .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
-            .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
-            .animation(.easeOut(duration: keyboard.state.animationDuration))
-        }
-            
-        .onTapGesture {
-            self.endEditing()
+            .onTapGesture {
+                self.endEditing()
+            }
         }
     }
     
