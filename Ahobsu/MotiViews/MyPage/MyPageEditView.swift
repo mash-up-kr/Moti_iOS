@@ -52,7 +52,13 @@ struct MyPageEditView: View {
             .animation(.easeOut(duration: keyboard.state.animationDuration))
             .onReceive(myPageEdit.$deletingUserSucccess) { (success) in
                 if success {
-                    self.navigateRootView()
+                    // 토큰 제거
+                    TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
+                        // SignIn 화면으로 이동
+                        self.navigateRootView()
+                    }, error: { (status) in
+                        
+                    })
                 }
             }.onTapGesture {
                 self.endEditing()
