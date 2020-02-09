@@ -17,6 +17,12 @@ struct DateField: UIViewRepresentable {
     var textFieldDelegator: UITextFieldDelegate = ReadOnlyTextFieldDelegate()
     var datePickerHandler: DatePickerHandler = DatePickerHandler()
     
+    var dateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        return formatter
+    }()
+    
     func makeUIView(context: UIViewRepresentableContext<DateField>) -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.font = .monospacedDigitSystemFont(ofSize: 16, weight: .regular)
@@ -24,13 +30,12 @@ struct DateField: UIViewRepresentable {
         textField.delegate = textFieldDelegator
         let datePicker = UIDatePicker(frame: .zero)
         datePicker.datePickerMode = .date
+        datePicker.date = self.dateFormatter.date(from: dateString) ?? Date()
         datePicker.addTarget(datePickerHandler,
                              action: #selector(self.datePickerHandler.didChangeDatePickerValue),
                              for: .valueChanged)
         datePickerHandler.didChangeDate = { newDate in
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions = .withFullDate
-            self.dateString = formatter.string(from: newDate)
+            self.dateString = self.dateFormatter.string(from: newDate)
             textField.resignFirstResponder()
             let animator = UIViewPropertyAnimator(duration: 0.4, curve: .easeOut) {
                 textField.alpha = 1
