@@ -44,7 +44,7 @@ struct SelectQuestionView: View {
                     Spacer().frame(height: 10)
                     PageControl(numberOfPages: 3, currentPage: $index)
                     Spacer().frame(minHeight: 35, idealHeight: 50, maxHeight: 60)
-                    Button(action: { self.getNewQuestion() }) {
+                    Button(action: { self.getRefreshQuestion() }) {
                         Text("질문 다시받기   \(refreshAvailable ? 0 : 1)/1")
                             .font(.system(size: 16, weight: .regular, design: .default))
                             .foregroundColor(Color(.lightgold))
@@ -68,6 +68,23 @@ struct SelectQuestionView: View {
                 }
             }
         }
+    }
+    
+    private func getRefreshQuestion() {
+        self.missions = emptyMissions
+        AhobsuProvider.refreshTodayMission(completion: { (wrapper) in
+            if let mission = wrapper?.data {
+                // print(mission.missions)
+                withAnimation(.easeOut) {
+                    self.missions = mission.missions
+                    self.refreshAvailable = mission.refresh
+                }
+            }
+        }, error: { (error) in
+            // print(error)
+        }, expireTokenAction: {
+            self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
+        }, filteredStatusCode: nil)
     }
     
     private func getNewQuestion() {
