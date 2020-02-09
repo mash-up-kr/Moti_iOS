@@ -33,9 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     private func setupViewAppearance() {
-        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
         UINavigationBar.appearance().tintColor = .rosegold
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.rosegold]
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.rosegold]
     }
 }
