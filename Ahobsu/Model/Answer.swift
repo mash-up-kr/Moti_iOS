@@ -14,7 +14,7 @@ struct Answer: Decodable, Identifiable {
     let missionId: Int
     let imageUrl: String?
     let cardUrl: String
-    var content: String
+    var content: String?
     let date: String
     let mission: Mission
     
