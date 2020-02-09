@@ -36,6 +36,7 @@ struct AnswerCameraView: View {
                         MainCardView(isWithLine: true)
                             .overlay(Image(uiImage: image!)
                                 .resizable()
+                                .aspectRatio(contentMode: .fit)
                                 .padding(.horizontal, 34)
                                 .padding(.vertical, 22))
                             .padding(32)
