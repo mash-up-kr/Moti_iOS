@@ -41,7 +41,7 @@ struct SignUpNickNameView: View {
                 .foregroundColor(Color(white: 121/255))
                 .font(.system(size: 14))
         }
-        return NavigationMaskingView(titleItem: Text("닉네임 설정"), trailingItem: EmptyView()) {
+        return NavigationMaskingView(isRoot: true, titleItem: Text("닉네임 설정"), trailingItem: EmptyView()) {
             SignUpFormView(title: "닉네임을 입력해주세요.",
                            content: contentView,
                            buttonTitle: "다 음",
