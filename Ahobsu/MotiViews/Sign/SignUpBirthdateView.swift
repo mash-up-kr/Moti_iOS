@@ -14,8 +14,6 @@ struct SignUpBirthdateView: View {
     
     @ObservedObject var signUp: SignUp
     
-    @State var pushNextView: Bool = false
-    
     var body: some View {
         let contentView = HStack {
             HStack {
@@ -30,11 +28,9 @@ struct SignUpBirthdateView: View {
                                   content: contentView,
                                   buttonTitle: "가입하기",
                                   buttonDestination: SignUpCompleteView(window: self.$window),
-                                  buttonAction: { self.signUp.inputComplete = true },
+                                  buttonAction: { self.signUp.updateProfile() },
                                   buttonEnabled: true,
-                                  pushDestination: $pushNextView).onReceive(signUp.signUpSuccess) { (success) in
-                                    self.pushNextView = success
-            }
+                                  pushDestination: $signUp.signUpSuccess)
         }
     }
 }
