@@ -10,13 +10,12 @@ import SwiftUI
 
 struct AnswerCameraView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
     var missonData: Mission
     @State var isNetworking: Bool = false
+    @State var answerRegisteredActive: Bool = false
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
@@ -44,15 +43,22 @@ struct AnswerCameraView: View {
                         Image("imgCam")
                     }
                     Spacer()
-                    
-                    NavigationLink(destination: AnswerInsertCamaraView(image: $image)) {
-                        MainButton(action: {
-                            if self.image == nil {
-                                self.showImagePicker = true
-                            } else {
-                                self.registerCameraAnswer()
-                            }},
-                                   title: image == nil ? "촬영하기" : "제출하기")
+                    HStack {
+                        if self.image == nil {
+                            NavigationLink(destination: AnswerInsertCamaraView(image: $image))
+                            {
+                                MainButton(action: { self.showImagePicker = true },
+                                           title: "촬영하기")
+                            }
+                        } else {
+                            NavigationLink(destination: AnswerRegisteredView(),
+                                           isActive: $answerRegisteredActive)
+                            {
+                                MainButton(action: { self.registerCameraAnswer() },
+                                           title: "제출하기")
+                            }
+                        }
+                        
                     }
                     .environment(\.isEnabled, !isNetworking)
                     .sheet(isPresented: self.$showImagePicker,
@@ -75,22 +81,19 @@ extension AnswerCameraView {
     func registerCameraAnswer() {
         guard let image = image else { return }
         self.isNetworking = true
-        AhobsuProvider.provider.request(.registerAnswer(missionId: missonData.id,
-                                                        contentOrNil: nil,
-                                                        imageOrNil: image),
-                                        completionHandler: { (response) in
-                                            defer {
-                                                self.isNetworking = false
-                                            }
-                                            if response.statusCode == 201 {
-                                                self.presentationMode.wrappedValue.dismiss()
-                                            } else {
-                                                
-                                            }
-        },
-                                        errorHandler: { (error) in
-                                            self.isNetworking = false
-        })
+        AhobsuProvider.registerAnswer(missionId: missonData.id,
+                                      contentOrNil: nil,
+                                      imageOrNil: image,
+                                      completion: { (response) in
+                                        self.isNetworking = false
+                                        if let _ = response?.data {
+                                            self.answerRegisteredActive = true
+                                        }},
+                                      error: { (error) in
+                                        self.isNetworking = false },
+                                      expireTokenAction: {
+                                        self.isNetworking = false },
+                                      filteredStatusCode: nil)
     }
 }
 

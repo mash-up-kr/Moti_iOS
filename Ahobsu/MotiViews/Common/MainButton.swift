@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct MainButtonFeel: ViewModifier {
+private struct MainButtonFeel: ViewModifier {
     
     var isEnabled: Bool
     
@@ -24,12 +24,6 @@ struct MainButtonFeel: ViewModifier {
     }
 }
 
-extension View {
-    func mainButtonFeel(isEnabled: Bool) -> some View {
-        self.modifier(MainButtonFeel(isEnabled: isEnabled))
-    }
-}
-
 struct MainButton: View {
     
     @Environment(\.isEnabled) var isEnabled
@@ -41,11 +35,11 @@ struct MainButton: View {
             if action != nil {
                 Button(action: action!) {
                     Text(title)
-                        .mainButtonFeel(isEnabled: isEnabled)
+                        .modifier(MainButtonFeel(isEnabled: isEnabled))
                 }
             } else {
                 Text(title)
-                    .mainButtonFeel(isEnabled: isEnabled)
+                    .modifier(MainButtonFeel(isEnabled: isEnabled))
             }
         }.disabled(!isEnabled)
     }
