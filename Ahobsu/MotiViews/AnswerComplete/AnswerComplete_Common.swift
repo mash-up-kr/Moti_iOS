@@ -85,23 +85,27 @@ struct ImageView: View {
     
     
     var body: some View {
-        Image(uiImage: pdfToUIImage(urlString: url) ?? UIImage())
-            .renderingMode(.original)
-            .resizable()
+        if url.hasSuffix("pdf") {
+            return Image(uiImage: pdfToUIImage(urlString: url) ?? UIImage())
+                .renderingMode(.original)
+                .resizable()
+        } else {
+            return Image(uiImage: UIImage(data: imageLoader.data ?? Data()) ?? UIImage())
+                .renderingMode(.original)
+                .resizable()
+        }
     }
 }
 
 class ImageLoader: ObservableObject {
     
-    @Published var dataIsValid = false
-    var data: Data?
+    @Published var data: Data?
     
     init(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else { return }
             DispatchQueue.main.async {
-                self.dataIsValid = true
                 self.data = data
             }
         }
