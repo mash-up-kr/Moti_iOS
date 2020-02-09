@@ -15,6 +15,8 @@ struct AnswerCameraView: View {
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
+    @Binding var selectQuestionActive: Bool
+    
     var missonData: Mission
     @State var isNetworking: Bool = false
     
@@ -45,24 +47,45 @@ struct AnswerCameraView: View {
                     }
                     Spacer()
                     
-                    NavigationLink(destination: AnswerInsertCamaraView(image: $image)) {
-                        MainButton(action: {
-                            if self.image == nil {
-                                self.showImagePicker = true
-                            } else {
-                                self.registerCameraAnswer()
-                            }},
-                                   title: image == nil ? "촬영하기" : "제출하기")
+                    if missonData.isContent {
+                        NavigationLink(destination: AnswerInsertEssayCameraView(image: $image, selectQuestionActive: $selectQuestionActive, missonData: missonData)) {
+                                                              MainButton(action: {
+                                                                  if self.image == nil {
+                                                                      self.showImagePicker = true
+                                                                  } else {
+                                                                      self.registerCameraAnswer()
+                                                                  }},
+                                                                         title: image == nil ? "촬영하기" : "제출하기")
+                                                          }
+                                                          .environment(\.isEnabled, !isNetworking)
+                                                          .sheet(isPresented: self.$showImagePicker,
+                                                                 onDismiss: {
+                                                                  // print(self.image ?? UIImage())
+                                                          },
+                                                                 content: {
+                                                                  ImagePicker(image: self.$image) }
+                                                              
+                                                          )
+                    } else {
+                        NavigationLink(destination: AnswerInsertCamaraView(image: $image, missonData: missonData, selectQuestionActive: $selectQuestionActive)) {
+                                          MainButton(action: {
+                                              if self.image == nil {
+                                                  self.showImagePicker = true
+                                              } else {
+                                                  self.registerCameraAnswer()
+                                              }},
+                                                     title: image == nil ? "촬영하기" : "제출하기")
+                                      }
+                                      .environment(\.isEnabled, !isNetworking)
+                                      .sheet(isPresented: self.$showImagePicker,
+                                             onDismiss: {
+                                              // print(self.image ?? UIImage())
+                                      },
+                                             content: {
+                                              ImagePicker(image: self.$image) }
+                                          
+                                      )
                     }
-                    .environment(\.isEnabled, !isNetworking)
-                    .sheet(isPresented: self.$showImagePicker,
-                           onDismiss: {
-                            // print(self.image ?? UIImage())
-                    },
-                           content: {
-                            ImagePicker(image: self.$image) }
-                        
-                    )
                     Spacer(minLength: 32)
                 }
                 .padding([.horizontal], 20)
@@ -94,8 +117,8 @@ extension AnswerCameraView {
     }
 }
 
-struct AnswerCameraView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerCameraView(missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
-    }
-}
+//struct AnswerCameraView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AnswerCameraView(missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
+//    }
+//}

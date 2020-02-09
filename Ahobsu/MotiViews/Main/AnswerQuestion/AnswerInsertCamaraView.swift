@@ -10,6 +10,10 @@ import SwiftUI
 
 struct AnswerInsertCamaraView: View {
     @Binding var image: UIImage?
+    var missonData: Mission
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Binding var selectQuestionActive: Bool
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
@@ -46,8 +50,8 @@ struct AnswerInsertCamaraView: View {
     }
 }
 
-struct AnswerInsertCamaraView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnswerInsertCamaraView(image: .constant(UIImage()))
-    }
-}
+//struct AnswerInsertCamaraView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AnswerInsertCamaraView(image: .constant(UIImage()))
+//    }
+//}

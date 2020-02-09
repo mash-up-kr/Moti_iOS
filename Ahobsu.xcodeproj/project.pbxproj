@@ -18,6 +18,7 @@
 		25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302ED4D8249025596B4EFAE1580A395 /* MainView.swift */; };
 		25D0017AA1CE29EE896C85FFD9F6F54C /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */; };
 		28F77E6C503B96E5C0FB03B69FEAE13D /* DateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D277F7B0CAE93B58CE7675B5D9908414 /* DateField.swift */; };
+		302F668523F04067008467A6 /* AnswerInsertEssayCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F668423F04067008467A6 /* AnswerInsertEssayCameraView.swift */; };
 		33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF829C4542B7CF5676CC37E1CA2A75 /* PageViewController.swift */; };
 		34DAE4F0F8EB836107D9C7645622267D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */; };
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
@@ -113,6 +114,7 @@
 		21028E6C7A9E457DA7D2AC3F90B21995 /* SignInWithAppleDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleDelegates.swift; sourceTree = "<group>"; };
 		2A3D86867D089ED6F529A2FD7A55953F /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		302F668423F04067008467A6 /* AnswerInsertEssayCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerInsertEssayCameraView.swift; sourceTree = "<group>"; };
 		313957CD8ACE10F3B06C60B5F361474E /* DayWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeekView.swift; sourceTree = "<group>"; };
 		325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		33B381A7D849809F928F2EE7082BD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				575E67A723E1AD0400B2C300 /* AnswerInsertCamaraView.swift */,
 				575E67A923E1B66000B2C300 /* ImagePicker.swift */,
 				CCAFF3D7300D61F66CE89DF839601DD1 /* AnswerInsertEssayView.swift */,
+				302F668423F04067008467A6 /* AnswerInsertEssayCameraView.swift */,
 				A5D7621D23E48365008AA3D5 /* AnswerQuestion.swift */,
 			);
 			path = AnswerQuestion;
@@ -790,6 +793,7 @@
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
 				A5F39C0D23EC444000766F82 /* MainNavigationBar.swift in Sources */,
 				28F77E6C503B96E5C0FB03B69FEAE13D /* DateField.swift in Sources */,
+				302F668523F04067008467A6 /* AnswerInsertEssayCameraView.swift in Sources */,
 				FAB0F08723E0902D00336EA5 /* OnBordingPageViewController.swift in Sources */,
 				C0AB952309FE16A5A9D7DDF773C786C9 /* DayWeekView.swift in Sources */,
 				BC9D2D84230ACE29C410531F7F0B0D49 /* GenderCardView.swift in Sources */,

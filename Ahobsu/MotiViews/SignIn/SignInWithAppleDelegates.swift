@@ -37,7 +37,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
     private func registerNewAccount(credential: ASAuthorizationAppleIDCredential) {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
-        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { wrapper in
+        AhobsuProvider.signIn(snsId: auth, auth: id, completion: { wrapper in
             if let signInToken = wrapper?.data {
                 TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
                                                                 completion: nil,
@@ -52,7 +52,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                 self.signInSucceeded(false, nil)
             }
         }, error: { err in
-            // print(err)
+//             print(err)
             self.signInSucceeded(false, nil)
         }, expireTokenAction: {
             
@@ -62,7 +62,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
     private func signInWithExistingAccount(credential: ASAuthorizationAppleIDCredential) {
         let id = String(decoding: credential.identityToken ?? Data(), as: UTF8.self)
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
-        AhobsuProvider.signIn(snsId: id, auth: auth, completion: { wrapper in
+        AhobsuProvider.signIn(snsId: auth, auth: id, completion: { wrapper in
             if let signInToken = wrapper?.data {
                 TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
                                                                 completion: nil,
@@ -77,7 +77,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                 self.signInSucceeded(false, nil)
             }
         }, error: { err in
-            // print(err)
+//             print(err)
             self.signInSucceeded(false, nil)
         }, expireTokenAction: {
             
