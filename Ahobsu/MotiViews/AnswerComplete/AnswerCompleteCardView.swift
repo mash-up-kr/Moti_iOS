@@ -17,11 +17,11 @@ struct AnswerCompleteCardView: View {
         if let answer = self.answer {
             switch answer.getAnswerType() {
                 case .essay:
-                    return AnyView(AnswerComplete_Essay(text: answer.content))
+                    return AnyView(AnswerComplete_Essay(text: answer.content ?? ""))
                 case .camera:
                     return AnyView(AnswerComplete_Camera(imageURL: answer.imageUrl ?? ""))
                 case .essayCamera:
-                    return AnyView(AnswerComplete_EssayCamera(text: answer.content,
+                    return AnyView(AnswerComplete_EssayCamera(text: answer.content ?? "",
                                                               imageURL: answer.imageUrl ?? ""))
             }
         } else {
