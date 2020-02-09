@@ -16,12 +16,10 @@ extension UIApplication {
 
 struct AnswerInsertEssayView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @ObservedObject var keyboard: Keyboard = Keyboard()
     @ObservedObject var answerQuestion = AnswerQuestion()
     
-    @Binding var selectQuestionActive: Bool
+    @State var answerRegisteredActive: Bool = false
     
     @State var text = ""
     
@@ -69,8 +67,12 @@ struct AnswerInsertEssayView: View {
                                                             trailing: 28))
                                 }
                                 Spacer()
-                                MainButton(action: { self.requestAnswer() },
-                                           title: "제출하기")
+                                NavigationLink(destination: AnswerRegisteredView(),
+                                               isActive: $answerRegisteredActive)
+                                {
+                                    MainButton(action: { self.requestAnswer() },
+                                               title: "제출하기")
+                                }
                                 Spacer().frame(height: 32)
                             }
                         }
@@ -106,8 +108,7 @@ struct AnswerInsertEssayView: View {
                                       imageOrNil: nil,
                                       completion: { wrapper in
                                         if let _ = wrapper?.data {
-                                            self.presentationMode.wrappedValue.dismiss()
-                                            self.selectQuestionActive = false
+                                            self.answerRegisteredActive = true
                                         } else {
                                             // print(wrapper?.message ?? "None")
                                         }
@@ -126,7 +127,7 @@ struct AnswerInsertEssayView: View {
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertEssayView(selectQuestionActive: .constant(false), missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
+        AnswerInsertEssayView(missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
     }
 }
 
