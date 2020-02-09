@@ -54,56 +54,30 @@ struct AlbumView: View {
             
         }, filteredStatusCode: nil)
     }
-    
-    var btnBack : some View {
-        Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-        }, label: {
-            HStack {
-                Image("icArrowLeft")
-                    .renderingMode(.original)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
-            }
-        })
-    }
-    
+
     var body: some View {
-        NavigationView {
-            ZStack {
-                BackgroundView()
-                    .edgesIgnoringSafeArea([.vertical])
+        NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
+            ZStack(alignment: .trailing) {
                 ScrollView {
-                    VStack {
-                        AlbumList(answerMonth: answerMonth)
-                        Spacer()
-                    }
-                    .padding([.leading, .trailing], 15.0)
-                    .padding(.top, 30.0)
+                    AlbumList(answerMonth: answerMonth)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding([.leading, .trailing], 15.0)
+                        .padding(.top, 30.0)
                 }
                 PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
-            .onAppear {
-                let calendar = Calendar.current
-                let date = Date()
-                
-                self.currentYear = calendar.component(.year, from: date)
-                self.currentMonth = calendar.component(.month, from: date)
-                
-                self.loadAlbums()
-            }
-            .navigationBarItems(leading: btnBack)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitle(Text("앨범")
-            .font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), displayMode: .inline)
-            .background(NavigationConfigurator { navConfig in
-                navConfig.navigationBar.barTintColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
-                navConfig.navigationBar.titleTextAttributes = [
-                    .foregroundColor: UIColor.rosegold
-                ]
-            })
-                .navigationViewStyle(StackNavigationViewStyle())
+            
+        }
+        .background(BackgroundView())
+        .onAppear {
+            let calendar = Calendar.current
+            let date = Date()
+            
+            self.currentYear = calendar.component(.year, from: date)
+            self.currentMonth = calendar.component(.month, from: date)
+            
+            self.loadAlbums()
         }
     }
 }
