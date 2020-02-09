@@ -19,52 +19,54 @@ struct AnswerCameraView: View {
     @State var isNetworking: Bool = false
     
     var body: some View {
-        ZStack {
-            BackgroundView()
-                .edgesIgnoringSafeArea([.vertical])
-            VStack {
-                HStack {
-                    Text(missonData.title)
-                        .font(.system(size: 24))
-                        .lineSpacing(6)
-                        .foregroundColor(Color(.rosegold))
-                        .multilineTextAlignment(.leading)
+        NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
+            ZStack {
+                BackgroundView()
+                    .edgesIgnoringSafeArea([.vertical])
+                VStack {
+                    HStack {
+                        Text(missonData.title)
+                            .font(.system(size: 24))
+                            .lineSpacing(6)
+                            .foregroundColor(Color(.rosegold))
+                            .multilineTextAlignment(.leading)
+                        Spacer()
+                    }
                     Spacer()
-                }
-                Spacer()
-                if image != nil {
-                    MainCardView(isWithLine: true)
-                        .overlay(Image(uiImage: image!)
-                            .resizable()
-                            .padding(.horizontal, 34)
-                            .padding(.vertical, 22))
-                        .padding(32)
-                } else {
-                    Image("imgCam")
-                }
-                Spacer()
-                
-                NavigationLink(destination: AnswerInsertCamaraView(image: $image)) {
-                    MainButton(action: {
-                        if self.image == nil {
-                            self.showImagePicker = true
-                        } else {
-                            self.registerCameraAnswer()
-                        }},
-                               title: image == nil ? "촬영하기" : "제출하기")
-                }
-                .environment(\.isEnabled, !isNetworking)
-                .sheet(isPresented: self.$showImagePicker,
-                       onDismiss: {
-                        // print(self.image ?? UIImage())
-                },
-                       content: {
-                        ImagePicker(image: self.$image) }
+                    if image != nil {
+                        MainCardView(isWithLine: true)
+                            .overlay(Image(uiImage: image!)
+                                .resizable()
+                                .padding(.horizontal, 34)
+                                .padding(.vertical, 22))
+                            .padding(32)
+                    } else {
+                        Image("imgCam")
+                    }
+                    Spacer()
                     
-                )
-                Spacer(minLength: 32)
+                    NavigationLink(destination: AnswerInsertCamaraView(image: $image)) {
+                        MainButton(action: {
+                            if self.image == nil {
+                                self.showImagePicker = true
+                            } else {
+                                self.registerCameraAnswer()
+                            }},
+                                   title: image == nil ? "촬영하기" : "제출하기")
+                    }
+                    .environment(\.isEnabled, !isNetworking)
+                    .sheet(isPresented: self.$showImagePicker,
+                           onDismiss: {
+                            // print(self.image ?? UIImage())
+                    },
+                           content: {
+                            ImagePicker(image: self.$image) }
+                        
+                    )
+                    Spacer(minLength: 32)
+                }
+                .padding([.horizontal], 20)
             }
-            .padding([.horizontal], 20)
         }
     }
 }
