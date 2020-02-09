@@ -13,7 +13,6 @@ struct AnswerInsertCamaraView: View {
     var missonData: Mission
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Binding var selectQuestionActive: Bool
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {

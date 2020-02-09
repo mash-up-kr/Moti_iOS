@@ -13,7 +13,7 @@ struct AnswerCameraView: View {
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
-    @Binding var selectQuestionActive: Bool
+    @State var showEssayCameraView: Bool = false
     
     var missonData: Mission
     @State var isNetworking: Bool = false
@@ -49,7 +49,9 @@ struct AnswerCameraView: View {
                     HStack {
                         if self.image == nil {
                             if missonData.isContent {
-                                NavigationLink(destination: AnswerInsertEssayCameraView(image: $image, selectQuestionActive: $selectQuestionActive, missonData: missonData)) {
+                                NavigationLink(destination: AnswerInsertEssayCameraView(image: $image,
+                                                                                        missonData: missonData),
+                                               isActive: $showEssayCameraView) {
                                     MainButton(action: {
                                         if self.image == nil {
                                             self.showImagePicker = true
@@ -61,14 +63,16 @@ struct AnswerCameraView: View {
                                 .environment(\.isEnabled, !isNetworking)
                                 .sheet(isPresented: self.$showImagePicker,
                                        onDismiss: {
+                                        DispatchQueue.main.async {
+                                            self.showEssayCameraView = true
+                                        }
                                         // print(self.image ?? UIImage())
                                 },
                                        content: {
                                         ImagePicker(image: self.$image) }
-                                    
                                 )
                             } else {
-                                NavigationLink(destination: AnswerInsertCamaraView(image: $image, missonData: missonData, selectQuestionActive: $selectQuestionActive)) {
+                                NavigationLink(destination: AnswerInsertCamaraView(image: $image, missonData: missonData)) {
                                     MainButton(action: {
                                         if self.image == nil {
                                             self.showImagePicker = true

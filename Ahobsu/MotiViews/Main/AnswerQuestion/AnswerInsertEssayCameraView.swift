@@ -10,13 +10,9 @@ import SwiftUI
 
 struct AnswerInsertEssayCameraView: View {
     @Binding var image: UIImage?
-
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject var keyboard: Keyboard = Keyboard()
     @ObservedObject var answerQuestion = AnswerQuestion()
-    
-    @Binding var selectQuestionActive: Bool
     
     @State var text = ""
     
@@ -95,8 +91,7 @@ struct AnswerInsertEssayCameraView: View {
                                       imageOrNil: nil,
                                       completion: { wrapper in
                                         if let _ = wrapper?.data {
-                                            self.presentationMode.wrappedValue.dismiss()
-                                            self.selectQuestionActive = false
+                                            // Navigate AnswerRegisteredView
                                         } else {
                                             // print(wrapper?.message ?? "None")
                                         }

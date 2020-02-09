@@ -11,7 +11,6 @@ import SwiftUI
 struct SelectQuestionView: View {
     @Binding var window: UIWindow
     @Binding var currentPage: Int
-    @State var selectQuestionActive: Bool = true
     
     @State var index: Int = 0
     var emptyMissions: [Mission] {
@@ -38,8 +37,7 @@ struct SelectQuestionView: View {
                     Spacer()
                     SwiftUIPagerView(index: $index, pages: (0..<3).map { index in
                         QuestionCardView(id: index,
-                                         missionData: missions[index],
-                                         selectQuestionActive: $selectQuestionActive) })
+                                         missionData: missions[index]) })
                         .frame(height: 420, alignment: .center)
                     Spacer().frame(height: 10)
                     PageControl(numberOfPages: 3, currentPage: $index)
@@ -61,9 +59,6 @@ struct SelectQuestionView: View {
                 .onAppear {
                     if self.missions.count == 4 {
                         self.getNewQuestion()
-                    }
-                    if self.selectQuestionActive == false {
-                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
