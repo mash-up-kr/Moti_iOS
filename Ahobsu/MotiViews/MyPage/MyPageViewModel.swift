@@ -11,7 +11,19 @@ import Combine
 
 class MyPageViewModel: ObservableObject {
     
-    static var userPublisher: AnyPublisher<User, Never> {
+    static var shared: MyPageViewModel = MyPageViewModel()
+    
+    @Published var user: User = .placeholderData
+    
+    private var cancels = Set<AnyCancellable>()
+    
+    init() {
+        userPublisher
+            .assign(to: \.user, on: self)
+            .store(in: &cancels)
+    }
+    
+    var userPublisher: AnyPublisher<User, Never> {
         AhobsuProvider.provider.requestPublisher(.getProfile)
             .retry(2)
             .map { $0.data }
