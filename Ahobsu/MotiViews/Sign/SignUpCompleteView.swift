@@ -14,17 +14,17 @@ struct SignUpCompleteView: View {
     var nickname: String = UserDefaults.standard.string(forKey: "SignUp.Nickname") ?? "unknown"
     
     var body: some View {
-        SignUpFormView(title: "\(nickname)님\n회원가입을\n축하합니다!",
-            content: EmptyView(),
-            buttonTitle: "시작하기",
-            buttonDestination: EmptyView(),
-            buttonAction: {
-                self.window.rootViewController = UIHostingController(rootView: MainView(window: self.window))
-        },
-            buttonEnabled: true,
-            pushDestination: .constant(false))
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitle("회원가입 완료", displayMode: .inline)
+        NavigationMaskingView(isRoot: true, titleItem: Text("회원가입 완료"), trailingItem: EmptyView()) {
+            SignUpFormView(title: "\(nickname)님\n회원가입을\n축하합니다!",
+                content: EmptyView(),
+                buttonTitle: "시작하기",
+                buttonDestination: EmptyView(),
+                buttonAction: {
+                    self.window.rootViewController = UIHostingController(rootView: MainView(window: self.window))
+            },
+                buttonEnabled: true,
+                pushDestination: .constant(false))
+        }
     }
 }
 
