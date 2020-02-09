@@ -39,7 +39,11 @@ class SignUp: ObservableObject {
     @Published var gender: Gender?
     
     // Birthdate
-    @Published var birthdate: Date = Date(timeIntervalSince1970: 0)
+    @Published var birthdate: Date = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        return formatter.date(from: "2000-02-14") ?? Date()
+    }()
     
     var email: String {
         return UserDefaults.standard.value(forKey: "com.ahobsu.AppleID") as? String ?? ""
