@@ -36,11 +36,6 @@ struct DateField: UIViewRepresentable {
                              for: .valueChanged)
         datePickerHandler.didChangeDate = { newDate in
             self.dateString = self.dateFormatter.string(from: newDate)
-            textField.resignFirstResponder()
-            let animator = UIViewPropertyAnimator(duration: 0.4, curve: .easeOut) {
-                textField.alpha = 1
-            }
-            animator.startAnimation()
         }
         textField.inputView = datePicker
         return textField
