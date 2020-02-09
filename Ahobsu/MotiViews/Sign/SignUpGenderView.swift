@@ -28,17 +28,18 @@ struct SignUpGenderView: View {
                     .animation(.easeOut)
             }
         }
-        return SignUpFormView(title: "성별을 입력해주세요.",
-                              content: contentView,
-                              buttonTitle: "다음",
-                              buttonDestination: SignUpBirthdateView(window: $window, signUp: signUp),
-                              buttonAction: {
-                                self.pushNextView = true
-        },
-                              buttonEnabled: signUp.gender != nil,
-                              pushDestination: $pushNextView)
-            .buttonStyle(PlainButtonStyle())
-            .navigationBarTitle("성별 선택", displayMode: .inline)
+        return NavigationMaskingView(titleItem: Text("성별 선택"), trailingItem: EmptyView()) {
+            SignUpFormView(title: "성별을 입력해주세요.",
+                                  content: contentView,
+                                  buttonTitle: "다음",
+                                  buttonDestination: SignUpBirthdateView(window: $window, signUp: signUp),
+                                  buttonAction: {
+                                    self.pushNextView = true
+            },
+                                  buttonEnabled: signUp.gender != nil,
+                                  pushDestination: $pushNextView)
+                .buttonStyle(PlainButtonStyle())
+        }
     }
 }
 

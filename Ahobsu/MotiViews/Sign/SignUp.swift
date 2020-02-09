@@ -39,9 +39,11 @@ class SignUp: ObservableObject {
     @Published var gender: Gender?
     
     // Birthdate
-    @Published var birthdate: Date = Date(timeIntervalSince1970: 0)
-    
-    @Published var inputComplete: Bool = false
+    @Published var birthdate: Date = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        return formatter.date(from: "2000-02-14") ?? Date()
+    }()
     
     var email: String {
         return UserDefaults.standard.value(forKey: "com.ahobsu.AppleID") as? String ?? ""
@@ -49,33 +51,29 @@ class SignUp: ObservableObject {
     
     private var cancels: Set<AnyCancellable> = []
     
-    var signUpSuccess: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest4(validatedNickname, $gender, $birthdate, $inputComplete)
-            .tryMap { (nickName, gender, _, signUpComplete) -> AhobsuAPI in
-                guard
-                    let nickName = nickName,
-                    let gender = gender,
-                    signUpComplete == true
-                    else {
-                        throw CocoaError(.propertyListReadCorrupt)
-                }
-                return AhobsuAPI.updateProfile(name: nickName,
-                                               birthday: self.dateFormatter.string(from: self.birthdate),
-                                               email: self.email,
-                                               gender: gender.rawValue) }
-            .flatMap { (signUpAPI) -> Future<Bool, Error> in
-                Future<Bool, Error> { (promise) in
-                    AhobsuProvider.provider.requestPublisher(signUpAPI)
-                        .map { $0.data }
-                        .decode(type: SignUp.Response.self, decoder: JSONDecoder())
-                        .receive(on: DispatchQueue.main)
-                        .sink(receiveCompletion: { (_) in },
-                              receiveValue: { (response) in
-                                promise(.success(response.status == 200)) })
-                        .store(in: &self.cancels)
-                }}
-            .replaceError(with: false)
-            .eraseToAnyPublisher()
+    @Published var signUpSuccess: Bool = false
+    
+    func updateProfile() {
+        guard let gender = gender else { return }
+        AhobsuProvider.updateProfile(user: User(id: -1,
+                                                birthday: dateFormatter.string(from: self.birthdate),
+                                                email: email,
+                                                name: nickname,
+                                                gender: gender.rawValue,
+                                                refreshDate: nil,
+                                                refreshToken: nil,
+                                                mission: nil,
+                                                snsId: "",
+                                                snsType: ""),
+                                     completion: { (response) in
+                                        if let _ = response?.data {
+                                            self.signUpSuccess = true
+                                        }
+        }, error: { (error) in
+            self.signUpSuccess = false
+        }, expireTokenAction: {
+            self.signUpSuccess = false
+        }, filteredStatusCode: nil)
     }
 }
 

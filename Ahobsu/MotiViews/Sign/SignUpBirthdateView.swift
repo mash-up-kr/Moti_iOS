@@ -14,8 +14,6 @@ struct SignUpBirthdateView: View {
     
     @ObservedObject var signUp: SignUp
     
-    @State var pushNextView: Bool = false
-    
     var body: some View {
         let contentView = HStack {
             HStack {
@@ -25,15 +23,15 @@ struct SignUpBirthdateView: View {
                 }.labelsHidden()
             }
         }
-        return SignUpFormView(title: "생년월일을 입력해주세요.",
-                              content: contentView,
-                              buttonTitle: "가입하기",
-                              buttonDestination: SignUpCompleteView(window: self.$window),
-                              buttonAction: { self.signUp.inputComplete = true },
-                              buttonEnabled: true,
-                              pushDestination: $pushNextView).onReceive(signUp.signUpSuccess) { (success) in
-                                self.pushNextView = success
-        }.navigationBarTitle("생년월일 선택", displayMode: .inline)
+        return NavigationMaskingView(titleItem: Text("생년월일 선택"), trailingItem: EmptyView()) {
+            SignUpFormView(title: "생년월일을 입력해주세요.",
+                                  content: contentView,
+                                  buttonTitle: "가입하기",
+                                  buttonDestination: SignUpCompleteView(window: self.$window),
+                                  buttonAction: { self.signUp.updateProfile() },
+                                  buttonEnabled: true,
+                                  pushDestination: $signUp.signUpSuccess)
+        }
     }
 }
 

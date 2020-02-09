@@ -39,6 +39,7 @@ struct SignInView: View {
                 }
             }
         }
+        .navigationBarTitle(Text(""), displayMode: .inline)
         .onAppear {
             self.performExistingAccountSetupFlows()
         }

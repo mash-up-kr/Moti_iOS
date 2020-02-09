@@ -10,8 +10,6 @@ import SwiftUI
 
 struct AnswerCameraView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @State var showImagePicker: Bool = false
     @State var image: UIImage?
     
@@ -19,6 +17,7 @@ struct AnswerCameraView: View {
     
     var missonData: Mission
     @State var isNetworking: Bool = false
+    @State var answerRegisteredActive: Bool = false
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
@@ -39,6 +38,7 @@ struct AnswerCameraView: View {
                         MainCardView(isWithLine: true)
                             .overlay(Image(uiImage: image!)
                                 .resizable()
+                                .aspectRatio(contentMode: .fit)
                                 .padding(.horizontal, 34)
                                 .padding(.vertical, 22))
                             .padding(32)
@@ -46,45 +46,56 @@ struct AnswerCameraView: View {
                         Image("imgCam")
                     }
                     Spacer()
-                    
-                    if missonData.isContent {
-                        NavigationLink(destination: AnswerInsertEssayCameraView(image: $image, selectQuestionActive: $selectQuestionActive, missonData: missonData)) {
-                                                              MainButton(action: {
-                                                                  if self.image == nil {
-                                                                      self.showImagePicker = true
-                                                                  } else {
-                                                                      self.registerCameraAnswer()
-                                                                  }},
-                                                                         title: image == nil ? "촬영하기" : "제출하기")
-                                                          }
-                                                          .environment(\.isEnabled, !isNetworking)
-                                                          .sheet(isPresented: self.$showImagePicker,
-                                                                 onDismiss: {
-                                                                  // print(self.image ?? UIImage())
-                                                          },
-                                                                 content: {
-                                                                  ImagePicker(image: self.$image) }
-                                                              
-                                                          )
-                    } else {
-                        NavigationLink(destination: AnswerInsertCamaraView(image: $image, missonData: missonData, selectQuestionActive: $selectQuestionActive)) {
-                                          MainButton(action: {
-                                              if self.image == nil {
-                                                  self.showImagePicker = true
-                                              } else {
-                                                  self.registerCameraAnswer()
-                                              }},
-                                                     title: image == nil ? "촬영하기" : "제출하기")
-                                      }
-                                      .environment(\.isEnabled, !isNetworking)
-                                      .sheet(isPresented: self.$showImagePicker,
-                                             onDismiss: {
-                                              // print(self.image ?? UIImage())
-                                      },
-                                             content: {
-                                              ImagePicker(image: self.$image) }
-                                          
-                                      )
+                    HStack {
+                        if self.image == nil {
+                            if missonData.isContent {
+                                NavigationLink(destination: AnswerInsertEssayCameraView(image: $image, selectQuestionActive: $selectQuestionActive, missonData: missonData)) {
+                                    MainButton(action: {
+                                        if self.image == nil {
+                                            self.showImagePicker = true
+                                        } else {
+                                            self.registerCameraAnswer()
+                                        }},
+                                               title: image == nil ? "촬영하기" : "제출하기")
+                                }
+                                .environment(\.isEnabled, !isNetworking)
+                                .sheet(isPresented: self.$showImagePicker,
+                                       onDismiss: {
+                                        // print(self.image ?? UIImage())
+                                },
+                                       content: {
+                                        ImagePicker(image: self.$image) }
+                                    
+                                )
+                            } else {
+                                NavigationLink(destination: AnswerInsertCamaraView(image: $image, missonData: missonData, selectQuestionActive: $selectQuestionActive)) {
+                                    MainButton(action: {
+                                        if self.image == nil {
+                                            self.showImagePicker = true
+                                        } else {
+                                            self.registerCameraAnswer()
+                                        }},
+                                               title: image == nil ? "촬영하기" : "제출하기")
+                                }
+                                .environment(\.isEnabled, !isNetworking)
+                                .sheet(isPresented: self.$showImagePicker,
+                                       onDismiss: {
+                                        // print(self.image ?? UIImage())
+                                },
+                                       content: {
+                                        ImagePicker(image: self.$image) }
+                                    
+                                )
+                            }
+                        } else {
+                            NavigationLink(destination: AnswerRegisteredView(),
+                                           isActive: $answerRegisteredActive)
+                            {
+                                MainButton(action: { self.registerCameraAnswer() },
+                                           title: "제출하기")
+                            }
+                        }
+                        
                     }
                     Spacer(minLength: 32)
                 }
@@ -98,22 +109,19 @@ extension AnswerCameraView {
     func registerCameraAnswer() {
         guard let image = image else { return }
         self.isNetworking = true
-        AhobsuProvider.provider.request(.registerAnswer(missionId: missonData.id,
-                                                        contentOrNil: nil,
-                                                        imageOrNil: image),
-                                        completionHandler: { (response) in
-                                            defer {
-                                                self.isNetworking = false
-                                            }
-                                            if response.statusCode == 201 {
-                                                self.presentationMode.wrappedValue.dismiss()
-                                            } else {
-                                                
-                                            }
-        },
-                                        errorHandler: { (error) in
-                                            self.isNetworking = false
-        })
+        AhobsuProvider.registerAnswer(missionId: missonData.id,
+                                      contentOrNil: nil,
+                                      imageOrNil: image,
+                                      completion: { (response) in
+                                        self.isNetworking = false
+                                        if let _ = response?.data {
+                                            self.answerRegisteredActive = true
+                                        }},
+                                      error: { (error) in
+                                        self.isNetworking = false },
+                                      expireTokenAction: {
+                                        self.isNetworking = false },
+                                      filteredStatusCode: nil)
     }
 }
 
