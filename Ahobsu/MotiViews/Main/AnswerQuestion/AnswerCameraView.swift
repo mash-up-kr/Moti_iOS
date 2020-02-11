@@ -15,6 +15,10 @@ struct AnswerCameraView: View {
     
     @State var showEssayCameraView: Bool = false
     
+    @ObservedObject var keyboard: Keyboard = Keyboard()
+    @State var text = ""
+
+    
     var missonData: Mission
     @State var isNetworking: Bool = false
     @State var answerRegisteredActive: Bool = false
@@ -35,31 +39,65 @@ struct AnswerCameraView: View {
                     }
                     Spacer()
                     if image != nil {
-                        MainCardView(isWithLine: true)
+                        if missonData.isContent {
+//                            ZStack {
+                                MainCardView(isWithLine: true)
+                                    .overlay(
+                                        VStack {
+                                            Image(uiImage: image ?? UIImage())
+                                                .resizable()
+                                                .aspectRatio(1, contentMode: .fill)
+                                                .cornerRadius(6)
+                                            
+                                            ZStack {
+                                                if text == "" && keyboard.state.height == 0 {
+                                                    VStack {
+                                                        Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
+                                                            .foregroundColor(Color(.placeholderblack))
+                                                            .multilineTextAlignment(.center)
+                                                            .padding(EdgeInsets(top: (keyboard.state.height == 0 ? 30 : -270 + keyboard.state.height),
+                                                                                leading: 0,
+                                                                                bottom: 32,
+                                                                                trailing: 0))
+//                                                        Spacer()
+                                                    }
+                                                }
+                                                TextView(text: $text)
+                                                    .padding(EdgeInsets(top: (keyboard.state.height == 0 ? 30 : -270 + keyboard.state.height),
+                                                                        leading: 0,
+                                                                        bottom: 32,
+                                                                        trailing: 0))
+                                            }
+                                            Spacer()
+                                        }
+                                        .padding(.horizontal, 34)
+                                        .padding(.vertical, 22)
+                                )
+                                    .padding(32)
+                        } else {
+                            MainCardView(isWithLine: true)
                             .overlay(Image(uiImage: image!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .padding(.horizontal, 34)
-                                .padding(.vertical, 22))
+                                .padding(.vertical, 22)
+                            )
                             .padding(32)
+                        }
                     } else {
                         Image("imgCam")
                     }
                     Spacer()
                     HStack {
                         if self.image == nil {
-                            if missonData.isContent {
-                                NavigationLink(destination: AnswerInsertEssayCameraView(image: $image,
-                                                                                        missonData: missonData),
-                                               isActive: $showEssayCameraView) {
-                                    MainButton(action: {
-                                        if self.image == nil {
-                                            self.showImagePicker = true
-                                        } else {
-                                            self.registerCameraAnswer()
-                                        }},
-                                               title: image == nil ? "촬영하기" : "제출하기")
-                                }
+                            MainButton(action: {
+                                if self.image == nil {
+                                    self.showImagePicker = true
+                                } else {
+                                    self.registerCameraAnswer()
+                                }},
+                                       title: image == nil ? "촬영하기" : "제출하기")
+                                
                                 .environment(\.isEnabled, !isNetworking)
                                 .sheet(isPresented: self.$showImagePicker,
                                        onDismiss: {
@@ -70,27 +108,7 @@ struct AnswerCameraView: View {
                                 },
                                        content: {
                                         ImagePicker(image: self.$image) }
-                                )
-                            } else {
-                                NavigationLink(destination: AnswerInsertCamaraView(image: $image, missonData: missonData)) {
-                                    MainButton(action: {
-                                        if self.image == nil {
-                                            self.showImagePicker = true
-                                        } else {
-                                            self.registerCameraAnswer()
-                                        }},
-                                               title: image == nil ? "촬영하기" : "제출하기")
-                                }
-                                .environment(\.isEnabled, !isNetworking)
-                                .sheet(isPresented: self.$showImagePicker,
-                                       onDismiss: {
-                                        // print(self.image ?? UIImage())
-                                },
-                                       content: {
-                                        ImagePicker(image: self.$image) }
-                                    
-                                )
-                            }
+                            )
                         } else {
                             NavigationLink(destination: AnswerRegisteredView(),
                                            isActive: $answerRegisteredActive)
@@ -104,8 +122,18 @@ struct AnswerCameraView: View {
                     Spacer(minLength: 32)
                 }
                 .padding([.horizontal], 20)
+                .offset(x: 0, y: keyboard.state.height == 0 ? keyboard.state.height : -keyboard.state.height)
+                        .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
+                        .animation(.easeOut(duration: keyboard.state.animationDuration))
+            }
+            .onTapGesture {
+                self.endEditing()
             }
         }
+    }
+    
+    private func endEditing() {
+        UIApplication.shared.endEditing()
     }
 }
 
@@ -113,8 +141,10 @@ extension AnswerCameraView {
     func registerCameraAnswer() {
         guard let image = image else { return }
         self.isNetworking = true
+        
+        let content: String? = missonData.isContent ? text : nil
         AhobsuProvider.registerAnswer(missionId: missonData.id,
-                                      contentOrNil: nil,
+                                      contentOrNil: content,
                                       imageOrNil: image,
                                       completion: { (response) in
                                         self.isNetworking = false
