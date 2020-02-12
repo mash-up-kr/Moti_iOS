@@ -17,24 +17,27 @@ enum TokenType {
 struct Tokens {
     var accessToken: String
     var refreshToken: String
+    var genderToValid: String
 }
 
 final class TokenManager {
     
     static let sharedInstance = TokenManager()
     
-    private var tokens: Tokens = Tokens(accessToken: "", refreshToken: "")
+    private var tokens: Tokens = Tokens(accessToken: "", refreshToken: "", genderToValid: "-")
     
     private var neededTokenType: TokenType = .access
     
     private init() {
         loadTokensFormKeyChain()
+        loadGenderFormKeyChain()
     }
     
     func resetTokensFromKeyChain(completion: ((OSStatus) -> Void)?,
                                  error: ((OSStatus) -> Void)?) {
         let accessTokenStatus: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
         let refreshTokenStatus = KeyChain.delete(key: "ahobsu_refreshtoken")
+        let genderStatus = KeyChain.delete(key: "ahobsu_genderStatus")
         if accessTokenStatus == errSecSuccess && refreshTokenStatus == errSecSuccess {
             completion?(accessTokenStatus)
         } else {
@@ -82,6 +85,33 @@ final class TokenManager {
         } else {
             error?(status)
         }
+    }
+    
+    func loadGenderFormKeyChain() {
+         if let receivedData = KeyChain.load(key: "ahobsu_genderStatus") {
+             let result = String(data: receivedData, encoding: .utf8) ?? ""
+             tokens.genderToValid = result
+         }
+     }
+    
+    func registerGender(gender: String?,
+                        completion: ((OSStatus) -> Void)?,
+                        error: ((OSStatus) -> Void)?) {
+        let genderData: Data = (gender ?? "-").data(using: .utf8)!
+        let status: OSStatus = KeyChain.save(key: "ahobsu_genderStatus", data: genderData)
+        
+        loadTokensFormKeyChain()
+        
+        if status == errSecSuccess {
+            completion?(status)
+        } else {
+            error?(status)
+        }
+    }
+    
+    
+    func getGender() -> String {
+        return tokens.genderToValid
     }
     
     func getAccessToken() -> String {

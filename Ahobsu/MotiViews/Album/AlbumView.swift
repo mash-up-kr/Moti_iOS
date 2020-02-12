@@ -69,7 +69,7 @@ struct AlbumView: View {
             }
             
         }
-        .background(BackgroundView())
+        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
         .onAppear {
             let calendar = Calendar.current
             let date = Date()

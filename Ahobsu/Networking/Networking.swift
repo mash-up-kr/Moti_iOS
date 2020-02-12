@@ -50,8 +50,9 @@ final class Networking<Target: TargetType>: MoyaProvider<Target> {
                 completionHandler(response)
             case let .failure(error):
                 if let response = error.response {
+                    print(response)
                     if let _ = try? response.mapJSON(failsOnEmptyData: false) {
-                        // print(jsonObject)
+//                         print(jsonObject)
                     } else if let _ = String(data: response.data, encoding: .utf8) {
                         // print(rawString)
                     }

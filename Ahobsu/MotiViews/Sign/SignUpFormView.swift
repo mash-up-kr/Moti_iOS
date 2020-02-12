@@ -39,10 +39,7 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
         }
         .edgesIgnoringSafeArea(.vertical)
         .frame(maxWidth: .infinity)
-        .background(
-            LinearGradient(gradient: Gradient(colors: [.black, Color(red: 26/255, green: 22/255, blue: 22/255)]),
-                           startPoint: .top,
-                           endPoint: .bottom))
+        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
         
     }
 }

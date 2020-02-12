@@ -14,7 +14,7 @@ struct MyPageView: View {
     @State private var appVersion: AppVersion = .placeholderData
     @State private var privacyIsPresented = false
     
-    @ObservedObject var myPageViewModel: MyPageViewModel = .shared
+    @ObservedObject var myPageViewModel: MyPageViewModel = MyPageViewModel.shared.getNew()
     
     var mailCompose = MailCompose()
     let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
@@ -61,7 +61,7 @@ struct MyPageView: View {
             .padding(.horizontal, 15)
             .font(.system(size: 16))
         }
-        .background(BackgroundView())
+        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
         .sheet(isPresented: $privacyIsPresented) {
             NavigationView {
                 WebView(url: self.privacyURL)

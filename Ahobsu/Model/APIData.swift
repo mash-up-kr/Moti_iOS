@@ -10,8 +10,8 @@ import Foundation
 
 struct APIData<T : Decodable>: Decodable, Identifiable {
     let id = UUID()
-    let status: Int
-    let message: String
+    let status: Int?
+    let message: String?
     let data: T?
     
     enum CodingKeys: String, CodingKey {

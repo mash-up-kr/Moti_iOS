@@ -152,6 +152,15 @@ class AhobsuProvider {
                                           _ expireTokenAction: @escaping () -> Void,
                                           _ filteredStatusCode: [StatusEnum]) where S: Decodable {
         if let data = try? response.map(APIData<S>.self) {
+            #if DEBUG
+            let jsonObject = try? JSONSerialization.jsonObject(with: response.data, options: .mutableContainers)
+            let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+
+            if let prettyString = String(data: prettyData ?? Data(), encoding: .utf8) {
+                print(prettyString)
+            }
+            #endif
+            
             let status = data.status
             
             if (status == StatusEnum.value(.token_invalid)()) {
@@ -171,7 +180,7 @@ class AhobsuProvider {
             
             let filteredCode = filteredStatusCode.map { $0.value() }
             
-            if filteredCode.contains(status) {
+            if filteredCode.contains(status ?? 0) {
                 return completion(data)
             }
         }

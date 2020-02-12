@@ -19,6 +19,8 @@ struct SplashView: View {
     @State var logoAlpha = 0.0
     @State var logoScale: CGFloat = 1
     
+    @ObservedObject var myPageViewModel: MyPageViewModel = .shared
+    
     var body: some View {
         ZStack {
             SplashBackgroundView(backgroundAlpha: $backgroundAlpha)
@@ -65,7 +67,7 @@ struct LogoView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView()
+            BackgroundView().edgesIgnoringSafeArea(.vertical)
             VStack {
                 Image(logoName)
                     .scaleEffect(logoScale)
@@ -139,7 +141,11 @@ extension SplashView {
             if KeyChain.load(key: "ahobsu_onbording") != nil {
                 /* AccessKey 가 활성화 되어있으면 바로 로그인 */
                 if (TokenManager.sharedInstance.getAccessToken() != "") {
-                    self.window.rootViewController = UIHostingController(rootView: MainView(window: self.window))
+                    if TokenManager.sharedInstance.getGender() == "-" {
+                        self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
+                    } else {
+                        self.window.rootViewController = UIHostingController(rootView: MainView(window: self.window))
+                    }
                 } else {
                     self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
                 }

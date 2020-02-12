@@ -33,4 +33,10 @@ class MyPageViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    func getNew() -> MyPageViewModel {
+        let newModel = MyPageViewModel()
+        MyPageViewModel.shared = newModel
+        return newModel
+    }
 }

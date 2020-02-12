@@ -47,7 +47,7 @@ struct MyPageEditView: View {
             }
             .padding(.horizontal, 15)
             .padding([.bottom], keyboard.state.height)
-            .background(BackgroundView())
+            .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))
             .onReceive(myPageEdit.$deletingUserSucccess) { (success) in

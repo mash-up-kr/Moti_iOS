@@ -55,6 +55,7 @@ class SignUp: ObservableObject {
     
     func updateProfile() {
         guard let gender = gender else { return }
+        TokenManager.sharedInstance.registerGender(gender: gender.rawValue, completion: nil, error: nil)
         AhobsuProvider.updateProfile(user: User(id: -1,
                                                 birthday: dateFormatter.string(from: self.birthdate),
                                                 email: email,
