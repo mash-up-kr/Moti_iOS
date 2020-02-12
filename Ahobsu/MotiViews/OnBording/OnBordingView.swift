@@ -19,6 +19,8 @@ struct OnBordingView: View {
     
     var models: [OnBordingModel]
     
+    @State private var buttonOpacity: Double = 0.0
+    
     init(window: UIWindow, model: [OnBordingModel]) {
         self.models = model
         self.window = window
@@ -38,20 +40,22 @@ struct OnBordingView: View {
                 .edgesIgnoringSafeArea([.vertical])
             VStack {
                 OnBordingPageControl(numberOfPages: viewControllers.count,
-                                     currentPage: $currentPage)
-                OnBordingPageViewController(controllers: viewControllers, currentPage: $currentPage)
+                                     currentPage: $currentPage,
+                                     buttonOpacity: $buttonOpacity)
+                    .frame(height: 72.0)
+                OnBordingPageViewController(controllers: viewControllers,
+                                            currentPage: $currentPage,
+                                            buttonOpacity: $buttonOpacity)
             }
             VStack {
-                if currentPage == models.count - 1 {
-                    Spacer()
-                    MainButton(action: {
-                        let _ = KeyChain.save(key: "ahobsu_onbording", data: "success".data(using: .utf8)!)
-                        self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
-                    }, title: "시작하기")
-                }
+                Spacer()
+                MainButton(action: {
+                    let _ = KeyChain.save(key: "ahobsu_onbording", data: "success".data(using: .utf8)!)
+                    self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
+                }, title: "시작하기")
+                .opacity(buttonOpacity)
             }
             .padding(.bottom, 43.0)
-            .edgesIgnoringSafeArea([.vertical])
         }
     }
 }

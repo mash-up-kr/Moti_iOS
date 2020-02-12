@@ -10,16 +10,20 @@ import SwiftUI
 
 struct OnBordingCardView: View {
     
-    @State var onBordingModel: OnBordingModel
+    var onBordingModel: OnBordingModel
+    @State private var cardViewOpacity: Double = 0.0
     
     var body: some View {
         VStack(alignment: .center, spacing: 16.0) {
+            Spacer()
             Text(onBordingModel.headline)
                 .font(.custom("IropkeBatangM", size: 20.0))
+                .foregroundColor(Color.init(.lightgold))
                 .lineSpacing(16.0)
                 .multilineTextAlignment(.center)
             Text(onBordingModel.detail)
                 .font(.custom("IropkeBatangM", size: 12.0))
+                .foregroundColor(Color.init(.rosegold))
                 .lineSpacing(8.0)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -27,6 +31,17 @@ struct OnBordingCardView: View {
             Image(onBordingModel.imageName)
                 .padding(.top, 16.0)
                 .padding(.horizontal, 20.0)
+        }
+        .opacity(cardViewOpacity)
+        .onAppear() {
+            withAnimation(.easeIn(duration: 0.5)) {
+                self.cardViewOpacity = 1.0
+            }
+        }
+        .onDisappear {
+            withAnimation(.easeIn(duration: 0.25)) {
+                self.cardViewOpacity = 0.0
+            }
         }
     }
 }

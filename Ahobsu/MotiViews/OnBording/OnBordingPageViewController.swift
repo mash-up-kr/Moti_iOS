@@ -13,6 +13,7 @@ struct OnBordingPageViewController: UIViewControllerRepresentable {
     
     var controllers: [UIViewController]
     @Binding var currentPage: Int
+    @Binding var  buttonOpacity: Double
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -71,6 +72,18 @@ struct OnBordingPageViewController: UIViewControllerRepresentable {
                 let visibleViewController = pageViewController.viewControllers?.first,
                 let index = parent.controllers.firstIndex(of: visibleViewController) {
                 parent.currentPage = index
+                
+                if index == parent.controllers.count - 1 {
+                    withAnimation(.easeIn(duration: 0.5)) {
+                        parent.buttonOpacity = 1.0
+                    }
+                } else {
+                    if (parent.buttonOpacity == 1.0) {
+                        withAnimation(.easeIn(duration: 0.25)) {
+                            parent.buttonOpacity = 0.0
+                        }
+                    }
+                }
             }
         }
     }

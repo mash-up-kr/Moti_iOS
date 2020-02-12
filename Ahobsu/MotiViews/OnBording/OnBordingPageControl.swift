@@ -13,6 +13,7 @@ struct OnBordingPageControl: UIViewRepresentable {
     
     var numberOfPages: Int
     @Binding var currentPage: Int
+    @Binding var buttonOpacity: Double
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -45,6 +46,18 @@ struct OnBordingPageControl: UIViewRepresentable {
         @objc
         func updateCurrentPage(sender: UIPageControl) {
             control.currentPage = sender.currentPage
+            
+            if control.currentPage == control.numberOfPages - 1 {
+                withAnimation(.easeIn(duration: 0.5)) {
+                    control.buttonOpacity = 1.0
+                }
+            } else {
+                if (control.buttonOpacity == 1.0) {
+                    withAnimation(.easeIn(duration: 0.25)) {
+                        control.buttonOpacity = 0.0
+                    }
+                }
+            }
         }
     }
 }
