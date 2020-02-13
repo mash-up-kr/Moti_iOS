@@ -82,6 +82,7 @@
 		FA4DFAB023ED6D6C00A7BF9E /* MonthEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DFAAF23ED6D6C00A7BF9E /* MonthEnum.swift */; };
 		FA75AC1423D08640001B04B6 /* AnswerCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75AC1323D08640001B04B6 /* AnswerCompleteModel.swift */; };
 		FA75AC1623D087E1001B04B6 /* AnswerCompleteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75AC1523D087E1001B04B6 /* AnswerCompleteCardView.swift */; };
+		FA88822C23F4B38E00147D1B /* AlbumWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88822B23F4B38E00147D1B /* AlbumWeekView.swift */; };
 		FAB0F05923DFF0DA00336EA5 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F05823DFF0DA00336EA5 /* AlbumView.swift */; };
 		FAB0F06E23E0318400336EA5 /* TTNorms-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F05C23E0318400336EA5 /* TTNorms-ExtraBold.otf */; };
 		FAB0F06F23E0318400336EA5 /* TTNorms-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F05D23E0318400336EA5 /* TTNorms-ExtraBoldItalic.otf */; };
@@ -191,6 +192,7 @@
 		FA4DFAAF23ED6D6C00A7BF9E /* MonthEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthEnum.swift; sourceTree = "<group>"; };
 		FA75AC1323D08640001B04B6 /* AnswerCompleteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteModel.swift; sourceTree = "<group>"; };
 		FA75AC1523D087E1001B04B6 /* AnswerCompleteCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCompleteCardView.swift; sourceTree = "<group>"; };
+		FA88822B23F4B38E00147D1B /* AlbumWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumWeekView.swift; sourceTree = "<group>"; };
 		FAB0F05823DFF0DA00336EA5 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		FAB0F05C23E0318400336EA5 /* TTNorms-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-ExtraBold.otf"; sourceTree = "<group>"; };
 		FAB0F05D23E0318400336EA5 /* TTNorms-ExtraBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-ExtraBoldItalic.otf"; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB0F05823DFF0DA00336EA5 /* AlbumView.swift */,
+				FA88822B23F4B38E00147D1B /* AlbumWeekView.swift */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				F82975B7D3C88179EF53D00EBDF8AFD6 /* SignUpFormView.swift in Sources */,
 				A578EF4623E1CEA300176F2A /* UINavigationController+Extension.swift in Sources */,
 				50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */,
+				FA88822C23F4B38E00147D1B /* AlbumWeekView.swift in Sources */,
 				FA26A11123E4CB99009D668D /* Token.swift in Sources */,
 				090C72070F123EA33ED3983F38E7163C /* SignUpNickNameView.swift in Sources */,
 				AB4B8A1BFEB71E1EFCAF0DDB58F6B4E1 /* SplashView.swift in Sources */,

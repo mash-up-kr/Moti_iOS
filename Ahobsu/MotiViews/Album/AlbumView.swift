@@ -56,28 +56,30 @@ struct AlbumView: View {
     }
 
     var body: some View {
-        NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
-            ZStack(alignment: .trailing) {
-                ScrollView {
-                    AlbumList(answerMonth: answerMonth)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding([.leading, .trailing], 15.0)
-                        .padding(.top, 30.0)
+        NavigationView {
+            NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
+                VStack(spacing: 0.0) {
+                    ScrollView {
+                        AlbumList(answerMonth: answerMonth,
+                                  month: currentMonth)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding([.leading, .trailing], 15.0)
+                            .padding(.top, 30.0)
+                    }
+                    PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
                 }
-                PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
-            
-        }
-        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
-        .onAppear {
-            let calendar = Calendar.current
-            let date = Date()
-            
-            self.currentYear = calendar.component(.year, from: date)
-            self.currentMonth = calendar.component(.month, from: date)
-            
-            self.loadAlbums()
+            .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
+            .onAppear {
+                let calendar = Calendar.current
+                let date = Date()
+                
+                self.currentYear = calendar.component(.year, from: date)
+                self.currentMonth = calendar.component(.month, from: date)
+                
+                self.loadAlbums()
+            }
         }
     }
 }
@@ -85,13 +87,16 @@ struct AlbumView: View {
 struct AlbumList: View {
     
     var answerMonth: AnswerMonth?
+    var month: Int
     
     var body: some View {
         VStack {
             if answerMonth != nil {
                 GridStack(rows: Int(Double(self.answerMonth!.answers.count) / 2.0 + 0.5), columns: 2) { (row, column) in
                     if row * 2 + column + 1 <= self.answerMonth!.answers.count {
-                        PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column], week: row * 2 + column + 1)
+                        PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column],
+                                            week: row * 2 + column + 1,
+                                            month: self.month)
                     } else {
                         Text("")
                             .frame(minWidth: 0, maxWidth: .infinity)
@@ -106,39 +111,51 @@ struct PartsCombinedAnswer: View {
     
     var answers: [Answer?]?
     var week: Int
+    var title: String
+    var shortMonth: String
+    
+    init(answers: [Answer?]?, week: Int, month: Int) {
+        self.answers = answers
+        self.week = week
+        
+        if week == 1 {
+            title = "1st week"
+        } else if week == 2 {
+            title = "2nd week"
+        } else if week == 3 {
+            title = "3rd week"
+        } else {
+            title = "\(week)th week"
+        }
+        
+        shortMonth = MonthEnum(month: month).rawValue
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12.0) {
             HStack(alignment: .center) {
                 Rectangle().fill(Color(.rosegold))
                     .frame(height: 1.0)
-                if week == 1 {
-                    Text("1st week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
-                        .fixedSize(horizontal: true, vertical: false)
-                } else if week == 2 {
-                    Text("2nd week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
-                        .fixedSize(horizontal: true, vertical: false)
-                } else if week == 3 {
-                    Text("3rd week").font(.custom("IropkeBatangM", size: 16.0)).lineLimit(1)
-                        .fixedSize(horizontal: true, vertical: false)
-                } else {
-                    Text("\(week)th week").lineLimit(1)
-                        .fixedSize(horizontal: true, vertical: false)
-                }
+                Text(title).font(.custom("IropkeBatangM", size: 16.0))
+                .lineLimit(1)
+                .fixedSize(horizontal: true, vertical: false)
                 Rectangle().fill(Color(.rosegold))
                     .frame(height: 1.0)
             }
-            ZStack {
-                if answers != nil {
-                    ForEach(self.answers!.compactMap { $0?.cardUrl },
-                            id: \.self,
-                            content: { (cardUrl) in
-                                ImageView(withURL: cardUrl)
-                                    .aspectRatio(0.62, contentMode: .fit)
-                                    .padding(20)
-                    })
-                }
-            }.frame(height: 273.0)
+            NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(shortMonth). \(title)", weekNumber: week))
+            {
+                ZStack {
+                    if answers != nil {
+                        ForEach(self.answers!.compactMap { $0?.cardUrl },
+                                id: \.self,
+                                content: { (cardUrl) in
+                                    ImageView(withURL: cardUrl)
+                                        .aspectRatio(0.62, contentMode: .fit)
+                                        .padding(20)
+                        })
+                    }
+                }.frame(height: 273.0)
+            }
         }
     }
     
@@ -176,8 +193,9 @@ struct PaginationView: View {
     @Binding var month: Int
     
     var body: some View {
-        VStack {
-            Spacer()
+        VStack(spacing: 0.0) {
+            Rectangle().background(Color.init(red: 121/255, green: 121/255, blue: 121/255))
+                .frame(height: 1.0)
             HStack(alignment: .center, spacing: 8.0) {
                 Button(action: {
                     /* 뒤로 가기 */
@@ -214,7 +232,8 @@ struct PaginationView: View {
                 })
                     .frame(width: 48.0, height: 48.0)
             }
-            .frame(height: 88.0)
+            .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 87.0)
+            .background(Color.black)
         }
     }
 }
