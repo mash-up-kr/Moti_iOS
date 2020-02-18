@@ -88,7 +88,7 @@ class NSDatePickerView: UIControl {
     }
 }
 
-extension DatePickerView: WheelViewDelegate {
+extension NSDatePickerView: WheelViewDelegate {
     
     func wheelView(_ wheelView: WheelView, didSelectItem item: Int) {
         let year = yearWheel.selectedItem
