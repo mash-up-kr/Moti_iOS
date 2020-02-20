@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SplashView: View {
     
@@ -51,19 +52,19 @@ struct LogoView: View {
     @Binding var logoScale: CGFloat
     
     var logoName: String { "motiLogo" }
-    var logoPaddingBottom: CGFloat { 24 }
+    var logoPaddingBottom: CGFloat { 24.0 }
     
     var titleText: String { "Make Own True Identity" }
-    var titleColor: Color {
-        Color.init(.sRGB,
+    var titleColor: Color { Color.init(.sRGB,
                    red: 245/255,
                    green: 219/255,
                    blue: 203/255,
                    opacity: 1.0)
     }
-    var titleSize: CGFloat { 16 }
+    var titleSize: CGFloat { 16.0 }
+    var titlePaddingBottom: CGFloat { 24.0 }
     
-    var logoViewPaddingTop: CGFloat { 224 }
+    var logoViewPaddingTop: CGFloat { 108.0 }
     
     var body: some View {
         ZStack {
@@ -75,8 +76,11 @@ struct LogoView: View {
                     .padding(.bottom, logoPaddingBottom)
                 Text(titleText)
                     .foregroundColor(titleColor)
-                    .font(.custom("TTNorms-Bold", size: 16.0))
+                    .font(.custom("TTNorms-Regular", size: 16.0))
                     .opacity(textAlpha)
+                    .padding(.bottom, titlePaddingBottom)
+                PlayerView()
+                    .frame(width: 272, height: 400)
                 Spacer()
             }
             .padding(.top, logoViewPaddingTop)
@@ -90,8 +94,8 @@ extension SplashView {
     var titleAnimationDuration: Double { 0.5 }
     var logoAnimationDuration: Double { 0.3 }
     var logoAnimationEndDuration: Double { 1.0 }
-    
     var backgroundAlphaFinal: Double { 1.0 }
+    
     var textAlphaFinal: Double { 1.0 }
     var logoAlphaFinal: Double { 1.0 }
     var logoScaleFinal: Double { 1.0 }
