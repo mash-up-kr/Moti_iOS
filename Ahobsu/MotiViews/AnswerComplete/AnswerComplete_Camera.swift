@@ -2,7 +2,7 @@
 //  AnswerComplete_Camera.swift
 //  Ahobsu
 //
-//  Created by admin on 2019/11/29.
+//  Created by 김선재 on 2019/11/29.
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  PageControl.swift
 //  Ahobsu
 //
-//  Created by admin on 2019/12/18.
+//  Created by 김선재 on 2019/12/18.
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
 

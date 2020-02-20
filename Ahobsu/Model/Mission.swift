@@ -2,7 +2,7 @@
 //  Mission.swift
 //  Ahobsu
 //
-//  Created by admin on 2019/11/24.
+//  Created by 김선재 on 2019/11/24.
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
 

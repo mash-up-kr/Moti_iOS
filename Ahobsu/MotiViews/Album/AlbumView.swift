@@ -2,7 +2,7 @@
 //  AlbumView.swift
 //  Ahobsu
 //
-//  Created by admin on 28/01/2020.
+//  Created by 김선재 on 28/01/2020.
 //  Copyright © 2020 ahobsu. All rights reserved.
 //
 
@@ -56,30 +56,28 @@ struct AlbumView: View {
     }
 
     var body: some View {
-        NavigationView {
-            NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
-                VStack(spacing: 0.0) {
-                    ScrollView {
-                        AlbumList(answerMonth: answerMonth,
-                                  month: currentMonth)
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .padding([.leading, .trailing], 15.0)
-                            .padding(.top, 30.0)
-                    }
-                    PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
+        NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
+            VStack(spacing: 0.0) {
+                ScrollView {
+                    AlbumList(answerMonth: answerMonth,
+                              month: currentMonth)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding([.leading, .trailing], 15.0)
+                        .padding(.top, 30.0)
                 }
+                PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
             }
-            .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
-            .onAppear {
-                let calendar = Calendar.current
-                let date = Date()
-                
-                self.currentYear = calendar.component(.year, from: date)
-                self.currentMonth = calendar.component(.month, from: date)
-                
-                self.loadAlbums()
-            }
+        }
+        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
+        .onAppear {
+            let calendar = Calendar.current
+            let date = Date()
+            
+            self.currentYear = calendar.component(.year, from: date)
+            self.currentMonth = calendar.component(.month, from: date)
+            
+            self.loadAlbums()
         }
     }
 }
@@ -102,17 +100,42 @@ struct AlbumList: View {
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
                 }
+            } else {
+                AnswerEmptyView()
             }
+        }
+    }
+}
+
+struct AnswerEmptyView: View {
+    
+    var imageName: String { "icEmpty" }
+    var imagePaddingBottom: CGFloat { 16.0 }
+    
+    var sublineText: String { "이달에는 수집된 카드가 없습니다." }
+    var sublineTextFont: Font { Font.custom("IropkeBatangOTFM", size: 14.0) }
+    var sublineLineSpacing: CGFloat { 6.0 }
+    
+    var body: some View {
+        VStack {
+            Image("icEmpty")
+                .padding(.bottom, imagePaddingBottom)
+            Text(sublineText)
+                .font(sublineTextFont)
+                .lineSpacing(sublineLineSpacing)
+                .foregroundColor(Color(UIColor.rosegold))
         }
     }
 }
 
 struct PartsCombinedAnswer: View {
     
-    var answers: [Answer?]?
-    var week: Int
-    var title: String
-    var shortMonth: String
+    var answers: [Answer?]? = nil
+    var week: Int = 0
+    var title: String = ""
+    var shortMonth: String = ""
+    
+    var number: Int = 0
     
     init(answers: [Answer?]?, week: Int, month: Int) {
         self.answers = answers
@@ -129,6 +152,13 @@ struct PartsCombinedAnswer: View {
         }
         
         shortMonth = MonthEnum(month: month).rawValue
+    }
+    
+    init(answers: [Answer?]?, no: Int) {
+        self.answers = answers
+        self.number = no
+        
+        title = "No.\(self.number)"
     }
     
     var body: some View {
@@ -155,7 +185,7 @@ struct PartsCombinedAnswer: View {
                         })
                     }
                 }.frame(height: 273.0)
-            }
+            }.buttonStyle(PlainButtonStyle())
         }
     }
     
