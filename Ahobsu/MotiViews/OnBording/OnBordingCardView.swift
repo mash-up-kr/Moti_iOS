@@ -11,35 +11,44 @@ import SwiftUI
 struct OnBordingCardView: View {
     
     var onBordingModel: OnBordingModel
+    
     @State private var cardViewOpacity: Double = 0.0
     
+    var spacingBodyVStack: CGFloat { 16.0 }
+    
+    var paddingImageTop: CGFloat { 16.0 }
+    var paddingImageHorizontal: CGFloat { 20.0 }
+    
+    var durationCardAppearAnimation: Double { 0.5 }
+    var durationCardDisapperAnimation: Double { 0.25 }
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 16.0) {
+        VStack(alignment: .center, spacing: spacingBodyVStack) {
             Spacer()
             Text(onBordingModel.headline)
-                .font(.custom("IropkeBatangM", size: 20.0))
+                .font(.custom("IropkeBatangOTFM", size: 20.0))
                 .foregroundColor(Color.init(.lightgold))
                 .lineSpacing(16.0)
                 .multilineTextAlignment(.center)
             Text(onBordingModel.detail)
-                .font(.custom("IropkeBatangM", size: 12.0))
+                .font(.custom("IropkeBatangOTFM", size: 12.0))
                 .foregroundColor(Color.init(.rosegold))
                 .lineSpacing(8.0)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer()
             Image(onBordingModel.imageName)
-                .padding(.top, 16.0)
-                .padding(.horizontal, 20.0)
+                .padding(.top, paddingImageTop)
+                .padding(.horizontal, paddingImageHorizontal)
         }
         .opacity(cardViewOpacity)
         .onAppear() {
-            withAnimation(.easeIn(duration: 0.5)) {
+            withAnimation(.easeIn(duration: self.durationCardAppearAnimation)) {
                 self.cardViewOpacity = 1.0
             }
         }
         .onDisappear {
-            withAnimation(.easeIn(duration: 0.25)) {
+            withAnimation(.easeIn(duration: self.durationCardDisapperAnimation)) {
                 self.cardViewOpacity = 0.0
             }
         }

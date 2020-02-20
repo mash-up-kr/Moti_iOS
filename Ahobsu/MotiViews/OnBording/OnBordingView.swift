@@ -21,6 +21,10 @@ struct OnBordingView: View {
     
     @State private var buttonOpacity: Double = 0.0
     
+    var buttonPaddingBottom: CGFloat { 43.0 }
+    
+    var titleMainButton: String { "시작하기" }
+    
     init(window: UIWindow, model: [OnBordingModel]) {
         self.models = model
         self.window = window
@@ -52,22 +56,10 @@ struct OnBordingView: View {
                 MainButton(action: {
                     let _ = KeyChain.save(key: "ahobsu_onbording", data: "success".data(using: .utf8)!)
                     self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
-                }, title: "시작하기")
+                }, title: titleMainButton)
                 .opacity(buttonOpacity)
             }
-            .padding(.bottom, 43.0)
-        }
-    }
-}
-
-struct OnBordingView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        return Group {
-            OnBordingView(window: UIWindow(), model: OnBordingModel.createOnBordingModel())
-                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-                .previewDisplayName("iPhone 8")
+            .padding(.bottom, buttonPaddingBottom)
         }
     }
 }
