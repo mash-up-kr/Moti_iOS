@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct WeekDayCellView: View {
-    var weekDay: String
+    var title: String
     var isFill: Bool
     
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
-            Text(weekDay)
+            Text(title)
                 .foregroundColor(Color(.rosegold))
                 .font(.system(size: 13,
                               weight: .regular,
@@ -36,7 +36,7 @@ struct WeekDayCellView: View {
 
 struct WeekDayCellView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekDayCellView(weekDay: "MON", isFill: true)
+        WeekDayCellView(title: "1st", isFill: true)
             .previewLayout(.fixed(width: 39, height: 59))
         
     }

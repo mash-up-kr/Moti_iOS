@@ -10,14 +10,27 @@ import SwiftUI
 
 struct DayWeekView: View {
     
-    let weeks: [String] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-    var isFills: [Bool] = [false, true, true, false, true, false, true]
+    var isFills: [Bool] = []
+    
+    func SeqTitleFromIndex(_ seq: Int) -> String {
+        switch seq {
+        case 1:
+            return "1st"
+        case 2:
+            return "2nd"
+        case 3:
+            return "3rd"
+        default:
+            return "\(seq)th"
+        }
+    }
     
     var body: some View {
         HStack {
             ForEach(0..<7) { index in
                 Spacer()
-                WeekDayCellView(weekDay: self.weeks[index], isFill: self.isFills[index])
+                WeekDayCellView(title: self.SeqTitleFromIndex(index + 1),
+                                isFill: self.isFills[index])
                 Spacer()
             }
         }
