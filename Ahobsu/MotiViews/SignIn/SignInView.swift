@@ -16,6 +16,8 @@ struct SignInView: View {
     @State var isDone = false
     @State var showingOnBordingView = true
     
+    var linkUserAgreement: String { "https://notion.so/ahobsu/MOTI-35d01dd331bb4aa0915c33d28d60b63c" }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -35,7 +37,18 @@ struct SignInView: View {
                         .onTapGesture(perform: showAppleLogin)
                         .frame(height: 60, alignment: .center)
                         .padding(.horizontal, 15)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 23)
+                    Text("By creating an account you are agreeing to")
+                        .font(.custom("AppleSDGothicNeo-Regular", size: 12))
+                        .foregroundColor(Color(UIColor.rosegold))
+                        .padding(.bottom, 8)
+                    Text("MOTI's User Agreement")
+                        .font(.custom("AppleSDGothicNeo-Regular", size: 12))
+                        .foregroundColor(Color(UIColor.rosegold))
+                        .underline(true, color: Color(UIColor.rosegold))
+                        .onTapGesture {
+                            UIApplication.shared.open(URL(string: self.linkUserAgreement)!)
+                    }
                 }
             }
         }
