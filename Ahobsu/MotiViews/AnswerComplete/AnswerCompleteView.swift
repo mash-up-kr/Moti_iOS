@@ -30,12 +30,12 @@ struct AnswerCompleteView: View {
     
     var viewControllers: [UIHostingController<AnswerCompleteCardView>]
     
-    var models: [Answer?]
+    var models: [Answer]
     
     @State var currentPage = 0
     
     init(_ model: [Answer?]) {
-        self.models = model
+        self.models = model.compactMap({ $0 })
         
         self.viewControllers = model.map({
             let controller = UIHostingController(rootView: AnswerCompleteCardView(answer: $0))
@@ -59,7 +59,7 @@ struct AnswerCompleteView: View {
     }
     
     var body: some View {
-        NavigationMaskingView(titleItem: Text(models[currentPage]?.date ?? "").font(.custom("IropkeBatangM", size: 24.0)),
+        NavigationMaskingView(titleItem: Text(models[currentPage].date).font(.custom("IropkeBatangM", size: 24.0)),
                               trailingItem: EmptyView()) {
                                 ZStack {
                                     BackgroundView()
