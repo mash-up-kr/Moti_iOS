@@ -10,11 +10,16 @@ import SwiftUI
 import AVFoundation
 
 class PlayerUIView: UIView {
+  
+  var fileName: String { "video" }
+  var fileExtension: String { "mp4" }
+
   private let playerLayer = AVPlayerLayer()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    let url = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+    let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
     let player = AVPlayer(url: url)
     player.play()
     
