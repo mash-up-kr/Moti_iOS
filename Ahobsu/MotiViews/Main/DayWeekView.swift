@@ -31,8 +31,8 @@ struct DayWeekView: View {
                 Spacer()
                 WeekDayCellView(title: self.SeqTitleFromIndex(index + 1),
                                 isFill: self.isFills[index])
-                Spacer()
             }
+            Spacer()
         }
     }
 }
