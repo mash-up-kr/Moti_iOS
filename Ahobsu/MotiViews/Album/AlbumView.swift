@@ -38,6 +38,8 @@ struct AlbumView: View {
     @State private var currentYear: Int = 0
     @State private var currentMonth: Int = 0
     
+    @State private var isReloadNeeded: Bool = false
+    
     func loadAlbums() {
         AhobsuProvider.getAnswersMonth(year: self.currentYear,
                                        month: self.currentMonth,
@@ -47,37 +49,46 @@ struct AlbumView: View {
                                                 self.answerMonth = answerMonth
                                             }
                                         }
+                                        
+                                        self.isReloadNeeded = false
         }, error: { (error) in
-            // print("loadAlbums() error")
-            // print(error)
+            self.isReloadNeeded = true
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)
+    }
+    
+    func loadAlbumAction() {
+        let calendar = Calendar.current
+        let date = Date()
+        
+        self.currentYear = calendar.component(.year, from: date)
+        self.currentMonth = calendar.component(.month, from: date)
+        
+        self.loadAlbums()
     }
 
     var body: some View {
         NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
             VStack(spacing: 0.0) {
-                ScrollView {
+                if isReloadNeeded == false {
                     AlbumList(answerMonth: answerMonth,
                               month: currentMonth)
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding([.leading, .trailing], 15.0)
                         .padding(.top, 30.0)
+                    PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
+                } else {
+                    NetworkErrorView {
+                        self.loadAlbumAction()
+                    }
                 }
-                PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
             }
         }
         .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
         .onAppear {
-            let calendar = Calendar.current
-            let date = Date()
-            
-            self.currentYear = calendar.component(.year, from: date)
-            self.currentMonth = calendar.component(.month, from: date)
-            
-            self.loadAlbums()
+            self.loadAlbumAction()
         }
     }
 }
@@ -90,14 +101,16 @@ struct AlbumList: View {
     var body: some View {
         VStack {
             if answerMonth != nil {
-                GridStack(rows: Int(Double(self.answerMonth!.answers.count) / 2.0 + 0.5), columns: 2) { (row, column) in
-                    if row * 2 + column + 1 <= self.answerMonth!.answers.count {
-                        PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column],
-                                            week: row * 2 + column + 1,
-                                            month: self.month)
-                    } else {
-                        Text("")
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                ScrollView {
+                    GridStack(rows: Int(Double(self.answerMonth!.answers.count) / 2.0 + 0.5), columns: 2) { (row, column) in
+                        if row * 2 + column + 1 <= self.answerMonth!.answers.count {
+                            PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column],
+                                                week: row * 2 + column + 1,
+                                                month: self.month)
+                        } else {
+                            Text("")
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                        }
                     }
                 }
             } else {
@@ -118,12 +131,14 @@ struct AnswerEmptyView: View {
     
     var body: some View {
         VStack {
+            Spacer()
             Image("icEmpty")
                 .padding(.bottom, imagePaddingBottom)
             Text(sublineText)
                 .font(sublineTextFont)
                 .lineSpacing(sublineLineSpacing)
                 .foregroundColor(Color(UIColor.rosegold))
+            Spacer()
         }
     }
 }
