@@ -34,7 +34,7 @@ struct MainView: View {
     @State var window: UIWindow
     @State var isAnswered: Bool = false
     @State var todayCard: Answer?
-    @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil, nil]
+    @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil]
     
     var body: some View {
         NavigationView {
@@ -148,16 +148,17 @@ struct MainView: View {
     
     func getWeeksData() {
         AhobsuProvider.getAnswersWeek(completion: { wrapper in
-            if let answerWeek = wrapper?.data {
+            if var answerWeek = wrapper?.data {
+                while (answerWeek.answers.count < 6) {
+                    answerWeek.answers.append(nil)
+                }
+                
                 withAnimation {
                     self.cards = answerWeek.answers
                 }
-                // print(self.cards[1]?.cardUrl ?? "")
-            } else {
-                
             }
         }, error: { err in
-            // print(err)
+            print(err)
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)
