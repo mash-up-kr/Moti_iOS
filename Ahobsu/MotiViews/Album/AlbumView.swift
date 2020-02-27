@@ -102,9 +102,9 @@ struct AlbumList: View {
         VStack {
             if answerMonth != nil {
                 ScrollView {
-                    GridStack(rows: Int(Double(self.answerMonth!.answers.count) / 2.0 + 0.5), columns: 2) { (row, column) in
-                        if row * 2 + column + 1 <= self.answerMonth!.answers.count {
-                            PartsCombinedAnswer(answers: self.answerMonth!.answers[row * 2 + column],
+                    GridStack(rows: Int(Double(self.answerMonth!.monthAnswer.count) / 2.0 + 0.5), columns: 2) { (row, column) in
+                        if row * 2 + column + 1 <= self.answerMonth!.monthAnswer.count {
+                            PartsCombinedAnswer(answers: self.answerMonth!.monthAnswer[row * 2 + column],
                                                 week: row * 2 + column + 1,
                                                 month: self.month)
                         } else {
@@ -181,7 +181,7 @@ struct PartsCombinedAnswer: View {
             HStack(alignment: .center) {
                 Rectangle().fill(Color(.rosegold))
                     .frame(height: 1.0)
-                Text(title).font(.custom("IropkeBatangM", size: 16.0))
+                Text(title).font(.custom("IropkeBatangOTFM", size: 16.0))
                 .lineLimit(1)
                 .fixedSize(horizontal: true, vertical: false)
                 Rectangle().fill(Color(.rosegold))
@@ -191,7 +191,7 @@ struct PartsCombinedAnswer: View {
             {
                 ZStack {
                     if answers != nil {
-                        ForEach(self.answers!.compactMap { $0?.cardUrl },
+                        ForEach(self.answers!.compactMap { $0?.file.cardUrl },
                                 id: \.self,
                                 content: { (cardUrl) in
                                     ImageView(withURL: cardUrl)
@@ -239,8 +239,6 @@ struct PaginationView: View {
     
     var body: some View {
         VStack(spacing: 0.0) {
-            Rectangle().background(Color.init(red: 121/255, green: 121/255, blue: 121/255))
-                .frame(height: 1.0)
             HStack(alignment: .center, spacing: 8.0) {
                 Button(action: {
                     /* 뒤로 가기 */
@@ -259,7 +257,7 @@ struct PaginationView: View {
                     .frame(width: 48.0, height: 48.0)
                 Text(String.toAlbumDateString(year: year, month: month))
                     .lineSpacing(16.0).lineLimit(1)
-                    .font(.custom("IropkeBatangM", size: 20.0))
+                    .font(.custom("IropkeBatangOTFM", size: 20.0))
                     .frame(width: 160.0)
                 Button(action: {
                     /* 앞으로 가기 */
