@@ -114,6 +114,7 @@
 		FAB0F08B23E0910300336EA5 /* OnBordingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F08A23E0910300336EA5 /* OnBordingCardView.swift */; };
 		FAB0F08D23E0913E00336EA5 /* OnBordingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F08C23E0913E00336EA5 /* OnBordingModel.swift */; };
 		FAF5F6052407FD2800559FBD /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAF5F6042407FD2800559FBD /* SFProDisplay-Medium.ttf */; };
+		FAF5F60724080B9100559FBD /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5F60624080B9100559FBD /* FileModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -230,6 +231,7 @@
 		FAB0F08A23E0910300336EA5 /* OnBordingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingCardView.swift; sourceTree = "<group>"; };
 		FAB0F08C23E0913E00336EA5 /* OnBordingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingModel.swift; sourceTree = "<group>"; };
 		FAF5F6042407FD2800559FBD /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		FAF5F60624080B9100559FBD /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
 		FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,6 +276,7 @@
 				FA26A10E23E4BAFD009D668D /* APIData.swift */,
 				FA26A11023E4CB99009D668D /* Token.swift */,
 				FA0FD7C623ECCE10001957FC /* AnswerMonth.swift */,
+				FAF5F60624080B9100559FBD /* FileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				FAB0F08B23E0910300336EA5 /* OnBordingCardView.swift in Sources */,
 				377D0EC362AEA71B21629AEA8798BEFD /* MyPageEdit.swift in Sources */,
 				FA0FD7C723ECCE10001957FC /* AnswerMonth.swift in Sources */,
+				FAF5F60724080B9100559FBD /* FileModel.swift in Sources */,
 				8F3D759C5F892A8F9E4045CD74A7115D /* MyPageEditView.swift in Sources */,
 				34DAE4F0F8EB836107D9C7645622267D /* MyPageView.swift in Sources */,
 				6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */,

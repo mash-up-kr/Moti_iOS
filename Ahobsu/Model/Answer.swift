@@ -13,23 +13,24 @@ struct Answer: Decodable, Identifiable {
     let userId: Int
     let missionId: Int
     let imageUrl: String?
-    let cardUrl: String?
     var content: String?
     let date: String
     let setDate: String
     let mission: Mission
-    // TODO: File 모델 추가하기
+    let fileId: Int
+    let file: FileModel
     
     enum CodingKeys: String, CodingKey {
         case id
         case userId
         case missionId
         case imageUrl
-        case cardUrl
         case content
         case date
         case setDate
         case mission
+        case fileId
+        case file
     }
 }
 
@@ -84,11 +85,15 @@ extension Answer {
                        userId: 0,
                        missionId: 0,
                        imageUrl: "https://wallpapershome.com/images/pages/pic_h/11603.jpg",
-                       cardUrl: "",
                        content: "Hello",
                        date: "2020-02-01",
                        setDate: "2020-02-01",
-                       mission: Mission(id: 0, title: "더미 질문", isContent: true, isImage: true))
+                       mission: Mission(id: 0, title: "더미 질문", isContent: true, isImage: true),
+                       fileId: 0,
+                       file: FileModel(id: 0,
+                                       cardUrl: "",
+                                       part: 1)
+                        )
             )
         }
         

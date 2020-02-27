@@ -11,11 +11,11 @@ import Foundation
 struct AnswerMonth: Decodable, Identifiable {
     let id = UUID()
     let date: String
-    let answers: [[Answer?]]
+    let monthAnswer: [[Answer?]]
     
     enum CodingKeys: String, CodingKey {
         case date
-        case answers
+        case monthAnswer
     }
 }
 
