@@ -46,7 +46,7 @@ struct MainView: View {
                                     .padding([.horizontal], 59)
                                     .overlay(
                                         ZStack {
-                                            ForEach(cards.compactMap { $0?.cardUrl },
+                                            ForEach(cards.compactMap { $0?.file.cardUrl },
                                                     id: \.self,
                                                     content: { (cardUrl) in
                                                         
