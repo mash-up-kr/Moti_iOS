@@ -16,11 +16,7 @@ struct WeekDayCellView: View {
         VStack(alignment: .center, spacing: 8) {
             Text(title)
                 .foregroundColor(Color(.rosegold))
-                .font(.system(size: 13,
-                              weight: .regular,
-                              design: .default)
-                    
-            )
+                .font(.custom("SFProDisplay-Medium", size: 13.0))
             Circle()
                 .foregroundColor(isFill ? Color(.rosegold) : Color(.greyishBrown))
                 .frame(width: 16, height: 16, alignment: .center)
