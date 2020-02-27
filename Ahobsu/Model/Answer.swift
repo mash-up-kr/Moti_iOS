@@ -18,6 +18,7 @@ struct Answer: Decodable, Identifiable {
     let date: String
     let setDate: String
     let mission: Mission
+    // TODO: File 모델 추가하기
     
     enum CodingKeys: String, CodingKey {
         case id
