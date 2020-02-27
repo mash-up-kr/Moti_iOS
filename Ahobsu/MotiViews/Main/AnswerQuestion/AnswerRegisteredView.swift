@@ -13,14 +13,21 @@ struct AnswerRegisteredView: View {
         NavigationMaskingView(isRoot: true, titleItem: Text("미션 완료"), trailingItem: EmptyView()) {
             VStack {
                 Spacer()
-                Text("오늘의 미션을\n완료하였습니다!").multilineTextAlignment(.center)
+                Text("오늘의 질문에 답변을\n완료했습니다.").multilineTextAlignment(.center)
                     .foregroundColor(Color(.rosegold))
                     .font(.custom("IropkeBatangM", size: 24.0))
                     .lineSpacing(10.0)
+                    .padding(.bottom, 12.0)
+                Text("새로운 파츠를 얻었어요. 확인해볼까요?")
+                    .foregroundColor(Color(.rosegold))
+                    .font(.custom("IropkeBatangM", size: 14.0))
+                    .lineSpacing(22.0)
+                    .padding(.bottom, 28.0)
+                Image("imgMypage")
                 Spacer()
                 MainButton(action: {
                     self.navigateRootView()
-                }, title: "메인으로 돌아가기")
+                }, title: "확인하러 가기")
                 Spacer()
             }
         }
