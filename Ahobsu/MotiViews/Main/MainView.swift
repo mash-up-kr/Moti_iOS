@@ -10,21 +10,11 @@ import SwiftUI
 
 extension String {
     static func toMainDateString(from date: Date) -> String {
-        let calendar = Calendar.current
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "YYYY. MM. dd"
         
-        let month = calendar.component(.month, from: date)
-        let weekOfMonth = calendar.component(.weekOfMonth, from: date)
-        let strWeekOfMonth: String = {
-            switch weekOfMonth {
-                case 1: return "1st week"
-                case 2: return "2nd week"
-                case 3: return "3rd week"
-                default: return "\(weekOfMonth)th week"
-            }
-        }()
-        
-        let monthEnum = MonthEnum(month: month)
-        let returnStr = "\(monthEnum.rawValue). \(strWeekOfMonth)"
+        let returnStr = format.string(from: date)
         
         return returnStr
     }
@@ -105,7 +95,8 @@ struct MainView: View {
                             
                             Text(String.toMainDateString(from: Date()))
                                 .foregroundColor(Color(.rosegold))
-                                .font(.system(size: 20, weight: .regular, design: .default))
+                                .font(.custom("IropkeBatangOTFM", size: 20.0))
+                                .lineSpacing(16.0)
                             
                             Spacer()
                             NavigationLink(destination: MyPageView()) {
