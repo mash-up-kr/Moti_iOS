@@ -107,7 +107,7 @@ struct AnswerInsertEssayView: View {
                                       contentOrNil: text,
                                       imageOrNil: nil,
                                       completion: { wrapper in
-                                        print(wrapper?.data)
+                                        print(wrapper?.data ?? "")
                                         if let _ = wrapper?.data {
                                             self.answerRegisteredActive = true
                                         } else {
