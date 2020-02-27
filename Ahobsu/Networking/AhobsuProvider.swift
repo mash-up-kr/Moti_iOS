@@ -153,7 +153,10 @@ class AhobsuProvider {
                                           _ filteredStatusCode: [StatusEnum]) where S: Decodable {
         if let data = try? response.map(APIData<S>.self) {
             #if DEBUG
-            let jsonObject = try? JSONSerialization.jsonObject(with: response.data, options: .mutableContainers)
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: response.data, options: .mutableContainers) else {
+                print("cannot load json")
+                return
+            }
             let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
 
             if let prettyString = String(data: prettyData ?? Data(), encoding: .utf8) {
