@@ -13,9 +13,10 @@ struct Answer: Decodable, Identifiable {
     let userId: Int
     let missionId: Int
     let imageUrl: String?
-    let cardUrl: String
+    let cardUrl: String?
     var content: String?
     let date: String
+    let setDate: String
     let mission: Mission
     
     enum CodingKeys: String, CodingKey {
@@ -26,6 +27,7 @@ struct Answer: Decodable, Identifiable {
         case cardUrl
         case content
         case date
+        case setDate
         case mission
     }
 }
@@ -75,7 +77,7 @@ extension Answer {
     static func dummyCardView() -> [Answer] {
         var answersData: [Answer] = []
         
-        for idx in 0...7 {
+        for idx in 0...6 {
             answersData.append(
                 Answer(id: idx,
                        userId: 0,
@@ -84,6 +86,7 @@ extension Answer {
                        cardUrl: "",
                        content: "Hello",
                        date: "2020-02-01",
+                       setDate: "2020-02-01",
                        mission: Mission(id: 0, title: "더미 질문", isContent: true, isImage: true))
             )
         }

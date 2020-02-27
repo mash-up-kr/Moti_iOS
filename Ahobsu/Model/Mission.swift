@@ -22,6 +22,26 @@ struct Mission: Decodable, Identifiable {
     }
 }
 
+extension Mission {
+    enum MissionType {
+        case essay
+        case camera
+        case essayCamera
+    }
+    
+     func getMissionType() -> MissionType {
+        if !isImage {
+            return .essay
+        } else {
+            if isContent {
+                return .essayCamera
+            } else {
+                return .camera
+            }
+        }
+    }
+}
+
 extension Mission: Hashable {
     static func == (lhs: Mission, rhs: Mission) -> Bool {
         lhs.id == rhs.id

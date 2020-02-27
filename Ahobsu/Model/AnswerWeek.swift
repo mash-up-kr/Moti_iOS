@@ -11,7 +11,7 @@ import Foundation
 struct AnswerWeek: Decodable, Identifiable {
     let id = UUID()
     let today: String
-    let answers: [Answer?]
+    var answers: [Answer?]
     
     enum CodingKeys: String, CodingKey {
         case today
