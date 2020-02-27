@@ -37,7 +37,7 @@ struct AnswerCompleteView: View {
     init(_ model: [Answer?]) {
         self.models = model.compactMap({ $0 })
         
-        self.viewControllers = model.map({
+        self.viewControllers = self.models.map({
             let controller = UIHostingController(rootView: AnswerCompleteCardView(answer: $0))
             
             controller.view.backgroundColor = UIColor.clear

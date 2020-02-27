@@ -12,6 +12,7 @@ import Combine
 struct AnswerCompleteCardView: View {
     
     @State var answer: Answer?
+    @State private var mission: Mission?
     
     var contentView: some View {
         if let answer = self.answer {
@@ -34,7 +35,7 @@ struct AnswerCompleteCardView: View {
             ScrollView {
                 VStack {
                     HStack {
-                        Text(answer?.mission.title ?? "")
+                        Text(mission?.title ?? "")
                             .font(.custom("IropkeBatangM", size: 24.0))
                             .foregroundColor(Color(UIColor.rosegold))
                             .lineSpacing(12.0)
@@ -57,7 +58,13 @@ struct AnswerCompleteCardView: View {
                     .padding([.top], 56.0)
                 }
             }
+        }.onAppear() {
+            
         }
+    }
+    
+    func getMission(from id: Int) {
+        
     }
     
     func update() {
