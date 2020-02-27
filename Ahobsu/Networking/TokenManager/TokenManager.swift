@@ -38,10 +38,10 @@ final class TokenManager {
         let accessTokenStatus: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
         let refreshTokenStatus = KeyChain.delete(key: "ahobsu_refreshtoken")
         let genderStatus = KeyChain.delete(key: "ahobsu_genderStatus")
-        if accessTokenStatus == errSecSuccess && refreshTokenStatus == errSecSuccess {
+        if accessTokenStatus == errSecSuccess && refreshTokenStatus == errSecSuccess && genderStatus == errSecSuccess {
             completion?(accessTokenStatus)
         } else {
-            error?((accessTokenStatus != errSecSuccess) ? accessTokenStatus : refreshTokenStatus)
+            error?((accessTokenStatus != errSecSuccess) ? accessTokenStatus : refreshTokenStatus != errSecSuccess ? refreshTokenStatus : genderStatus)
         }
     }
     
