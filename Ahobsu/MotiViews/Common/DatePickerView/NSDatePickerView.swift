@@ -1,5 +1,5 @@
 //
-//  NSDatePickerView.swift
+//  UIDatePickerView.swift
 //  Ahobsu
 //
 //  Created by JU HO YOON on 2020/02/18.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class NSDatePickerView: UIControl {
+class UIDatePickerView: UIControl {
     
-    var monthWheel: WheelView!
-    var yearWheel: WheelView!
-    var dayWheel: WheelView!
+    var monthWheel: UIWheelView!
+    var yearWheel: UIWheelView!
+    var dayWheel: UIWheelView!
     
     var dateValidator: DateValidator = DateValidator()
     
@@ -61,15 +61,15 @@ class NSDatePickerView: UIControl {
         let month = calendar.component(.month, from: now)
         let day = calendar.component(.day, from: now)
 
-        yearWheel = WheelView(items: Array((year - yearOffset)...(year + yearOffset)))
+        yearWheel = UIWheelView(items: Array((year - yearOffset)...(year + yearOffset)))
         yearWheel.delegate = self
         yearWheel.selectedItem = year
         
-        monthWheel = WheelView(items: Array(1...12))
+        monthWheel = UIWheelView(items: Array(1...12))
         monthWheel.delegate = self
         monthWheel.selectedItem = month
         
-        dayWheel = WheelView(items: Array(1...31))
+        dayWheel = UIWheelView(items: Array(1...31))
         dayWheel.delegate = self
         dayWheel.selectedItem = day
         
@@ -88,9 +88,8 @@ class NSDatePickerView: UIControl {
     }
 }
 
-extension NSDatePickerView: WheelViewDelegate {
-    
-    func wheelView(_ wheelView: WheelView, didSelectItem item: Int) {
+extension UIDatePickerView: UIWheelViewDelegate {
+    func wheelView(_ wheelView: UIWheelView, didSelectItem item: Int) {
         let year = yearWheel.selectedItem
         let month = monthWheel.selectedItem
         let day = dayWheel.selectedItem
