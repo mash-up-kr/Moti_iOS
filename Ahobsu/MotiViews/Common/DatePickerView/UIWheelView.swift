@@ -51,7 +51,6 @@ class UIWheelView: UIView {
         self.items = items
         super.init(frame: .zero)
         setupView()
-        setupLayout()
         selectionFeedback?.prepare()
     }
     
@@ -91,24 +90,24 @@ class UIWheelView: UIView {
         addSubview(lowerSeparator)
     }
     
-    private func setupLayout() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        upperSeparator.translatesAutoresizingMaskIntoConstraints = false
-        upperSeparator.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -itemSize.height / 2).isActive = true
-        upperSeparator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        upperSeparator.widthAnchor.constraint(equalToConstant: itemSize.width).isActive = true
-        upperSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        lowerSeparator.translatesAutoresizingMaskIntoConstraints = false
-        lowerSeparator.centerYAnchor.constraint(equalTo: centerYAnchor, constant: itemSize.height / 2).isActive = true
-        lowerSeparator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        lowerSeparator.widthAnchor.constraint(equalToConstant: itemSize.width).isActive = true
-        lowerSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    override func layoutSubviews() {
+        // Patch: SwiftUI에서 AutoLayout으로 하면 화면 전환간에 포지션이 이동하는 현상이 있어서
+        tableView.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: frame.width,
+                                 height: frame.height)
+        upperSeparator.frame = CGRect(x: 0,
+                                      y: (frame.height - itemSize.height) / 2,
+                                      width: frame.width,
+                                      height: 1)
+        lowerSeparator.frame = CGRect(x: 0,
+                                      y: (frame.height + itemSize.height) / 2,
+                                      width: frame.width,
+                                      height: 1)
+        // Patch: SwiftUI에서 초기 뷰 세팅할 떄 올바른 위치로 표기가 안되어서
+        if let selectedRow = items.firstIndex(of: selectedItem) {
+            tableView.scrollToRow(at: IndexPath(row: selectedRow, section: 0), at: .top, animated: true)
+        }
     }
     
     func dequeueHeaderFooter(from tableView: UITableView, type: SectionAccessoryViewType) -> UITableViewHeaderFooterView {
