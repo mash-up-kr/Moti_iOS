@@ -28,11 +28,11 @@ struct DateField: UIViewRepresentable {
         textField.font = .monospacedDigitSystemFont(ofSize: 16, weight: .regular)
         textField.textColor = .rosegold
         textField.delegate = textFieldDelegator
-        let datePicker = UIDatePicker(frame: .zero)
-        datePicker.datePickerMode = .date
+        let datePicker = UIDatePickerView(frame: .zero)
+        datePicker.maximumYear = Calendar.current.component(.year, from: Date())
         datePicker.date = self.dateFormatter.date(from: dateString) ?? Date()
         datePicker.addTarget(datePickerHandler,
-                             action: #selector(self.datePickerHandler.didChangeDatePickerValue),
+                             action: #selector(datePickerHandler.didChangeDatePickerValue),
                              for: .valueChanged)
         datePickerHandler.didChangeDate = { newDate in
             self.dateString = self.dateFormatter.string(from: newDate)
@@ -54,7 +54,7 @@ extension DateField {
         
         var didChangeDate: ((Date) -> Void)?
         
-        @objc func didChangeDatePickerValue(sender: UIDatePicker) {
+        @objc func didChangeDatePickerValue(sender: UIDatePickerView) {
             didChangeDate?(sender.date)
         }
     }

@@ -27,7 +27,7 @@ struct MyPageEditView: View {
                     VStack {
                         ListCell(title: "닉네임", content: TextField("", text: $editingUser.name))
                         MyPageView.Separator().opacity(0.5)
-                        ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday))
+                        ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday).background(Color.black))
                         MyPageView.Separator().opacity(0.5)
                         ListCell(title: "성별", content: GenderField(gender: $editingUser.gender))
                     }

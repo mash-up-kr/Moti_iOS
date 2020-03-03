@@ -44,11 +44,6 @@ struct GenderField: UIViewRepresentable {
         let genderInputView = GenderInputView(genderRawValue: $gender)
         let hostingViewController = UIHostingController(rootView: genderInputView)
         hostingViewController.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 256)
-        hostingViewController.view.layer.borderWidth = 1
-        hostingViewController.view.layer.borderColor = UIColor(red: 0.592,
-                                                               green: 0.592,
-                                                               blue: 0.592,
-                                                               alpha: 1.0).cgColor
         hostingViewController.view.tintColor = .rosegold
         textField.inputView = hostingViewController.view
         
