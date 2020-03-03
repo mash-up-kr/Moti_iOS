@@ -13,6 +13,7 @@ struct MyPageView: View {
     
     @State private var appVersion: AppVersion = .placeholderData
     @State private var privacyIsPresented = false
+    @State private var editViewActive = false
     
     @ObservedObject var myPageViewModel: MyPageViewModel = MyPageViewModel.shared.getNew()
     
@@ -21,7 +22,10 @@ struct MyPageView: View {
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("마이페이지"),
-                              trailingItem: NavigationLink(destination: MyPageEditView(sourceUser: $myPageViewModel.user, editingUser: myPageViewModel.user),
+                              trailingItem: NavigationLink(destination: MyPageEditView(sourceUser: $myPageViewModel.user,
+                                                                                       isViewActive: $editViewActive,
+                                                                                       editingUser: myPageViewModel.user),
+                                                           isActive: $editViewActive,
                                                            label: {
                                                             Image("icRewriteNormal")
                                                                 .renderingMode(.original)

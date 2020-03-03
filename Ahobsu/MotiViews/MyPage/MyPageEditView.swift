@@ -15,6 +15,8 @@ struct MyPageEditView: View {
     @ObservedObject var myPageEdit = MyPageEdit()
     
     @Binding var sourceUser: User
+    @Binding var isViewActive: Bool
+    
     @State var editingUser: User
     @State var isNetworking = false
     
@@ -80,6 +82,7 @@ extension MyPageEditView {
                 self.sourceUser = self.editingUser
             }
             self.isNetworking = false
+            self.isViewActive = false
         }, error: { (error) in
             self.isNetworking = false
         }, expireTokenAction: {
@@ -118,7 +121,7 @@ extension MyPageEditView {
 
 struct MyPageEditView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageEditView(sourceUser: .constant(.placeholderData), editingUser: .placeholderData)
+        MyPageEditView(sourceUser: .constant(.placeholderData), isViewActive: .constant(true), editingUser: .placeholderData)
     }
 }
 
