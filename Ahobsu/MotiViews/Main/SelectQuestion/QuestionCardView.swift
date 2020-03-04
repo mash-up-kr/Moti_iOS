@@ -24,7 +24,8 @@ struct QuestionCardView: View, Identifiable {
                     if missionData.isContent == true {
                         Image("icTextformNormal")
                     } else {
-                        
+                        Image("icTextformNormal")
+                        Image("icCameraNormal")
                     }
                     
                 }
@@ -60,7 +61,7 @@ struct QuestionCardView: View, Identifiable {
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
                         NavigationLink(destination: AnswerInsertEssayView(missonData: missionData)) {
-                                                                            MainButton(title: "답변하기")
+                            MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
                 } else if missionData.isImage == true {
