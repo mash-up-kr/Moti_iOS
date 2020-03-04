@@ -86,7 +86,6 @@ struct SelectQuestionView: View {
         self.missions = emptyMissions
         AhobsuProvider.getTodayMission(completion: { wrapper in
             if let mission = wrapper?.data {
-                // print(mission.missions)
                 withAnimation(.easeOut) {
                     self.missions = mission.missions
                     self.refreshAvailable = mission.refresh

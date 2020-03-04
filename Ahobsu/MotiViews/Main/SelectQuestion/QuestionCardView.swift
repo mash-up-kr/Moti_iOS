@@ -24,7 +24,6 @@ struct QuestionCardView: View, Identifiable {
                     if missionData.isContent == true {
                         Image("icTextformNormal")
                     }
-                    
                 }
                 .padding([.trailing], 16)
                 

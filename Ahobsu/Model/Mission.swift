@@ -9,6 +9,7 @@
 import Foundation
 
 struct Mission: Decodable, Identifiable {
+    let uuid = UUID()
     let id: Int
     let title: String
     let isContent: Bool
@@ -44,10 +45,10 @@ extension Mission {
 
 extension Mission: Hashable {
     static func == (lhs: Mission, rhs: Mission) -> Bool {
-        lhs.id == rhs.id
+        lhs.uuid == rhs.uuid
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(uuid)
     }
 }
