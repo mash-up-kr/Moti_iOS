@@ -23,9 +23,6 @@ struct QuestionCardView: View, Identifiable {
                     }
                     if missionData.isContent == true {
                         Image("icTextformNormal")
-                    } else {
-                        Image("icTextformNormal")
-                        Image("icCameraNormal")
                     }
                     
                 }
