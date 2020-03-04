@@ -23,7 +23,7 @@ struct AlbumWeekView: View {
                 .frame(height: 72, alignment: .center)
             ZStack {
                 NavigationLink(destination: AnswerCompleteView(answers)) {
-                    ForEach(self.answers.compactMap { $0?.cardUrl },
+                    ForEach(self.answers.compactMap { $0?.file.cardUrl },
                             id: \.self,
                             content: { (cardUrl) in
                                 ImageView(withURL: cardUrl)

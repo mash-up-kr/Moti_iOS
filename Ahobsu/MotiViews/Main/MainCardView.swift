@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MainCardView: View {
     @State var isWithLine: Bool = false
+    @State var isOverlay: Bool = false
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 11)

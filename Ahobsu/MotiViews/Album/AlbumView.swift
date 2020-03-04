@@ -105,8 +105,8 @@ struct AlbumList: View {
                     GridStack(rows: Int(Double(self.answerMonth!.monthAnswer.count) / 2.0 + 0.5), columns: 2) { (row, column) in
                         if row * 2 + column + 1 <= self.answerMonth!.monthAnswer.count {
                             PartsCombinedAnswer(answers: self.answerMonth!.monthAnswer[row * 2 + column],
-                                                week: row * 2 + column + 1,
-                                                month: self.month)
+                                            week: row * 2 + column + 1,
+                                            month: self.month)
                         } else {
                             Text("")
                                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -191,6 +191,7 @@ struct PartsCombinedAnswer: View {
             {
                 ZStack {
                     if answers != nil {
+                        MainCardView(isWithLine: true)
                         ForEach(self.answers!.compactMap { $0?.file.cardUrl },
                                 id: \.self,
                                 content: { (cardUrl) in

@@ -19,6 +19,7 @@ struct Answer: Decodable, Identifiable {
     let mission: Mission
     let fileId: Int
     let file: FileModel
+    let no: Int
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +32,7 @@ struct Answer: Decodable, Identifiable {
         case mission
         case fileId
         case file
+        case no
     }
 }
 
@@ -92,7 +94,8 @@ extension Answer {
                        fileId: 0,
                        file: FileModel(id: 0,
                                        cardUrl: "",
-                                       part: 1)
+                                       part: 1),
+                       no: 1
                         )
             )
         }

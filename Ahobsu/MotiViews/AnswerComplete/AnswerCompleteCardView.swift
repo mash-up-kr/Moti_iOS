@@ -58,17 +58,20 @@ struct AnswerCompleteCardView: View {
                     .padding([.top], 56.0)
                 }
             }
-        }.onAppear() {
-            
         }
     }
     
-    func getMission(from id: Int) {
-        
-    }
-    
     func update() {
-        
+        switch answer?.getAnswerType() {
+        case .essay:
+            break
+        case .camera:
+            break
+        case .essayCamera:
+            break
+        default:
+            break
+        }
     }
 }
 

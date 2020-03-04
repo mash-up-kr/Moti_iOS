@@ -144,6 +144,7 @@ extension SplashView {
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             if KeyChain.load(key: "ahobsu_onbording") != nil {
                 /* AccessKey 가 활성화 되어있으면 바로 로그인 */
+                print(TokenManager.sharedInstance.getAccessToken())
                 if (TokenManager.sharedInstance.getAccessToken() != "") {
                     if TokenManager.sharedInstance.getGender() == "-" {
                         self.window.rootViewController = UIHostingController(rootView: SignInView(window: self.window))
