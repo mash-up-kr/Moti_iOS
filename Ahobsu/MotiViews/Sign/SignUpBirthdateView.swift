@@ -15,14 +15,8 @@ struct SignUpBirthdateView: View {
     @ObservedObject var signUp: SignUp
     
     var body: some View {
-        let contentView = HStack {
-            HStack {
-                DatePicker(selection: $signUp.birthdate,
-                           displayedComponents: .date) {
-                            EmptyView()
-                }.labelsHidden()
-            }
-        }
+        let contentView = DatePickerView(selection: $signUp.birthdate)
+            .background(Color(red: 0.051, green: 0.043, blue: 0.043))
         return NavigationMaskingView(titleItem: Text("생년월일 선택"), trailingItem: EmptyView()) {
             SignUpFormView(title: "생년월일을 입력해주세요.",
                                   content: contentView,
