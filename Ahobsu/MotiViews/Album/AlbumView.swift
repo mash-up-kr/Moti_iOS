@@ -100,7 +100,7 @@ struct AlbumList: View {
     
     var body: some View {
         VStack {
-            if answerMonth != nil {
+            if answerMonth != nil && answerMonth?.monthAnswer.isEmpty == false {
                 ScrollView {
                     GridStack(rows: Int(Double(self.answerMonth!.monthAnswer.count) / 2.0 + 0.5), columns: 2) { (row, column) in
                         if row * 2 + column + 1 <= self.answerMonth!.monthAnswer.count {
