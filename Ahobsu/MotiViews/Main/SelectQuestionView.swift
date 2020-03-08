@@ -11,6 +11,7 @@ import SwiftUI
 struct SelectQuestionView: View {
     @Binding var window: UIWindow
     @Binding var currentPage: Int
+    @Binding var isStatusBarHidden: Bool
     
     @State var index: Int = 0
     var emptyMissions: [Mission] {
@@ -37,7 +38,8 @@ struct SelectQuestionView: View {
                     Spacer()
                     SwiftUIPagerView(index: $index, pages: (0..<3).map { index in
                         QuestionCardView(id: index,
-                                         missionData: missions[index]) })
+                                         missionData: missions[index],
+                                         isStatusBarHidden: $isStatusBarHidden) })
                         .frame(height: 420, alignment: .center)
                     Spacer().frame(height: 10)
                     PageControl(numberOfPages: 3, currentPage: $index)
@@ -102,6 +104,6 @@ struct SelectQuestionView: View {
 
 struct SelectQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectQuestionView(window: .constant(UIWindow()), currentPage: .constant(0))
+        SelectQuestionView(window: .constant(UIWindow()), currentPage: .constant(0), isStatusBarHidden: .constant(false))
     }
 }
