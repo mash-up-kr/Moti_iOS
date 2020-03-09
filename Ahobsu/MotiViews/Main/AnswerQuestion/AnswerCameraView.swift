@@ -105,7 +105,7 @@ struct AnswerCameraView: View {
                                             
                                             .environment(\.isEnabled, !isNetworking)
                                             .actionSheet(isPresented: $showImageSourcePicker) {
-                                                ActionSheet(title: Text("사진으로 답변"),
+                                                ActionSheet(title: Text("사진 선택하기"),
                                                             message: nil,
                                                             buttons: [.default(Text("카메라로 촬영하기"),
                                                                                action: {
