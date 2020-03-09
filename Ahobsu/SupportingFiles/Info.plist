@@ -74,6 +74,6 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
 	<key>NSCameraUsageDescription</key>
-	<string>사진으로 답변에 사용</string>
+	<string></string>
 </dict>
 </plist>
