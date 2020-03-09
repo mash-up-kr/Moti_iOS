@@ -14,7 +14,7 @@ struct AnswerCameraView: View {
     @State var showImagePicker: Bool = false
     @State var showImageSourcePicker: Bool = false
     @State var image: UIImage?
-    @State var sourceType: UIImagePickerController.SourceType = .camera
+    @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     @State var showEssayCameraView: Bool = false
     
