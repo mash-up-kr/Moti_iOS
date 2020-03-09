@@ -200,7 +200,7 @@ extension AhobsuAPI: TargetType {
                 if let content = contentOrNil {
                     /* 주관식 + 사진 (혼합형) */
                     formData.append(MultipartFormData(provider: .data(imageData),
-                                                      name: "answer",
+                                                      name: "file",
                                                       fileName: "answer.jpeg",
                                                       mimeType: "image/jpeg"))
                     
