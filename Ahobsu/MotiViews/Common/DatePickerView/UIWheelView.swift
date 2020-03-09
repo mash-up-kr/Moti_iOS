@@ -132,7 +132,7 @@ extension UIWheelView: UITableViewDataSource {
         cell.textLabel?.font = cellTextFont
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = cellTextColor
-        cell.textLabel?.text = "\(items[indexPath.row])"
+        cell.textLabel?.text = String(format: "%02d", items[indexPath.row])
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
