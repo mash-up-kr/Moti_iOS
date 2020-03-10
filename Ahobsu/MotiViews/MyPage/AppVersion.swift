@@ -24,8 +24,7 @@ extension AppVersion {
 extension AppVersion {
     
     static var versionPubliser: AnyPublisher<AppVersion, Never> {
-        // TODO: Change 아홉수 Bundle ID `let bundleID = "com.mashup.ahobsu.Ahobsu"`
-        let bundleID = "com.yjh.Instavent"
+        let bundleID = "com.mashup.ahobsu.Ahobsu"
         let bundleShortVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0"
         return URLSession.shared.dataTaskPublisher(for: URL(string: "http://itunes.apple.com/lookup?bundleId=\(bundleID)")!)
             .map { $0.data }
