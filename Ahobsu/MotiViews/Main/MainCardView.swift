@@ -26,8 +26,8 @@ struct MainCardView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 11)
                                     .stroke(Color(.lightgold), lineWidth: 1)
                                     .foregroundColor(.clear))
-                                .padding([.vertical], 13)
-                                .padding([.horizontal], 10)
+                                .padding([.vertical], 17)
+                                .padding([.horizontal], 12)
                                 
                             if isOverlay {
                                 .overlay(
@@ -35,8 +35,8 @@ struct MainCardView: View {
                                         .overlay(RoundedRectangle(cornerRadius: 11)
                                             .stroke(Color(.lightgold), lineWidth: 1))
                                         .foregroundColor(.clear)
-                                        .padding([.vertical], 10)
-                                        .padding([.horizontal], 13))
+                                        .padding([.vertical], 12)
+                                        .padding([.horizontal], 17))
                             }
                         }
                     }
