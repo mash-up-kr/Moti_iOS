@@ -7,6 +7,21 @@
 //
 import SwiftUI
 
+extension String {
+    static func toAnswerCompleteDateString(from date: Date) -> String {
+        let calendar = Calendar.current
+        
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        
+        let monthEnum = MonthEnum(month: month)
+        let returnStr = "\(year). \(monthEnum.longMonthString()). \(day)"
+        
+        return returnStr
+    }
+}
+
 struct NavigationConfigurator: UIViewControllerRepresentable {
     
     var configure: (UINavigationController) -> Void = { _ in }
@@ -61,18 +76,22 @@ struct AnswerCompleteView: View {
     }
     
     var body: some View {
-        NavigationMaskingView(titleItem: Text(models[currentPage].date).font(.custom("IropkeBatangOTFM", size: 24.0)),
-                              trailingItem: EmptyView()) {
-                                ZStack {
-                                    BackgroundView()
-                                        .edgesIgnoringSafeArea([.vertical])
-                                    VStack {
-                                        AnswerCompletePageControl(numberOfPages: viewControllers.count,
-                                                                  currentPage: $currentPage)
-                                            .padding(.bottom, 16.0)
-                                        PageViewController(controllers: viewControllers, currentPage: $currentPage)
-                                    }
-                                }
+        NavigationMaskingView(titleItem: {
+            Text(String.toAnswerCompleteDateString(from: Date()))
+                .foregroundColor(Color(.rosegold))
+                .font(.custom("IropkeBatangOTFM", size: 20.0))
+                .lineSpacing(16.0)
+        }(), trailingItem: EmptyView()) {
+            ZStack {
+                BackgroundView()
+                    .edgesIgnoringSafeArea([.vertical])
+                VStack {
+                    AnswerCompletePageControl(numberOfPages: viewControllers.count,
+                                              currentPage: $currentPage)
+                        .padding(.bottom, 16.0)
+                    PageViewController(controllers: viewControllers, currentPage: $currentPage)
+                }
+            }
         }
     }
 }
