@@ -125,8 +125,7 @@ struct MainView: View {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = .withFullDate
         formatter.timeZone = TimeZone.current
-        let dateString = formatter.string(from: Date())
-        AhobsuProvider.getAnswer(missionDate: dateString, completion: { wrapper in
+        AhobsuProvider.getAnswer(missionDate: "", completion: { wrapper in
             if let answer = wrapper?.data {
                 withAnimation(.easeOut) {
                     self.todayCard = answer
