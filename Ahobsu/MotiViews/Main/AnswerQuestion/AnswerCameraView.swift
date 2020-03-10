@@ -33,63 +33,63 @@ struct AnswerCameraView: View {
                             BackgroundView()
                                 .edgesIgnoringSafeArea([.vertical])
                             VStack {
-                                HStack {
-                                    Text(missonData.title)
-                                        .font(.system(size: 24))
-                                        .lineSpacing(6)
-                                        .foregroundColor(Color(.rosegold))
-                                        .multilineTextAlignment(.leading)
+                                if image == nil {
+                                    HStack {
+                                        Text(missonData.title)
+                                            .font(.system(size: 24))
+                                            .lineSpacing(6)
+                                            .foregroundColor(Color(.rosegold))
+                                            .multilineTextAlignment(.leading)
+                                        Spacer()
+                                    }
                                     Spacer()
-                                }
-                                Spacer()
-                                if image != nil {
+                                    Image("imgCam")
+                                } else {
                                     if missonData.isContent {
-            //                            ZStack {
-                                            MainCardView(isWithLine: true)
-                                                .overlay(
-                                                    VStack {
-                                                        Image(uiImage: image ?? UIImage())
-                                                            .resizable()
-                                                            .aspectRatio(1, contentMode: .fill)
-                                                            .cornerRadius(6)
-                                                        
-                                                        ZStack {
-                                                            if text == "" && keyboard.state.height == 0 {
-                                                                VStack {
-                                                                    Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
-                                                                        .foregroundColor(Color(.placeholderblack))
-                                                                        .multilineTextAlignment(.center)
-                                                                        .padding(EdgeInsets(top: (keyboard.state.height == 0 ? 30 : -270 + keyboard.state.height),
-                                                                                            leading: 0,
-                                                                                            bottom: 32,
-                                                                                            trailing: 0))
-            //                                                        Spacer()
-                                                                }
+                                        //                            ZStack {
+                                        MainCardView(isWithLine: true)
+                                            .overlay(
+                                                VStack {
+                                                    Image(uiImage: image ?? UIImage())
+                                                        .resizable()
+                                                        .aspectRatio(1, contentMode: .fill)
+                                                        .cornerRadius(6)
+                                                    
+                                                    ZStack {
+                                                        if text == "" && keyboard.state.height == 0 {
+                                                            VStack {
+                                                                Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
+                                                                    .foregroundColor(Color(.placeholderblack))
+                                                                    .multilineTextAlignment(.center)
+                                                                    .padding(EdgeInsets(top: (keyboard.state.height == 0 ? 30 : -270 + keyboard.state.height),
+                                                                                        leading: 0,
+                                                                                        bottom: 32,
+                                                                                        trailing: 0))
+                                                                //                                                        Spacer()
                                                             }
-                                                            TextView(text: $text)
-                                                                .padding(EdgeInsets(top: (keyboard.state.height == 0 ? 30 : -270 + keyboard.state.height),
-                                                                                    leading: 0,
-                                                                                    bottom: 32,
-                                                                                    trailing: 0))
                                                         }
-                                                        Spacer()
+                                                        TextView(text: $text)
+                                                            .padding(EdgeInsets(top: (keyboard.state.height == 0 ? 30 : -270 + keyboard.state.height),
+                                                                                leading: 0,
+                                                                                bottom: 32,
+                                                                                trailing: 0))
                                                     }
-                                                    .padding(.horizontal, 34)
-                                                    .padding(.vertical, 22)
-                                            )
-                                                .padding(32)
+                                                    Spacer()
+                                                }
+                                                .padding(.horizontal, 34)
+                                                .padding(.vertical, 22)
+                                        )
+                                            .padding(32)
                                     } else {
                                         MainCardView(isWithLine: true)
-                                        .overlay(Image(uiImage: image!)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .padding(.horizontal, 34)
-                                            .padding(.vertical, 22)
+                                            .overlay(Image(uiImage: image!)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .padding(.horizontal, 34)
+                                                .padding(.vertical, 22)
                                         )
-                                        .padding(32)
+                                            .padding(32)
                                     }
-                                } else {
-                                    Image("imgCam")
                                 }
                                 Spacer()
                                 HStack {
