@@ -68,7 +68,6 @@ struct LogoView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView().edgesIgnoringSafeArea(.vertical)
             VStack {
                 Image(logoName)
                     .scaleEffect(logoScale)
