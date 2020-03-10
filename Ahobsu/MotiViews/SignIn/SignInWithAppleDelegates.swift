@@ -39,14 +39,17 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
         AhobsuProvider.signIn(snsId: auth, auth: id, completion: { wrapper in
             if let signInToken = wrapper?.data {
-                TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
-                                                                completion: nil,
-                                                                error: nil)
-                
-                TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
-                                                                 completion: nil,
-                                                                 error: nil)
-                
+                if signInToken.signUp {
+                    TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
+                                                                    completion: nil,
+                                                                    error: nil)
+                    TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
+                                                                     completion: nil,
+                                                                     error: nil)
+                } else {
+                    TokenManager.sharedInstance.temporaryAccessToken = signInToken.accessToken
+                    TokenManager.sharedInstance.temporaryRefreshToken = signInToken.refreshToken
+                }
                 self.signInSucceeded(true, signInToken.signUp)
             } else {
                 self.signInSucceeded(false, nil)
@@ -64,14 +67,17 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
         let auth = String(decoding: credential.authorizationCode ?? Data(), as: UTF8.self)
         AhobsuProvider.signIn(snsId: auth, auth: id, completion: { wrapper in
             if let signInToken = wrapper?.data {
-                TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
-                                                                completion: nil,
-                                                                error: nil)
-                
-                TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
-                                                                 completion: nil,
-                                                                 error: nil)
-                
+                if signInToken.signUp {
+                    TokenManager.sharedInstance.registerAccessToken(token: signInToken.accessToken,
+                                                                    completion: nil,
+                                                                    error: nil)
+                    TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
+                                                                     completion: nil,
+                                                                     error: nil)
+                } else {
+                    TokenManager.sharedInstance.temporaryAccessToken = signInToken.accessToken
+                    TokenManager.sharedInstance.temporaryRefreshToken = signInToken.refreshToken
+                }
                 self.signInSucceeded(true, signInToken.signUp)
             } else {
                 self.signInSucceeded(false, nil)

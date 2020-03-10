@@ -289,6 +289,8 @@ extension AhobsuAPI: TargetType {
         switch self {
         case let .signIn(_, auth):
             authToken = auth
+        case .updateProfile:
+            authToken = TokenManager.sharedInstance.temporaryAccessToken ?? ""
         default:
             break
         }

@@ -55,7 +55,7 @@ class SignUp: ObservableObject {
     
     func updateProfile() {
         guard let gender = gender else { return }
-        TokenManager.sharedInstance.registerGender(gender: gender.rawValue, completion: nil, error: nil)
+//        TokenManager.sharedInstance.registerGender(gender: gender.rawValue, completion: nil, error: nil)
         AhobsuProvider.updateProfile(user: User(id: -1,
                                                 birthday: dateFormatter.string(from: self.birthdate),
                                                 email: email,
@@ -68,6 +68,16 @@ class SignUp: ObservableObject {
                                                 snsType: ""),
                                      completion: { (response) in
                                         if let _ = response?.data {
+                                            TokenManager.sharedInstance.registerAccessToken(token: TokenManager.sharedInstance.temporaryAccessToken ?? "",
+                                                                                            completion: { _ in
+                                                                                                TokenManager.sharedInstance.temporaryAccessToken = nil
+                                            },
+                                                                                            error: nil)
+                                            TokenManager.sharedInstance.registerRefreshToken(token: TokenManager.sharedInstance.temporaryRefreshToken ?? "",
+                                                                                             completion: { _ in
+                                                                                                TokenManager.sharedInstance.temporaryRefreshToken = nil
+                                            },
+                                                                                             error: nil)
                                             self.signUpSuccess = true
                                         }
         }, error: { (error) in
