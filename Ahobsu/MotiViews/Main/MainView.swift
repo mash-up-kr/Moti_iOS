@@ -25,6 +25,7 @@ struct MainView: View {
     @State var isAnswered: Bool = false
     @State var todayCard: Answer?
     @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil]
+    @State var isStatusBarHidden: Bool = false
     
     var body: some View {
         NavigationView {
@@ -59,7 +60,8 @@ struct MainView: View {
                             }.buttonStyle(PlainButtonStyle())
                         } else {
                             NavigationLink(destination: SelectQuestionView(window: $window,
-                                                                           currentPage: .constant(0)))
+                                                                           currentPage: .constant(0),
+                                                                           isStatusBarHidden: $isStatusBarHidden))
                             {
                                 MainCardView(isWithLine: !isAnswered)
                                     .aspectRatio(0.62, contentMode: .fit)
@@ -116,7 +118,7 @@ struct MainView: View {
                     self.getWeeksData()
                 })
             }
-        }
+        }.statusBar(hidden: isStatusBarHidden)
     }
     
     func getTodayData() {

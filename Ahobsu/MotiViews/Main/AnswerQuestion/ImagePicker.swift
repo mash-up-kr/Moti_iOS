@@ -13,16 +13,24 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode)
     var presentationMode
     
+    @Binding var showCamera: Bool
     @Binding var image: UIImage?
+    @Binding var isStatusBarHidden: Bool
+    
+    var sourceType: UIImagePickerController.SourceType
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         
         @Binding var presentationMode: PresentationMode
+        @Binding var showCamera: Bool
         @Binding var image: UIImage?
+        @Binding var isStatusBarHidden: Bool
         
-        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>) {
+        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>, showCamera: Binding<Bool>, isStatusBarHidden: Binding<Bool>) {
             _presentationMode = presentationMode
             _image = image
+            _showCamera = showCamera
+            _isStatusBarHidden = isStatusBarHidden
         }
         
         func imagePickerController(_ picker: UIImagePickerController,
@@ -30,22 +38,32 @@ struct ImagePicker: UIViewControllerRepresentable {
             if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 image = uiImage
             }
-            presentationMode.dismiss()
-            
+            if picker.sourceType == .camera {
+                showCamera = false
+                isStatusBarHidden = false
+            } else {
+                presentationMode.dismiss()
+            }
         }
         
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            presentationMode.dismiss()
+            if picker.sourceType == .camera {
+                showCamera = false
+                isStatusBarHidden = false
+            } else {
+                presentationMode.dismiss()
+            }
         }
         
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode, image: $image)
+        return Coordinator(presentationMode: presentationMode, image: $image, showCamera: $showCamera, isStatusBarHidden: $isStatusBarHidden)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
+        picker.sourceType = sourceType
         picker.delegate = context.coordinator
         return picker
     }

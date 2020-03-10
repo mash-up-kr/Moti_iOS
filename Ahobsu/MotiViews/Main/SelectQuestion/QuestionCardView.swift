@@ -11,6 +11,7 @@ import SwiftUI
 struct QuestionCardView: View, Identifiable {
     var id: Int
     var missionData: Mission
+    @Binding var isStatusBarHidden: Bool
     
     var body: some View {
         ZStack {
@@ -52,7 +53,8 @@ struct QuestionCardView: View, Identifiable {
                 Spacer()
                 if missionData.isContent == true {
                     if missionData.isImage == true {
-                        NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
+                        NavigationLink(destination: AnswerCameraView(isStatusBarHidden: $isStatusBarHidden,
+                                                                     missonData: missionData)) {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
@@ -61,7 +63,8 @@ struct QuestionCardView: View, Identifiable {
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
                 } else if missionData.isImage == true {
-                    NavigationLink(destination: AnswerCameraView(missonData: missionData)) {
+                    NavigationLink(destination: AnswerCameraView(isStatusBarHidden: $isStatusBarHidden,
+                                                                 missonData: missionData)) {
                         MainButton(title: "답변하기")
                     }.environment(\.isEnabled, !missionData.title.isEmpty)
                 }
