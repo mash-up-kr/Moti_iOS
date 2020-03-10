@@ -31,7 +31,7 @@ struct AlbumWeekView: View {
                                     .padding(20)
                     })
                 }
-            }.frame(height: 416.0)
+            }.frame(maxHeight: .infinity)
         }
         .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
     }

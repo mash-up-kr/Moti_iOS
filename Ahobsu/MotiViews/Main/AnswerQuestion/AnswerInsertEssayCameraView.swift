@@ -17,6 +17,8 @@ struct AnswerInsertEssayCameraView: View {
     @State var text = ""
     
     var missonData: Mission
+    @State var isNetworking: Bool = false
+    @State var answerRegisteredActive: Bool = false
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
@@ -66,8 +68,12 @@ struct AnswerInsertEssayCameraView: View {
                                                             trailing: 28))
 //                                }
                                 Spacer()
-                                MainButton(action: { self.requestAnswer() },
-                                           title: "제출하기")
+                                NavigationLink(destination: AnswerRegisteredView(),
+                                               isActive: $answerRegisteredActive)
+                                {
+                                    MainButton(action: { self.requestAnswer() },
+                                               title: "제출하기")
+                                }
                                 Spacer().frame(height: 32)
                             }
                         }
@@ -86,17 +92,22 @@ struct AnswerInsertEssayCameraView: View {
     }
     
     private func requestAnswer() {
+        guard let image = image else { return }
+        self.isNetworking = true
+        
         AhobsuProvider.registerAnswer(missionId: missonData.id,
                                       contentOrNil: text,
-                                      imageOrNil: nil,
+                                      imageOrNil: image,
                                       completion: { wrapper in
                                         if let _ = wrapper?.data {
-                                            // Navigate AnswerRegisteredView
+                                          self.answerRegisteredActive = true
                                         } else {
                                             // print(wrapper?.message ?? "None")
                                         }
+                                        
+                                        self.isNetworking = false
         }, error: { _ in
-            
+            self.isNetworking = false
         }, expireTokenAction: {
             
         }, filteredStatusCode: nil)
