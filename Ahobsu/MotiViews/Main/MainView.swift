@@ -114,33 +114,29 @@ struct MainView: View {
                 }
                 .navigationBarTitle(Text(""), displayMode: .inline)
                 .onAppear(perform: {
-                    self.getTodayData()
-                    self.getWeeksData()
+                    self.getMultipleParts()
                 })
             }
         }.statusBar(hidden: isStatusBarHidden)
     }
     
-    func getTodayData() {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = .withFullDate
-        formatter.timeZone = TimeZone.current
-        AhobsuProvider.getAnswer(missionDate: "", completion: { wrapper in
-            if let answer = wrapper?.data {
-                withAnimation(.easeOut) {
-                    self.todayCard = answer
-                }
-            }
-        }, error: { err in
-            // print(err)
-        }, expireTokenAction: {
-            
-        }, filteredStatusCode: nil)
-    }
-    
-    func getWeeksData() {
+    func getMultipleParts() {
         AhobsuProvider.getAnswersWeek(completion: { wrapper in
             if var answerWeek = wrapper?.data {
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = .withFullDate
+                formatter.timeZone = TimeZone.current
+                let dateString = formatter.string(from: Date())
+                
+                withAnimation {
+                    if let lastCard = answerWeek.answers.last {
+                        if lastCard?.date == dateString {
+                            self.todayCard = lastCard
+                        }
+                    }
+                }
+                
+                // nil 로 상단 뷰에서 확인
                 while (answerWeek.answers.count < 6) {
                     answerWeek.answers.append(nil)
                 }
