@@ -88,7 +88,6 @@ struct AnswerCompleteView: View {
                 VStack {
                     AnswerCompletePageControl(numberOfPages: viewControllers.count,
                                               currentPage: $currentPage)
-                        .padding(.bottom, 16.0)
                     PageViewController(controllers: viewControllers, currentPage: $currentPage)
                 }
             }

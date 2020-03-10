@@ -53,7 +53,7 @@ struct AnswerCompleteCardView: View {
                         contentView
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 480.0, maxHeight: 480.0)
                     }
-                    .padding([.leading, .trailing], 32.0)
+                    .padding([.leading, .trailing, .bottom], 32.0)
                     .padding([.top], 56.0)
                 }
             }
