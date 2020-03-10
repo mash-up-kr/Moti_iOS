@@ -14,7 +14,6 @@ struct AnswerCameraView: View {
     @State var showImagePicker: Bool = false
     @State var showImageSourcePicker: Bool = false
     @State var image: UIImage?
-    @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     @State var showEssayCameraView: Bool = false
     
@@ -114,7 +113,6 @@ struct AnswerCameraView: View {
                                                             }),
                                                                       .default(Text("앨범에서 가져오기"),
                                                                                action: {
-                                                                                self.sourceType = .photoLibrary
                                                                                 self.showImagePicker = true
                                                                       }),
                                                                       .cancel()])
@@ -130,7 +128,7 @@ struct AnswerCameraView: View {
                                                 ImagePicker(showCamera: self.$showCamera,
                                                             image: self.$image,
                                                             isStatusBarHidden: .constant(false),
-                                                            sourceType: self.sourceType) }
+                                                            sourceType: .photoLibrary) }
                                         )
                                     } else {
                                         NavigationLink(destination: AnswerRegisteredView(),
@@ -157,7 +155,7 @@ struct AnswerCameraView: View {
                 ImagePicker(showCamera: $showCamera,
                             image: self.$image,
                             isStatusBarHidden: self.$isStatusBarHidden,
-                            sourceType: self.sourceType)
+                            sourceType: .camera)
                     .offset(x: 0, y: showCamera ? 0 : UIScreen.main.bounds.height).animation(.easeInOut)
                     .edgesIgnoringSafeArea(.all)
             }
