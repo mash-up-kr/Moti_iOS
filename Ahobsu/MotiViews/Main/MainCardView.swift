@@ -10,14 +10,13 @@ import SwiftUI
 
 struct MainCardView: View {
     @State var isWithLine: Bool = false
-    @State var isOverlay: Bool = true
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 11)
                 .foregroundColor(.black)
                 .overlay(RoundedRectangle(cornerRadius: 11)
                     .stroke(Color(.lightgold), lineWidth: 1))
-                .shadow(color: Color(.shadowpink), radius: 10, x: 0, y: 0)
+                .shadow(color: Color(.shadowpink), radius: 10 / 2, x: 0, y: 0)
                 .overlay(
                     ZStack {
                         if isWithLine {
@@ -26,18 +25,16 @@ struct MainCardView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 11)
                                     .stroke(Color(.lightgold), lineWidth: 1)
                                     .foregroundColor(.clear))
-                                .padding([.vertical], 13)
-                                .padding([.horizontal], 10)
+                                .padding([.vertical], 17)
+                                .padding([.horizontal], 12)
                                 
-                            if isOverlay {
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 11)
                                         .overlay(RoundedRectangle(cornerRadius: 11)
                                             .stroke(Color(.lightgold), lineWidth: 1))
                                         .foregroundColor(.clear)
-                                        .padding([.vertical], 10)
-                                        .padding([.horizontal], 13))
-                            }
+                                        .padding([.vertical], 12)
+                                        .padding([.horizontal], 17))
                         }
                     }
             )
