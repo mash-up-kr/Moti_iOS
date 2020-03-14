@@ -23,13 +23,21 @@ struct AlbumWeekView: View {
                 .frame(height: 72, alignment: .center)
             ZStack {
                 NavigationLink(destination: AnswerCompleteView(answers)) {
-                    ForEach(self.answers.compactMap { $0?.file.cardUrl },
-                            id: \.self,
-                            content: { (cardUrl) in
-                                ImageView(withURL: cardUrl)
-                                    .aspectRatio(0.62, contentMode: .fit)
-                                    .padding(20)
-                    })
+                    MainCardView(isWithLine: true)
+                        .aspectRatio(0.62, contentMode: .fit)
+                        .padding([.horizontal], 59)
+                        .overlay(
+                            ZStack {
+                                ForEach(answers.compactMap { $0?.file.cardUrl },
+                                        id: \.self,
+                                        content: { (cardUrl) in
+                                            
+                                            ImageView(withURL: cardUrl)
+                                                .aspectRatio(0.62, contentMode: .fit)
+                                                .padding(20)
+                                })
+                            }
+                    )
                 }
             }.frame(maxHeight: .infinity)
         }
