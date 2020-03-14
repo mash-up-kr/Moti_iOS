@@ -19,7 +19,7 @@ private struct MainButtonFeel: ViewModifier {
             .frame(minWidth: 204, minHeight: 40, alignment: .center)
             .background(isEnabled ? Color.white : Color(.disableblack))
             .cornerRadius(20)
-            .shadow(color: isEnabled ? Color(.shadowpink) : .clear, radius: 10, x: 0, y: 0 )
+            .shadow(color: isEnabled ? Color(.shadowpink) : .clear, radius: 10 / 2, x: 0, y: 0 )
             .animation(.easeOut)
     }
 }

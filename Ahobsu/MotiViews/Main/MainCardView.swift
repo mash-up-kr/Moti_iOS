@@ -17,7 +17,7 @@ struct MainCardView: View {
                 .foregroundColor(.black)
                 .overlay(RoundedRectangle(cornerRadius: 11)
                     .stroke(Color(.lightgold), lineWidth: 1))
-                .shadow(color: Color(.shadowpink), radius: 10, x: 0, y: 0)
+                .shadow(color: Color(.shadowpink), radius: 10 / 2, x: 0, y: 0)
                 .overlay(
                     ZStack {
                         if isWithLine {
