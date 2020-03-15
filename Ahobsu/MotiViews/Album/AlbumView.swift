@@ -75,7 +75,6 @@ struct AlbumView: View {
                     AlbumList(answerMonth: answerMonth,
                               month: currentMonth)
                         .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding([.leading, .trailing], 15.0)
                         .padding(.top, 30.0)
                     PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
@@ -156,14 +155,8 @@ struct PartsCombinedAnswer: View {
         self.answers = answers
         self.week = week
         
-        if week == 1 {
-            title = "1st week"
-        } else if week == 2 {
-            title = "2nd week"
-        } else if week == 3 {
-            title = "3rd week"
-        } else {
-            title = "\(week)th week"
+        if let no = answers?.first??.no {
+            title = "No.\(no)"
         }
         
         shortMonth = MonthEnum(month: month).rawValue
@@ -181,13 +174,15 @@ struct PartsCombinedAnswer: View {
             HStack(alignment: .center) {
                 Rectangle().fill(Color(.rosegold))
                     .frame(height: 1.0)
-                Text(title).font(.custom("IropkeBatangOTFM", size: 16.0))
-                .lineLimit(1)
-                .fixedSize(horizontal: true, vertical: false)
+                Text(title)
+                    .font(.custom("IropkeBatangOTFM", size: 16.0))
+                    .foregroundColor(Color(.rosegold))
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
                 Rectangle().fill(Color(.rosegold))
                     .frame(height: 1.0)
             }
-            NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(shortMonth). \(title)", weekNumber: week))
+            NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(title)", weekNumber: week))
             {
                 ZStack {
                     if answers != nil {
@@ -221,10 +216,14 @@ struct GridStack<Content: View>: View {
     var body: some View {
         VStack {
             ForEach(0 ..< rows) { row in
-                HStack(spacing: 25.0) {
-                    ForEach(0 ..< self.columns) { column in
-                        self.content(row, column)
+                HStack {
+                    Spacer(minLength: 15)
+                    HStack(spacing: 25.0) {
+                        ForEach(0 ..< self.columns) { column in
+                            self.content(row, column)
+                        }
                     }
+                    Spacer(minLength: 15)
                 }
             }
         }
