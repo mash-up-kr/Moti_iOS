@@ -6,4 +6,4 @@
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
 
-let AHOBSUAPIURL = "http://ec2-54-175-1-15.compute-1.amazonaws.com/api/v1"
+let AHOBSUAPIURL = "http://ec2-13-209-6-60.ap-northeast-2.compute.amazonaws.com/api/v1"
