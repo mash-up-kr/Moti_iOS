@@ -72,7 +72,7 @@ struct AnswerInsertEssayView: View {
                                 {
                                     MainButton(action: { self.requestAnswer() },
                                                title: "제출하기")
-                                }
+                                }.environment(\.isEnabled, !text.isEmpty)
                                 Spacer().frame(height: 32)
                             }
                         }
