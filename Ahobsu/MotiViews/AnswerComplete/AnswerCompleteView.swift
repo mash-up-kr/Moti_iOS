@@ -88,7 +88,10 @@ struct AnswerCompleteView: View {
                 VStack {
                     AnswerCompletePageControl(numberOfPages: viewControllers.count,
                                               currentPage: $currentPage)
-                    PageViewController(controllers: viewControllers, currentPage: $currentPage)
+                    SwiftUIPagerView(spacing: 0,
+                                     pageWidthCompensation: 0,
+                                     index: $currentPage,
+                                     pages: models.map { AnswerCompleteCardView(answer: $0) })
                 }
             }
         }

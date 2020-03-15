@@ -9,7 +9,9 @@
 import SwiftUI
 import Combine
 
-struct AnswerCompleteCardView: View {
+struct AnswerCompleteCardView: View, Identifiable {
+    
+    var id: Int { return answer?.id ?? 0 }
     
     @State var answer: Answer?
     
