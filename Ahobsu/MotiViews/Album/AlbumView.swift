@@ -75,7 +75,6 @@ struct AlbumView: View {
                     AlbumList(answerMonth: answerMonth,
                               month: currentMonth)
                         .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding([.leading, .trailing], 15.0)
                         .padding(.top, 30.0)
                     PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
@@ -217,10 +216,14 @@ struct GridStack<Content: View>: View {
     var body: some View {
         VStack {
             ForEach(0 ..< rows) { row in
-                HStack(spacing: 25.0) {
-                    ForEach(0 ..< self.columns) { column in
-                        self.content(row, column)
+                HStack {
+                    Spacer(minLength: 15)
+                    HStack(spacing: 25.0) {
+                        ForEach(0 ..< self.columns) { column in
+                            self.content(row, column)
+                        }
                     }
+                    Spacer(minLength: 15)
                 }
             }
         }
