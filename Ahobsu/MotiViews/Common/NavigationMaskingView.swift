@@ -44,8 +44,12 @@ struct NavigationMaskingView<TitleItem: View, TrailingItem: View, Content: View>
                     self.trailingItem
                 })
             }.frame(height: self.customHeight)
-            content
+            VStack {
+                content
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("")
         .navigationBarHidden(true)
     }

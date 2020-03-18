@@ -40,6 +40,8 @@ struct AlbumView: View {
     
     @State private var isReloadNeeded: Bool = false
     
+    @State private var isLoading: Bool = true
+    
     func loadAlbums() {
         AhobsuProvider.getAnswersMonth(year: self.currentYear,
                                        month: self.currentMonth,
@@ -51,6 +53,7 @@ struct AlbumView: View {
                                         }
                                         
                                         self.isReloadNeeded = false
+                                        self.isLoading = false
         }, error: { (error) in
             self.isReloadNeeded = true
         }, expireTokenAction: {
@@ -70,11 +73,12 @@ struct AlbumView: View {
 
     var body: some View {
         NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
-            VStack(spacing: 0.0) {
+            VStack {
                 if isReloadNeeded == false {
                     AlbumList(answerMonth: answerMonth,
-                              month: currentMonth)
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                              month: currentMonth,
+                              isLoading: $isLoading)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                         .padding(.top, 30.0)
                     PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
@@ -97,6 +101,8 @@ struct AlbumList: View {
     var answerMonth: AnswerMonth?
     var month: Int
     
+    @Binding var isLoading: Bool
+    
     var body: some View {
         VStack {
             if answerMonth != nil && answerMonth?.monthAnswer.isEmpty == false {
@@ -113,7 +119,11 @@ struct AlbumList: View {
                     }
                 }
             } else {
-                AnswerEmptyView()
+                if !isLoading {
+                    AnswerEmptyView()
+                } else {
+                    EmptyView()
+                }
             }
         }
     }
