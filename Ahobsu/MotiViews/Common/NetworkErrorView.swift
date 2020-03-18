@@ -14,7 +14,8 @@ struct NetworkErrorView: View {
     var imagePaddingBottom: CGFloat { 16.0 }
     
     var sublineFont: Font { Font.custom("IropkeBatangOTFM", size: 14.0) }
-    var sublineLineSpacing: CGFloat { 26.0 }
+    var sublineLineSpacing: CGFloat { 12.0 }
+    var sublinePaddingBottom: CGFloat { 32.0 }
     
     var buttonAction: () -> Void
     
@@ -28,8 +29,11 @@ struct NetworkErrorView: View {
                 .padding(.bottom, imagePaddingBottom)
             Text("인터넷이 불안정해요.\n확인 후 재접속 해주세요.")
                 .lineLimit(nil)
+                .multilineTextAlignment(.center)
                 .font(sublineFont)
+                .foregroundColor(Color.init(UIColor.rosegold))
                 .lineSpacing(sublineLineSpacing)
+                .padding(.bottom, sublinePaddingBottom)
             MainButton(action: buttonAction, title: "재접속")
         }
     }
