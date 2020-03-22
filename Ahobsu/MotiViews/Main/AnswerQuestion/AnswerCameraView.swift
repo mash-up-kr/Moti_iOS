@@ -136,7 +136,7 @@ struct AnswerCameraView: View {
                                         {
                                             MainButton(action: { self.registerCameraAnswer() },
                                                        title: "제출하기")
-                                        }.environment(\.isEnabled, !text.isEmpty)
+                                        }.environment(\.isEnabled, !(missonData.isContent && text.isEmpty))
                                     }
                                     
                                 }
