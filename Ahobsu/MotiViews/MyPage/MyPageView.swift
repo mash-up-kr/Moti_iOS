@@ -91,9 +91,8 @@ struct MyPageView: View {
                             .foregroundColor(Color(.rosegold))
                         Spacer()
                     }
-                }
+                }.padding(.horizontal, 15)
             }
-            .padding(.horizontal, 15)
             .font(.system(size: 16))
         }
         .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
