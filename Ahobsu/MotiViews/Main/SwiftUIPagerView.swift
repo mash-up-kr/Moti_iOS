@@ -10,8 +10,8 @@ import SwiftUI
 
 struct SwiftUIPagerView<Content: View & Identifiable>: View {
     
-    var spacing: CGFloat = -20
-    var pageWidthCompensation: CGFloat = -60
+    var spacing: CGFloat = 0
+    var pageWidthCompensation: CGFloat = 0
     private var widthCompensation: CGFloat { spacing + pageWidthCompensation }
     
     @Binding var index: Int
