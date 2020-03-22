@@ -204,20 +204,18 @@ struct PartsCombinedAnswer: View {
             }
             NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(title)", weekNumber: week))
             {
-                GeometryReader { (geometry) in
-                    ZStack {
-                        if self.answers != nil {
-                            MainCardView(isWithLine: true)
-                            ForEach(self.answers!.compactMap { $0?.file.cardUrl },
-                                    id: \.self,
-                                    content: { (cardUrl) in
-                                        ImageView(withURL: cardUrl)
-                                            .aspectRatio(0.62, contentMode: .fit)
-                                            .padding(20)
-                            })
-                        }
-                    }.frame(width: geometry.size.width, height: geometry.size.width * 1.62)
-                }
+                ZStack {
+                    if self.answers != nil {
+                        MainCardView(isWithLine: true)
+                        ForEach(self.answers!.compactMap { $0?.file.cardUrl },
+                                id: \.self,
+                                content: { (cardUrl) in
+                                    ImageView(withURL: cardUrl)
+                                        .aspectRatio(0.62, contentMode: .fit)
+                                        .padding(20)
+                        })
+                    }
+                }.aspectRatio(0.62, contentMode: .fit)
             }.buttonStyle(PlainButtonStyle())
         }
     }
