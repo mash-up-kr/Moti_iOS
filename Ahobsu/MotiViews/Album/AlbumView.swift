@@ -169,12 +169,22 @@ struct PartsCombinedAnswer: View {
             title = "No.\(no)"
         }
         
+        // nil 로 상단 뷰에서 확인
+        while let answerCount = self.answers?.count, answerCount < 6 {
+            self.answers?.append(nil)
+        }
+        
         shortMonth = MonthEnum(month: month).rawValue
     }
     
     init(answers: [Answer?]?, no: Int) {
         self.answers = answers
         self.number = no
+        
+        // nil 로 상단 뷰에서 확인
+        while let answerCount = self.answers?.count, answerCount < 6 {
+            self.answers?.append(nil)
+        }
         
         title = "No.\(self.number)"
     }
