@@ -73,24 +73,31 @@ struct AlbumView: View {
 
     var body: some View {
         NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
-            VStack {
-                if isReloadNeeded == false {
-                    AlbumList(answerMonth: answerMonth,
-                              month: currentMonth,
-                              isLoading: $isLoading)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        .padding(.top, 30.0)
-                    PaginationView(loadAlbumsDelegate: { self.loadAlbums() }, year: $currentYear, month: $currentMonth)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
-                } else {
-                    NetworkErrorView {
-                        self.loadAlbumAction()
+            LoadingView(isShowing: $isLoading) {
+                VStack {
+                    if self.isReloadNeeded == false {
+                        AlbumList(answerMonth: self.answerMonth,
+                                  month: self.currentMonth,
+                                  isLoading: self.$isLoading)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                            .padding(.top, 30.0)
+                        PaginationView(loadAlbumsDelegate: {
+                            self.loadAlbums()
+                        }, year: self.$currentYear,
+                           month: self.$currentMonth,
+                           isLoading: self.$isLoading)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
+                    } else {
+                        NetworkErrorView {
+                            self.loadAlbumAction()
+                        }
                     }
                 }
             }
         }
         .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
         .onAppear {
+            self.isLoading = true
             self.loadAlbumAction()
         }
     }
@@ -256,6 +263,7 @@ struct PaginationView: View {
     
     @Binding var year: Int
     @Binding var month: Int
+    @Binding var isLoading: Bool
     
     @State var isNextPaging = false
     
@@ -283,6 +291,7 @@ struct PaginationView: View {
                         self.isNextPaging = true
                     }
                     
+                    self.isLoading = true
                     self.loadAlbumsDelegate()
                 }, label: {
                     Image("icArrowLeft")
@@ -315,6 +324,7 @@ struct PaginationView: View {
                             self.isNextPaging = true
                         }
                         
+                        self.isLoading = true
                         self.loadAlbumsDelegate()
                     }, label: {
                         Image("icArrowRight")
