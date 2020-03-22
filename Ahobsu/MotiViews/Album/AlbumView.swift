@@ -257,6 +257,8 @@ struct PaginationView: View {
     @Binding var year: Int
     @Binding var month: Int
     
+    @State var isNextPaging = false
+    
     var body: some View {
         VStack(spacing: 0.0) {
             HStack(alignment: .center, spacing: 8.0) {
@@ -269,6 +271,18 @@ struct PaginationView: View {
                         self.month -= 1
                     }
                     
+                    let calendar = Calendar.current
+                    let date = Date()
+                    
+                    let year = calendar.component(.year, from: date)
+                    let month = calendar.component(.month, from: date)
+                    
+                    if self.year == year && self.month == month {
+                        self.isNextPaging = false
+                    } else {
+                        self.isNextPaging = true
+                    }
+                    
                     self.loadAlbumsDelegate()
                 }, label: {
                     Image("icArrowLeft")
@@ -279,21 +293,37 @@ struct PaginationView: View {
                     .lineSpacing(16.0).lineLimit(1)
                     .font(.custom("IropkeBatangOTFM", size: 20.0))
                     .frame(width: 160.0)
-                Button(action: {
-                    /* 앞으로 가기 */
-                    if self.month == 12 {
-                        self.month = 1
-                        self.year += 1
-                    } else {
-                        self.month += 1
-                    }
-                    
-                    self.loadAlbumsDelegate()
-                }, label: {
-                    Image("icArrowRight")
-                        .renderingMode(.original)
-                })
-                    .frame(width: 48.0, height: 48.0)
+                if isNextPaging {
+                    Button(action: {
+                        /* 앞으로 가기 */
+                        if self.month == 12 {
+                            self.month = 1
+                            self.year += 1
+                        } else {
+                            self.month += 1
+                        }
+                        
+                        let calendar = Calendar.current
+                        let date = Date()
+                        
+                        let year = calendar.component(.year, from: date)
+                        let month = calendar.component(.month, from: date)
+                        
+                        if self.year == year && self.month == month {
+                            self.isNextPaging = false
+                        } else {
+                            self.isNextPaging = true
+                        }
+                        
+                        self.loadAlbumsDelegate()
+                    }, label: {
+                        Image("icArrowRight")
+                            .renderingMode(.original)
+                    })
+                        .frame(width: 48.0, height: 48.0)
+                } else {
+                    Spacer().frame(width: 48.0, height: 48.0)
+                }
             }
             .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 87.0)
             .background(Color.black)
