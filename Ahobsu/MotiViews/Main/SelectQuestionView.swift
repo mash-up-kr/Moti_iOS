@@ -36,14 +36,18 @@ struct SelectQuestionView: View {
                 
                 VStack {
                     Spacer()
-                    SwiftUIPagerView(index: $index, pages: (0..<3).map { index in
-                        QuestionCardView(id: index,
-                                         missionData: missions[index],
-                                         isStatusBarHidden: $isStatusBarHidden) })
-                        .frame(height: 420, alignment: .center)
-                    Spacer().frame(height: 10)
+                    SwiftUIPagerView(spacing: 24,
+                                     pageWidthCompensation: -110,
+                                     index: $index,
+                                     pages: (0..<3).map { index in
+                                        QuestionCardView(id: index,
+                                                         missionData: missions[index],
+                                                         isStatusBarHidden: $isStatusBarHidden)
+                        }
+                    )
+                    Spacer()
                     PageControl(numberOfPages: 3, currentPage: $index)
-                    Spacer().frame(minHeight: 35, idealHeight: 50, maxHeight: 60)
+                    Spacer()
                     Button(action: { self.getRefreshQuestion() }) {
                         Text("질문 다시받기   \(refreshAvailable ? 0 : 1)/1")
                             .font(.system(size: 16, weight: .regular, design: .default))
@@ -56,7 +60,7 @@ struct SelectQuestionView: View {
                         )
                     }.environment(\.isEnabled, refreshAvailable)
                         .opacity(refreshAvailable ? 1 : 0.4)
-                    Spacer().frame(height: 32)
+                    Spacer(minLength: 32)
                 }
                 .onAppear {
                     if self.missions.count == 4 {

@@ -169,12 +169,22 @@ struct PartsCombinedAnswer: View {
             title = "No.\(no)"
         }
         
+        // nil 로 상단 뷰에서 확인
+        while let answerCount = self.answers?.count, answerCount < 6 {
+            self.answers?.append(nil)
+        }
+        
         shortMonth = MonthEnum(month: month).rawValue
     }
     
     init(answers: [Answer?]?, no: Int) {
         self.answers = answers
         self.number = no
+        
+        // nil 로 상단 뷰에서 확인
+        while let answerCount = self.answers?.count, answerCount < 6 {
+            self.answers?.append(nil)
+        }
         
         title = "No.\(self.number)"
     }
@@ -194,18 +204,20 @@ struct PartsCombinedAnswer: View {
             }
             NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(title)", weekNumber: week))
             {
-                ZStack {
-                    if answers != nil {
-                        MainCardView(isWithLine: true)
-                        ForEach(self.answers!.compactMap { $0?.file.cardUrl },
-                                id: \.self,
-                                content: { (cardUrl) in
-                                    ImageView(withURL: cardUrl)
-                                        .aspectRatio(0.62, contentMode: .fit)
-                                        .padding(20)
-                        })
-                    }
-                }.frame(height: 273.0)
+                GeometryReader { (geometry) in
+                    ZStack {
+                        if self.answers != nil {
+                            MainCardView(isWithLine: true)
+                            ForEach(self.answers!.compactMap { $0?.file.cardUrl },
+                                    id: \.self,
+                                    content: { (cardUrl) in
+                                        ImageView(withURL: cardUrl)
+                                            .aspectRatio(0.62, contentMode: .fit)
+                                            .padding(20)
+                            })
+                        }
+                    }.frame(width: geometry.size.width, height: geometry.size.width * 1.62)
+                }
             }.buttonStyle(PlainButtonStyle())
         }
     }
