@@ -62,35 +62,35 @@ struct MyPageView: View {
                     }.frame(minHeight: 52)
                         .foregroundColor(Color(.rosegold))
                     // MARK: 토큰값 볼 수 있는 버튼 추
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                UIPasteboard.general.string = TokenManager.sharedInstance.getAccessToken()
-                                self.showingAccessTokenAlert = true
-                            }, label: {
-                                Text("액세스 토큰 값 복사하기")
-                            })
-                            .alert(isPresented: $showingAccessTokenAlert) { () -> Alert in
-                                Alert(title: Text("액세스 토큰 복사"), message: Text("클립보드에 복사했습니다."))
-                            }
-                        }.frame(minHeight: 52)
-                            .foregroundColor(Color(.rosegold))
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                UIPasteboard.general.string = TokenManager.sharedInstance.getRefreshToken()
-                                self.showingRefreshTokenAlert = true
-                            }, label: {
-                                Text("리프레쉬 토큰 값 복사하기")
-                            })
-                            .alert(isPresented: $showingRefreshTokenAlert) { () -> Alert in
-                                Alert(title: Text("리프레쉬 토큰 복사"), message: Text("클립보드에 복사했습니다."))
-                            }
-                        }.frame(minHeight: 52)
-                            .foregroundColor(Color(.rosegold))
-                        Spacer()
-                    }
+//                    VStack {
+//                        HStack {
+//                            Spacer()
+//                            Button(action: {
+//                                UIPasteboard.general.string = TokenManager.sharedInstance.getAccessToken()
+//                                self.showingAccessTokenAlert = true
+//                            }, label: {
+//                                Text("액세스 토큰 값 복사하기")
+//                            })
+//                            .alert(isPresented: $showingAccessTokenAlert) { () -> Alert in
+//                                Alert(title: Text("액세스 토큰 복사"), message: Text("클립보드에 복사했습니다."))
+//                            }
+//                        }.frame(minHeight: 52)
+//                            .foregroundColor(Color(.rosegold))
+//                        HStack {
+//                            Spacer()
+//                            Button(action: {
+//                                UIPasteboard.general.string = TokenManager.sharedInstance.getRefreshToken()
+//                                self.showingRefreshTokenAlert = true
+//                            }, label: {
+//                                Text("리프레쉬 토큰 값 복사하기")
+//                            })
+//                            .alert(isPresented: $showingRefreshTokenAlert) { () -> Alert in
+//                                Alert(title: Text("리프레쉬 토큰 복사"), message: Text("클립보드에 복사했습니다."))
+//                            }
+//                        }.frame(minHeight: 52)
+//                            .foregroundColor(Color(.rosegold))
+//                        Spacer()
+//                    }
                 }.padding(.horizontal, 15)
             }
             .font(.system(size: 16))
