@@ -45,9 +45,8 @@ struct MyPageEditView: View {
                                title: "저장하기")
                         .environment(\.isEnabled, (!isNetworking && (sourceUser != editingUser)))
                     Spacer(minLength: 75)
-                }
+                }.padding(.horizontal, 15)
             }
-            .padding(.horizontal, 15)
             .padding([.bottom], keyboard.state.height)
             .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
