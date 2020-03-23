@@ -6,4 +6,4 @@
 //  Copyright © 2019 ahobsu. All rights reserved.
 //
 
-let AHOBSUAPIURL = "http://moti.company/api/v1"
+let AHOBSUAPIURL = "https://moti.company/api/v1"
