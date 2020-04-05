@@ -12,15 +12,12 @@ struct DatePickerView: View {
     
     @ObservedObject var dateManager: DateManager
     
-    @Binding var date: Date
-    
     @State var years: [Int] = (1900...Calendar.current.component(.year, from: Date())).map { $0 }
     @State var months: [Int] = (1...12).map { $0 }
     @State var days: [Int] = (1...31).map { $0 }
     
     init(selection: Binding<Date>) {
-        _date = selection
-        dateManager = DateManager(date: selection.wrappedValue)
+        dateManager = DateManager(date: selection)
     }
     
     var body: some View {
@@ -33,9 +30,6 @@ struct DatePickerView: View {
                 .frame(width: 72, height: 44 * 3)
         }
         .frame(maxWidth: .infinity, minHeight: 158)
-            .onReceive(dateManager.validatedDateDidChange) { (newDate) in
-                self.date = newDate
-        }
     }
 }
 

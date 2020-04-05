@@ -27,23 +27,13 @@ extension SignUp {
 class SignUp: ObservableObject {
     
     // Nickname
-    @Published var nickname: String = ""
-    var validatedNickname: AnyPublisher<String?, Never> {
-        return $nickname.map {
-            guard !$0.isEmpty && $0.count <= 8 else { return nil }
-            return $0
-        }.eraseToAnyPublisher()
-    }
+    var nickname: String = ""
     
     // Gende
-    @Published var gender: Gender?
+    var gender: String = "미입력"
     
     // Birthdate
-    @Published var birthdate: Date = {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = .withFullDate
-        return formatter.date(from: "2000-02-14") ?? Date()
-    }()
+    var birthdate: String = "미입력"
     
     var email: String {
         return UserDefaults.standard.value(forKey: "com.ahobsu.AppleID") as? String ?? ""
@@ -54,13 +44,12 @@ class SignUp: ObservableObject {
     @Published var signUpSuccess: Bool = false
     
     func updateProfile() {
-        guard let gender = gender else { return }
 //        TokenManager.sharedInstance.registerGender(gender: gender.rawValue, completion: nil, error: nil)
         AhobsuProvider.updateProfile(user: User(id: -1,
-                                                birthday: dateFormatter.string(from: self.birthdate),
+                                                birthday: self.birthdate,
                                                 email: email,
                                                 name: nickname,
-                                                gender: gender.rawValue,
+                                                gender: gender,
                                                 refreshDate: nil,
                                                 refreshToken: nil,
                                                 mission: nil,

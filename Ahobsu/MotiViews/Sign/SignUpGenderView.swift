@@ -15,16 +15,17 @@ struct SignUpGenderView: View {
     @ObservedObject var signUp: SignUp
     
     @State var pushNextView: Bool = false
+    @State var gender: String = "미입력"
     
     var body: some View {
         let contentView = HStack {
             ForEach(SignUp.Gender.allCases, id: \.self) { (gender) in
                 Button(action: {
-                    self.signUp.gender = gender
+                    self.gender = gender.rawValue
                 }, label: {
                     GenderCardView(gender: gender)
                 }).padding(.horizontal, 15.0)
-                    .opacity((gender == self.signUp.gender) ? 1 : 0.5)
+                    .opacity((gender.rawValue == self.gender) ? 1 : 0.5)
                     .animation(.easeOut)
             }
         }
@@ -34,10 +35,16 @@ struct SignUpGenderView: View {
                                   buttonTitle: "다음",
                                   buttonDestination: SignUpBirthdateView(window: $window, signUp: signUp),
                                   buttonAction: {
+                                    self.signUp.gender = self.gender
                                     self.pushNextView = true
             },
-                                  buttonEnabled: signUp.gender != nil,
-                                  pushDestination: $pushNextView)
+                                  buttonEnabled: SignUp.Gender(rawValue: self.gender) != nil,
+                                  pushDestination: $pushNextView,
+                                  canSkip: true,
+                                  skipAction: {
+                                    self.signUp.gender = "미입력"
+                                    self.pushNextView = true
+            })
                 .buttonStyle(PlainButtonStyle())
         }
     }

@@ -8,24 +8,20 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class DateManager: ObservableObject {
     
     private var dateValidator = DateValidator()
     
-    init(date: Date) {
-        validatedDate = date
-        year = Calendar.current.component(.year, from: date)
-        month = Calendar.current.component(.month, from: date)
-        day = Calendar.current.component(.day, from: date)
+    init(date: Binding<Date>) {
+        year = Calendar.current.component(.year, from: date.wrappedValue)
+        month = Calendar.current.component(.month, from: date.wrappedValue)
+        day = Calendar.current.component(.day, from: date.wrappedValue)
+        _date = date
     }
     
-    @Published var validatedDate: Date {
-        didSet {
-            validatedDateDidChange.send(validatedDate)
-        }
-    }
-    var validatedDateDidChange = PassthroughSubject<Date, Never>()
+    @Binding var date: Date
     
     @Published var year: Int {
         didSet {
@@ -43,13 +39,20 @@ class DateManager: ObservableObject {
         }
     }
     private func makeNewValidatedDate() {
-        var dateComponenets = DateComponents()
-        dateComponenets.year = year
-        dateComponenets.month = month
-        dateComponenets.day = day
-        let newDateComponents = dateValidator.validatedDateComponents(from: dateComponenets)
-        if let newDate = newDateComponents.date {
-            validatedDate = newDate
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        
+        let suggestedDateComponents = dateValidator.validatedDateComponents(from: dateComponents)
+        if let suggedstedDay = suggestedDateComponents.day,
+            suggedstedDay != day {
+            day = suggedstedDay
+        }
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        if let suggestedDate = formatter.date(from: "\(suggestedDateComponents.year!)-\(suggestedDateComponents.month!)-\(suggestedDateComponents.day!)") {
+            date = suggestedDate
         }
     }
 }
