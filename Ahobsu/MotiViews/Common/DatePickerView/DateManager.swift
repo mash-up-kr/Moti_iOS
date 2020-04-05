@@ -43,13 +43,20 @@ class DateManager: ObservableObject {
         }
     }
     private func makeNewValidatedDate() {
-        var dateComponenets = DateComponents()
-        dateComponenets.year = year
-        dateComponenets.month = month
-        dateComponenets.day = day
-        let newDateComponents = dateValidator.validatedDateComponents(from: dateComponenets)
-        if let newDate = newDateComponents.date {
-            validatedDate = newDate
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        
+        let suggestedDateComponents = dateValidator.validatedDateComponents(from: dateComponents)
+        if let suggedstedDay = suggestedDateComponents.day,
+            suggedstedDay != day {
+            day = suggedstedDay
+        }
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        if let suggestedDate = formatter.date(from: "\(suggestedDateComponents.year!)-\(suggestedDateComponents.month!)-\(suggestedDateComponents.day!)") {
+            validatedDate = suggestedDate
         }
     }
 }
