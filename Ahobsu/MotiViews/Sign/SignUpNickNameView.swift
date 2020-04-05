@@ -18,16 +18,17 @@ struct SignUpNickNameView: View {
     @ObservedObject var keyboard: Keyboard = Keyboard()
     @ObservedObject var signUp = SignUp()
     
+    @State var nickname: String = ""
     @State var pushNextView: Bool = false
     
     var body: some View {
         
         let contentView = VStack {
             TextField("",
-                      text: $signUp.nickname,
+                      text: $nickname,
                       onEditingChanged: { (onEditing) in
                         if onEditing == false {
-                            UserDefaults.standard.setValue(self.signUp.nickname, forKey: "SignUp.Nickname")
+                            UserDefaults.standard.setValue(self.nickname, forKey: "SignUp.Nickname")
                         }
             },
                       onCommit: {
@@ -47,17 +48,16 @@ struct SignUpNickNameView: View {
                            buttonTitle: "다 음",
                            buttonDestination: SignUpGenderView(window: $window, signUp: signUp),
                            buttonAction: {
+                            self.signUp.nickname = self.nickname
                             self.pushNextView = true
             },
-                           buttonEnabled: buttonEnabled,
+                           buttonEnabled: !self.nickname.isEmpty && self.nickname.count <= 8,
                            pushDestination: $pushNextView)
                 .padding([.bottom], keyboard.state.height)
                 .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
                 .animation(.easeOut(duration: keyboard.state.animationDuration))
                 .onTapGesture {
                     self.window.endEditing(true)
-            }.onReceive(signUp.validatedNickname) {
-                self.buttonEnabled = $0 != nil
             }
         }
     }
