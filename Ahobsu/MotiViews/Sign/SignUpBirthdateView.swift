@@ -24,7 +24,8 @@ struct SignUpBirthdateView: View {
                                   buttonDestination: SignUpCompleteView(window: self.$window),
                                   buttonAction: { self.signUp.updateProfile() },
                                   buttonEnabled: true,
-                                  pushDestination: $signUp.signUpSuccess)
+                                  pushDestination: $signUp.signUpSuccess,
+                                  canSkip: true)
         }
     }
 }

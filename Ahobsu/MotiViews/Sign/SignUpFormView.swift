@@ -17,6 +17,7 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
     var buttonAction: (() -> Void)?
     var buttonEnabled: Bool
     @Binding var pushDestination: Bool
+    var canSkip: Bool = false
     
     var body: some View {
         ZStack {
@@ -35,6 +36,14 @@ struct SignUpFormView<Content, Destination>: View where Content: View, Destinati
                     MainButton(action: buttonAction, title: buttonTitle)
                 }.environment(\.isEnabled, buttonEnabled)
                 Spacer()
+                if canSkip {
+                    Button(action: {
+                        self.buttonAction?()
+                    }) {
+                        Text("건너뛰기").foregroundColor(Color(.rosegold))
+                    }
+                    Spacer()
+                }
             }.frame(maxHeight: .infinity)
         }
         .edgesIgnoringSafeArea(.vertical)

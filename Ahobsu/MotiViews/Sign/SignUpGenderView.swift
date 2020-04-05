@@ -37,7 +37,8 @@ struct SignUpGenderView: View {
                                     self.pushNextView = true
             },
                                   buttonEnabled: signUp.gender != nil,
-                                  pushDestination: $pushNextView)
+                                  pushDestination: $pushNextView,
+                                  canSkip: true)
                 .buttonStyle(PlainButtonStyle())
         }
     }
