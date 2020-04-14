@@ -7,6 +7,8 @@
 
 ![onbording](./images/onbording.png)
 
+[![app_store](./images/app_store.svg?sanitize=true)](https://apps.apple.com/kr/app/moti/id1496912171)
+
 ## Getting Started
 
 Moti is developed with SwiftUI. I recommend your OS is macOS Catalina or later, XCode 11 or later.
