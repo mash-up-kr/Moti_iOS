@@ -49,7 +49,7 @@ struct SelectQuestionView: View {
                     PageControl(numberOfPages: 3, currentPage: $index)
                     Spacer()
                     Button(action: { self.getRefreshQuestion() }) {
-                        Text("질문 다시받기   \(refreshAvailable ? 1 : 0)/1")
+                        Text("질문 다시받기   \(refreshAvailable ? 1 : 0) / 1")
                             .font(.system(size: 16, weight: .regular, design: .default))
                             .foregroundColor(Color(.lightgold))
                             .padding([.vertical], 12)
