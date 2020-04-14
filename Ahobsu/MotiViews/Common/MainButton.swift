@@ -35,10 +35,12 @@ struct MainButton: View {
             if action != nil {
                 Button(action: action!) {
                     Text(title)
+                        .font(.custom("AppleSDGothicNeo-Regular", size: 16.0))
                         .modifier(MainButtonFeel(isEnabled: isEnabled))
                 }
             } else {
                 Text(title)
+                    .font(.custom("AppleSDGothicNeo-Regular", size: 16.0))
                     .modifier(MainButtonFeel(isEnabled: isEnabled))
             }
         }.disabled(!isEnabled)
