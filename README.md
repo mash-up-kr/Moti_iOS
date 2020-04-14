@@ -1,4 +1,4 @@
-# Moti
+# MOTI - "Make Own True Identity"
 ![swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
 ![pod](https://img.shields.io/badge/pod-1.9.1-blue)
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
