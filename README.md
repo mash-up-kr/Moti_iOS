@@ -4,10 +4,9 @@
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
+[![app_store](./images/app_store.svg?sanitize=true)](https://apps.apple.com/kr/app/moti/id1496912171)
 
 ![onbording](./images/onbording.png)
-
-[![app_store](./images/app_store.svg?sanitize=true)](https://apps.apple.com/kr/app/moti/id1496912171)
 
 ## Getting Started
 
