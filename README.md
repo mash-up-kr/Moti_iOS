@@ -58,7 +58,7 @@ I recommend your title and description must be clear and simple.
 4. [YuChocopie](https://github.com/YuChocopie) - Backend Developer
 5. [Yuni-Q](https://github.com/Yuni-Q) - Backend Developer
 6. Parkgeena - UI/UX Designer
-7. heesoo_h - UI/UX Designer & Project Manager
+7. heesoo_j - UI/UX Designer & Project Manager
 
 You can see the backend repo on [this](https://github.com/mash-up-kr/ahobsu-node-backend).
 
