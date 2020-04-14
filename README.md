@@ -1,10 +1,11 @@
 # Moti
+![swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
+![pod](https://img.shields.io/badge/pod-1.9.1-blue)
+![version](https://img.shields.io/badge/version-1.0.0-blue)
+![license](https://img.shields.io/badge/license-MIT-green)
 
-Hi! Moti is an iOS App :)  
-Moti will motivate your life.  
-Sometimes your mind may be crosssed with love, dream, or anything.  
-Be with Moti, It will catch your thoughts, change them to dream-catchers.
-Like a dream-catcher, making dream a wonderful dream, your life will be wonderful.
+
+![onbording](./images/onbording.png)
 
 ## Getting Started
 
@@ -15,7 +16,7 @@ Moti is developed with SwiftUI. I recommend your OS is macOS Catalina or later, 
 ```
 macOS Catalina or later  
 XCode 11 or later  
-CocoaPod 1.8.4
+CocoaPod 1.9.1
 SwiftLint
 ```
 

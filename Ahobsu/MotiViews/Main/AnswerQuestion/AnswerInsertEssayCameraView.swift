@@ -29,7 +29,7 @@ struct AnswerInsertEssayCameraView: View {
                     VStack {
                         HStack {
                             Text(missonData.title)
-                                .font(.system(size: 24))
+                                .font(.custom("IropkeBatangOTFM", size: 24.0))
                                 .lineSpacing(6)
                                 .foregroundColor(Color(.rosegold))
                                 .multilineTextAlignment(.leading)
