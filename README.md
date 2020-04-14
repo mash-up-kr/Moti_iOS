@@ -10,14 +10,14 @@
 
 ## Getting Started
 
-Moti is developed with SwiftUI. I recommend your OS is macOS Catalina or later, XCode 11 or later.
+Moti is developed with Swift5 & SwiftUI. I recommend your OS is macOS Catalina or later, XCode 11 or later.
 
 ### Prerequisites
 
 ```
 macOS Catalina or later  
 XCode 11 or later  
-CocoaPod 1.9.1
+CocoaPod 1.9.1 or later
 SwiftLint
 ```
 
@@ -25,34 +25,42 @@ SwiftLint
 
 This is how to install Moti project below.  
 
-```
+```bash
 # Clone Moti project from this repo
 git clone https://github.com/mash-up-kr/Ahobsu_iOS.git  
 ```
 
-```
+```bash
 # Install dependencies from Podfile
 pod install
 open Ahobsu.xcworkspace
+# You can edit codes and run build.
 ```
 
 ## Deployment
 
-TBA
+Not yet installed on any deployment environments. To be announced later.
 
 ## Built With
 * CocoaPod - Dependency Management
 * SwiftLint
-* XUnique
 
 ## Contributing
 
-Unfortunately, we don't accept any contributing until first app store deployment. After 1st deployment, I will write CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+Whenever you want to post any issues, please post it on `Issues` Tab.  
+Or whenever you want to request `Pull request`, you can request any new `Pull request"!  
+I recommend your title and description must be clear and simple.
 
-## Authors
-* kor-Chipmunk
+## Contributors
+1. [kor-Chipmunk](https://github.com/kor-Chipmunk) - iOS Developer
+2. [Bran](https://github.com/YoonJuHo) - iOS Developer
+3. [LHOCHAN](https://github.com/LHOCHAN) - iOS Developer
+4. [YuChocopie](https://github.com/YuChocopie) - Backend Developer
+5. [Yuni-Q](https://github.com/Yuni-Q) - Backend Developer
+6. Parkgeena - UI/UX Designer
+7. heesoo_h - UI/UX Designer & Project Manager
 
-See also the list of contributors who participated in this project.
+You can see the backend repo on [this](https://github.com/mash-up-kr/ahobsu-node-backend).
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details
