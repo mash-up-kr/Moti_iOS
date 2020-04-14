@@ -33,17 +33,11 @@ struct QuestionCardView: View, Identifiable {
                 HStack {
                     VStack(alignment: .leading, spacing: 14) {
                         Text("질문 \(id + 1)")
-                            .font(.system(size: 16,
-                                          weight: .bold,
-                                          design: .default)
-                        )
+                            .font(.custom("AppleSDGothicNeo-Bold", size: 16.0))
                             .foregroundColor(Color(.rosegold))
                         
                         Text(missionData.title)
-                            .font(.system(size: 22,
-                                          weight: .regular,
-                                          design: .default)
-                        )
+                            .font(.custom("IropkeBatangOTFM", size: 22.0))
                             .foregroundColor(Color(.rosegold))
                             .lineSpacing(10)
                     }
