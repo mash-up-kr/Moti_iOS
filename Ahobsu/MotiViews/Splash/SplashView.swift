@@ -23,25 +23,14 @@ struct SplashView: View {
     @ObservedObject var myPageViewModel: MyPageViewModel = .shared
     
     var body: some View {
-        ZStack {
-            SplashBackgroundView(backgroundAlpha: $backgroundAlpha)
+        VStack {
             LogoView(textAlpha: $textAlpha,
                      logoAlpha: $logoAlpha,
                      logoScale: $logoScale)
         }
-        .edgesIgnoringSafeArea(.all)
         .onAppear {
             self.handleAnimations()
         }
-    }
-}
-
-struct SplashBackgroundView: View {
-    
-    @Binding var backgroundAlpha: Double
-    
-    var body: some View {
-        EmptyView()
     }
 }
 
@@ -62,27 +51,23 @@ struct LogoView: View {
                    opacity: 1.0)
     }
     var titleSize: CGFloat { 16.0 }
-    var titlePaddingBottom: CGFloat { 24.0 }
-    
-    var logoViewPaddingTop: CGFloat { 108.0 }
+    var titlePaddingBottom: CGFloat { 8.0 }
     
     var body: some View {
-        ZStack {
-            VStack {
-                Image(logoName)
-                    .scaleEffect(logoScale)
-                    .opacity(logoAlpha)
-                    .padding(.bottom, logoPaddingBottom)
-                Text(titleText)
-                    .foregroundColor(titleColor)
-                    .font(.custom("TTNorms-Regular", size: 16.0))
-                    .opacity(textAlpha)
-                    .padding(.bottom, titlePaddingBottom)
-                PlayerView()
-                    .frame(width: 272, height: 400)
-                Spacer()
-            }
-            .padding(.top, logoViewPaddingTop)
+        VStack {
+            Spacer()
+            Image(logoName)
+                .scaleEffect(logoScale)
+                .opacity(logoAlpha)
+                .padding(.bottom, logoPaddingBottom)
+            Text(titleText)
+                .foregroundColor(titleColor)
+                .font(.custom("TTNorms-Regular", size: 16.0))
+                .opacity(textAlpha)
+                .padding(.bottom, titlePaddingBottom)
+            PlayerView()
+                .frame(width: 272, height: 400)
+            Spacer()
         }
     }
 }
@@ -102,17 +87,10 @@ extension SplashView {
     func handleAnimations() {
         runAnimationPart1()
         runAnimationPart2()
-        runAnimationPart3()
         goNextView()
     }
     
     func runAnimationPart1() {
-        withAnimation(.easeIn(duration: backgroundAnimationDuration)) {
-            backgroundAlpha = self.backgroundAlphaFinal
-        }
-    }
-    
-    func runAnimationPart2() {
         let deadline: DispatchTime = .now()
             + backgroundAnimationDuration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -122,7 +100,7 @@ extension SplashView {
         }
     }
     
-    func runAnimationPart3() {
+    func runAnimationPart2() {
         let deadline: DispatchTime = .now()
             + backgroundAnimationDuration
             + titleAnimationDuration
