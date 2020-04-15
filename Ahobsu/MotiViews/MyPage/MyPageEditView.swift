@@ -19,6 +19,7 @@ struct MyPageEditView: View {
     
     @State var editingUser: User
     @State var isNetworking = false
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("수정하기"), trailingItem: Text("")) {
@@ -38,8 +39,9 @@ struct MyPageEditView: View {
                              content: Button(action: { self.logout() },
                                              label: { Text("로그아웃") }))
                     ListCell(title: "",
-                             content: Button(action: { self.myPageEdit.deleteUser() },
-                                             label: { Text("탈퇴하기").opacity(0.5) }))
+                             content: Button(action: {
+                                self.showingAlert = true
+                             }, label: { Text("탈퇴하기").opacity(0.5) }))
                     Spacer()
                     MainButton(action: { self.updateUser() },
                                title: "저장하기")
@@ -65,6 +67,11 @@ struct MyPageEditView: View {
                 self.endEditing()
             }.onDisappear {
                 self.editingUser = self.sourceUser
+            }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("정말 탈퇴하시겠습니까"), message: Text("지금까지 모은 기록은 모두 삭제됩니다."), primaryButton: .destructive(Text("탈퇴"), action: {
+                    self.myPageEdit.deleteUser()
+                }), secondaryButton: .cancel(Text("취소")))
             }
         }
     }
