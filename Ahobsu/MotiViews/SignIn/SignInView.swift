@@ -48,7 +48,7 @@ struct SignInView: View {
                         .underline(true, color: Color(UIColor.rosegold))
                         .onTapGesture {
                             UIApplication.shared.open(URL(string: self.linkUserAgreement)!)
-                    }
+                    }.padding([.bottom], 40.0)
                 }
             }
         }
