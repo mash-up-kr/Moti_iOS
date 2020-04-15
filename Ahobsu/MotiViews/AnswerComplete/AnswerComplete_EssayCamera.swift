@@ -23,7 +23,7 @@ struct AnswerComplete_EssayCamera: View {
                         .padding([.bottom], 20.0)
                     Text(text)
                         .multilineTextAlignment(.center)
-                        .font(.custom("IropkeBatangM", size: 16.0))
+                        .font(.custom("IropkeBatangOTFM", size: 16.0))
                         .foregroundColor(Color(UIColor.rosegold))
                         .lineSpacing(8.0)
                     Spacer()

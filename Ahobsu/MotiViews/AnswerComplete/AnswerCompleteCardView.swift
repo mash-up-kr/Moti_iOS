@@ -37,17 +37,17 @@ struct AnswerCompleteCardView: View, Identifiable {
                 VStack {
                     HStack {
                         Text(answer?.mission.title ?? "")
-                            .font(.custom("IropkeBatangM", size: 24.0))
+                            .font(.custom("IropkeBatangOTFM", size: 24.0))
                             .foregroundColor(Color(UIColor.rosegold))
                             .lineSpacing(12.0)
                         Spacer()
-                        if answer?.isTodayAnswer() == true {
-                            Button(action: update) {
-                                Image("icRewriteNormal")
-                                    .renderingMode(.original)
-                                    .frame(width: 48.0, height: 48.0)
-                            }
-                        }
+//                        if answer?.isTodayAnswer() == true {
+//                            Button(action: update) {
+//                                Image("icRewriteNormal")
+//                                    .renderingMode(.original)
+//                                    .frame(width: 48.0, height: 48.0)
+//                            }
+//                        }
                     }
                     .padding([.leading], 20.0)
                     .padding([.trailing], 4.0)

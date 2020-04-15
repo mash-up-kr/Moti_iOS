@@ -17,11 +17,11 @@ struct AnswerComplete_Essay: View {
             VStack {
                 Text(text)
                     .multilineTextAlignment(.center)
-                    .font(.custom("IropkeBatangM", size: 16.0))
+                    .font(.custom("IropkeBatangOTFM", size: 16.0))
                     .foregroundColor(Color(UIColor.rosegold))
                     .lineSpacing(8.0)
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .padding([.all], 16.0)
+                .padding([.all], 28.0)
         }
     }
 }

@@ -12,12 +12,12 @@ struct QuestionView: View {
     
     @State var text: String = ""
     
-    var questionSize: CGFloat { 28.0 }
-    var questionLineSpacing: CGFloat { 16.0 }
+    var questionSize: CGFloat { 24.0 }
+    var questionLineSpacing: CGFloat { 12.0 }
     
     var body: some View {
         Text(text)
-            .font(.system(size: questionSize))
+            .font(.custom("IropkeBatangOTFM", size: questionSize))
             .lineSpacing(questionLineSpacing)
     }
 }
@@ -31,7 +31,7 @@ struct AnswerView: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: answerSize))
+            .font(.custom("IropkeBatangOTFM", size: answerSize))
             .lineSpacing(answerLineSpacing)
             .multilineTextAlignment(.center)
     }
