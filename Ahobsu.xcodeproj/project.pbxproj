@@ -116,7 +116,7 @@
 		FAB0F07D23E0318400336EA5 /* TTNorms-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F06B23E0318400336EA5 /* TTNorms-Heavy.otf */; };
 		FAB0F07E23E0318400336EA5 /* TTNorms-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F06C23E0318400336EA5 /* TTNorms-ExtraLightItalic.otf */; };
 		FAB0F07F23E0318400336EA5 /* TTNorms-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F06D23E0318400336EA5 /* TTNorms-Light.otf */; };
-		FAB0F08223E0325D00336EA5 /* IropkeBatangM.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F08123E0325D00336EA5 /* IropkeBatangM.otf */; };
+		FAB0F08223E0325D00336EA5 /* IropkeBatangOTFM.otf in Resources */ = {isa = PBXBuildFile; fileRef = FAB0F08123E0325D00336EA5 /* IropkeBatangOTFM.otf */; };
 		FAB0F08523E0901900336EA5 /* OnBordingPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F08423E0901900336EA5 /* OnBordingPageControl.swift */; };
 		FAB0F08723E0902D00336EA5 /* OnBordingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F08623E0902D00336EA5 /* OnBordingPageViewController.swift */; };
 		FAB0F08923E090BF00336EA5 /* OnBordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0F08823E090BF00336EA5 /* OnBordingView.swift */; };
@@ -242,7 +242,7 @@
 		FAB0F06B23E0318400336EA5 /* TTNorms-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-Heavy.otf"; sourceTree = "<group>"; };
 		FAB0F06C23E0318400336EA5 /* TTNorms-ExtraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-ExtraLightItalic.otf"; sourceTree = "<group>"; };
 		FAB0F06D23E0318400336EA5 /* TTNorms-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-Light.otf"; sourceTree = "<group>"; };
-		FAB0F08123E0325D00336EA5 /* IropkeBatangM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangM.otf; sourceTree = "<group>"; };
+		FAB0F08123E0325D00336EA5 /* IropkeBatangOTFM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IropkeBatangOTFM.otf; sourceTree = "<group>"; };
 		FAB0F08423E0901900336EA5 /* OnBordingPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingPageControl.swift; sourceTree = "<group>"; };
 		FAB0F08623E0902D00336EA5 /* OnBordingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingPageViewController.swift; sourceTree = "<group>"; };
 		FAB0F08823E090BF00336EA5 /* OnBordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingView.swift; sourceTree = "<group>"; };
@@ -602,7 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF5F6032407FD1200559FBD /* SFProDisplay */,
-				FAB0F08023E0324C00336EA5 /* IropkeBatangM */,
+				FAB0F08023E0324C00336EA5 /* IropkeBatangOTFM */,
 				FAB0F05B23E0318400336EA5 /* TTNorms */,
 			);
 			path = Fonts;
@@ -633,12 +633,12 @@
 			path = TTNorms;
 			sourceTree = "<group>";
 		};
-		FAB0F08023E0324C00336EA5 /* IropkeBatangM */ = {
+		FAB0F08023E0324C00336EA5 /* IropkeBatangOTFM */ = {
 			isa = PBXGroup;
 			children = (
-				FAB0F08123E0325D00336EA5 /* IropkeBatangM.otf */,
+				FAB0F08123E0325D00336EA5 /* IropkeBatangOTFM.otf */,
 			);
-			path = IropkeBatangM;
+			path = IropkeBatangOTFM;
 			sourceTree = "<group>";
 		};
 		FAB0F08323E08FFA00336EA5 /* OnBording */ = {
@@ -728,7 +728,7 @@
 				FAB0F07023E0318400336EA5 /* TTNorms-LightItalic.otf in Resources */,
 				FAB0F07C23E0318400336EA5 /* TTNorms-Italic.otf in Resources */,
 				FAA570DB23F6E04D00FDE685 /* video.mp4 in Resources */,
-				FAB0F08223E0325D00336EA5 /* IropkeBatangM.otf in Resources */,
+				FAB0F08223E0325D00336EA5 /* IropkeBatangOTFM.otf in Resources */,
 				FAB0F07623E0318400336EA5 /* TTNorms-MediumItalic.otf in Resources */,
 				FAB0F07323E0318400336EA5 /* TTNorms-BlackItalic.otf in Resources */,
 				FAB0F07923E0318400336EA5 /* TTNorms-Medium.otf in Resources */,
