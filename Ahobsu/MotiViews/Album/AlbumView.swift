@@ -72,7 +72,7 @@ struct AlbumView: View {
     }
 
     var body: some View {
-        NavigationMaskingView(titleItem: Text("앨범"), trailingItem: EmptyView()) {
+        NavigationMaskingView(titleItem: Text("앨범").font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), trailingItem: EmptyView()) {
             LoadingView(isShowing: $isLoading) {
                 VStack {
                     if self.isReloadNeeded == false {
@@ -95,7 +95,7 @@ struct AlbumView: View {
                 }
             }
         }
-        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
+        .background(BackgroundView())
         .onAppear {
             self.isLoading = true
             self.loadAlbumAction()
@@ -301,6 +301,7 @@ struct PaginationView: View {
                 Text(String.toAlbumDateString(year: year, month: month))
                     .lineSpacing(16.0).lineLimit(1)
                     .font(.custom("IropkeBatangOTFM", size: 20.0))
+                    .foregroundColor(Color(UIColor.rosegold))
                     .frame(width: 160.0)
                 if isNextPaging {
                     Button(action: {
