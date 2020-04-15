@@ -24,7 +24,7 @@ struct AlbumWeekView: View {
             ZStack {
                 NavigationLink(destination: AnswerCompleteView(answers)) {
                     MainCardView(isWithLine: true)
-                        .aspectRatio(0.62, contentMode: .fit)
+                        .aspectRatio(257.0 / 439.0, contentMode: .fit)
                         .padding([.horizontal], 59)
                         .overlay(
                             ZStack {
@@ -33,8 +33,8 @@ struct AlbumWeekView: View {
                                         content: { (cardUrl) in
                                             
                                             ImageView(withURL: cardUrl)
-                                                .aspectRatio(0.62, contentMode: .fit)
-                                                .padding(20)
+                                                .aspectRatio(257.0 / 439.0, contentMode: .fit)
+                                                .padding(10)
                                 })
                             }
                     )
