@@ -9,6 +9,22 @@
 import SwiftUI
 import Combine
 
+class NicknameWithLimit: ObservableObject {
+    @Published var text = "" {
+        didSet {
+            if text.count > characterLimit && oldValue.count <= characterLimit {
+                text = oldValue
+            }
+        }
+    }
+    
+    let characterLimit: Int
+    
+    init(limit: Int = 8) {
+        characterLimit = limit
+    }
+}
+
 struct SignUpNickNameView: View {
     
     @State var buttonEnabled: Bool = false
@@ -17,18 +33,18 @@ struct SignUpNickNameView: View {
     
     @ObservedObject var keyboard: Keyboard = Keyboard()
     @ObservedObject var signUp = SignUp()
+    @ObservedObject var nickname = NicknameWithLimit()
     
-    @State var nickname: String = ""
     @State var pushNextView: Bool = false
     
     var body: some View {
         
         let contentView = VStack {
             TextField("",
-                      text: $nickname,
+                      text: $nickname.text,
                       onEditingChanged: { (onEditing) in
                         if onEditing == false {
-                            UserDefaults.standard.setValue(self.nickname, forKey: "SignUp.Nickname")
+                            UserDefaults.standard.setValue(self.nickname.text, forKey: "SignUp.Nickname")
                         }
             },
                       onCommit: {
@@ -38,7 +54,7 @@ struct SignUpNickNameView: View {
                 .padding(.horizontal, 66)
                 .foregroundColor(Color(.rosegold))
                 .multilineTextAlignment(.center)
-            Text("8글자로 만들어주세요.")
+            Text("8글자이내로 만들어주세요.")
                 .foregroundColor(Color(white: 121/255))
                 .font(.system(size: 14))
         }
@@ -48,10 +64,10 @@ struct SignUpNickNameView: View {
                            buttonTitle: "다 음",
                            buttonDestination: SignUpGenderView(window: $window, signUp: signUp),
                            buttonAction: {
-                            self.signUp.nickname = self.nickname
+                            self.signUp.nickname = self.nickname.text
                             self.pushNextView = true
             },
-                           buttonEnabled: !self.nickname.isEmpty && self.nickname.count <= 8,
+                           buttonEnabled: !self.nickname.text.isEmpty,
                            pushDestination: $pushNextView)
                 .padding([.bottom], keyboard.state.height)
                 .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
