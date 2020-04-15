@@ -43,8 +43,8 @@ struct MainView: View {
                             NavigationLink(destination: AnswerCompleteView(cards))
                             {
                                 MainCardView(isWithLine: !isAnswered)
-                                    .aspectRatio(0.62, contentMode: .fit)
-                                    .padding([.horizontal], 59)
+                                    .aspectRatio(257.0 / 439.0, contentMode: .fit)
+                                    .padding([.horizontal], 59.0)
                                     .overlay(
                                         ZStack {
                                             ForEach(cards.compactMap { $0?.file.cardUrl },
@@ -52,8 +52,8 @@ struct MainView: View {
                                                     content: { (cardUrl) in
                                                         
                                                         ImageView(withURL: cardUrl)
-                                                            .aspectRatio(0.62, contentMode: .fit)
-                                                            .padding(20)
+                                                            .aspectRatio(257.0 / 439.0, contentMode: .fit)
+                                                            .padding(10)
                                             })
                                         }
                                 )
