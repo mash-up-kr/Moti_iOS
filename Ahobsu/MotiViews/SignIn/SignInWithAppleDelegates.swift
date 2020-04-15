@@ -46,11 +46,12 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                     TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
                                                                      completion: nil,
                                                                      error: nil)
+                    self.signInSucceeded(true, true)
                 } else {
                     TokenManager.sharedInstance.temporaryAccessToken = signInToken.accessToken
                     TokenManager.sharedInstance.temporaryRefreshToken = signInToken.refreshToken
+                    self.signInSucceeded(true, false)
                 }
-                self.signInSucceeded(true, signInToken.signUp)
             } else {
                 self.signInSucceeded(false, nil)
             }
@@ -74,11 +75,12 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                     TokenManager.sharedInstance.registerRefreshToken(token: signInToken.refreshToken,
                                                                      completion: nil,
                                                                      error: nil)
+                    self.signInSucceeded(true, true)
                 } else {
                     TokenManager.sharedInstance.temporaryAccessToken = signInToken.accessToken
                     TokenManager.sharedInstance.temporaryRefreshToken = signInToken.refreshToken
+                    self.signInSucceeded(true, false)
                 }
-                self.signInSucceeded(true, signInToken.signUp)
             } else {
                 self.signInSucceeded(false, nil)
             }
