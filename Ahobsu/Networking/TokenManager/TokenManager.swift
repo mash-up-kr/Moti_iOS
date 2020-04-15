@@ -38,6 +38,10 @@ final class TokenManager {
                                  error: ((OSStatus) -> Void)?) {
         let accessTokenStatus: OSStatus = KeyChain.delete(key: "ahobsu_accesstoken")
         let refreshTokenStatus = KeyChain.delete(key: "ahobsu_refreshtoken")
+        
+        tokens.accessToken = ""
+        tokens.refreshToken = ""
+        
         if accessTokenStatus == errSecSuccess && refreshTokenStatus == errSecSuccess {
             completion?(accessTokenStatus)
         } else {
