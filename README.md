@@ -45,11 +45,15 @@ Not yet installed on any deployment environments. To be announced later.
 * CocoaPod - Dependency Management
 * SwiftLint
 
-## Contributing
+## Contributing on GitHub
 
 Whenever you want to post any issues, please post it on `Issues` Tab.  
 Or whenever you want to request `Pull request`, you can request any new `Pull request"!  
 I recommend your title and description must be clear and simple.
+
+### Contributing on MOTI
+
+You can contribute any **QUESTION CARDS** to be sent to users at [the MOTI intro page](https://his-0203.github.io/).  
 
 ## Contributors
 1. [kor-Chipmunk](https://github.com/kor-Chipmunk) - iOS Developer
@@ -58,9 +62,10 @@ I recommend your title and description must be clear and simple.
 4. [YuChocopie](https://github.com/YuChocopie) - Backend Developer
 5. [Yuni-Q](https://github.com/Yuni-Q) - Backend Developer
 6. Parkgeena - UI/UX Designer
-7. heesoo_j - UI/UX Designer & Project Manager
+7. [heesoo_j](https://github.com/his-0203) - UI/UX Designer & Project Manager
 
-You can see the backend repo on [this](https://github.com/mash-up-kr/ahobsu-node-backend).
+You can see the node.js backend github on [this](https://github.com/mash-up-kr/ahobsu-node-backend),  
+and the MOTI intro page on [this](https://his-0203.github.io/).
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details
