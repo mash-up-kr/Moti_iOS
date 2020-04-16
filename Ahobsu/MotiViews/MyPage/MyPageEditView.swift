@@ -13,6 +13,7 @@ struct MyPageEditView: View {
     
     @ObservedObject var keyboard = Keyboard()
     @ObservedObject var myPageEdit = MyPageEdit()
+    @ObservedObject var nickname = NicknameWithLimit()
     
     @Binding var sourceUser: User
     @Binding var isViewActive: Bool
@@ -28,7 +29,14 @@ struct MyPageEditView: View {
                     Spacer(minLength: CGFloat(30))
                     MyPageView.Separator()
                     VStack {
-                        ListCell(title: "닉네임", content: TextField("", text: $editingUser.name))
+                        ListCell(title: "닉네임",
+                                 content: TextField("",
+                                                    text: $nickname.text,
+                                                    onEditingChanged: { (onEditing) in
+                                                        if !onEditing {
+                                                            self.editingUser.name = self.nickname.text
+                                                        }
+                        }))
                         MyPageView.Separator().opacity(0.5)
                         ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday).background(Color.black))
                         MyPageView.Separator().opacity(0.5)
@@ -53,6 +61,9 @@ struct MyPageEditView: View {
             .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))
+            .onAppear() {
+                self.nickname.text = self.editingUser.name
+            }
             .onReceive(myPageEdit.$deletingUserSucccess) { (success) in
                 if success {
                     // 토큰 제거

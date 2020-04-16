@@ -20,6 +20,11 @@ class NicknameWithLimit: ObservableObject {
     
     let characterLimit: Int
     
+    init(initText: String = "", limit: Int = 8) {
+        text = initText
+        characterLimit = limit
+    }
+    
     init(limit: Int = 8) {
         characterLimit = limit
     }
