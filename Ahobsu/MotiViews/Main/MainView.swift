@@ -50,10 +50,9 @@ struct MainView: View {
                                             ForEach(cards.compactMap { $0?.file.cardUrl },
                                                     id: \.self,
                                                     content: { (cardUrl) in
-                                                        
                                                         ImageView(withURL: cardUrl)
                                                             .aspectRatio(257.0 / 439.0, contentMode: .fit)
-                                                            .padding(10)
+                                                            .padding(17)
                                             })
                                         }
                                 )
