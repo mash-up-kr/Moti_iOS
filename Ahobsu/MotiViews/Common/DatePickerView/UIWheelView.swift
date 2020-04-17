@@ -13,7 +13,7 @@ protocol UIWheelViewDelegate: class {
     func wheelView(_ wheelView: UIWheelView, didSelectItem item: Int)
 }
 
-class UIWheelView: UIView {
+final class UIWheelView: UIView {
     
     enum SectionAccessoryViewType {
         case header, footer

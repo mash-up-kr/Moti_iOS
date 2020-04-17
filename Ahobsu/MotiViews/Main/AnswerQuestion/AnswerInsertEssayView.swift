@@ -160,7 +160,7 @@ struct TextView: UIViewRepresentable {
         uiView.text = text
     }
     
-    class Coordinator: NSObject, UITextViewDelegate {
+    final class Coordinator: NSObject, UITextViewDelegate {
         
         var parent: TextView
         

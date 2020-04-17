@@ -16,7 +16,7 @@ extension MyPageEdit {
     }
 }
 
-class MyPageEdit: ObservableObject {
+final class MyPageEdit: ObservableObject {
     
     private var cancels: Set<AnyCancellable> = []
     @Published var deletingUserSucccess: Bool = false

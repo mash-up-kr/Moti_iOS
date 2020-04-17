@@ -97,24 +97,18 @@ struct ImageView: View {
     }
 }
 
-class ImageLoader: ObservableObject {
+final class ImageLoader: ObservableObject {
     
     @Published var data: Data?
     
     init(urlString: String) {
         guard let url = URL(string: urlString) else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, _, _) in
             guard let data = data else { return }
-            DispatchQueue.main.async {
-                self.data = data
+            DispatchQueue.main.async { [weak self] in
+                self?.data = data
             }
         }
         task.resume()
-    }
-}
-
-struct AnswerComplete_Common: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }

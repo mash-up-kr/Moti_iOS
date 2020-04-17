@@ -50,7 +50,7 @@ extension AhobsuAPI: TargetType {
             /* Answers */
         case .registerAnswer:
             return "/answers"
-        case let .updateAnswer(answerId):
+        case let .updateAnswer(answerId, _, _):
             return "/answers/\(answerId)"
         case .getWeekAnswers:
             return "/answers/week"
@@ -158,7 +158,7 @@ extension AhobsuAPI: TargetType {
             break
             
             /* SignIn */
-        case let .signIn(snsId):
+        case let .signIn(snsId, _):
             /* Empty */
             defaultParams["snsId"] = snsId
             defaultParams["snsType"] = "apple"

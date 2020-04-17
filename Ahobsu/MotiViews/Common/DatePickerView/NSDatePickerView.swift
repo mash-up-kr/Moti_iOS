@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UIDatePickerView: UIControl {
+final class UIDatePickerView: UIControl {
     
     var monthWheel: UIWheelView!
     var yearWheel: UIWheelView!

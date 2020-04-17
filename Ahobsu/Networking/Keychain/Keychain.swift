@@ -8,7 +8,7 @@
 
 import Foundation
 
-class KeyChain {
+final class KeyChain {
     
     class func delete(key: String) -> OSStatus {
         let query = [
@@ -59,11 +59,13 @@ class KeyChain {
 extension Data {
     
     init<T>(from value: T) {
-        var value = value
-        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+        self = Swift.withUnsafeBytes(of: value, { Data($0) })
     }
     
-    func to<T>(type: T.Type) -> T {
-        return self.withUnsafeBytes { $0.load(as: T.self) }
+    func to<T>(type: T.Type) -> T? where T: ExpressibleByIntegerLiteral {
+        var value: T = 0
+        guard count >= MemoryLayout.size(ofValue: value) else { return nil }
+        _ = Swift.withUnsafeMutableBytes(of: &value, { copyBytes(to: $0) })
+        return value
     }
 }

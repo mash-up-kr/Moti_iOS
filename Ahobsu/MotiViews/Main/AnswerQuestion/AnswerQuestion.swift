@@ -8,7 +8,7 @@
 
 import Combine
 
-class AnswerQuestion: ObservableObject {
+final class AnswerQuestion: ObservableObject {
     var cancels = Set<AnyCancellable>()
 }
 

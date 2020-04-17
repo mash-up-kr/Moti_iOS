@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-class NicknameWithLimit: ObservableObject {
+final class NicknameWithLimit: ObservableObject {
     @Published var text = "" {
         didSet {
             if text.count > characterLimit && oldValue.count <= characterLimit {

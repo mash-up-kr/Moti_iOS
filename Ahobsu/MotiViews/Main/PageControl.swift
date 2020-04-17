@@ -23,13 +23,6 @@ struct PageControl: UIViewRepresentable {
         control.currentPageIndicatorTintColor = .lightgold
         control.pageIndicatorTintColor = .greyishBrown
         
-        //        let scale: CGFloat = 1
-        //        control.transform = CGAffineTransform.init(scaleX: scale, y: scale)
-        //
-        //        for dot in control.subviews {
-        //            dot.transform = CGAffineTransform.init(scaleX: 1/4, y: 1/4)
-        //        }
-        
         control.addTarget(
             context.coordinator,
             action: #selector(Coordinator.updateCurrentPage(sender:)),
@@ -42,7 +35,7 @@ struct PageControl: UIViewRepresentable {
         uiView.currentPage = currentPage
     }
     
-    class Coordinator: NSObject {
+    final class Coordinator: NSObject {
         var control: PageControl
         
         init(_ control: PageControl) {

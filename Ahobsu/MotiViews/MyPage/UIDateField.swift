@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-class UIDateField: UITextField {
+final class UIDateField: UITextField {
     
     @Binding var date: Date
     

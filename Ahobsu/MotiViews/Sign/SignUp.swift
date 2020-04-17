@@ -24,7 +24,7 @@ extension SignUp {
     }
 }
 
-class SignUp: ObservableObject {
+final class SignUp: ObservableObject {
     
     // Nickname
     var nickname: String = ""

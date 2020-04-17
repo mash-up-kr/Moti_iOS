@@ -22,7 +22,7 @@ struct SignIn: Codable {
     }
 }
 
-class SignInWithAppleDelegates: NSObject {
+final class SignInWithAppleDelegates: NSObject {
     typealias SignInResult = (Bool, Bool?) -> Void
     private let signInSucceeded: SignInResult
     private weak var window: UIWindow!

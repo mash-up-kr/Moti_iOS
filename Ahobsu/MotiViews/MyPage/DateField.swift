@@ -50,7 +50,7 @@ struct DateField: UIViewRepresentable {
 
 extension DateField {
     
-    class DatePickerHandler: NSObject {
+    final class DatePickerHandler: NSObject {
         
         var didChangeDate: ((Date) -> Void)?
         
@@ -62,7 +62,7 @@ extension DateField {
 
 extension DateField {
     
-    class ReadOnlyTextFieldDelegate: NSObject, UITextFieldDelegate {
+    final class ReadOnlyTextFieldDelegate: NSObject, UITextFieldDelegate {
         
         func textFieldDidBeginEditing(_ textField: UITextField) {
             let animator = UIViewPropertyAnimator(duration: 0.4, curve: .easeOut) {

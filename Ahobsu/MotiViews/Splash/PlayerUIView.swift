@@ -9,7 +9,7 @@
 import SwiftUI
 import AVFoundation
 
-class PlayerUIView: UIView {
+final class PlayerUIView: UIView {
   
   var fileName: String { "video" }
   var fileExtension: String { "mp4" }

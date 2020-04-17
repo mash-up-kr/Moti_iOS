@@ -57,7 +57,7 @@ struct GenderField: UIViewRepresentable {
 
 extension GenderField {
     
-    class ReadOnlyTextFieldDelegate: NSObject, UITextFieldDelegate {
+    final class ReadOnlyTextFieldDelegate: NSObject, UITextFieldDelegate {
         
         func textFieldDidBeginEditing(_ textField: UITextField) {
             // Nothing

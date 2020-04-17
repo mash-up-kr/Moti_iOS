@@ -8,7 +8,7 @@
 
 import Moya
 
-class AhobsuProvider {
+final class AhobsuProvider {
     static let provider = AhobsuNetworking()
     
     /* Common */

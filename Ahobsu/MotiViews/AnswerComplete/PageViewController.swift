@@ -32,7 +32,7 @@ struct PageViewController: UIViewControllerRepresentable {
             [controllers[currentPage]], direction: .forward, animated: true)
     }
     
-    class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    final class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         var parent: PageViewController
         
         init(_ pageViewController: PageViewController) {

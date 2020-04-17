@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DateValidator {
+final class DateValidator {
     
     var maximumYear: Int?
     var monthsWith31Days: [Int] = [1, 3, 5, 7, 8, 10, 12]

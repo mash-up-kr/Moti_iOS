@@ -26,7 +26,7 @@ struct WheelView: UIViewRepresentable {
 
 extension WheelView {
     
-    class Coordinator: NSObject, UIWheelViewDelegate {
+    final class Coordinator: NSObject, UIWheelViewDelegate {
         
         @Binding var selectedItem: Int
         

@@ -16,6 +16,7 @@ struct AnswerComplete_Essay: View {
             MainCardView(isWithLine: true)
             VStack {
                 Text(text)
+                    .lineLimit(nil)
                     .multilineTextAlignment(.center)
                     .font(.custom("IropkeBatangOTFM", size: 16.0))
                     .foregroundColor(Color(UIColor.rosegold))

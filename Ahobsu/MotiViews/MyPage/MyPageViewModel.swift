@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class MyPageViewModel: ObservableObject {
+final class MyPageViewModel: ObservableObject {
     
     static var shared: MyPageViewModel = MyPageViewModel()
     

@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class DateManager: ObservableObject {
+final class DateManager: ObservableObject {
     
     private var dateValidator = DateValidator()
     
