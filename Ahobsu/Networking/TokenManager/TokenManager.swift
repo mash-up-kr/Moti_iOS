@@ -6,7 +6,7 @@
 //  Copyright © 2020 ahobsu. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import Security
 
 enum TokenType {
@@ -118,6 +118,28 @@ final class TokenManager {
             return getAccessToken()
         case .refresh:
             return getRefreshToken()
+        }
+    }
+    
+    func logout() {
+          // 토큰 제거
+          TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
+            // SignIn 화면으로 이동
+            self.navigateRootView()
+          }, error: { (status) in
+            
+          })
+    }
+    
+    func navigateRootView() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+            let window = sceneDelegate.window {
+            window.rootViewController = UIHostingController(rootView: SignInView(window: window))
+            UIView.transition(with: window,
+                              duration: 0.4,
+                              options: .transitionCrossDissolve,
+                              animations: nil,
+                              completion: nil)
         }
     }
     

@@ -189,7 +189,7 @@
 		A5D7621F23E537FE008AA3D5 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		A5F39C0C23EC444000766F82 /* MainNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBar.swift; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
-		B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ahobsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8E4CC0B7379D25F5D9717CE42858EDF /* MOTI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOTI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		CB08B896A2D70A497F206EBA873B453B /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionView.swift; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 		66B06056EC6306CB95E43D55EBB54D56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */,
+				B8E4CC0B7379D25F5D9717CE42858EDF /* MOTI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -682,7 +682,7 @@
 			);
 			name = Ahobsu;
 			productName = Ahobsu;
-			productReference = B8E4CC0B7379D25F5D9717CE42858EDF /* Ahobsu.app */;
+			productReference = B8E4CC0B7379D25F5D9717CE42858EDF /* MOTI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -971,6 +971,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ahobsu/Ahobsu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
@@ -980,8 +981,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MOTI;
 				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1110,6 +1112,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ahobsu/Ahobsu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
@@ -1119,8 +1122,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MOTI;
 				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

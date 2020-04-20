@@ -116,6 +116,7 @@ final class AhobsuProvider {
     static let updateRefreshToken: (APIData<Token>?) -> Void = { wrapper in
         guard let refreshToken = wrapper?.data else {
             /* refreshToken 받아오기 실패 */
+            TokenManager.sharedInstance.logout()
             return
         }
         

@@ -44,7 +44,7 @@ struct MyPageEditView: View {
                     }
                     MyPageView.Separator()
                     ListCell(title: "",
-                             content: Button(action: { self.logout() },
+                             content: Button(action: { TokenManager.sharedInstance.logout() },
                                              label: { Text("로그아웃") }))
                     ListCell(title: "",
                              content: Button(action: {
@@ -67,12 +67,13 @@ struct MyPageEditView: View {
             .onReceive(myPageEdit.$deletingUserSucccess) { (success) in
                 if success {
                     // 토큰 제거
-                    TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
-                        // SignIn 화면으로 이동
-                        self.navigateRootView()
-                    }, error: { (status) in
-                        
-                    })
+//                    TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
+//                        // SignIn 화면으로 이동
+//                        TokenManager.sharedInstance.navigateRootView()
+//                    }, error: { (status) in
+//
+//                    })
+                    TokenManager.sharedInstance.logout()
                 }
             }.onTapGesture {
                 self.endEditing()
@@ -107,27 +108,27 @@ extension MyPageEditView {
         }, filteredStatusCode: nil)
     }
     
-    private func logout() {
-        // 토큰 제거
-        TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
-            // SignIn 화면으로 이동
-            self.navigateRootView()
-        }, error: { (status) in
-            
-        })
-    }
-    
-    private func navigateRootView() {
-        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
-            let window = sceneDelegate.window {
-            window.rootViewController = UIHostingController(rootView: SignInView(window: window))
-            UIView.transition(with: window,
-                              duration: 0.4,
-                              options: .transitionCrossDissolve,
-                              animations: nil,
-                              completion: nil)
-        }
-    }
+//    private func logout() {
+//        // 토큰 제거
+//        TokenManager.sharedInstance.resetTokensFromKeyChain(completion: { (status) in
+//            // SignIn 화면으로 이동
+//            self.navigateRootView()
+//        }, error: { (status) in
+//
+//        })
+//    }
+//
+//    private func navigateRootView() {
+//        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+//            let window = sceneDelegate.window {
+//            window.rootViewController = UIHostingController(rootView: SignInView(window: window))
+//            UIView.transition(with: window,
+//                              duration: 0.4,
+//                              options: .transitionCrossDissolve,
+//                              animations: nil,
+//                              completion: nil)
+//        }
+//    }
     private func endEditing() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
             let window = sceneDelegate.window {
