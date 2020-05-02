@@ -42,7 +42,7 @@ struct MainView: View {
                         if todayCard != nil {
                             NavigationLink(destination: AnswerCompleteView(cards))
                             {
-                                MainCardView(isWithLine: !isAnswered)
+                                CardView(isWithLine: !isAnswered)
                                     .aspectRatio(257.0 / 439.0, contentMode: .fit)
                                     .padding([.horizontal], 59.0)
                                     .overlay(
@@ -62,7 +62,7 @@ struct MainView: View {
                                                                            currentPage: .constant(0),
                                                                            isStatusBarHidden: $isStatusBarHidden))
                             {
-                                MainCardView(isWithLine: !isAnswered)
+                                CardView(isWithLine: !isAnswered)
                                     .aspectRatio(0.62, contentMode: .fit)
                                     .padding([.horizontal], 59)
                                     .overlay(

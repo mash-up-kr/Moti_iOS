@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E7EA0F79A1DA7C88EE130EF142163E1"
-               BuildableName = "Ahobsu.app"
+               BuildableName = "MOTI.app"
                BlueprintName = "Ahobsu"
                ReferencedContainer = "container:Ahobsu.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E7EA0F79A1DA7C88EE130EF142163E1"
-            BuildableName = "Ahobsu.app"
+            BuildableName = "MOTI.app"
             BlueprintName = "Ahobsu"
             ReferencedContainer = "container:Ahobsu.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E7EA0F79A1DA7C88EE130EF142163E1"
-            BuildableName = "Ahobsu.app"
+            BuildableName = "MOTI.app"
             BlueprintName = "Ahobsu"
             ReferencedContainer = "container:Ahobsu.xcodeproj">
          </BuildableReference>

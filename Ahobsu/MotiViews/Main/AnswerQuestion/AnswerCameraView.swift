@@ -47,7 +47,7 @@ struct AnswerCameraView: View {
                                 } else {
                                     if missonData.isContent {
                                         //                            ZStack {
-                                        MainCardView(isWithLine: true)
+                                        CardView(isWithLine: true)
                                             .overlay(
                                                 VStack {
                                                     Image(uiImage: image ?? UIImage())
@@ -81,7 +81,7 @@ struct AnswerCameraView: View {
                                         )
                                             .padding(32)
                                     } else {
-                                        MainCardView(isWithLine: true)
+                                        CardView(isWithLine: true)
                                             .overlay(Image(uiImage: image!)
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)

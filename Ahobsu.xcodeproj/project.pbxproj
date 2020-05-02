@@ -14,7 +14,7 @@
 		15AD2A3428A964E06123B27D66DF196C /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08B896A2D70A497F206EBA873B453B /* TokenManager.swift */; };
 		165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE740228C6DE68584B06569CEAB9BA2E /* SceneDelegate.swift */; };
 		20A553E9B441D4F59C7AA0944E1DFF21 /* Pods_Ahobsu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B318F323C0BBFF5D27473F9B4EDF258 /* Pods_Ahobsu.framework */; };
-		23CC565B3F399647ED41AD1DBFEA5A9E /* MainCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402515DF510F38F4533106EC53B8E83 /* MainCardView.swift */; };
+		23CC565B3F399647ED41AD1DBFEA5A9E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F402515DF510F38F4533106EC53B8E83 /* CardView.swift */; };
 		25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302ED4D8249025596B4EFAE1580A395 /* MainView.swift */; };
 		25D0017AA1CE29EE896C85FFD9F6F54C /* SelectQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2147CB6FB113A6733802A6B51DDF1 /* SelectQuestionView.swift */; };
 		28F77E6C503B96E5C0FB03B69FEAE13D /* DateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D277F7B0CAE93B58CE7675B5D9908414 /* DateField.swift */; };
@@ -203,7 +203,7 @@
 		E43C473F274655F06AC8950953A0EB4C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		E7148FF6D03D89CDA149D1079E4CFE3C /* SignUpFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormView.swift; sourceTree = "<group>"; };
 		E73EA17769B99BE87F2196F43866386B /* Pods-Ahobsu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.release.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.release.xcconfig"; sourceTree = "<group>"; };
-		F402515DF510F38F4533106EC53B8E83 /* MainCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCardView.swift; sourceTree = "<group>"; };
+		F402515DF510F38F4533106EC53B8E83 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F4F11E5D82B9C02B99FC6A13568AEC9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPI.swift; sourceTree = "<group>"; };
 		F8889A44037417D9CC2CB812C85AD27E /* AnswerCompletePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCompletePageControl.swift; sourceTree = "<group>"; };
@@ -400,7 +400,6 @@
 				80A42AABA8415A07400169474E7A6537 /* AnswerQuestion */,
 				E56D06BB973F94DB4C32E79058C4262A /* SelectQuestion */,
 				313957CD8ACE10F3B06C60B5F361474E /* DayWeekView.swift */,
-				F402515DF510F38F4533106EC53B8E83 /* MainCardView.swift */,
 				9302ED4D8249025596B4EFAE1580A395 /* MainView.swift */,
 				4F02618383EFF6F4458EC8761B6A554C /* MotiView.swift */,
 				3E5560BAB9A5FC327D51EA4F46311E87 /* PageControl.swift */,
@@ -415,6 +414,7 @@
 		9B7A173A97D0463CC8BB42133ED4F71D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F402515DF510F38F4533106EC53B8E83 /* CardView.swift */,
 				470F16558181C29E4FCCCAE4E9F8D8C7 /* Keyboard.swift */,
 				A584768723EAE10600341058 /* WebView.swift */,
 				B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */,
@@ -890,7 +890,7 @@
 				FAB0F08923E090BF00336EA5 /* OnBordingView.swift in Sources */,
 				94BB90EFFCA20D44F07066103745BC6E /* Keychain.swift in Sources */,
 				4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */,
-				23CC565B3F399647ED41AD1DBFEA5A9E /* MainCardView.swift in Sources */,
+				23CC565B3F399647ED41AD1DBFEA5A9E /* CardView.swift in Sources */,
 				25B0792F91D854E92A9F9474D1EBE306 /* MainView.swift in Sources */,
 				A59DD9F623FC00080042DAFE /* UIWheelView.swift in Sources */,
 				5B83C300AB70327D0A91226820F152B0 /* TodayMission.swift in Sources */,

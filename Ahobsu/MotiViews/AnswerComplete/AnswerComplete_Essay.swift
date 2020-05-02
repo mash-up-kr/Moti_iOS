@@ -13,7 +13,7 @@ struct AnswerComplete_Essay: View {
     
     var body: some View {
         ZStack {
-            MainCardView(isWithLine: true)
+            CardView(isWithLine: true)
             VStack {
                 Text(text)
                     .lineLimit(nil)

@@ -15,7 +15,7 @@ struct QuestionCardView: View, Identifiable {
     
     var body: some View {
         ZStack {
-            MainCardView(isWithLine: false)
+            CardView(isWithLine: false)
             VStack {
                 HStack {
                     Spacer()

@@ -8,23 +8,26 @@
 
 import SwiftUI
 
-struct MainCardView: View {
-    @State var isWithLine: Bool = false
-    @State var shadowRadius: CGFloat = 10.0
+struct CardView: View {
+    var isWithLine: Bool = false
+    var cornerRadius: CGFloat = 11.0
+    var shadowRadius: CGFloat = 10.0
+    var innerPaddingTop: CGFloat = 10.0
+    var innerPaddingLeading: CGFloat = 10.0
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 11)
+            RoundedRectangle(cornerRadius: cornerRadius)
                 .foregroundColor(.black)
-                .overlay(RoundedRectangle(cornerRadius: 11)
+                .overlay(RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(Color(.lightgold), lineWidth: 1))
                 .shadow(color: Color(.shadowpink), radius: shadowRadius / 2, x: 0, y: 0)
                 .overlay(
                     ZStack {
                         if isWithLine {
                             
-                            RoundedRectangle(cornerRadius: 11)
-                                .overlay(RoundedRectangle(cornerRadius: 11)
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                                .overlay(RoundedRectangle(cornerRadius: cornerRadius)
                                     .stroke(Color(.lightgold), lineWidth: 1)
                                     .foregroundColor(.clear))
                                 .padding([.vertical], 17)
@@ -45,9 +48,9 @@ struct MainCardView: View {
     }
 }
 
-struct MainCardView_Previews: PreviewProvider {
+struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCardView(isWithLine: true)
+        CardView(isWithLine: true)
             .padding(60)
     }
 }

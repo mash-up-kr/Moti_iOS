@@ -14,7 +14,7 @@ struct AnswerComplete_Camera: View {
     
     var body: some View {
         ZStack {
-            MainCardView(isWithLine: true)
+            CardView(isWithLine: true)
             VStack {
                 ImageView(withURL: imageURL)
                     .scaledToFit()

@@ -23,7 +23,7 @@ struct AnswerInsertCamaraView: View {
                     VStack(spacing: 20) {
                         Spacer()
                         ZStack {
-                            MainCardView(isWithLine: true)
+                            CardView(isWithLine: true)
                                 .aspectRatio(0.62, contentMode: .fit)
                                 .padding(.horizontal, 12)
                                 .overlay(

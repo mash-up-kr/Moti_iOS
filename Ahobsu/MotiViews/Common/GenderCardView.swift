@@ -17,7 +17,7 @@ struct GenderCardView: View {
     
     var body: some View {
         ZStack {
-            MainCardView(isWithLine: false)
+            CardView(isWithLine: false)
             VStack {
                 Image(isMale ? "imgMale" : "imgFemale")
                 Text(isMale ? "MAN" : "WOMAN")

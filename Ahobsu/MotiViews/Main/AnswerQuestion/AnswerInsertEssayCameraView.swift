@@ -37,7 +37,7 @@ struct AnswerInsertEssayCameraView: View {
                         }
                         Spacer()
                         ZStack {
-                            MainCardView(isWithLine: true)
+                            CardView(isWithLine: true)
                                 .padding([.horizontal], 12)
                                 .offset(x: 0, y: 60)
                             VStack {

@@ -14,7 +14,7 @@ struct AnswerComplete_EssayCamera: View {
     
     var body: some View {
         ZStack {
-            MainCardView(isWithLine: true)
+            CardView(isWithLine: true)
             VStack {
                 VStack {
                     ImageView(withURL: imageURL)

@@ -213,7 +213,7 @@ struct PartsCombinedAnswer: View {
             {
                 ZStack {
                     if self.answers != nil {
-                        MainCardView(isWithLine: true)
+                        CardView(isWithLine: true)
                         ForEach(self.answers!.compactMap { $0?.file.cardUrl },
                                 id: \.self,
                                 content: { (cardUrl) in
