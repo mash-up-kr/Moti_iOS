@@ -52,6 +52,8 @@ struct AnswerInsertEssayCameraView: View {
                                     if text == "" && keyboard.state.height == 0 {
                                         VStack {
                                             Text("여기를 눌러 질문에 대한\n답을 적어주세요.")
+                                                .font(.custom("IropkeBatangOTFM", size: 16.0))
+                                                .lineSpacing(8.0)
                                                 .foregroundColor(Color(.placeholderblack))
                                                 .multilineTextAlignment(.center)
                                                 .padding(EdgeInsets(top: 100 + (keyboard.state.height == 0 ? 100 : -100 + keyboard.state.height),
