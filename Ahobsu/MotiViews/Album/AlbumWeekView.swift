@@ -23,7 +23,7 @@ struct AlbumWeekView: View {
                 .frame(height: 72, alignment: .center)
             ZStack {
                 NavigationLink(destination: AnswerCompleteView(answers)) {
-                    CardView(isWithLine: true)
+                    CardView(innerLine: true)
                         .aspectRatio(257.0 / 439.0, contentMode: .fit)
                         .padding([.horizontal], 59)
                         .overlay(
