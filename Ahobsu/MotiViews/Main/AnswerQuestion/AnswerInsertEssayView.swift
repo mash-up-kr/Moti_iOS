@@ -142,18 +142,26 @@ struct TextView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> UITextView {
-        
         let myTextView = UITextView()
         myTextView.delegate = context.coordinator
         
-        myTextView.font = .systemFont(ofSize: 16)
-        myTextView.textAlignment = .center
-        myTextView.textColor = .rosegold
-        myTextView.tintColor = .rosegold
         myTextView.isScrollEnabled = true
         myTextView.isEditable = true
         myTextView.isUserInteractionEnabled = true
         myTextView.backgroundColor = .clear
+        
+        let textViewAttributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont(name: "IropkeBatangOTFM", size: 16.0)!,
+            .foregroundColor: UIColor.rosegold,
+            .paragraphStyle: {
+                let paragraph = NSMutableParagraphStyle()
+                paragraph.lineSpacing = 8.0
+                paragraph.alignment = .center
+                return paragraph
+            }()
+        ]
+        
+        myTextView.typingAttributes = textViewAttributes
         
         return myTextView
     }
