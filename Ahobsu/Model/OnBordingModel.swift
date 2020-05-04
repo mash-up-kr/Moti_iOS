@@ -45,7 +45,7 @@ extension OnBordingModel {
         )
         
         onBordingData.append(
-            OnBordingModel(headline: "나만의 드림캐쳐 만들기", detail: "질문에 답변해 파츠를 하나씩 모으세요.\n일주일 간의 기록을 통해 나만의 드림캐쳐가 완성됩니다.", imageName: "onbording3")
+            OnBordingModel(headline: "나만의 드림캐쳐 만들기", detail: "질문에 답변해 파츠를 하나씩 모으세요.\n6일간의 기록을 통해 나만의 드림캐쳐가 완성됩니다.", imageName: "onbording3")
         )
         
         onBordingData.append(
