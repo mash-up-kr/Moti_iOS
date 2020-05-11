@@ -80,7 +80,7 @@ struct AlbumView: View {
                                   month: self.currentMonth,
                                   isLoading: self.$isLoading)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                            .padding(.top, 30.0)
+                            .padding(.top, 16.0)
                         PaginationView(loadAlbumsDelegate: {
                             self.loadAlbums()
                         }, year: self.$currentYear,
