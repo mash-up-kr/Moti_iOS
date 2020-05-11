@@ -21,6 +21,9 @@ final class PlayerUIView: UIView {
     
     let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
     let player = AVPlayer(url: url)
+    
+    _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
+        
     player.play()
     
     playerLayer.player = player
