@@ -8,22 +8,28 @@
 
 import Moya
 import Combine
+import Alamofire
 
-typealias AhobsuNetworking = Networking<AhobsuAPI>
+typealias AhobsuNetworking = Networking
 
-final class Networking<Target: TargetType>: MoyaProvider<Target> {
+final class Networking: MoyaProvider<AhobsuAPI> {
     
     init(plugins: [PluginType] = []) {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = Manager.defaultHTTPHeaders
+        configuration.httpAdditionalHeaders = HTTPHeaders.default.dictionary
         configuration.timeoutIntervalForRequest = 10
+        configuration.timeoutIntervalForResource = 50
         
-        let manager = Manager(configuration: configuration)
-        manager.startRequestsImmediately = false
-        super.init(manager: manager, plugins: plugins)
+        super.init(endpointClosure: Self.endpointClosure,
+                   session: DefaultAlamofireSession.sharedSession)
     }
     
-    func requestPublisher(_ target: Target, callbackQueue: DispatchQueue? = nil) -> AnyPublisher<Response, MoyaError> {
+    private static let endpointClosure = { (target: AhobsuAPI) -> Endpoint in
+        let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+        return defaultEndpoint
+    }
+    
+    func requestPublisher(_ target: AhobsuAPI, callbackQueue: DispatchQueue? = nil) -> AnyPublisher<Response, MoyaError> {
         return MoyaPublisher { [weak self] subscriber in
             return self?.request(target, callbackQueue: callbackQueue, progress: nil) { result in
                 switch result {
@@ -40,7 +46,7 @@ final class Networking<Target: TargetType>: MoyaProvider<Target> {
     
     @discardableResult
     func request(
-        _ target: Target,
+        _ target: AhobsuAPI,
         completionHandler: @escaping (Response) -> Void,
         errorHandler: @escaping (MoyaError) -> Void
     ) -> Moya.Cancellable {
@@ -61,4 +67,15 @@ final class Networking<Target: TargetType>: MoyaProvider<Target> {
             }
         }
     }
+}
+
+final class DefaultAlamofireSession: Session {
+    static let sharedSession: DefaultAlamofireSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = Session.default.session.configuration.httpAdditionalHeaders
+        configuration.timeoutIntervalForRequest = 10
+        configuration.timeoutIntervalForResource = 50
+        configuration.requestCachePolicy = .useProtocolCachePolicy
+        return DefaultAlamofireSession(configuration: configuration)
+    }()
 }
