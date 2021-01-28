@@ -10,15 +10,12 @@ import SwiftUI
 
 struct MainView: View {
     @State var window: UIWindow
-    @State var isAnswered: Bool = false
-    @State var todayCard: Answer?
-    @State var cards: [Answer?] = [nil, nil, nil, nil, nil, nil]
-    @State var isStatusBarHidden: Bool = false
+    @ObservedObject var model: MainViewModel = MainViewModel()
     
     var body: some View {
         NavigationView {
             NavigationMaskingView(isRoot: true,
-                                  titleItem: DayWeekView(isFills: cards.map { $0 != nil }).frame(height: 72, alignment: .center),
+                                  titleItem: DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .center),
                                   trailingItem: EmptyView())
             {
                 ZStack {
@@ -27,15 +24,15 @@ struct MainView: View {
                     VStack {
                         
                         Spacer()
-                        if todayCard != nil {
-                            NavigationLink(destination: AnswerCompleteView(cards))
+                        if model.todayCard != nil {
+                            NavigationLink(destination: AnswerCompleteView(model.cards))
                             {
-                                CardView(innerLine: !isAnswered)
+                                CardView(innerLine: !model.isAnswered)
                                     .aspectRatio(257.0 / 439.0, contentMode: .fit)
                                     .padding([.horizontal], 59.0)
                                     .overlay(
                                         ZStack {
-                                            ForEach(cards.compactMap { $0?.file.cardUrl },
+                                            ForEach(model.cards.compactMap { $0?.file.cardUrl },
                                                     id: \.self,
                                                     content: { (cardUrl) in
                                                         ImageView(withURL: cardUrl)
@@ -48,9 +45,9 @@ struct MainView: View {
                         } else {
                             NavigationLink(destination: SelectQuestionView(window: $window,
                                                                            currentPage: .constant(0),
-                                                                           isStatusBarHidden: $isStatusBarHidden))
+                                                                           isStatusBarHidden: $model.isStatusBarHidden))
                             {
-                                CardView(innerLine: !isAnswered)
+                                CardView(innerLine: !model.isAnswered)
                                     .aspectRatio(0.62, contentMode: .fit)
                                     .padding([.horizontal], 59)
                                     .overlay(
@@ -101,43 +98,12 @@ struct MainView: View {
                 }
                 .navigationBarTitle(Text(""), displayMode: .inline)
                 .onAppear(perform: {
-                    self.getMultipleParts()
+                    self.model.getMultipleParts()
                 })
             }
-        }.statusBar(hidden: isStatusBarHidden)
+        }.statusBar(hidden: model.isStatusBarHidden)
     }
-    
-    func getMultipleParts() {
-        AhobsuProvider.getAnswersWeek(completion: { wrapper in
-            if var answerWeek = wrapper?.data {
-                let formatter = ISO8601DateFormatter()
-                formatter.formatOptions = .withFullDate
-                formatter.timeZone = TimeZone.current
-                let dateString = formatter.string(from: Date())
-                
-                withAnimation {
-                    if let lastCard = answerWeek.answers.last {
-                        if lastCard?.date == dateString {
-                            self.todayCard = lastCard
-                        }
-                    }
-                }
-                
-                // nil 로 상단 뷰에서 확인
-                while (answerWeek.answers.count < 6) {
-                    answerWeek.answers.append(nil)
-                }
-                
-                withAnimation {
-                    self.cards = answerWeek.answers
-                }
-            }
-        }, error: { err in
-            print(err)
-        }, expireTokenAction: {
-            
-        }, filteredStatusCode: nil)
-    }
+
 }
 
 struct MainView_Previews: PreviewProvider {

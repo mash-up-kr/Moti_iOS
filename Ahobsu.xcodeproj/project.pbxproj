@@ -10,6 +10,7 @@
 		001A6C6FCD44DE1E016DED590EF3A30B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCCC4743463A910400D6DC428F0A5A /* CardView.swift */; };
 		01186B269711924633AA1FE0219CD627 /* OnBordingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BA3F72F5A4F56E35C4EAB743F94D4 /* OnBordingPageViewController.swift */; };
 		01C4DC64E8C428CEDE081E0BE92815C9 /* SwiftUIPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F112FB6ED5B53F57D5416E91A4E870C /* SwiftUIPagerView.swift */; };
+		01FB6EF6EE106C7AFB256C1EC6318F51 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E64502EB647A03E194D3E782E4DFA8B /* MainViewModel.swift */; };
 		085CE9B19E1419F3AD385665FC6A2A10 /* UIWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7694FA7AC5766C25E279CADFAD9AB3 /* UIWheelView.swift */; };
 		086DA78A1DEFA6E5FC3A36153813D15E /* OnBordingPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66524167E79958E383EEEBBAB50AD5C /* OnBordingPageControl.swift */; };
 		08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */; };
@@ -137,6 +138,7 @@
 		13872E91AFFD5C935B7C7AFDACB08489 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
 		148FDE499FF2EBDB3B2295DBA8A93CE1 /* TTNorms-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-Heavy.otf"; sourceTree = "<group>"; };
 		1B5BA3F72F5A4F56E35C4EAB743F94D4 /* OnBordingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingPageViewController.swift; sourceTree = "<group>"; };
+		1E64502EB647A03E194D3E782E4DFA8B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		1FBF829C4542B7CF5676CC37E1CA2A75 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		21028E6C7A9E457DA7D2AC3F90B21995 /* SignInWithAppleDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleDelegates.swift; sourceTree = "<group>"; };
 		23C05112A43FA591577D3184BBB90103 /* TTNorms-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-LightItalic.otf"; sourceTree = "<group>"; };
@@ -337,6 +339,15 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2F7B59E85A9D07065E9EDA30DEF33563 /* WeekDayView */ = {
+			isa = PBXGroup;
+			children = (
+				25AA0F9DEC534B557DC32A9701EB737F /* DayWeekView.swift */,
+				E9B5F3D5B04D98775AAC963913BC1D56 /* WeekDayCellView.swift */,
+			);
+			path = WeekDayView;
 			sourceTree = "<group>";
 		};
 		367EA97F98115FB65CA7D9DB90E3A9FF /* Extension */ = {
@@ -542,24 +553,6 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
-		BEFD3FA69E1F679D674B2DF9F9A20AC9 /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				2F7B59E85A9D07065E9EDA30DEF33563 /* WeekDayView */,
-				801D821755B10AA277662F28CBF63407 /* MainView.swift */,
-			);
-			path = MainView;
-			sourceTree = "<group>";
-		};
-		2F7B59E85A9D07065E9EDA30DEF33563 /* WeekDayView */ = {
-			isa = PBXGroup;
-			children = (
-				25AA0F9DEC534B557DC32A9701EB737F /* DayWeekView.swift */,
-				E9B5F3D5B04D98775AAC963913BC1D56 /* WeekDayCellView.swift */,
-			);
-			path = WeekDayView;
-			sourceTree = "<group>";
-		};
 		AFE16E2A8210CDC803567EEB79A5542C /* SupportViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,6 +584,16 @@
 				D6C7D90F35C0C6ADE98ACBB82BC2DB8A /* AlbumWeekView.swift */,
 			);
 			path = Album;
+			sourceTree = "<group>";
+		};
+		BEFD3FA69E1F679D674B2DF9F9A20AC9 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				2F7B59E85A9D07065E9EDA30DEF33563 /* WeekDayView */,
+				801D821755B10AA277662F28CBF63407 /* MainView.swift */,
+				1E64502EB647A03E194D3E782E4DFA8B /* MainViewModel.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		BF13CD4DB3E3C96C0A9006F517893B60 = {
@@ -977,6 +980,7 @@
 				4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */,
 				A05F8A6027BEB318294644BF804384D3 /* MainNavigationBar.swift in Sources */,
 				38B98AE29E0D88DCD23C86A4D6C65676 /* MainView.swift in Sources */,
+				01FB6EF6EE106C7AFB256C1EC6318F51 /* MainViewModel.swift in Sources */,
 				5B83C300AB70327D0A91226820F152B0 /* Mission.swift in Sources */,
 				D67F8AFE72DBF9BA11A5B6EBD3E20E15 /* MissionService.swift in Sources */,
 				2E414CF17FEFDCCF747AFB0696A4507D /* MonthEnum.swift in Sources */,
@@ -1059,7 +1063,7 @@
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Ahobsu/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1200,7 +1204,7 @@
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Ahobsu/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
