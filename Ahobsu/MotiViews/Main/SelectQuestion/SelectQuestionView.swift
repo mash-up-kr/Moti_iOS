@@ -45,6 +45,7 @@ struct SelectQuestionView: View {
                                                          isStatusBarHidden: $isStatusBarHidden)
                         }
                     )
+                    .offset(x: -50, y: 40)
                     Spacer()
                     PageControl(numberOfPages: 3, currentPage: $index)
                     Spacer()

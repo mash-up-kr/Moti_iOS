@@ -32,7 +32,7 @@ struct SwiftUIPagerView<Content: View & Identifiable>: View {
                 }
             }
                 // 2
-                .content.offset(x: self.isGestureActive ? self.offset : -(geometry.size.width + self.widthCompensation) * CGFloat(self.index))
+            .content.offset(x: self.isGestureActive ? self.offset : -((geometry.size.width + self.widthCompensation) * CGFloat(self.index)))
                 // 3
                 .frame(width: geometry.size.width, height: nil, alignment: .leading)
                 .gesture(DragGesture().onChanged({ value in
