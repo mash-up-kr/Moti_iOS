@@ -14,15 +14,17 @@ struct AnswerComplete_Essay: View {
     var body: some View {
         ZStack {
             CardView(innerLine: false)
-            VStack {
-                Text(text)
-                    .lineLimit(nil)
-                    .multilineTextAlignment(.center)
-                    .font(.custom("IropkeBatangOTFM", size: 16.0))
-                    .foregroundColor(Color(UIColor.rosegold))
-                    .lineSpacing(8.0)
-            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .padding([.all], 28.0)
+            ScrollView {
+                VStack {
+                    Text(text)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.center)
+                        .font(.motiFont(.answerText, size: 16.0))
+                        .foregroundColor(Color(UIColor.rosegold))
+                        .lineSpacing(8.0)
+                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .padding([.all], 28.0)
+            }
         }
     }
 }
