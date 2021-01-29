@@ -44,7 +44,6 @@ struct MainView: View {
                             }.buttonStyle(PlainButtonStyle())
                         } else {
                             NavigationLink(destination: SelectQuestionView(window: $window,
-                                                                           currentPage: .constant(0),
                                                                            isStatusBarHidden: $model.isStatusBarHidden))
                             {
                                 CardView(innerLine: !model.isAnswered)

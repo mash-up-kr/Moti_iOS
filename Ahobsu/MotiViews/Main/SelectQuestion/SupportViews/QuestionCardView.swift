@@ -67,19 +67,6 @@ struct QuestionCardView: View, Identifiable {
         }
         .aspectRatio(0.62, contentMode: .fit)
     }
-    
-    //    var destinationView: some View {
-    //        if missionData.isContent == 1 {
-    //            if missionData.isImage == 1 {
-    //                return AnswerInsertCameraView(missonData: missionData)
-    //            } else {
-    //                return AnswerInsertEssayView(missonData: missionData)
-    //            }
-    //        } else if missionData.isImage == 1 {
-    //            return AnswerInsertCameraView(missonData: missionData)
-    //        }
-    //        return AnswerInsertEssayView(missonData: missionData)
-    //    }
 }
 
 //struct QuestionCardView_Previews: PreviewProvider {
