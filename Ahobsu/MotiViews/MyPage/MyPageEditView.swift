@@ -18,9 +18,15 @@ struct MyPageEditView: View {
     @Binding var sourceUser: User
     @Binding var isViewActive: Bool
     
-    @State var editingUser: User
+    @State private var editingUser: User
     @State var isNetworking = false
     @State private var showingAlert = false
+
+    init(sourceUser: Binding<User>, isViewActive: Binding<Bool>) {
+        self._sourceUser = sourceUser
+        self._isViewActive = isViewActive
+        self._editingUser = State(initialValue: sourceUser.wrappedValue)
+    }
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("수정하기"), trailingItem: Text("")) {
@@ -139,7 +145,7 @@ extension MyPageEditView {
 
 struct MyPageEditView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPageEditView(sourceUser: .constant(.placeholderData), isViewActive: .constant(true), editingUser: .placeholderData)
+        MyPageEditView(sourceUser: .constant(.placeholderData), isViewActive: .constant(true))
     }
 }
 

@@ -20,8 +20,6 @@ struct SplashView: View {
     @State var logoAlpha = 0.0
     @State var logoScale: CGFloat = 1
     
-    @ObservedObject var myPageViewModel: MyPageViewModel = .shared
-    
     var body: some View {
         VStack {
             LogoView(textAlpha: $textAlpha,
