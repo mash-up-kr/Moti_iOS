@@ -46,6 +46,7 @@
 		4702BFF83A682EDD21EDA1D5DCA6287F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E8B165D58EB5CF8C0237810BDE8D4 /* String+Extension.swift */; };
 		4BA73ACD2A6B253287952ABC50810338 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2D81F35976A71F6B66D3BBE8B8C57 /* ImagePicker.swift */; };
 		4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */; };
+		4E6E2023D386BF88CDB2A8DE5A7BC4F9 /* AlbumIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */; };
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		524FFB071187DA164C0711CEB3DD1318 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658D57E30B0046EFD1664FEA7F8DDF1 /* WebView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
@@ -114,7 +115,7 @@
 		E0F1174C07153D3D5F241122DC16F9FF /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93017AF860D0E9E349FDF5912B13BDDE /* PlayerView.swift */; };
 		E39AB5AEA1568D33C713B85803828F4E /* AnswerInsertCamaraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54B5E5C139E70D2B829E51A4DC0F663 /* AnswerInsertCamaraView.swift */; };
 		E3EE519C4F104E37FA9A2E1767E7BF7B /* QuestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4EFE0FA5F6757B827D27E255314F33 /* QuestionCellView.swift */; };
-		E610EA86246AC86686206BF978485DDF /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DCB8E859A80ABBD9EB06DE2CCB098E /* MyPageViewModel.swift */; };
+		E5967D5700334413206F3DD9D1C1B147 /* MyPageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590824D45CE41F0A7125159E683902F0 /* MyPageIntent.swift */; };
 		E7AF816713E6C4CC1C1497D73187C56D /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DFD03EB2D8AECC81BF0C332BBD1D2B /* AlbumView.swift */; };
 		E8CCE216A782B613B05B5A9D7E4D8752 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA67C2A7AAF4A7C19DA13B7E1087D38 /* AppVersion.swift */; };
 		EED36688EEBC6631685AFE5247C4B06D /* TTNorms-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6DB22532F6B6B1DC62DC93BEAD19412C /* TTNorms-ExtraLightItalic.otf */; };
@@ -162,7 +163,6 @@
 		3E2089666AA18C82A56D827DBC68747F /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		4095D0A15B937B14DD0B1E9243252123 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuProvider.swift; sourceTree = "<group>"; };
-		41DCB8E859A80ABBD9EB06DE2CCB098E /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaPublisher.swift; sourceTree = "<group>"; };
 		465A514D71814156841FB8516168321C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		4729AC93DD1B413D998F1720CE9D59BE /* MonthEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthEnum.swift; sourceTree = "<group>"; };
@@ -177,12 +177,14 @@
 		54897E54114C299DC791A8C87484A2A3 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
 		57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditView.swift; sourceTree = "<group>"; };
 		58767712A13BF759341D51E350855FCC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		590824D45CE41F0A7125159E683902F0 /* MyPageIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageIntent.swift; sourceTree = "<group>"; };
 		5B13E28C770E8380BE074D49155B5613 /* Pods-Ahobsu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ahobsu.debug.xcconfig"; path = "Target Support Files/Pods-Ahobsu/Pods-Ahobsu.debug.xcconfig"; sourceTree = "<group>"; };
 		5CA2D81F35976A71F6B66D3BBE8B8C57 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5D2532E3BDD0E3ABCEC02A8714AC1260 /* TTNorms-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-BoldItalic.otf"; sourceTree = "<group>"; };
 		60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCardView.swift; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
+		65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumIntent.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
 		6658D57E30B0046EFD1664FEA7F8DDF1 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		674C963744E3FAA9ACB80DA364526C10 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
@@ -569,8 +571,8 @@
 				9BBE519BCB1213A3A428D1EBC60AE1E5 /* MailCompose.swift */,
 				DE7B85ECC1CAEE2115922197DC6574CF /* MyPageEdit.swift */,
 				57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */,
+				590824D45CE41F0A7125159E683902F0 /* MyPageIntent.swift */,
 				325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */,
-				41DCB8E859A80ABBD9EB06DE2CCB098E /* MyPageViewModel.swift */,
 				CDD398B6431429AFD9AC6A2F4D738B6D /* UIDateField.swift */,
 			);
 			path = MyPage;
@@ -603,6 +605,7 @@
 		BC28668F0FB6AC3DEB5993950958BD57 /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */,
 				32DFD03EB2D8AECC81BF0C332BBD1D2B /* AlbumView.swift */,
 				D6C7D90F35C0C6ADE98ACBB82BC2DB8A /* AlbumWeekView.swift */,
 			);
@@ -975,6 +978,7 @@
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
+				4E6E2023D386BF88CDB2A8DE5A7BC4F9 /* AlbumIntent.swift in Sources */,
 				E7AF816713E6C4CC1C1497D73187C56D /* AlbumView.swift in Sources */,
 				405C5CB8A66165427E5513F13483A102 /* AlbumWeekView.swift in Sources */,
 				FA27412DA7EBF0DD704F9B008923BB35 /* Answer.swift in Sources */,
@@ -1023,8 +1027,8 @@
 				586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */,
 				377D0EC362AEA71B21629AEA8798BEFD /* MyPageEdit.swift in Sources */,
 				8F3D759C5F892A8F9E4045CD74A7115D /* MyPageEditView.swift in Sources */,
+				E5967D5700334413206F3DD9D1C1B147 /* MyPageIntent.swift in Sources */,
 				34DAE4F0F8EB836107D9C7645622267D /* MyPageView.swift in Sources */,
-				E610EA86246AC86686206BF978485DDF /* MyPageViewModel.swift in Sources */,
 				FBA92F16BA03CF4330764BD7FE72CF64 /* NSDatePickerView.swift in Sources */,
 				3CE88CEC51D466A31E8EE490B4E3330C /* NavigationMaskingView.swift in Sources */,
 				932C14B465C7EF4975A94C58EF17D43E /* NetworkErrorView.swift in Sources */,

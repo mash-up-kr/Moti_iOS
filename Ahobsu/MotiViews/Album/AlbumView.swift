@@ -32,74 +32,34 @@ extension String {
 struct AlbumView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @State private var answerMonth: AnswerMonth?
-    
-    @State private var currentYear: Int = 0
-    @State private var currentMonth: Int = 0
-    
-    @State private var isReloadNeeded: Bool = false
-    
-    @State private var isLoading: Bool = true
-    
-    func loadAlbums() {
-        AhobsuProvider.getAnswersMonth(year: self.currentYear,
-                                       month: self.currentMonth,
-                                       completion: { (wrapper) in
-                                        if let answerMonth = wrapper?.data {
-                                            withAnimation(.easeIn(duration: 0.5)) {
-                                                self.answerMonth = answerMonth
-                                            }
-                                        }
-                                        
-                                        self.isReloadNeeded = false
-                                        self.isLoading = false
-        }, error: { (error) in
-            self.isReloadNeeded = true
-        }, expireTokenAction: {
-            
-        }, filteredStatusCode: nil)
-    }
-    
-    func loadAlbumAction() {
-        let calendar = Calendar.current
-        let date = Date()
-        
-        self.currentYear = calendar.component(.year, from: date)
-        self.currentMonth = calendar.component(.month, from: date)
-        
-        self.loadAlbums()
-    }
+
+    @ObservedObject var intent: AlbumItent = AlbumItent()
 
     var body: some View {
         NavigationMaskingView(titleItem: Text("앨범").font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), trailingItem: EmptyView()) {
-            LoadingView(isShowing: $isLoading) {
+            LoadingView(isShowing: intent.isLoading) {
                 VStack {
-                    if self.isReloadNeeded == false {
-                        AlbumList(answerMonth: self.answerMonth,
-                                  month: self.currentMonth,
-                                  isLoading: self.$isLoading)
+                    if intent.isReloadNeeded == false {
+                        AlbumList(answerMonth: intent.answerMonth,
+                                  month: intent.currentMonth,
+                                  isLoading: intent.isLoading)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                             .padding(.top, 16.0)
-                        PaginationView(loadAlbumsDelegate: {
-                            self.loadAlbums()
-                        }, year: self.$currentYear,
-                           month: self.$currentMonth,
-                           isLoading: self.$isLoading)
+                        PaginationView(loadAlbumsDelegate: { intent.onChangePage() },
+                                       year: $intent.currentYear,
+                                       month: $intent.currentMonth,
+                                       isLoading: $intent.isLoading)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
                     } else {
                         NetworkErrorView {
-                            self.loadAlbumAction()
+                            intent.onError()
                         }
                     }
                 }
             }
         }
         .background(BackgroundView())
-        .onAppear {
-            self.isLoading = true
-            self.loadAlbumAction()
-        }
+        .onAppear(perform: intent.onAppear)
     }
 }
 
@@ -108,7 +68,7 @@ struct AlbumList: View {
     var answerMonth: AnswerMonth?
     var month: Int
     
-    @Binding var isLoading: Bool
+    var isLoading: Bool
     
     var body: some View {
         VStack {
