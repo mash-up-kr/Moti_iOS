@@ -46,6 +46,7 @@
 		4702BFF83A682EDD21EDA1D5DCA6287F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E8B165D58EB5CF8C0237810BDE8D4 /* String+Extension.swift */; };
 		4BA73ACD2A6B253287952ABC50810338 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2D81F35976A71F6B66D3BBE8B8C57 /* ImagePicker.swift */; };
 		4C38AADB8864B5779664C9FD312D0FC5 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CD0A2F00EDD56372C49D33790228EB /* MainButton.swift */; };
+		4E6E2023D386BF88CDB2A8DE5A7BC4F9 /* AlbumIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */; };
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		524FFB071187DA164C0711CEB3DD1318 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658D57E30B0046EFD1664FEA7F8DDF1 /* WebView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
@@ -183,6 +184,7 @@
 		60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCardView.swift; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
+		65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumIntent.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
 		6658D57E30B0046EFD1664FEA7F8DDF1 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		674C963744E3FAA9ACB80DA364526C10 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 		BC28668F0FB6AC3DEB5993950958BD57 /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */,
 				32DFD03EB2D8AECC81BF0C332BBD1D2B /* AlbumView.swift */,
 				D6C7D90F35C0C6ADE98ACBB82BC2DB8A /* AlbumWeekView.swift */,
 			);
@@ -975,6 +978,7 @@
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
+				4E6E2023D386BF88CDB2A8DE5A7BC4F9 /* AlbumIntent.swift in Sources */,
 				E7AF816713E6C4CC1C1497D73187C56D /* AlbumView.swift in Sources */,
 				405C5CB8A66165427E5513F13483A102 /* AlbumWeekView.swift in Sources */,
 				FA27412DA7EBF0DD704F9B008923BB35 /* Answer.swift in Sources */,
