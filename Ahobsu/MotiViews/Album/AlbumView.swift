@@ -72,18 +72,14 @@ struct AlbumList: View {
     
     var body: some View {
         VStack {
-            if answerMonth != nil && answerMonth?.monthAnswer.isEmpty == false {
-                ScrollView {
-                    GridStack(rows: Int(Double(self.answerMonth!.monthAnswer.count) / 2.0 + 0.5), columns: 2) { (row, column) in
-                        if row * 2 + column + 1 <= self.answerMonth!.monthAnswer.count {
-                            PartsCombinedAnswer(answers: self.answerMonth!.monthAnswer[row * 2 + column],
-                                            week: row * 2 + column + 1,
-                                            month: self.month)
-                        } else {
-                            Text("")
-                                .frame(minWidth: 0, maxWidth: .infinity)
+            if let answerMonth = self.answerMonth, answerMonth.monthAnswer.isEmpty == false {
+                let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 25), count: 2)
+                ScrollView(.vertical) {
+                    LazyVGrid(columns: columns, alignment: .center, spacing: 30) {
+                        ForEach(answerMonth.monthAnswer, id: \.self) {
+                            PartsCombinedAnswer(answers: $0, month: self.month)
                         }
-                    }
+                    }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                 }
             } else {
                 if !isLoading {
@@ -122,15 +118,13 @@ struct AnswerEmptyView: View {
 struct PartsCombinedAnswer: View {
     
     var answers: [Answer?]? = nil
-    var week: Int = 0
     var title: String = ""
     var shortMonth: String = ""
     
     var number: Int = 0
     
-    init(answers: [Answer?]?, week: Int, month: Int) {
+    init(answers: [Answer?]?, month: Int) {
         self.answers = answers
-        self.week = week
         
         if let no = answers?.first??.no {
             title = "No.\(no)"
@@ -169,7 +163,7 @@ struct PartsCombinedAnswer: View {
                 Rectangle().fill(Color(.rosegold))
                     .frame(height: 1.0)
             }
-            NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(title)", weekNumber: week))
+            NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(title)"))
             {
                 ZStack {
                     if self.answers != nil {
@@ -188,34 +182,6 @@ struct PartsCombinedAnswer: View {
         }
     }
     
-}
-
-struct GridStack<Content: View>: View {
-    let rows: Int
-    let columns: Int
-    let content: (Int, Int) -> Content
-    
-    init(rows: Int, columns: Int, @ViewBuilder content: @escaping (Int, Int) -> Content) {
-        self.rows = rows
-        self.columns = columns
-        self.content = content
-    }
-    
-    var body: some View {
-        VStack {
-            ForEach(0 ..< rows) { row in
-                HStack {
-                    Spacer(minLength: 15)
-                    HStack(spacing: 25.0) {
-                        ForEach(0 ..< self.columns) { column in
-                            self.content(row, column)
-                        }
-                    }
-                    Spacer(minLength: 15)
-                }
-            }
-        }
-    }
 }
 
 struct PaginationView: View {

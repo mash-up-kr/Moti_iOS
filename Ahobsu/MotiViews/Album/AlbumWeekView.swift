@@ -14,7 +14,6 @@ struct AlbumWeekView: View {
     
     @State var answers: [Answer?]
     @State var navigationTitle: String
-    @State var weekNumber: Int
     
     var body: some View {
         NavigationMaskingView(titleItem: Text(navigationTitle),
