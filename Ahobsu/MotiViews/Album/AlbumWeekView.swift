@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AlbumWeekView: View {
     
@@ -30,8 +31,12 @@ struct AlbumWeekView: View {
                                 ForEach(answers.compactMap { $0?.file.cardUrl },
                                         id: \.self,
                                         content: { (cardUrl) in
-                                            
-                                            ImageView(withURL: cardUrl)
+                                            KFImage.url(URL(string: cardUrl) ?? URL(string: ""))
+                                                .placeholder( { ActivityIndicator(isAnimating: .constant(true), style: .medium) } )
+                                                .setProcessor(PDFProcessor())
+                                                .fade(duration: 0.25)
+                                                .renderingMode(.original)
+                                                .resizable()
                                                 .aspectRatio(257.0 / 439.0, contentMode: .fit)
                                                 .padding(10)
                                 })
