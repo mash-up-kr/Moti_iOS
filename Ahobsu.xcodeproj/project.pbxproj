@@ -62,6 +62,7 @@
 		6675DA914AB268309BC9390ED0487711 /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21028E6C7A9E457DA7D2AC3F90B21995 /* SignInWithAppleDelegates.swift */; };
 		674489DD86C482F6F52E8CC74180B7BA /* TTNorms-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A8C283A7E04642C08707E275523B7443 /* TTNorms-ExtraBoldItalic.otf */; };
 		6C9386481CC157985B897ABD17731F6A /* AnswerComplete_Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABCC1502F5B0A02023F0477DDC62377 /* AnswerComplete_Common.swift */; };
+		6CBE171D12EFE78FC7AC708811B529CA /* PDFProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4DCA9A4D7044D1EBD2E86FCDB3079D /* PDFProcessor.swift */; };
 		6DB5C050502688D046EB67A882CDF2E1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627D69417FFDB9370F8C58945F570844 /* Networking.swift */; };
 		6E5D6BFE4E62C3D82B3E94BDD172B1D5 /* AnswerCompletePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8889A44037417D9CC2CB812C85AD27E /* AnswerCompletePageControl.swift */; };
 		70EFE0B389709FA9CE4F967A97C831CA /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD490801090CBC7507100F876D02D1F /* UINavigationController+Extension.swift */; };
@@ -262,6 +263,7 @@
 		FA405C08D4F44F9263A48346F2987B99 /* AnswerWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerWeek.swift; sourceTree = "<group>"; };
 		FB7CCAFE523A0386DF21A02123392722 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		FC10A3209CDC6D19FC94BE78736D7339 /* TTNorms-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-ThinItalic.otf"; sourceTree = "<group>"; };
+		FD4DCA9A4D7044D1EBD2E86FCDB3079D /* PDFProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFProcessor.swift; sourceTree = "<group>"; };
 		FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -314,6 +316,7 @@
 				2F903F42F6F06846B7D7ED623C2A1188 /* FileModel.swift */,
 				58767712A13BF759341D51E350855FCC /* Mission.swift */,
 				9FDBAFD8AFE089017999E9BD3AF3ECAB /* OnBordingModel.swift */,
+				FD4DCA9A4D7044D1EBD2E86FCDB3079D /* PDFProcessor.swift */,
 				32EBDD9596F57AA8A7F17461F75ECDC7 /* TodayMission.swift */,
 				0F7B1CF1E1200FC518E7E819B1A7C0B6 /* Token.swift */,
 				2AA9964C0F3BCA96C59E93E38D56A9BD /* User.swift */,
@@ -1040,6 +1043,7 @@
 				F23A05BF4EB0E30BFCA37C386814E4E0 /* OnBordingView.swift in Sources */,
 				1259BBCE108346A6CBA8CA44B114B5C2 /* OnbordingCardViewModel.swift in Sources */,
 				9FCDE0CC3D9401A623F89C1DDEDEF5E7 /* OnbordingViewModel.swift in Sources */,
+				6CBE171D12EFE78FC7AC708811B529CA /* PDFProcessor.swift in Sources */,
 				761571191A875F9CF0AB8724DDED1A4E /* PageControl.swift in Sources */,
 				33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */,
 				F95721C0A89E0F93B230FC18F2520253 /* PlayerUIView.swift in Sources */,

@@ -6,7 +6,7 @@ inhibit_all_warnings!
 
   pod 'Alamofire'
   pod 'Moya'
-  pod 'Kingfisher/SwiftUI'
+  pod 'Kingfisher'
 
   # Pods for Ahobsu
 
