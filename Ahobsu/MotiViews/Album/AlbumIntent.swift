@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 final class AlbumItent: ObservableObject {
     @Published var answerMonth: AnswerMonth?
@@ -45,9 +46,11 @@ private extension AlbumItent {
                     break
                 }
             } receiveValue: { (answerMonth) in
-                self.answerMonth = answerMonth
-                self.isReloadNeeded = false
-                self.isLoading = false
+                withAnimation {
+                    self.answerMonth = answerMonth
+                    self.isReloadNeeded = false
+                    self.isLoading = false
+                }
             }
             .store(in: &cancels)
     }
