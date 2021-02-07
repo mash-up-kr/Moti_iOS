@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 extension String {
     static func toAlbumDateString(from date: Date) -> String {
@@ -172,7 +173,12 @@ struct PartsCombinedAnswer: View {
                         ForEach(self.answers!.compactMap { $0?.file.cardUrl },
                                 id: \.self,
                                 content: { (cardUrl) in
-                                    ImageView(withURL: cardUrl)
+                                    KFImage.url(URL(string: cardUrl) ?? URL(string: ""))
+                                        .placeholder( { ActivityIndicator(isAnimating: .constant(true), style: .medium) } )
+                                        .setProcessor(PDFProcessor())
+                                        .fade(duration: 0.25)
+                                        .renderingMode(.original)
+                                        .resizable()
                                         .aspectRatio(0.62, contentMode: .fit)
                                         .padding(20)
                         })
