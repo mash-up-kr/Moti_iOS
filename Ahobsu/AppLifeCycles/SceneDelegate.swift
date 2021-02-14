@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let contentView = SplashView(window: window)
             window.rootViewController = UIHostingController(rootView: contentView)
+            window.tag = -1
             self.window = window
             window.makeKeyAndVisible()
         }

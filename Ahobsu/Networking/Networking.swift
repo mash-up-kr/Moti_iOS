@@ -34,6 +34,7 @@ final class Networking: MoyaProvider<AhobsuAPI> {
             return self?.request(target, callbackQueue: callbackQueue, progress: nil) { result in
                 switch result {
                 case let .success(response):
+                    APICommonHandler.handleError(response)
                     _ = subscriber.receive(response)
                     subscriber.receive(completion: .finished)
                 case let .failure(error):
@@ -53,6 +54,7 @@ final class Networking: MoyaProvider<AhobsuAPI> {
         return self.request(target) { result in
             switch result {
             case let .success(response):
+                APICommonHandler.handleError(response)
                 
                 completionHandler(response)
             case let .failure(error):
