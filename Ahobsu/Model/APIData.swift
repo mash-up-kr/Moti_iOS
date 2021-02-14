@@ -30,3 +30,9 @@ extension APIData: Hashable {
         hasher.combine(id)
     }
 }
+
+struct ErrorCodeMsg: Decodable {
+    let msg: String?
+    let code: Int?
+}
+

@@ -286,6 +286,7 @@ extension AhobsuAPI: TargetType {
     
     var headers: [String: String]? {
         var authToken: String = TokenManager.sharedInstance.getToken()
+        let appVersion: String = "\(Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) ?? "0")"
         
         switch self {
         case let .signIn(_, auth):
@@ -300,7 +301,9 @@ extension AhobsuAPI: TargetType {
         
         return ["Accept": "application/json",
                 "Content-Type": "application/json",
-                "Authorization": authToken]
+                "Authorization": authToken,
+                "appVersion": appVersion
+        ]
     }
     
 }

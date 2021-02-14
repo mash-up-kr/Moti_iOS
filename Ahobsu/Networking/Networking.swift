@@ -53,6 +53,7 @@ final class Networking: MoyaProvider<AhobsuAPI> {
         return self.request(target) { result in
             switch result {
             case let .success(response):
+                
                 completionHandler(response)
             case let .failure(error):
                 if let response = error.response {

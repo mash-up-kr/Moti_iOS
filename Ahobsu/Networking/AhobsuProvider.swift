@@ -51,6 +51,9 @@ final class AhobsuProvider {
         case token_valid
         case token_invalid
         
+        /* Application */
+        case forceUpdate
+        
         func value() -> Int {
             switch (self) {
             case .answers_post_success:
@@ -109,6 +112,9 @@ final class AhobsuProvider {
                 return 200
             case .token_invalid:
                 return 1100
+                
+            case .forceUpdate:
+                return 1200
             }
         }
     }

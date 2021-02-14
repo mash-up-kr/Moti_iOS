@@ -119,6 +119,7 @@
 		E5967D5700334413206F3DD9D1C1B147 /* MyPageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590824D45CE41F0A7125159E683902F0 /* MyPageIntent.swift */; };
 		E7AF816713E6C4CC1C1497D73187C56D /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DFD03EB2D8AECC81BF0C332BBD1D2B /* AlbumView.swift */; };
 		E8CCE216A782B613B05B5A9D7E4D8752 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA67C2A7AAF4A7C19DA13B7E1087D38 /* AppVersion.swift */; };
+		EA3F152BB4B375223226CEE02F8D6DFF /* APICommonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC47541E8F7A96B929BC945BAEB98D /* APICommonHandler.swift */; };
 		EED36688EEBC6631685AFE5247C4B06D /* TTNorms-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6DB22532F6B6B1DC62DC93BEAD19412C /* TTNorms-ExtraLightItalic.otf */; };
 		F0FD4C5D710C5AD751A2186E9313DA69 /* OnBordingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEBFF82D88D3E01FDF3FC2265F4442 /* OnBordingCardView.swift */; };
 		F23A05BF4EB0E30BFCA37C386814E4E0 /* OnBordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAF5D63BA7A53720CB398B5BE08A526 /* OnBordingView.swift */; };
@@ -174,6 +175,7 @@
 		4C2B2F23BAC4441E6696E0BA8E772B62 /* MissionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionService.swift; sourceTree = "<group>"; };
 		4D7F185812FE84CA6888427A57E40DDF /* AnswerComplete_EssayCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerComplete_EssayCamera.swift; sourceTree = "<group>"; };
 		4DD3DE9138430832870090EA6B4EC95E /* Ahobsu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ahobsu.entitlements; sourceTree = "<group>"; };
+		52BC47541E8F7A96B929BC945BAEB98D /* APICommonHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICommonHandler.swift; sourceTree = "<group>"; };
 		543CB134BC2A688ED1C3FF801DE33316 /* AnswerCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCameraView.swift; sourceTree = "<group>"; };
 		54897E54114C299DC791A8C87484A2A3 /* AnswerQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestion.swift; sourceTree = "<group>"; };
 		57DC86F7404D170F5C4DFCE64D577486 /* MyPageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEditView.swift; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				E512B42F8AF9D0419A17022C4C3F2BEE /* Networking+Combine */,
 				7EC9B19E49698A9ED487734E855D7462 /* Service */,
 				0A5097B3D4A3599932610119E0FEA95A /* TokenManager */,
+				52BC47541E8F7A96B929BC945BAEB98D /* APICommonHandler.swift */,
 				F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */,
 				65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */,
 				41059AB509DA80DB01EDA562BC0360B1 /* AhobsuProvider.swift */,
@@ -949,7 +952,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/xuniqerun.sh\n";
+			shellScript = "#sh $SRCROOT/xuniqerun.sh\n";
 		};
 		D4FCAFF4B8888B355AC69DA0EDFF752E /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -976,6 +979,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3F152BB4B375223226CEE02F8D6DFF /* APICommonHandler.swift in Sources */,
 				FA9AC11496EE118081388AB37A49E4AC /* APIData.swift in Sources */,
 				FE9A5C5ED84DA12E738F1C023FE43495 /* ActivityIndicator.swift in Sources */,
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
