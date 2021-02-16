@@ -38,28 +38,29 @@ struct AlbumView: View {
 
     var body: some View {
         NavigationMaskingView(titleItem: Text("앨범").font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), trailingItem: EmptyView()) {
-            LoadingView(isShowing: intent.isLoading) {
-                VStack {
-                    if intent.isReloadNeeded == false {
-                        AlbumList(answerMonth: intent.answerMonth,
-                                  month: intent.currentMonth,
-                                  isLoading: intent.isLoading)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                            .padding(.top, 16.0)
-                        PaginationView(loadAlbumsDelegate: { intent.onChangePage() },
-                                       year: $intent.currentYear,
-                                       month: $intent.currentMonth,
-                                       isLoading: $intent.isLoading)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
-                    } else {
-                        NetworkErrorView {
-                            intent.onError()
-                        }
-                    }
+            VStack {
+                if intent.isReloadNeeded == false {
+                    AlbumList(answerMonth: intent.answerMonth,
+                              month: intent.currentMonth,
+                              isLoading: intent.isLoading)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                        .padding(.top, 16.0)
+                    PaginationView(loadAlbumsDelegate: { intent.onChangePage() },
+                                   year: $intent.currentYear,
+                                   month: $intent.currentMonth,
+                                   isLoading: $intent.isLoading)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
+                } else {
+                    NetworkErrorView {
+                        intent.onError()
+                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 }
             }
+            .disabled(intent.isLoading)
+            .blur(radius: intent.isLoading ? 3 : 0)
         }
         .background(BackgroundView())
+        .overlay(LoadingView(isShowing: intent.isLoading))
         .onAppear(perform: intent.onAppear)
     }
 }
