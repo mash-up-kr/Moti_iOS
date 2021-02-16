@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MainView: View {
     @State var window: UIWindow
@@ -35,9 +36,14 @@ struct MainView: View {
                                             ForEach(model.cards.compactMap { $0?.file.cardUrl },
                                                     id: \.self,
                                                     content: { (cardUrl) in
-                                                        ImageView(withURL: cardUrl)
+                                                        KFImage(URL(string: cardUrl))
+                                                            .placeholder( { ActivityIndicator(isAnimating: .constant(true),
+                                                                                              style: .medium) } )
+                                                            .setProcessor(PDFProcessor())
+                                                            .resizable()
                                                             .aspectRatio(257.0 / 439.0, contentMode: .fit)
                                                             .padding(17)
+
                                             })
                                         }
                                 )
