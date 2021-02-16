@@ -39,17 +39,18 @@ private extension AlbumItent {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
             .sink { (completion) in
-                switch completion {
-                case .failure:
-                    self.isReloadNeeded = true
-                case .finished:
-                    break
+                withAnimation {
+                    switch completion {
+                    case .failure:
+                        self.isReloadNeeded = true
+                    case .finished:
+                        self.isReloadNeeded = false
+                    }
+                    self.isLoading = false
                 }
             } receiveValue: { (answerMonth) in
                 withAnimation {
                     self.answerMonth = answerMonth
-                    self.isReloadNeeded = false
-                    self.isLoading = false
                 }
             }
             .store(in: &cancels)
