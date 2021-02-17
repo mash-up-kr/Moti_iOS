@@ -1106,7 +1106,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ahobsu/Ahobsu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
@@ -1116,7 +1116,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
 				PRODUCT_NAME = MOTI;
 				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;
@@ -1247,7 +1247,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ahobsu/Ahobsu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Ahobsu/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Y9G8Z76XC;
 				ENABLE_PREVIEWS = YES;
@@ -1257,7 +1257,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashup.ahobsu.Ahobsu;
 				PRODUCT_NAME = MOTI;
 				PROVISIONING_PROFILE_SPECIFIER = AhobsuDevelopment;

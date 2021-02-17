@@ -34,5 +34,10 @@ extension APIData: Hashable {
 struct ErrorCodeMsg: Decodable {
     let msg: String?
     let code: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case msg = "message"
+        case code = "status"
+    }
 }
 
