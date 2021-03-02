@@ -100,17 +100,13 @@ struct AnswerCameraView: View {
                                             } else {
                                                 self.registerCameraAnswer()
                                             }},
-                                                   title: image == nil ? "촬영하기" : "제출하기")
+                                                   title: image == nil ? "사진 선택하기" : "제출하기")
                                             
                                             .environment(\.isEnabled, !isNetworking)
                                             .actionSheet(isPresented: $showImageSourcePicker) {
                                                 ActionSheet(title: Text("사진 선택하기"),
                                                             message: nil,
-                                                            buttons: [.default(Text("카메라로 촬영하기"),
-                                                                               action: {
-                                                                                self.isStatusBarHidden = true
-                                                                                self.showCamera = true
-                                                            }),
+                                                            buttons: [
                                                                       .default(Text("앨범에서 가져오기"),
                                                                                action: {
                                                                                 self.showImagePicker = true
