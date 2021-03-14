@@ -11,14 +11,11 @@ import Combine
 
 final class MyPageIntent: ObservableObject {
 
+    static var shared: MyPageIntent = MyPageIntent()
     @Published var user: User = .placeholderData
     private var cancels = Set<AnyCancellable>()
 
-}
-
-// MARK: Intent
-extension MyPageIntent {
-    func onAppear() {
+    private init() {
         AhobsuProvider.provider.requestPublisher(.getProfile)
             .retry(2)
             .map { $0.data }
@@ -29,5 +26,13 @@ extension MyPageIntent {
             .eraseToAnyPublisher()
             .assign(to: \.user, on: self)
             .store(in: &cancels)
+    }
+
+}
+
+// MARK: Intent
+extension MyPageIntent {
+    func onAppear() {
+        
     }
 }

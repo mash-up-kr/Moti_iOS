@@ -17,7 +17,7 @@ struct MyPageView: View {
     @State private var showingRefreshTokenAlert = false
     @State private var editViewActive = false
 
-    @ObservedObject var intent: MyPageIntent = MyPageIntent()
+    @ObservedObject var intent: MyPageIntent = MyPageIntent.shared
     
     var mailCompose = MailCompose()
     let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
