@@ -12,8 +12,14 @@ struct AnswerQuestionEssayView: View {
     @State var text = ""
     
     var body: some View {
-        NavigationMaskingView(titleItem: Text("답변하기"),
-                              trailingItem: Text("완료")) {
+        NavigationMaskingView(titleItem: Text("답변하기")
+                                .font(.system(size: 16)),
+                              trailingItem: Button(action: {}, label: {
+                                Text("완료")
+                                    .foregroundColor(Color(.rosegold))
+                                    .font(.system(size: 16))
+                              })
+        ) {
             ZStack {
                 BackgroundView()
                     .ignoresSafeArea()
@@ -25,7 +31,7 @@ struct AnswerQuestionEssayView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.all, 20)
                     
-                    Image("")
+                    Image("imgAnswerdecoBar1")
                         .frame(width: .infinity, height: 75, alignment: .center)
                     
                     ZStack {

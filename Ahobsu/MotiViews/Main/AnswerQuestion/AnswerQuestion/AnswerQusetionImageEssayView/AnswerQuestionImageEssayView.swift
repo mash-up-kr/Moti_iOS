@@ -12,21 +12,28 @@ struct AnswerQuestionImageEssayView: View {
     @State var text = ""
     
     var body: some View {
-        NavigationMaskingView(titleItem: Text("답변하기"),
-                              trailingItem: Text("완료")) {
+        NavigationMaskingView(titleItem: Text("답변하기")
+                                .font(.system(size: 16)),
+                              trailingItem: Button(action: {}, label: {
+                                Text("완료")
+                                    .foregroundColor(Color(.rosegold))
+                                    .font(.system(size: 16))
+                              })
+        ) {
             ZStack {
                 BackgroundView()
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
                     ZStack {
-                        Image("icEmpty")
+                        Image("icCameraIncircle")
                         Image("")
                             .resizable()
                     }
                     .frame(width: .infinity, height: 200, alignment: .center)
                     
                     Color(.goldbrown)
-                        .frame(width: .infinity, height: 1)
+                        .frame(height: 1)
+                        .frame(maxWidth: .infinity)
                     Text("질문에 답변을\n해주세요.")
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
@@ -34,7 +41,7 @@ struct AnswerQuestionImageEssayView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.all, 20)
                     
-                    Image("")
+                    Image("imgAnswerdecoBar1")
                         .frame(width: .infinity, height: 75, alignment: .center)
                     
                     ZStack {

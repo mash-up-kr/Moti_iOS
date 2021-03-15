@@ -32,6 +32,7 @@ struct MainNavigationBar<Left: View, Center: View, Right: View>: View {
             HStack {
                 Spacer()
                 right()
+                Spacer().frame(width: 20)
             }
         }
     }
