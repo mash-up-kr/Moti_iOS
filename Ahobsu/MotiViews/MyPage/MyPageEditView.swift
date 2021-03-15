@@ -13,7 +13,6 @@ struct MyPageEditView: View {
     
     @ObservedObject var keyboard = Keyboard()
     @ObservedObject var myPageEdit = MyPageEdit()
-    @ObservedObject var nickname = NicknameWithLimit()
     
     @Binding var sourceUser: User
     @Binding var isViewActive: Bool
@@ -21,6 +20,7 @@ struct MyPageEditView: View {
     @State private var editingUser: User
     @State var isNetworking = false
     @State private var showingAlert = false
+    @State private var isEditing = false
 
     init(sourceUser: Binding<User>, isViewActive: Binding<Bool>) {
         self._sourceUser = sourceUser
@@ -37,12 +37,13 @@ struct MyPageEditView: View {
                     VStack {
                         ListCell(title: "닉네임",
                                  content: TextField("",
-                                                    text: $nickname.text,
+                                                    text: $editingUser.name,
                                                     onEditingChanged: { (onEditing) in
+                                                        isEditing = onEditing
                                                         if !onEditing {
-                                                            self.editingUser.name = self.nickname.text
+                                                            editingUser.name = String(editingUser.name.prefix(8))
                                                         }
-                        }))
+                                                    }))
                         MyPageView.Separator().opacity(0.5)
                         ListCell(title: "생년월일", content: DateField(dateString: $editingUser.birthday).background(Color.black))
                         MyPageView.Separator().opacity(0.5)
@@ -59,7 +60,7 @@ struct MyPageEditView: View {
                     Spacer()
                     MainButton(action: { self.updateUser() },
                                title: "저장하기")
-                        .environment(\.isEnabled, (!isNetworking && (sourceUser != editingUser)))
+                        .environment(\.isEnabled, (!isNetworking && !isEditing && (sourceUser != editingUser)))
                     Spacer(minLength: 75)
                 }.padding(.horizontal, 15)
             }
@@ -67,9 +68,6 @@ struct MyPageEditView: View {
             .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
             .edgesIgnoringSafeArea((keyboard.state.height > 0) ? [.bottom] : [])
             .animation(.easeOut(duration: keyboard.state.animationDuration))
-            .onAppear() {
-                self.nickname.text = self.editingUser.name
-            }
             .onReceive(myPageEdit.$deletingUserSucccess) { (success) in
                 if success {
                     // 토큰 제거
