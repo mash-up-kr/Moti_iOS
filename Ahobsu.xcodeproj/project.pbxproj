@@ -98,6 +98,7 @@
 		B162B16F25FCB1E800DEF55C /* AnswerQuestionEssayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162B16C25FCB1E800DEF55C /* AnswerQuestionEssayView.swift */; };
 		B162B17025FCB1E800DEF55C /* AnswerQuestionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162B16E25FCB1E800DEF55C /* AnswerQuestionImageView.swift */; };
 		B162B17525FCB2CC00DEF55C /* AnswerQuestionImageEssayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162B17425FCB2CC00DEF55C /* AnswerQuestionImageEssayView.swift */; };
+		B18306AA26020436007C76D1 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18306A926020436007C76D1 /* TextView.swift */; };
 		B577C673B007F83CA923937468AF5696 /* SelectQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E72B023ED54C229D90914F394A4C6B /* SelectQuestionViewModel.swift */; };
 		B73773F77586E4FA7DF3C1F2FFE8CB3B /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C2A94DCB0ACD6D00F131694C9E070D /* SignUp.swift */; };
 		BC9D2D84230ACE29C410531F7F0B0D49 /* GenderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */; };
@@ -228,6 +229,7 @@
 		B162B16C25FCB1E800DEF55C /* AnswerQuestionEssayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerQuestionEssayView.swift; sourceTree = "<group>"; };
 		B162B16E25FCB1E800DEF55C /* AnswerQuestionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerQuestionImageView.swift; sourceTree = "<group>"; };
 		B162B17425FCB2CC00DEF55C /* AnswerQuestionImageEssayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionImageEssayView.swift; sourceTree = "<group>"; };
+		B18306A926020436007C76D1 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		B5D00D04494FE437F69E39C024CEC650 /* TTNorms-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-BlackItalic.otf"; sourceTree = "<group>"; };
 		B67C26BC05FAC61E34130E65AE308ECB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		BB4EFE0FA5F6757B827D27E255314F33 /* QuestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCellView.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA2D81F35976A71F6B66D3BBE8B8C57 /* ImagePicker.swift */,
+				B18306A926020436007C76D1 /* TextView.swift */,
 			);
 			path = SupportViews;
 			sourceTree = "<group>";
@@ -1113,6 +1116,7 @@
 				63EC707B702F70546022F5268B33D4DB /* SplashView.swift in Sources */,
 				4702BFF83A682EDD21EDA1D5DCA6287F /* String+Extension.swift in Sources */,
 				01C4DC64E8C428CEDE081E0BE92815C9 /* SwiftUIPagerView.swift in Sources */,
+				B18306AA26020436007C76D1 /* TextView.swift in Sources */,
 				BEA47BA819BE2C151043F71469E43DD7 /* TodayMission.swift in Sources */,
 				964E5272439A757AF3665A33E32B881B /* Token.swift in Sources */,
 				15AD2A3428A964E06123B27D66DF196C /* TokenManager.swift in Sources */,

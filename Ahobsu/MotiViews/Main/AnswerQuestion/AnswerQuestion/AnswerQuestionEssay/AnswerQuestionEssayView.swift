@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AnswerQuestionEssayView: View {
     @State var text = ""
+    var missonData: Mission
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기")
@@ -24,7 +25,7 @@ struct AnswerQuestionEssayView: View {
                 BackgroundView()
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
-                    Text("질문에 답변을\n해주세요.")
+                    Text(missonData.title)
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
                         .lineSpacing(10.0)
@@ -32,27 +33,41 @@ struct AnswerQuestionEssayView: View {
                         .padding(.all, 20)
                     
                     Image("imgAnswerdecoBar1")
-                        .frame(width: .infinity, height: 75, alignment: .center)
+                        .frame(height: 75)
+                        .frame(maxWidth: .infinity)
                     
                     ZStack {
                         TextView(text: $text)
-                        VStack {
-                            Text("이곳에 질문에 대한 답변을 적어주세요.")
-                                .foregroundColor(Color(.placeholderblack))
-                                .font(.custom("IropkeBatangOTFM", size: 16))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Spacer()
+                        if text.isEmpty {
+                            VStack {
+                                Text("이곳에 질문에 대한 답변을 적어주세요.")
+                                    .foregroundColor(Color(.placeholderblack))
+                                    .font(.custom("IropkeBatangOTFM", size: 16))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Spacer()
+                            }
+                            .padding(EdgeInsets(top: 9, leading: 5, bottom: 0, trailing: 0))
                         }
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 32, trailing: 20))
                 }
             }
+            .onTapGesture {
+                self.endEditing()
+            }
         }
+    }
+    
+    private func endEditing() {
+        UIApplication.shared.endEditing()
     }
 }
 
 struct AnswerQuestionEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerQuestionEssayView()
+        AnswerQuestionEssayView(missonData: Mission(id: 0,
+                                                    title: "질문에 대한 \n답변을 해주세요",
+                                                    isContent: true,
+                                                    isImage: false))
     }
 }

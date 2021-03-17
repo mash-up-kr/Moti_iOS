@@ -52,7 +52,7 @@ struct QuestionCardView: View, Identifiable {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
-                        NavigationLink(destination: AnswerInsertEssayView(missonData: missionData)) {
+                        NavigationLink(destination: AnswerQuestionEssayView(missonData: missionData)) {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
