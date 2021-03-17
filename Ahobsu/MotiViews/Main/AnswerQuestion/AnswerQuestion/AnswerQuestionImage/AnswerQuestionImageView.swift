@@ -33,18 +33,12 @@ struct AnswerQuestionImageView: View {
                         Image(uiImage: image ?? UIImage())
                             .resizable()
                             .scaledToFill()
-//                            .clipped()
-//                            .aspectRatio(contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
-//                            .aspectRatio(16/9, contentMode: .fill)
-                            
                             .clipped()
                             .onTapGesture {
                                 self.isPresentImagePicker = true
                             }
                     }
-                    
-                    
                     Color(.goldbrown)
                         .frame(height: 1)
                         .frame(maxWidth: .infinity)

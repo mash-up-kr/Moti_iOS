@@ -47,8 +47,7 @@ struct QuestionCardView: View, Identifiable {
                 Spacer()
                 if missionData.isContent == true {
                     if missionData.isImage == true {
-                        NavigationLink(destination: AnswerCameraView(isStatusBarHidden: $isStatusBarHidden,
-                                                                     missonData: missionData)) {
+                        NavigationLink(destination: AnswerQuestionImageEssayView(missonData: missionData)) {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {

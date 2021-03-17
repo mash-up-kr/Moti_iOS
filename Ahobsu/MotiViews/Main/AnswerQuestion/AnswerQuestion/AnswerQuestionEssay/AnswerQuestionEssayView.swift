@@ -53,13 +53,9 @@ struct AnswerQuestionEssayView: View {
                 }
             }
             .onTapGesture {
-                self.endEditing()
+                UIApplication.shared.endEditing()
             }
         }
-    }
-    
-    private func endEditing() {
-        UIApplication.shared.endEditing()
     }
 }
 
