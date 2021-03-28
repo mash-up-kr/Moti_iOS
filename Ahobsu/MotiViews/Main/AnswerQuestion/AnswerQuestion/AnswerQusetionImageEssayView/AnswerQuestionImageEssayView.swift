@@ -34,13 +34,14 @@ struct AnswerQuestionImageEssayView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: UIScreen.main.bounds.width, height: 200)
+                            .allowsHitTesting(false)
                             .clipped()
-                            .onTapGesture {
-                                self.isPresentImagePicker = true
-                            }
                     }
                     .frame(width: UIScreen.main.bounds.width, height: 200)
-                    
+                    .clipped()
+                    .onTapGesture {
+                        self.isPresentImagePicker = true
+                    }
                     Color(.goldbrown)
                         .frame(height: 1)
                         .frame(maxWidth: .infinity)
@@ -71,9 +72,9 @@ struct AnswerQuestionImageEssayView: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 32, trailing: 20))
                 }
-            }
-            .onTapGesture {
-                UIApplication.shared.endEditing()
+                .onTapGesture {
+                    UIApplication.shared.endEditing()
+                }
             }
         }
         .sheet(isPresented: $isPresentImagePicker, content: {

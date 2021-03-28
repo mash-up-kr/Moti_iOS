@@ -34,11 +34,15 @@ struct AnswerQuestionImageView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
+                            .allowsHitTesting(false)
                             .clipped()
-                            .onTapGesture {
-                                self.isPresentImagePicker = true
-                            }
                     }
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
+                    .clipped()
+                    .onTapGesture {
+                        self.isPresentImagePicker = true
+                    }
+
                     Color(.goldbrown)
                         .frame(height: 1)
                         .frame(maxWidth: .infinity)
