@@ -15,14 +15,21 @@ struct AnswerQuestionImageEssayView: View {
     @State var text = ""
     var missonData: Mission
     
+    @State var answerRegisteredActive: Bool = false
+    @ObservedObject var answerQuestion = AnswerQuestion()
+    
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기")
                                 .font(.system(size: 16)),
-                              trailingItem: Button(action: {}, label: {
-                                Text("완료")
-                                    .foregroundColor(Color(.rosegold))
-                                    .font(.system(size: 16))
-                              })
+                              trailingItem: NavigationLink(destination: AnswerRegisteredView(),
+                                                           isActive: $answerRegisteredActive) {
+                                Button(action: { self.requestAnswer() }) {
+                                    Text("완료")
+                                        .foregroundColor(Color(.rosegold))
+                                        .font(.system(size: 16))
+                                }
+//                                .disabled(true)
+                              }
         ) {
             ZStack {
                 BackgroundView()
@@ -83,6 +90,24 @@ struct AnswerQuestionImageEssayView: View {
                         isStatusBarHidden: .constant(false),
                         sourceType: .photoLibrary)
         })
+    }
+    
+    private func requestAnswer() {
+        AhobsuProvider.registerAnswer(missionId: missonData.id,
+                                      contentOrNil: text,
+                                      imageOrNil: image,
+                                      completion: { wrapper in
+                                        print(wrapper?.data ?? "")
+                                        if let _ = wrapper?.data {
+                                            self.answerRegisteredActive = true
+                                        } else {
+                                            // print(wrapper?.message ?? "None")
+                                        }
+        }, error: { _ in
+            
+        }, expireTokenAction: {
+            
+        }, filteredStatusCode: nil)
     }
 }
 

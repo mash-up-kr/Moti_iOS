@@ -25,7 +25,7 @@ struct AnswerQuestionEssayView: View {
                                         .foregroundColor(Color(.rosegold))
                                         .font(.system(size: 16))
                                 }
-                                .disabled(true)
+//                                .disabled(true)
                               }
         ) {
             ZStack {
