@@ -10,12 +10,14 @@ import SwiftUI
 import Combine
 
 struct MyPageView: View {
-    
+    @State private var image: UIImage? = nil
+    @State var showCamera = false
     @State private var appVersion: AppVersion = .placeholderData
-    @State private var privacyIsPresented = false
     @State private var showingAccessTokenAlert = false
     @State private var showingRefreshTokenAlert = false
     @State private var editViewActive = false
+    
+    @State private var activeSheet: ActiveSheet?
 
     @ObservedObject var intent: MyPageIntent = MyPageIntent.shared
     
@@ -35,7 +37,7 @@ struct MyPageView: View {
         {
             ScrollView {
                 VStack {
-                    HeaderView(name: intent.user.name)
+                    HeaderView(image: $image, activeSheet: $activeSheet, name: intent.user.name)
                     Separator()
                     ListCell(title: "닉네임", detail: intent.user.name)
                     ListCell(title: "생년월일", detail: intent.user.birthday)
@@ -54,7 +56,7 @@ struct MyPageView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            self.privacyIsPresented.toggle()
+                            self.activeSheet = .privacy
                         }, label: {
                             Text("개인정보취급방침 및 이용약관")
                         })
@@ -95,16 +97,46 @@ struct MyPageView: View {
             .font(.system(size: 16))
         }
         .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
-        .sheet(isPresented: $privacyIsPresented) {
-            NavigationView {
-                WebView(url: self.privacyURL)
-                    .navigationBarItems(trailing: Button(action: { self.privacyIsPresented.toggle() },
-                                                         label: { Text("OK") })).navigationBarTitle("", displayMode: .inline)
+        .sheet(item: $activeSheet) {
+            switch $0 {
+            case .imagePicker:
+                ImagePicker(showCamera: self.$showCamera,
+                            image: self.$image,
+                            isStatusBarHidden: .constant(false),
+                            sourceType: .photoLibrary,
+                            isFiltered: true)
+
+            case .privacy:
+                NavigationView {
+                    WebView(url: self.privacyURL)
+                        .navigationBarItems(trailing: Button(action: { self.activeSheet = nil },
+                                                             label: { Text("OK") })).navigationBarTitle("", displayMode: .inline)
+                }
             }
-        }.onReceive(AppVersion.versionPubliser) { (fetchedVersion) in
+        }
+        .onReceive(AppVersion.versionPubliser) { (fetchedVersion) in
             self.appVersion = fetchedVersion
-        }.onAppear(perform: intent.onAppear)
+        }
+        .onAppear(perform: intent.onAppear)
     }
+    
+    private func makeFilteredImage(image: UIImage?) -> UIImage? {
+        guard let originalCIImage = image?.ciImage else { return nil }
+        
+        let sepiaFilter = CIFilter(name:"CISepiaTone")
+        sepiaFilter?.setValue(originalCIImage, forKey: kCIInputImageKey)
+        sepiaFilter?.setValue(0.9, forKey: kCIInputIntensityKey)
+        return UIImage(ciImage: originalCIImage)
+    }
+    
+    enum ActiveSheet: Identifiable {
+        case imagePicker, privacy
+        
+        var id: Int {
+            hashValue
+        }
+    }
+
 }
 
 struct MyPageView_Previews: PreviewProvider {
@@ -120,17 +152,43 @@ struct MyPageView_Previews: PreviewProvider {
 }
 
 extension MyPageView {
-    
     struct HeaderView: View {
+        @Binding var image: UIImage?
+        @Binding var activeSheet: ActiveSheet?
+
         var name: String
         var body: some View {
             VStack {
                 Spacer(minLength: 8)
-                Image("imgMypage")
+                ZStack {
+                    Circle()
+                        .strokeBorder(Color(.rosegold), lineWidth: image == nil ? 2 : 1)
+                        .background(Circle().foregroundColor(.clear))
+                        .frame(width: 110, height: 110)
+                    
+                    if let image = image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 100, height: 100)
+                            .cornerRadius(55)
+                            .clipped()
+                            .onTapGesture {
+                                self.activeSheet = .imagePicker
+                            }
+                    } else {
+                        Image("icCameraEmpty")
+                            .frame(width: 100, height: 100)
+                            .onTapGesture {
+                                self.activeSheet = .imagePicker
+                            }
+                    }
+                }
                 Spacer(minLength: 16)
                 Text("\(name) 님")
                 Spacer(minLength: 26)
-            }.foregroundColor(Color(.rosegold))
+            }
+            .foregroundColor(Color(.rosegold))
         }
     }
     

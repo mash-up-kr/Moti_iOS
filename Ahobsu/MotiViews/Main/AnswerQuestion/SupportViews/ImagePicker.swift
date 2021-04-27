@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreImage.CIFilterBuiltins
 
 struct ImagePicker: UIViewControllerRepresentable {
     
@@ -18,6 +19,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Binding var isStatusBarHidden: Bool
     
     var sourceType: UIImagePickerController.SourceType
+    var isFiltered: Bool = false
     
     final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         
@@ -25,18 +27,22 @@ struct ImagePicker: UIViewControllerRepresentable {
         @Binding var showCamera: Bool
         @Binding var image: UIImage?
         @Binding var isStatusBarHidden: Bool
+        var isFiltered: Bool = false
         
-        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>, showCamera: Binding<Bool>, isStatusBarHidden: Binding<Bool>) {
+        private let context = CIContext()
+        
+        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>, showCamera: Binding<Bool>, isStatusBarHidden: Binding<Bool>, isFiltered: Bool = false) {
             _presentationMode = presentationMode
             _image = image
             _showCamera = showCamera
             _isStatusBarHidden = isStatusBarHidden
+            self.isFiltered = isFiltered
         }
         
         func imagePickerController(_ picker: UIImagePickerController,
                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                image = uiImage
+                image = isFiltered ? makeFilteredImage(image: uiImage) : uiImage
             }
             if picker.sourceType == .camera {
                 showCamera = false
@@ -55,10 +61,24 @@ struct ImagePicker: UIViewControllerRepresentable {
             }
         }
         
+        private func makeFilteredImage(image: UIImage?) -> UIImage? {
+            guard let cgImage = image?.cgImage,
+                  let sepiaFilter = CIFilter(name:"CISepiaTone") else { return nil }
+            
+            let originalCIImage = CIImage(cgImage: cgImage)
+
+            sepiaFilter.setValue(originalCIImage, forKey: kCIInputImageKey)
+            sepiaFilter.setValue(0.9, forKey: kCIInputIntensityKey)
+            
+            guard let output = sepiaFilter.outputImage,
+                  let newcgImage = context.createCGImage(output, from: output.extent) else { return nil }
+            return UIImage(cgImage: newcgImage)
+        }
+        
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode, image: $image, showCamera: $showCamera, isStatusBarHidden: $isStatusBarHidden)
+        return Coordinator(presentationMode: presentationMode, image: $image, showCamera: $showCamera, isStatusBarHidden: $isStatusBarHidden, isFiltered: isFiltered)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
