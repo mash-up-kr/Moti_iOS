@@ -9,27 +9,28 @@
 import SwiftUI
 
 struct AnswerQuestionImageEssayView: View {
-    @State var image: UIImage? = UIImage()
+    @State var image: UIImage?
     @State var showCamera: Bool = false
     @State var isPresentImagePicker = false
     @State var text = ""
     var missonData: Mission
     
-    @State var answerRegisteredActive: Bool = false
+    @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기")
                                 .font(.system(size: 16)),
                               trailingItem: NavigationLink(destination: AnswerRegisteredView(),
-                                                           isActive: $answerRegisteredActive) {
+                                                           tag: true,
+                                                           selection: $answerRegisteredActive) {
                                 Button(action: { self.requestAnswer() }) {
                                     Text("완료")
-                                        .foregroundColor(Color(.rosegold))
+                                        .foregroundColor((text.isEmpty || image == nil) ? Color(.gray) : Color(.rosegold))
                                         .font(.system(size: 16))
                                 }
-//                                .disabled(true)
                               }
+                              .disabled(text.isEmpty || image == nil)
         ) {
             ZStack {
                 BackgroundView()

@@ -12,21 +12,22 @@ struct AnswerQuestionEssayView: View {
     @State var text = ""
     var missonData: Mission
     
-    @State var answerRegisteredActive: Bool = false
+    @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기")
                                 .font(.system(size: 16)),
                               trailingItem: NavigationLink(destination: AnswerRegisteredView(),
-                                                           isActive: $answerRegisteredActive) {
+                                                           tag: true,
+                                                           selection: $answerRegisteredActive) {
                                 Button(action: { self.requestAnswer() }) {
                                     Text("완료")
-                                        .foregroundColor(Color(.rosegold))
+                                        .foregroundColor(text.isEmpty ? Color(.gray) : Color(.rosegold))
                                         .font(.system(size: 16))
                                 }
-//                                .disabled(true)
                               }
+                              .disabled(text.isEmpty)
         ) {
             ZStack {
                 BackgroundView()
@@ -73,6 +74,7 @@ struct AnswerQuestionEssayView: View {
                                         print(wrapper?.data ?? "")
                                         if let _ = wrapper?.data {
                                             self.answerRegisteredActive = true
+//                                            self.answerRegisteredActive = 1
                                         } else {
                                             // print(wrapper?.message ?? "None")
                                         }
