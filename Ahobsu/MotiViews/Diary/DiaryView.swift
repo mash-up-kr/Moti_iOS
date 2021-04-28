@@ -39,6 +39,24 @@ struct DiaryView: View {
         .onAppear(perform: {
             intent.onAppear()
         })
+        .bottomSheet(isPresented: $isDatePickerPresented,
+                     height: 400,
+                     showTopIndicator: false) {
+            VStack(alignment: .trailing) {
+                HStack {
+                    Spacer()
+                    Button("완료") {
+                        intent.onChangeDate(updatingDate)
+                        isDatePickerPresented = false
+                    }.font(.system(size: 16, weight: .regular, design: .default))
+                    .foregroundColor(Color(.rosegold))
+                    .offset(x: -20, y: 0)
+                }
+                VStack {
+                    Text("BottomSheet")
+                }
+            }
+        }
     }
 }
 

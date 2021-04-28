@@ -31,6 +31,7 @@
 		2E414CF17FEFDCCF747AFB0696A4507D /* MonthEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4729AC93DD1B413D998F1720CE9D59BE /* MonthEnum.swift */; };
 		3025BD5E2C7FE37B1A092EF976EF39E7 /* TTNorms-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5D00D04494FE437F69E39C024CEC650 /* TTNorms-BlackItalic.otf */; };
 		33058E266D0E2E8F25C9D923FE3D96BA /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF829C4542B7CF5676CC37E1CA2A75 /* PageViewController.swift */; };
+		3414E2D24F2FBE807C28AC54365D18CE /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651E668CEFCDFA43412FDC79B18A8094 /* RoundedCorner.swift */; };
 		34DAE4F0F8EB836107D9C7645622267D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325ECEFD110C2D4B736E40E5CC28CA39 /* MyPageView.swift */; };
 		3642A7B64D48E1FC4BD872B62735383D /* TTNorms-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D2532E3BDD0E3ABCEC02A8714AC1260 /* TTNorms-BoldItalic.otf */; };
 		376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */; };
@@ -52,6 +53,7 @@
 		50E398FC582C8CCBF915F379061EBB20 /* SignUpGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */; };
 		524FFB071187DA164C0711CEB3DD1318 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658D57E30B0046EFD1664FEA7F8DDF1 /* WebView.swift */; };
 		549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6604388EE3BAD2E422FACA60EF1E4B2 /* AhobsuAPI.swift */; };
+		552B9582DF7C89DE795C5623E67F05AB /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDDB7DD7FB2642D99A64F816B60A6E /* BottomSheet.swift */; };
 		55A442BADE2278F34F10741930327A79 /* UIDateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD398B6431429AFD9AC6A2F4D738B6D /* UIDateField.swift */; };
 		586FB77BA264696BB773A59004C8B46C /* MoyaPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3393C55B6B8DEB39296B1AE0450CC /* MoyaPublisher.swift */; };
 		58AB8630E1FDB6227D152CC318BD3ADD /* DateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD09BC0841DC7CE1656BA77391B500 /* DateValidator.swift */; };
@@ -130,7 +132,6 @@
 		F0FD4C5D710C5AD751A2186E9313DA69 /* OnBordingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEBFF82D88D3E01FDF3FC2265F4442 /* OnBordingCardView.swift */; };
 		F23A05BF4EB0E30BFCA37C386814E4E0 /* OnBordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAF5D63BA7A53720CB398B5BE08A526 /* OnBordingView.swift */; };
 		F2BB15916706F46A836A63EFEED6FAAA /* SignUpCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BF382A57134DDD162641DE9DCEC09B /* SignUpCompleteView.swift */; };
-		F4007DE3C0F00A5708C262F257499E8E /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF8F941FADE9A761542FF4F3C9027D /* RoundedCorner.swift */; };
 		F5305E591E92ECCFA00C06796F2E1A43 /* TTNorms-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23C05112A43FA591577D3184BBB90103 /* TTNorms-LightItalic.otf */; };
 		F82975B7D3C88179EF53D00EBDF8AFD6 /* SignUpFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7148FF6D03D89CDA149D1079E4CFE3C /* SignUpFormView.swift */; };
 		F95721C0A89E0F93B230FC18F2520253 /* PlayerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC2D9C22F2280CA1CE5B9BF128909F /* PlayerUIView.swift */; };
@@ -144,12 +145,12 @@
 /* Begin PBXFileReference section */
 		088FAC06BFF5B7674070F7466C3CE349 /* DiaryIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryIntent.swift; sourceTree = "<group>"; };
 		0931115C944BF2475AC06F9CDD33B339 /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		0DEDDB7DD7FB2642D99A64F816B60A6E /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		0E8037E1922F48B3B896364895835F1B /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		0F112FB6ED5B53F57D5416E91A4E870C /* SwiftUIPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPagerView.swift; sourceTree = "<group>"; };
 		0F7B1CF1E1200FC518E7E819B1A7C0B6 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		11E72B023ED54C229D90914F394A4C6B /* SelectQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionViewModel.swift; sourceTree = "<group>"; };
 		148FDE499FF2EBDB3B2295DBA8A93CE1 /* TTNorms-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-Heavy.otf"; sourceTree = "<group>"; };
-		14FF8F941FADE9A761542FF4F3C9027D /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		15FD6EFDAF6B75C0680F76BA78949033 /* DiarySeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySeparator.swift; sourceTree = "<group>"; };
 		1B5BA3F72F5A4F56E35C4EAB743F94D4 /* OnBordingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBordingPageViewController.swift; sourceTree = "<group>"; };
 		1E64502EB647A03E194D3E782E4DFA8B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -200,6 +201,7 @@
 		60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCardView.swift; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
+		651E668CEFCDFA43412FDC79B18A8094 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumIntent.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
 		6658D57E30B0046EFD1664FEA7F8DDF1 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -697,6 +699,15 @@
 			path = SFProDisplay;
 			sourceTree = "<group>";
 		};
+		D77CD76A8809B396AE80F1BCD72A784C /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				0DEDDB7DD7FB2642D99A64F816B60A6E /* BottomSheet.swift */,
+				651E668CEFCDFA43412FDC79B18A8094 /* RoundedCorner.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
 		E42EA4060DBD550302CE3534D1AAE1D7 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +773,18 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		EF6F692D07EEB07BFC7B7BDAC82622DD /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				D77CD76A8809B396AE80F1BCD72A784C /* BottomSheet */,
+				088FAC06BFF5B7674070F7466C3CE349 /* DiaryIntent.swift */,
+				4EE3CF1F3CF99FBCEF4A846513C09E65 /* DiaryRowView.swift */,
+				15FD6EFDAF6B75C0680F76BA78949033 /* DiarySeparator.swift */,
+				2EFFE4EDE8A3CB3D6938E954FD18D9EA /* DiaryView.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
 		F2A7812AD35345E150D2324EBE019AE4 /* TTNorms */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,19 +826,6 @@
 				3538D8E89CC16EFFB5AC4C42018359B2 /* SplashView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		EF6F692D07EEB07BFC7B7BDAC82622DD /* Diary */ = {
-			isa = PBXGroup;
-			children = (
-				FFDA5A612609E507002EA49A /* BottomSheet.swift */,
-				088FAC06BFF5B7674070F7466C3CE349 /* DiaryIntent.swift */,
-				4EE3CF1F3CF99FBCEF4A846513C09E65 /* DiaryRowView.swift */,
-				15FD6EFDAF6B75C0680F76BA78949033 /* DiarySeparator.swift */,
-				2EFFE4EDE8A3CB3D6938E954FD18D9EA /* DiaryView.swift */,
-				14FF8F941FADE9A761542FF4F3C9027D /* RoundedCorner.swift */,
-			);
-			path = Diary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1040,6 +1050,7 @@
 				E8CCE216A782B613B05B5A9D7E4D8752 /* AppVersion.swift in Sources */,
 				388A05B767CD8C60909DE5F77061D18C /* Array+Extension.swift in Sources */,
 				AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */,
+				552B9582DF7C89DE795C5623E67F05AB /* BottomSheet.swift in Sources */,
 				001A6C6FCD44DE1E016DED590EF3A30B /* CardView.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
 				28F77E6C503B96E5C0FB03B69FEAE13D /* DateField.swift in Sources */,
@@ -1090,7 +1101,7 @@
 				E0F1174C07153D3D5F241122DC16F9FF /* PlayerView.swift in Sources */,
 				D4067F4C76A610F5F0CF99CECC1007C1 /* QuestionCardView.swift in Sources */,
 				E3EE519C4F104E37FA9A2E1767E7BF7B /* QuestionCellView.swift in Sources */,
-				F4007DE3C0F00A5708C262F257499E8E /* RoundedCorner.swift in Sources */,
+				3414E2D24F2FBE807C28AC54365D18CE /* RoundedCorner.swift in Sources */,
 				165392407EB7A49B42869C37B8D7CE37 /* SceneDelegate.swift in Sources */,
 				D5CE4410E6373F2DBC9729A1F1E601AD /* SelectQuestionView.swift in Sources */,
 				B577C673B007F83CA923937468AF5696 /* SelectQuestionViewModel.swift in Sources */,
