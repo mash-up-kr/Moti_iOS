@@ -132,6 +132,7 @@
 		FA9AC11496EE118081388AB37A49E4AC /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853F5709BB7AC8A157510801542F8708 /* APIData.swift */; };
 		FBA92F16BA03CF4330764BD7FE72CF64 /* NSDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396735DF46CD4ACF29F2520B3C5E6BB9 /* NSDatePickerView.swift */; };
 		FE9A5C5ED84DA12E738F1C023FE43495 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11A3E80387511066A7D202CB221F153 /* ActivityIndicator.swift */; };
+		FFDA5A78260A4453002EA49A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDA5A77260A4453002EA49A /* Array+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,6 +268,7 @@
 		FC10A3209CDC6D19FC94BE78736D7339 /* TTNorms-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-ThinItalic.otf"; sourceTree = "<group>"; };
 		FD4DCA9A4D7044D1EBD2E86FCDB3079D /* PDFProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFProcessor.swift; sourceTree = "<group>"; };
 		FF2BFAEC7FF8A951992734590D2B7103 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FFDA5A77260A4453002EA49A /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 			children = (
 				A98E8B165D58EB5CF8C0237810BDE8D4 /* String+Extension.swift */,
 				465A514D71814156841FB8516168321C /* UIColor+Extension.swift */,
+				FFDA5A77260A4453002EA49A /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				60712E24E822658E9354E63A3F9106B0 /* AnswerWeek.swift in Sources */,
 				7E3455A7569DCD0CC3486CD80B5A52BF /* AppDelegate.swift in Sources */,
 				E8CCE216A782B613B05B5A9D7E4D8752 /* AppVersion.swift in Sources */,
+				FFDA5A78260A4453002EA49A /* Array+Extension.swift in Sources */,
 				AE595CCE9C0DC654432BD86D1A0E6A10 /* BackgroundView.swift in Sources */,
 				001A6C6FCD44DE1E016DED590EF3A30B /* CardView.swift in Sources */,
 				376FF994D287FEBC1F90A9013C74DFB0 /* ContentView.swift in Sources */,
