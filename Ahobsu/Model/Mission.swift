@@ -52,3 +52,20 @@ extension Mission: Hashable {
         hasher.combine(uuid)
     }
 }
+
+extension Mission {
+    static var sampleData: [Mission] {
+        return ["오늘 비가와요.\n비가내리는 풍경을 찍어볼까요?",
+                "당신이 좋아하는 음악 3가지를 적어주세요.",
+                "소중한 사람에게 들려주고 싶은 노래는 무엇인가요?",
+                "당신이 사용하고 있는 핸드폰의 모델은 무엇인가요?",
+                "당신의 이름 한문으로 어떤 의미를 지니고 있나요?",
+                "밤마다 문자하고 싶은 사람이 있다면 적어보아요."].map {
+                    let contentType = [(true, true), (true, false), (false, true)].randomElement()!
+                    return Mission(id: 0,
+                                   title: $0,
+                                   isContent: contentType.0,
+                                   isImage: contentType.1)
+                }
+    }
+}
