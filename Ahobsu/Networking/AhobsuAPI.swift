@@ -17,6 +17,7 @@ enum AhobsuAPI {
     case getWeekAnswers
     case getMonthAnswers(year: Int, month: Int)
     case getAnswer(missionDate: String)
+    case getDiary(direction: ComparisonResult, limit: Int, lastID: Int?)
     
     /* Missions */
     case getMission
@@ -58,6 +59,8 @@ extension AhobsuAPI: TargetType {
             return "/answers/month"
         case .getAnswer:
             return "/answers"
+        case .getDiary:
+            return "/answers/diary"
             
             /* Missions */
         case .getMission:
@@ -90,11 +93,7 @@ extension AhobsuAPI: TargetType {
             return .post
         case .updateAnswer:
             return .put
-        case .getWeekAnswers:
-            return .get
-        case .getMonthAnswers:
-            return .get
-        case .getAnswer:
+        case .getWeekAnswers, .getMonthAnswers, .getAnswer, .getDiary:
             return .get
             
             /* Missions */
@@ -129,7 +128,7 @@ extension AhobsuAPI: TargetType {
         var defaultParams: [String: Any] = [:]
         
         switch self {
-            /* Answers */
+        /* Answers */
         case let .registerAnswer(missionId, contentOrNil, imageOrNil):
             defaultParams["missionId"] = missionId
             defaultParams["content"] = contentOrNil
@@ -139,35 +138,32 @@ extension AhobsuAPI: TargetType {
             defaultParams["content"] = contentOrNil
             defaultParams["file"] = imageOrNil
         case .getWeekAnswers:
-            /* Empty */
             break
         case let .getMonthAnswers(year, month):
             defaultParams["date"] = "\(year)-\(String(format: "%02d", month))-01"
-            break
         case let .getAnswer(date):
-            /* Empty */
             defaultParams["date"] = date
+        case let .getDiary(direction, limit, lastID):
+            defaultParams["direction"] = (direction == .orderedDescending) ? 0 : 1
+            defaultParams["limit"] = limit
+            if let lastID = lastID {
+                defaultParams["lastId"] = lastID
+            }
+
+        /* Missions */
+        case .getMission, .refreshMission:
             break
             
-            /* Missions */
-        case .getMission:
-            /* Empty */
-            break
-        case .refreshMission:
-            /* Empty */
-            break
-            
-            /* SignIn */
+        /* SignIn */
         case let .signIn(snsId, _):
-            /* Empty */
             defaultParams["snsId"] = snsId
             defaultParams["snsType"] = "apple"
-            /* Token */
+
+        /* Token */
         case .refreshToken:
-            /* Empty */
             break
             
-            /* Users */
+        /* Users */
         case let .updateProfile(name,
                                 birthday,
                                 email,
@@ -176,14 +172,9 @@ extension AhobsuAPI: TargetType {
             defaultParams["birthday"] = birthday
             defaultParams["email"] = email
             defaultParams["gender"] = gender
-        case .deleteProfile:
-            /* Empty */
-            break
-        case .getProfile:
-            /* Empty */
+        case .deleteProfile, .getProfile:
             break
         }
-        
         return defaultParams
     }
     
@@ -277,7 +268,7 @@ extension AhobsuAPI: TargetType {
                 "snsType": "apple"
             ]
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .getMonthAnswers:
+        case .getMonthAnswers, .getDiary:
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         default:
             return .requestPlain
