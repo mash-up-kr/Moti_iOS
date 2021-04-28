@@ -36,7 +36,6 @@ final class DiaryIntent: ObservableObject {
 // MARK: - Private Methods
 private extension DiaryIntent {
     func fetchLatestDiary() {
-        print("jhlog: onAppear View")
         self.isLoading = true
         AhobsuProvider.provider.requestPublisher(.getDiary(direction: .orderedDescending, limit: 6, lastID: nil))
             .retry(2)
@@ -124,13 +123,10 @@ extension DiaryIntent {
         if let firstAnswer = answers.first, firstAnswer == answer {
             guard canScrollToTop else { return }
             loadMoreDiary(direction: .orderedDescending, withLastID: firstAnswer.id)
-            print("jhlog: onAppear \(answer.date)")
         } else if let lastAnswer = answers.last, lastAnswer == answer {
             guard canScrollToBottom else { return }
             loadMoreDiary(direction: .orderedAscending, withLastID: lastAnswer.id)
-            print("jhlog: onAppear \(answer.date)")
         } else {
-            print("jhlog: onAppear PASS")
             // Nothing
         }
     }
