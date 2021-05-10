@@ -53,7 +53,7 @@ struct DiaryView: View {
                     .offset(x: -20, y: 0)
                 }
                 VStack {
-                    Text("BottomSheet")
+                    CalendarPicker(calendarManager: MonthCalendarManager())
                 }
             }
         }
