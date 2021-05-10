@@ -18,6 +18,7 @@ enum AhobsuAPI {
     case getMonthAnswers(year: Int, month: Int)
     case getAnswer(missionDate: String)
     case getDiary(direction: ComparisonResult, limit: Int, lastID: Int?)
+    case getDays
     
     /* Missions */
     case getMission
@@ -61,6 +62,8 @@ extension AhobsuAPI: TargetType {
             return "/answers"
         case .getDiary:
             return "/answers/diary"
+        case .getDays:
+            return "/answers/days"
             
             /* Missions */
         case .getMission:
@@ -93,7 +96,7 @@ extension AhobsuAPI: TargetType {
             return .post
         case .updateAnswer:
             return .put
-        case .getWeekAnswers, .getMonthAnswers, .getAnswer, .getDiary:
+        case .getWeekAnswers, .getMonthAnswers, .getAnswer, .getDiary, .getDays:
             return .get
             
             /* Missions */
@@ -149,6 +152,8 @@ extension AhobsuAPI: TargetType {
             if let lastID = lastID {
                 defaultParams["lastId"] = lastID
             }
+        case .getDays:
+            break
 
         /* Missions */
         case .getMission, .refreshMission:
