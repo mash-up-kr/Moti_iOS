@@ -11,6 +11,7 @@ struct DayView: View {
 
     @ObservedObject var calendarManager: MonthCalendarManager
     @Environment(\.calendarLayout) var layout: CalendarLayout
+    @Binding var selection: Date
 
     let week: Date
     let day: Date
@@ -31,8 +32,6 @@ struct DayView: View {
         calendarManager.calendar.isDateInToday(day)
     }
 
-    @State var isSelected: Bool = false
-
     var body: some View {
         Text(numericDay)
             .font(.footnote)
@@ -41,10 +40,9 @@ struct DayView: View {
 //            .clipShape(Circle())
             .opacity(opacity)
 //            .overlay(isSelected ? CircularSelectionView() : nil)
-//            .onTapGesture {
-//                isSelected.toggle()
-//                notifyManager()
-//            }
+            .onTapGesture {
+                notifyManager()
+            }
     }
 
     private var numericDay: String {
@@ -54,14 +52,14 @@ struct DayView: View {
     private var foregroundColor: Color { .primary }
 
     private var opacity: Double {
-        guard !isToday else { return 1 }
         return isDaySelectableAndInRange ? 1 : 0.15
     }
 
     private func notifyManager() {
         guard canSelectDay else { return }
 
-        if isToday || isDayWithinWeekMonthAndYear {
+        if isDayWithinWeekMonthAndYear {
+            selection = day
             // Haptic Feedback
             // Change Binding Day
         }

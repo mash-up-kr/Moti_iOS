@@ -11,6 +11,7 @@ struct MonthView: View {
 
     @ObservedObject var calendarManager: MonthCalendarManager
     @Environment(\.calendarLayout) var layout: CalendarLayout
+    @Binding var selection: Date
 
     let month: Date
 
@@ -64,7 +65,7 @@ private extension MonthView {
     var weeksViewStack: some View {
         VStack(spacing: layout.dayHorizontalSpacing) {
             ForEach(weeks, id: \.self) { week in
-                WeekView(calendarManager: self.calendarManager, week: week)
+                WeekView(calendarManager: self.calendarManager, selection: $selection, week: week)
             }
         }
     }

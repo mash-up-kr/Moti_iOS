@@ -26,7 +26,6 @@ struct CalendarDatePicker: View {
     var action: (() -> Void)?
     @State private var style: Style = .calendar
 
-
     var title: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM"
@@ -84,6 +83,8 @@ struct CalendarDatePicker: View {
                     }
                 }
             }
+        }.onChange(of: selection) { newDate in
+            action?()
         }
     }
 
@@ -99,7 +100,7 @@ struct CalendarDatePicker: View {
         } else {
             return AnyView(TabView(selection: $calendarManager.currentMonth) {
                 ForEach(calendarManager.months, id: \.self) { date in
-                    MonthView(calendarManager: calendarManager, month: date)
+                    MonthView(calendarManager: calendarManager, selection: _selection, month: date)
                         .tag(date)
                 }
             }

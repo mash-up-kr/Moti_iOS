@@ -11,6 +11,7 @@ struct WeekView: View {
 
     @ObservedObject var calendarManager: MonthCalendarManager
     @Environment(\.calendarLayout) var layout: CalendarLayout
+    @Binding var selection: Date
 
     var week: Date
 
@@ -22,7 +23,7 @@ struct WeekView: View {
     var body: some View {
         LazyHStack(spacing: layout.dayHorizontalSpacing) {
             ForEach(days, id: \.self) { day in
-                DayView(calendarManager: calendarManager, week: week, day: day)
+                DayView(calendarManager: calendarManager, selection: $selection, week: week, day: day)
             }
         }
     }
