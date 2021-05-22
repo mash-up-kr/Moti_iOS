@@ -7,29 +7,36 @@
 
 import SwiftUI
 
-struct CalendarPicker: View {
+struct CalendarDatePicker: View {
 
     @frozen enum Style {
         case calendar
         case datePicker
 
         mutating func toggle() {
-            self = self == .calendar ? .datePicker : .calendar
+            withAnimation {
+                self = self == .calendar ? .datePicker : .calendar
+            }
         }
     }
 
     @Environment(\.calendarLayout) var layout: CalendarLayout
     @ObservedObject var calendarManager: MonthCalendarManager
+    @Binding var selection: Date
+    var action: (() -> Void)?
     @State private var style: Style = .calendar
+
 
     var title: String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateFormat = "yyyy.MM"
         return formatter.string(from: calendarManager.currentMonth)
     }
 
-    init(calendarManager: MonthCalendarManager) {
+    init(calendarManager: MonthCalendarManager, selection: Binding<Date>, action: (() -> Void)?) {
         self.calendarManager = calendarManager
+        self._selection = selection
+        self.action = action
     }
 
     public var body: some View {
@@ -37,10 +44,12 @@ struct CalendarPicker: View {
             VStack {
                 HStack {
                     Spacer()
-                    Button {
-                        calendarManager.previousMonth()
-                    } label: {
-                        Text("<<")
+                    if style == .calendar {
+                        Button {
+                            calendarManager.previousMonth()
+                        } label: {
+                            Text("<<")
+                        }.disabled(calendarManager.prevMonthDisabled)
                     }
                     Spacer()
                     Button {
@@ -51,17 +60,28 @@ struct CalendarPicker: View {
                         Text(title)
                     }
                     Spacer()
-                    Button {
-                        calendarManager.nextMonth()
-                    } label: {
-                        Text(">>")
-                    }.disabled(calendarManager.calendar.startOfMonth(for: Date()) == calendarManager.currentMonth)
+                    if style == .calendar {
+                        Button {
+                            calendarManager.nextMonth()
+                        } label: {
+                            Text(">>")
+                        }.disabled(calendarManager.nextMonthDisabled)
+                    }
                     Spacer()
                 }
                 if style == .calendar {
                     self.content(geometry: geometry)
                 } else {
-                    DatePicker("", selection: .constant(Date()), in: Date()...Date())
+                    VStack {
+                        CalendarMonthPicker(calendarManager: calendarManager,
+                                            selection: $calendarManager.currentMonth,
+                                            cancelAction: {
+                                                style.toggle()
+                                            },
+                                            okAction: {
+                                                style.toggle()
+                                            })
+                    }
                 }
             }
         }
