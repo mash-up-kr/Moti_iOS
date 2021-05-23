@@ -47,7 +47,8 @@ struct CalendarDatePicker: View {
                         Button {
                             calendarManager.previousMonth()
                         } label: {
-                            Text("<<")
+                            Image("icArrowLeft")
+                                .opacity(calendarManager.prevMonthDisabled ? 0.5 : 1)
                         }.disabled(calendarManager.prevMonthDisabled)
                     }
                     Spacer()
@@ -57,13 +58,15 @@ struct CalendarDatePicker: View {
                         }
                     } label: {
                         Text(title)
+                            .foregroundColor(Color(.rosegold))
                     }
                     Spacer()
                     if style == .calendar {
                         Button {
                             calendarManager.nextMonth()
                         } label: {
-                            Text(">>")
+                            Image("icArrowRight")
+                                .opacity(calendarManager.nextMonthDisabled ? 0.5 : 1)
                         }.disabled(calendarManager.nextMonthDisabled)
                     }
                     Spacer()

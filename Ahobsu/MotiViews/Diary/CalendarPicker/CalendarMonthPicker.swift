@@ -43,8 +43,8 @@ struct CalendarMonthPicker: View {
                     }
                     okAction()
                 }
-            }
-        }
+            }.foregroundColor(Color(.rosegold))
+        }.frame(maxWidth: .infinity)
     }
 }
 
