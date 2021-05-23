@@ -17,6 +17,7 @@ final class DiaryIntent: ObservableObject {
     @Published var currentMonth: Int
     @Published var isLoading: Bool = false
     @Published var date: Date = Date()
+    @Published var specificPosition: Int?
 
     private var answerMonths: [AnswerDiary] = []
     private var canScrollToTop: Bool = false
@@ -30,6 +31,20 @@ final class DiaryIntent: ObservableObject {
         let date = Date()
         self.currentYear = calendar.component(.year, from: date)
         self.currentMonth = calendar.component(.month, from: date)
+
+        $date.sink { [weak self] newDate in
+            guard let self = self else { return }
+            // 이미 존재한다
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let newDateString = formatter.string(from: newDate)
+            if let matchedAnswer = self.answers.first(where: { $0.date == newDateString }) {
+                self.specificPosition = matchedAnswer.id
+            }
+
+            // 없으면 서버로 새로운 요청
+
+        }.store(in: &subscriptions)
     }
 }
 

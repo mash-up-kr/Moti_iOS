@@ -16,6 +16,7 @@ struct DiaryView: View {
     @State private var updatingDate: Date = Date()
 
     private var referenceDate: Date = Date()
+    var calendarManager = MonthCalendarManager()
 
     var body: some View {
         NavigationMaskingView(isRoot: true,
@@ -24,15 +25,23 @@ struct DiaryView: View {
                                                    label: { Image("icCalenderSelected").buttonSized() } )) {
             let columns: [GridItem] = [GridItem(.flexible())]
             ScrollView(.vertical) {
-                LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
-                    ForEach(intent.answers, id: \.self) { answer in
-                        if intent.shouldHaveMonthSeparator(with: answer) {
-                            DiarySeparator()
+                ScrollViewReader { value in
+                    LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
+                        ForEach(intent.answers, id: \.self) { answer in
+                            if intent.shouldHaveMonthSeparator(with: answer) {
+                                DiarySeparator()
+                            }
+                            DiaryRowView(answer: answer)
+                                .onAppear { intent.onRowAppear(answer: answer) }
+                                .id(answer.id)
                         }
-                        DiaryRowView(answer: answer)
-                            .onAppear { intent.onRowAppear(answer: answer) }
+                    }.padding(20)
+                    .onReceive(intent.$specificPosition) { targetPosition in
+                        withAnimation {
+                            value.scrollTo(targetPosition, anchor: .top)
+                        }
                     }
-                }.padding(20)
+                }
             }
         }
         .background(BackgroundView())
@@ -43,7 +52,7 @@ struct DiaryView: View {
                      height: 400,
                      showTopIndicator: false) {
             VStack {
-                CalendarDatePicker(calendarManager: MonthCalendarManager(), selection: $intent.date) {
+                CalendarDatePicker(calendarManager: calendarManager, selection: $intent.date) {
                     isDatePickerPresented = false
                 }
             }
