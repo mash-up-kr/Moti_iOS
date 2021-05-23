@@ -21,6 +21,8 @@ struct WheelView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIWheelView, context: UIViewRepresentableContext<WheelView>) {
         uiView.selectedItem = selectedItem
+        uiView.items = items
+        uiView.tableView.reloadSections(IndexSet([0]), with: .automatic)
     }
 }
 
