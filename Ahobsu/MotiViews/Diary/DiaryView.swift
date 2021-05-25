@@ -10,13 +10,17 @@ import SwiftUI
 
 struct DiaryView: View {
 
-    @ObservedObject var intent: DiaryIntent = DiaryIntent()
+    @ObservedObject var intent: DiaryIntent
 
     @State private var isDatePickerPresented: Bool = false
     @State private var updatingDate: Date = Date()
 
     private var referenceDate: Date = Date()
     var calendarManager = MonthCalendarManager()
+
+    init(diaryIntent: DiaryIntent) {
+        intent = diaryIntent
+    }
 
     var body: some View {
         NavigationMaskingView(isRoot: true,
@@ -62,7 +66,7 @@ struct DiaryView: View {
 
 struct DiaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryView()
+        DiaryView(diaryIntent: DiaryIntent())
     }
 }
 
