@@ -45,6 +45,7 @@ final class DiaryIntent: ObservableObject {
             // 없으면 서버로 새로운 요청
 
         }.store(in: &subscriptions)
+        fetchLatestDiary()
     }
 }
 
@@ -52,7 +53,7 @@ final class DiaryIntent: ObservableObject {
 private extension DiaryIntent {
     func fetchLatestDiary() {
         self.isLoading = true
-        AhobsuProvider.provider.requestPublisher(.getDiary(direction: .orderedDescending, limit: 6, lastID: nil))
+        AhobsuProvider.provider.requestPublisher(.getDiary(direction: .orderedDescending, limit: 6, date: nil))
             .retry(2)
             .map { $0.data }
             .decode(type: APIData<AnswerDiary>.self, decoder: JSONDecoder())
@@ -78,9 +79,9 @@ private extension DiaryIntent {
             .store(in: &subscriptions)
     }
 
-    func loadMoreDiary(direction: ComparisonResult, withLastID lastID: Int) {
+    func loadMoreDiary(direction: ComparisonResult, withDate date: String) {
         self.isLoading = true
-        AhobsuProvider.provider.requestPublisher(.getDiary(direction: .orderedDescending, limit: 6, lastID: lastID))
+        AhobsuProvider.provider.requestPublisher(.getDiary(direction: direction, limit: 6, date: date))
             .retry(2)
             .map { $0.data }
             .decode(type: APIData<AnswerDiary>.self, decoder: JSONDecoder())
@@ -103,10 +104,14 @@ private extension DiaryIntent {
                     switch direction {
                     case .orderedAscending:
                         self.canScrollToBottom = !answerDiary.answers.isEmpty
-                        self.answers += answerDiary.answers
+                        let newAnswers = Array(Set(self.answers + answerDiary.answers)).sorted { $0.date > $1.date }
+                        let diff = newAnswers.difference(from: self.answers)
+                        self.answers = self.answers.applying(diff) ?? self.answers
                     case .orderedDescending:
                         self.canScrollToTop = !answerDiary.answers.isEmpty
-                        self.answers.insert(contentsOf: answerDiary.answers, at: 0)
+                        let newAnswers = Array(Set(answerDiary.answers + self.answers)).sorted { $0.date > $1.date }
+                        let diff = newAnswers.difference(from: self.answers)
+                        self.answers = self.answers.applying(diff) ?? self.answers
                     case .orderedSame:
                         break
                     }
@@ -121,11 +126,11 @@ private extension DiaryIntent {
 extension DiaryIntent {
 
     func onError() {
-        fetchLatestDiary()
+//        fetchLatestDiary()
     }
 
     func onAppear() {
-        fetchLatestDiary()
+        // TODO: 상황에 맞게 Refresh
     }
 
     func onRowAppear(answer: Answer) {
@@ -137,10 +142,10 @@ extension DiaryIntent {
 //        }
         if let firstAnswer = answers.first, firstAnswer == answer {
             guard canScrollToTop else { return }
-            loadMoreDiary(direction: .orderedDescending, withLastID: firstAnswer.id)
+            loadMoreDiary(direction: .orderedDescending, withDate: firstAnswer.date)
         } else if let lastAnswer = answers.last, lastAnswer == answer {
             guard canScrollToBottom else { return }
-            loadMoreDiary(direction: .orderedAscending, withLastID: lastAnswer.id)
+            loadMoreDiary(direction: .orderedAscending, withDate: lastAnswer.date)
         } else {
             // Nothing
         }

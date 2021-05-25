@@ -17,7 +17,7 @@ enum AhobsuAPI {
     case getWeekAnswers
     case getMonthAnswers(year: Int, month: Int)
     case getAnswer(missionDate: String)
-    case getDiary(direction: ComparisonResult, limit: Int, lastID: Int?)
+    case getDiary(direction: ComparisonResult, limit: Int, date: String?)
     case getDays
     
     /* Missions */
@@ -146,11 +146,11 @@ extension AhobsuAPI: TargetType {
             defaultParams["date"] = "\(year)-\(String(format: "%02d", month))-01"
         case let .getAnswer(date):
             defaultParams["date"] = date
-        case let .getDiary(direction, limit, lastID):
+        case let .getDiary(direction, limit, date):
             defaultParams["direction"] = (direction == .orderedDescending) ? 0 : 1
             defaultParams["limit"] = limit
-            if let lastID = lastID {
-                defaultParams["lastId"] = lastID
+            if let date = date {
+                defaultParams["date"] = date
             }
         case .getDays:
             break
