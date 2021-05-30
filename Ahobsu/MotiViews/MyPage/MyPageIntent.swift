@@ -6,33 +6,83 @@
 //  Copyright © 2021 ahobsu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Combine
+import Kingfisher
 
 final class MyPageIntent: ObservableObject {
-
-    static var shared: MyPageIntent = MyPageIntent()
     @Published var user: User = .placeholderData
+    @Published var image: UIImage? = nil
     private var cancels = Set<AnyCancellable>()
+}
 
-    private init() {
+// MARK: Intent
+extension MyPageIntent {
+    func onAppear() {
+        getProfile()
+    }
+    
+    func updateImage(_ image: UIImage?) {
+        updateProfileImage(image: image)
+    }
+}
+
+
+extension MyPageIntent {
+    private func getProfile() {
         AhobsuProvider.provider.requestPublisher(.getProfile)
-            .retry(2)
             .map { $0.data }
             .decode(type: APIData<User>.self, decoder: JSONDecoder())
             .tryCompactMap { $0.data }
             .replaceError(with: .placeholderData)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+            .scan(user, { [weak self] oldValue, newValue in
+                guard let self = self else { return newValue }
+                if let profileUrl = newValue.profileUrl, oldValue.profileUrl != newValue.profileUrl {
+                    guard let url = URL(string: profileUrl) else { return newValue }
+                    ImageDownloader.default.downloadImage(with: url, options: [.targetCache(.default)]) { result in
+                        switch result {
+                        case let .success(value):
+                            self.image = value.image
+                        case let .failure(error):
+                            print(error)
+                        }
+                    }
+                }
+                
+                return newValue
+            })
             .assign(to: \.user, on: self)
             .store(in: &cancels)
     }
-
-}
-
-// MARK: Intent
-extension MyPageIntent {
-    func onAppear() {
-        
+    
+    private func updateProfileImage(image: UIImage?) {
+        AhobsuProvider.provider.requestPublisher(.updateProfileImage(image: image))
+            .map { $0.data }
+            .decode(type: APIData<User>.self, decoder: JSONDecoder())
+            .tryCompactMap { $0.data }
+            .replaceError(with: .placeholderData)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+            .scan(user, { [weak self] oldValue, newValue in
+                guard let self = self else { return newValue }
+                if let profileUrl = newValue.profileUrl, oldValue.profileUrl != newValue.profileUrl {
+                    guard let url = URL(string: profileUrl) else { return newValue }
+                    ImageDownloader.default.downloadImage(with: url, options: nil) { result in
+                        switch result {
+                        case let .success(value):
+                            self.image = value.image
+                        case let .failure(error):
+                            print(error)
+                        }
+                    }
+                }
+                
+                return newValue
+            })
+            .assign(to: \.user, on: self)
+            .store(in: &cancels)
     }
+    
 }

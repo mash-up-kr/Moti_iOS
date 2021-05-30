@@ -54,7 +54,8 @@ final class SignUp: ObservableObject {
                                                 refreshToken: nil,
                                                 mission: nil,
                                                 snsId: "",
-                                                snsType: ""),
+                                                snsType: "",
+                                                profileUrl: nil),
                                      completion: { (response) in
                                         if let _ = response?.data {
                                             TokenManager.sharedInstance.registerAccessToken(token: TokenManager.sharedInstance.temporaryAccessToken ?? "",

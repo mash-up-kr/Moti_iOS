@@ -10,7 +10,6 @@ import SwiftUI
 import Combine
 
 struct MyPageView: View {
-    @State private var image: UIImage? = nil
     @State var showCamera = false
     @State private var appVersion: AppVersion = .placeholderData
     @State private var showingAccessTokenAlert = false
@@ -19,7 +18,7 @@ struct MyPageView: View {
     
     @State private var activeSheet: ActiveSheet?
 
-    @ObservedObject var intent: MyPageIntent = MyPageIntent.shared
+    @ObservedObject var intent: MyPageIntent = MyPageIntent()
     
     var mailCompose = MailCompose()
     let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
@@ -37,7 +36,7 @@ struct MyPageView: View {
         {
             ScrollView {
                 VStack {
-                    HeaderView(image: $image, activeSheet: $activeSheet, name: intent.user.name)
+                    HeaderView(image: $intent.image, activeSheet: $activeSheet, name: intent.user.name)
                     Separator()
                     ListCell(title: "닉네임", detail: intent.user.name)
                     ListCell(title: "생년월일", detail: intent.user.birthday)
@@ -61,37 +60,7 @@ struct MyPageView: View {
                             Text("개인정보취급방침 및 이용약관")
                         })
                     }.frame(minHeight: 52)
-                        .foregroundColor(Color(.rosegold))
-                    // MARK: 토큰값 볼 수 있는 버튼 추
-//                    VStack {
-//                        HStack {
-//                            Spacer()
-//                            Button(action: {
-//                                UIPasteboard.general.string = TokenManager.sharedInstance.getAccessToken()
-//                                self.showingAccessTokenAlert = true
-//                            }, label: {
-//                                Text("액세스 토큰 값 복사하기")
-//                            })
-//                            .alert(isPresented: $showingAccessTokenAlert) { () -> Alert in
-//                                Alert(title: Text("액세스 토큰 복사"), message: Text("클립보드에 복사했습니다."))
-//                            }
-//                        }.frame(minHeight: 52)
-//                            .foregroundColor(Color(.rosegold))
-//                        HStack {
-//                            Spacer()
-//                            Button(action: {
-//                                UIPasteboard.general.string = TokenManager.sharedInstance.getRefreshToken()
-//                                self.showingRefreshTokenAlert = true
-//                            }, label: {
-//                                Text("리프레쉬 토큰 값 복사하기")
-//                            })
-//                            .alert(isPresented: $showingRefreshTokenAlert) { () -> Alert in
-//                                Alert(title: Text("리프레쉬 토큰 복사"), message: Text("클립보드에 복사했습니다."))
-//                            }
-//                        }.frame(minHeight: 52)
-//                            .foregroundColor(Color(.rosegold))
-//                        Spacer()
-//                    }
+                    .foregroundColor(Color(.rosegold))
                 }.padding(.horizontal, 15)
             }
             .font(.system(size: 16))
@@ -101,10 +70,12 @@ struct MyPageView: View {
             switch $0 {
             case .imagePicker:
                 ImagePicker(showCamera: self.$showCamera,
-                            image: self.$image,
+                            image: self.$intent.image,
                             isStatusBarHidden: .constant(false),
                             sourceType: .photoLibrary,
-                            isFiltered: true)
+                            isFiltered: true) {
+                    self.intent.updateImage($0)
+                }
 
             case .privacy:
                 NavigationView {
@@ -118,15 +89,6 @@ struct MyPageView: View {
             self.appVersion = fetchedVersion
         }
         .onAppear(perform: intent.onAppear)
-    }
-    
-    private func makeFilteredImage(image: UIImage?) -> UIImage? {
-        guard let originalCIImage = image?.ciImage else { return nil }
-        
-        let sepiaFilter = CIFilter(name:"CISepiaTone")
-        sepiaFilter?.setValue(originalCIImage, forKey: kCIInputImageKey)
-        sepiaFilter?.setValue(0.9, forKey: kCIInputIntensityKey)
-        return UIImage(ciImage: originalCIImage)
     }
     
     enum ActiveSheet: Identifiable {

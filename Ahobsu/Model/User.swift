@@ -19,6 +19,7 @@ struct User: Decodable, Identifiable {
     let mission: String? // Mission?
     let snsId: String
     let snsType: String
+    let profileUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +32,7 @@ struct User: Decodable, Identifiable {
         case mission
         case snsId
         case snsType
+        case profileUrl
     }
 }
 
@@ -51,7 +53,8 @@ extension User {
                     refreshToken: nil,
                     mission: nil,
                     snsId: "1",
-                    snsType: "-")
+                    snsType: "-",
+                    profileUrl: nil)
     }
 }
 

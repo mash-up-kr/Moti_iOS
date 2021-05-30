@@ -34,6 +34,7 @@ enum AhobsuAPI {
         email: String,
         gender: String
     )
+    case updateProfileImage(image: UIImage?)
     case deleteProfile
     case getProfile
 }
@@ -76,6 +77,8 @@ extension AhobsuAPI: TargetType {
             /* Users */
         case .updateProfile:
             return "/users"
+        case .updateProfileImage:
+            return "/users/my/profile"
         case .deleteProfile:
             return "/users"
         case .getProfile:
@@ -113,6 +116,8 @@ extension AhobsuAPI: TargetType {
             
             /* Users */
         case .updateProfile:
+            return .put
+        case .updateProfileImage:
             return .put
         case .deleteProfile:
             return .delete
@@ -176,6 +181,10 @@ extension AhobsuAPI: TargetType {
             defaultParams["birthday"] = birthday
             defaultParams["email"] = email
             defaultParams["gender"] = gender
+            
+        case .updateProfileImage:
+            /* Empty */
+            break
         case .deleteProfile:
             /* Empty */
             break
@@ -271,6 +280,13 @@ extension AhobsuAPI: TargetType {
         case .updateProfile:
             return .requestParameters(parameters: params,
                                       encoding: JSONEncoding.default)
+            
+        case let .updateProfileImage(image):
+            let multipartData: [Moya.MultipartFormData] = [
+                .init(provider: .data(image?.pngData() ?? Data()), name: "file", fileName: "\(image?.hashValue ?? 0)", mimeType: "image/png"),
+            ]
+            return .uploadMultipart(multipartData)
+    
         case let .signIn(snsId, _):
             let params = [
                 "snsId": snsId,

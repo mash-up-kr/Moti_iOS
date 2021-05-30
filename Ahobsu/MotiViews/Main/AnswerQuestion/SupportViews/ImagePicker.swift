@@ -20,6 +20,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     var sourceType: UIImagePickerController.SourceType
     var isFiltered: Bool = false
+    var completion: ((UIImage?) -> Void)?
     
     final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         
@@ -29,20 +30,24 @@ struct ImagePicker: UIViewControllerRepresentable {
         @Binding var isStatusBarHidden: Bool
         var isFiltered: Bool = false
         
+        private var completion: ((UIImage?) -> Void)?
+        
         private let context = CIContext()
         
-        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>, showCamera: Binding<Bool>, isStatusBarHidden: Binding<Bool>, isFiltered: Bool = false) {
+        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>, showCamera: Binding<Bool>, isStatusBarHidden: Binding<Bool>, isFiltered: Bool = false, completion: ((UIImage?) -> Void)? = nil) {
             _presentationMode = presentationMode
             _image = image
             _showCamera = showCamera
             _isStatusBarHidden = isStatusBarHidden
             self.isFiltered = isFiltered
+            self.completion = completion
         }
         
         func imagePickerController(_ picker: UIImagePickerController,
                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 image = isFiltered ? makeFilteredImage(image: uiImage) : uiImage
+                completion?(image)
             }
             if picker.sourceType == .camera {
                 showCamera = false
@@ -78,7 +83,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode, image: $image, showCamera: $showCamera, isStatusBarHidden: $isStatusBarHidden, isFiltered: isFiltered)
+        return Coordinator(presentationMode: presentationMode, image: $image, showCamera: $showCamera, isStatusBarHidden: $isStatusBarHidden, isFiltered: isFiltered, completion: completion)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
