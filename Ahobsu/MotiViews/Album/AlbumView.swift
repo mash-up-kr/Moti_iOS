@@ -9,87 +9,70 @@
 import SwiftUI
 import Kingfisher
 
-extension String {
-    static func toAlbumDateString(from date: Date) -> String {
-        let calendar = Calendar.current
-        
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        
-        let monthEnum = MonthEnum(month: month)
-        let returnStr = "\(year). \(monthEnum.longMonthString())"
-        
-        return returnStr
-    }
-    
-    static func toAlbumDateString(year: Int, month: Int) -> String {
-        let monthEnum = MonthEnum(month: month)
-        let returnStr = "\(year). \(monthEnum.longMonthString())"
-        
-        return returnStr
-    }
-}
-
 struct AlbumView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @ObservedObject var intent: AlbumItent = AlbumItent()
+    @ObservedObject var intent: AlbumItent
+
+
+    var itemRows: [GridItem] = Array(repeating: GridItem(.fixed(316), spacing: 0), count: 1)
+    var itemHeight: CGFloat = 316
+    var itemSpacing: CGFloat = 28
 
     var body: some View {
-        NavigationMaskingView(titleItem: Text("앨범").font(.custom("AppleSDGothicNeo-Regular", size: 16.0)), trailingItem: EmptyView()) {
-            VStack {
-                if intent.isReloadNeeded == false {
-                    AlbumList(answerMonth: intent.answerMonth,
-                              month: intent.currentMonth,
-                              isLoading: intent.isLoading)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        .padding(.top, 16.0)
-                    PaginationView(loadAlbumsDelegate: { intent.onChangePage() },
-                                   year: $intent.currentYear,
-                                   month: $intent.currentMonth,
-                                   isLoading: $intent.isLoading)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 88.0)
-                } else {
-                    NetworkErrorView {
-                        intent.onError()
-                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                }
-            }
-            .disabled(intent.isLoading)
-            .blur(radius: intent.isLoading ? 3 : 0)
-        }
-        .background(BackgroundView())
-        .overlay(LoadingView(isShowing: intent.isLoading))
-        .onAppear(perform: intent.onAppear)
-    }
-}
-
-struct AlbumList: View {
-    
-    var answerMonth: AnswerMonth?
-    var month: Int
-    
-    var isLoading: Bool
-    
-    var body: some View {
-        VStack {
-            if let answerMonth = self.answerMonth, answerMonth.monthAnswer.isEmpty == false {
-                let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 25), count: 2)
-                ScrollView(.vertical) {
-                    LazyVGrid(columns: columns, alignment: .center, spacing: 30) {
-                        ForEach(answerMonth.monthAnswer, id: \.self) {
-                            PartsCombinedAnswer(answers: $0, month: self.month)
+        NavigationView {
+            NavigationMaskingView(isRoot: true, titleItem: EmptyView(), trailingItem: EmptyView()) {
+                VStack {
+                    if intent.isReloadNeeded {
+                        NetworkErrorView {
+                            intent.onError()
+                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    } else {
+                        if intent.answerMonth.isEmpty {
+                            AnswerEmptyView()
+                        } else {
+                            VStack {
+                                shelf
+                                albums
+                                Spacer()
+                            }
                         }
-                    }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+                    }
                 }
-            } else {
-                if !isLoading {
-                    AnswerEmptyView()
-                } else {
-                    EmptyView()
-                }
+                .disabled(intent.isLoading)
+                .blur(radius: intent.isLoading ? 3 : 0)
             }
+            .background(BackgroundView())
+            .overlay(LoadingView(isShowing: intent.isLoading))
+        }
+    }
+
+    var shelf: some View {
+        // PATCH: GeometryReader로 감쌌을 때 Image의 Default offset이 0에 위치하게됨.
+        GeometryReader { _ in
+            HStack {
+                Image(intent.shelfName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: intent.shelfHeight)
+                    .offset(x: intent.shelfXOffset)
+            }
+        }.frame(height: intent.shelfHeight)
+    }
+
+    var albums: some View {
+        GeometryReader { geometry in
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHGrid(rows: itemRows, spacing: itemSpacing) {
+                    Color.clear.frame(width: geometry.size.width / 4 - itemSpacing)
+                    ForEach(intent.answerMonth, id: \.self) { answers in
+                        PartsCombinedAnswer(answers: answers, fixedWidth: geometry.size.width / 2)
+                            .onAppear { intent.onRowAppear(answers: answers) }
+                    }
+                    Color.clear.frame(width: geometry.size.width / 4 - itemSpacing)
+                }
+            }.frame(height: itemHeight)
         }
     }
 }
@@ -118,166 +101,41 @@ struct AnswerEmptyView: View {
 }
 
 struct PartsCombinedAnswer: View {
-    
-    var answers: [Answer?]? = nil
-    var title: String = ""
-    var shortMonth: String = ""
-    
-    var number: Int = 0
-    
-    init(answers: [Answer?]?, month: Int) {
-        self.answers = answers
-        
-        if let no = answers?.first??.no {
-            title = "No.\(no)"
-        }
-        
-        // nil 로 상단 뷰에서 확인
-        while let answerCount = self.answers?.count, answerCount < 6 {
-            self.answers?.append(nil)
-        }
-        
-        shortMonth = MonthEnum(month: month).rawValue
-    }
-    
-    init(answers: [Answer?]?, no: Int) {
-        self.answers = answers
-        self.number = no
-        
-        // nil 로 상단 뷰에서 확인
-        while let answerCount = self.answers?.count, answerCount < 6 {
-            self.answers?.append(nil)
-        }
-        
-        title = "No.\(self.number)"
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12.0) {
-            HStack(alignment: .center) {
-                Rectangle().fill(Color(.rosegold))
-                    .frame(height: 1.0)
-                Text(title)
-                    .font(.custom("IropkeBatangOTFM", size: 16.0))
-                    .foregroundColor(Color(.rosegold))
-                    .lineLimit(1)
-                    .fixedSize(horizontal: true, vertical: false)
-                Rectangle().fill(Color(.rosegold))
-                    .frame(height: 1.0)
-            }
-            NavigationLink(destination: AlbumWeekView(answers: answers ?? [nil], navigationTitle: "\(title)"))
-            {
-                ZStack {
-                    if self.answers != nil {
-                        CardView(innerLine: true)
-                            .render(cardViewType: .Album)
-                        ForEach(self.answers!.compactMap { $0?.file.cardUrl },
-                                id: \.self,
-                                content: { (cardUrl) in
-                                    KFImage.url(URL(string: cardUrl) ?? URL(string: ""))
-                                        .placeholder( { ActivityIndicator(isAnimating: .constant(true), style: .medium) } )
-                                        .setProcessor(PDFProcessor())
-                                        .fade(duration: 0.25)
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .aspectRatio(0.62, contentMode: .fit)
-                                        .padding(20)
-                        })
-                    }
-                }.aspectRatio(0.62, contentMode: .fit)
-            }.buttonStyle(PlainButtonStyle())
-        }
-    }
-    
-}
 
-struct PaginationView: View {
+    var answers: [Answer?]
+
+    // PATCH: LazyHGrid에서 다시 그릴 때 placeholder가 생기면서 사이즈가 변경되는 것 방지
+    var fixedWidth: CGFloat
     
-    var loadAlbumsDelegate: () -> Void
-    
-    @Binding var year: Int
-    @Binding var month: Int
-    @Binding var isLoading: Bool
-    
-    @State var isNextPaging = false
+    init(answers: [Answer?], fixedWidth: CGFloat) {
+        self.answers = answers
+        self.fixedWidth = fixedWidth
+        
+        // nil 로 상단 뷰에서 확인
+        while self.answers.count < 6 {
+            self.answers.append(nil)
+        }
+    }
     
     var body: some View {
-        VStack(spacing: 0.0) {
-            HStack(alignment: .center, spacing: 8.0) {
-                Button(action: {
-                    /* 뒤로 가기 */
-                    if self.month == 1 {
-                        self.month = 12
-                        self.year -= 1
-                    } else {
-                        self.month -= 1
-                    }
-                    
-                    let calendar = Calendar.current
-                    let date = Date()
-                    
-                    let year = calendar.component(.year, from: date)
-                    let month = calendar.component(.month, from: date)
-                    
-                    if self.year == year && self.month == month {
-                        self.isNextPaging = false
-                    } else {
-                        self.isNextPaging = true
-                    }
-                    
-                    self.isLoading = true
-                    self.loadAlbumsDelegate()
-                }, label: {
-                    Image("icArrowLeft")
-                        .renderingMode(.original)
+        // FIXME: 답변화면 2.0 적용하기
+        NavigationLink(destination: AlbumWeekView(answers: answers, navigationTitle: "")) {
+            ZStack {
+                ForEach(self.answers.compactMap { $0?.file.cardUrl },
+                        id: \.self,
+                        content: { (cardUrl) in
+                            // FIXME: LazyHGrid에서 스크롤할 때 인디케이터가 뜨지 않도록
+                            KFImage.url(URL(string: cardUrl) ?? URL(string: ""))
+                                .placeholder( { ActivityIndicator(isAnimating: .constant(true), style: .medium) } )
+                                .setProcessor(PDFProcessor())
+                                .fade(duration: 0.25)
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(0.62, contentMode: .fit)
                 })
-                    .frame(width: 48.0, height: 48.0)
-                Text(String.toAlbumDateString(year: year, month: month))
-                    .lineSpacing(16.0).lineLimit(1)
-                    .font(.custom("IropkeBatangOTFM", size: 20.0))
-                    .foregroundColor(Color(UIColor.rosegold))
-                    .frame(width: 160.0)
-                if isNextPaging {
-                    Button(action: {
-                        /* 앞으로 가기 */
-                        if self.month == 12 {
-                            self.month = 1
-                            self.year += 1
-                        } else {
-                            self.month += 1
-                        }
-                        
-                        let calendar = Calendar.current
-                        let date = Date()
-                        
-                        let year = calendar.component(.year, from: date)
-                        let month = calendar.component(.month, from: date)
-                        
-                        if self.year == year && self.month == month {
-                            self.isNextPaging = false
-                        } else {
-                            self.isNextPaging = true
-                        }
-                        
-                        self.isLoading = true
-                        self.loadAlbumsDelegate()
-                    }, label: {
-                        Image("icArrowRight")
-                            .renderingMode(.original)
-                    })
-                        .frame(width: 48.0, height: 48.0)
-                } else {
-                    Spacer().frame(width: 48.0, height: 48.0)
-                }
             }
-            .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 87.0)
-            .background(Color.black)
         }
-    }
-}
-
-struct AlbumView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumView()
+        .buttonStyle(PlainButtonStyle())
+        .frame(width: fixedWidth)
     }
 }

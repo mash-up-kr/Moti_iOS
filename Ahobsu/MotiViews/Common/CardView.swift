@@ -10,7 +10,6 @@ import SwiftUI
 
 enum CardViewType {
     case Main
-    case Album
     case Option
 }
 
@@ -49,13 +48,6 @@ struct CardView: View {
             copy.innerPadding()
             copy.innerMargin()
             copy.borderWidth()
-            copy.borderColor()
-        case .Album:
-            copy.cornerRadius(outterCornerRadius: 6.6, innerCornerRadius: 6.6)
-            copy.outterShadow(outterShadowRadius: 0.0)
-            copy.innerPadding(innerPaddingTop: 6.0, innerPaddingLeading: 6.0)
-            copy.innerMargin()
-            copy.borderWidth(outterBorderWidth: 0.6, innerBorderWidth: 0.6)
             copy.borderColor()
         case .Option:
             copy.cornerRadius(outterCornerRadius: 6.6, innerCornerRadius: 6.6)

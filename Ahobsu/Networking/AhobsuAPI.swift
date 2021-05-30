@@ -15,7 +15,7 @@ enum AhobsuAPI {
     case registerAnswer(missionId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case updateAnswer(answerId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case getWeekAnswers
-    case getMonthAnswers(year: Int, month: Int)
+    case getMonthAnswers(date: String)
     case getAnswer(missionDate: String)
     case getDiary(direction: ComparisonResult, limit: Int, date: String?)
     case getDays
@@ -147,8 +147,8 @@ extension AhobsuAPI: TargetType {
             defaultParams["file"] = imageOrNil
         case .getWeekAnswers:
             break
-        case let .getMonthAnswers(year, month):
-            defaultParams["date"] = "\(year)-\(String(format: "%02d", month))-01"
+        case let .getMonthAnswers(date):
+            defaultParams["date"] = date
         case let .getAnswer(date):
             defaultParams["date"] = date
         case let .getDiary(direction, limit, date):
