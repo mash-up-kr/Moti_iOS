@@ -14,6 +14,8 @@ struct MainView: View {
     @State var window: UIWindow
     @ObservedObject var model: MainViewModel = MainViewModel()
     @ObservedObject var diaryIntent: DiaryIntent = DiaryIntent()
+    @ObservedObject var albumItent: AlbumItent = AlbumItent()
+
 
     enum Tab {
         case home
@@ -41,7 +43,7 @@ struct MainView: View {
                         Text("Diary")
                     }
                 }
-            AlbumView()
+            AlbumView(intent: albumItent)
                 .tag(Tab.album)
                 .tabItem {
                     VStack {
