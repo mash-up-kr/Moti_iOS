@@ -10,10 +10,57 @@ import SwiftUI
 import Kingfisher
 
 struct MainView: View {
+
     @State var window: UIWindow
     @ObservedObject var model: MainViewModel = MainViewModel()
+    @ObservedObject var diaryIntent: DiaryIntent = DiaryIntent()
+
+    enum Tab {
+        case home
+        case diary
+        case album
+        case profile
+    }
+    @State private var selectedTab: Tab = .home
     
     var body: some View {
+        TabView(selection: $selectedTab) {
+            home
+                .tag(Tab.home)
+                .tabItem {
+                    VStack {
+                        Image(selectedTab == .home ? "icMainSelected" : "icMainNormal")
+                        Text("Home")
+                    }
+                }
+            DiaryView(diaryIntent: diaryIntent)
+                .tag(Tab.diary)
+                .tabItem {
+                    VStack {
+                        Image(selectedTab == .diary ? "icDiarySelected" : "icDiaryNormal")
+                        Text("Diary")
+                    }
+                }
+            AlbumView()
+                .tag(Tab.album)
+                .tabItem {
+                    VStack {
+                        Image(selectedTab == .album ? "icAlbumSelected" : "icAlbumNormal")
+                        Text("Album")
+                    }
+                }
+            MyPageView()
+                .tag(Tab.profile)
+                .tabItem {
+                    VStack {
+                        Image(selectedTab == .profile ? "icProfileSelected" : "icProfileNormal")
+                        Text("Mypage")
+                    }
+                }
+        }.accentColor(Color(.rosegold))
+    }
+
+    private var home: some View {
         NavigationView {
             NavigationMaskingView(isRoot: true,
                                   titleItem: DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .center),
@@ -23,7 +70,6 @@ struct MainView: View {
                     BackgroundView()
                         .edgesIgnoringSafeArea([.vertical])
                     VStack {
-                        
                         Spacer()
                         if model.todayCard != nil {
                             NavigationLink(destination: AnswerCompleteView(model.cards))
@@ -75,29 +121,6 @@ struct MainView: View {
                             }.buttonStyle(PlainButtonStyle())
                         }
                         Spacer()
-                        HStack {
-                            NavigationLink(destination: AlbumView()) {
-                                Image("icAlbumNormal")
-                                    .foregroundColor(Color(.rosegold))
-                                    .frame(width: 48, height: 48, alignment: .center)
-                            }
-                            
-                            Spacer()
-                            
-                            Text(String.toMainDateString(from: Date()))
-                                .foregroundColor(Color(.rosegold))
-                                .font(.custom("IropkeBatangOTFM", size: 20.0))
-                                .lineSpacing(16.0)
-                            
-                            Spacer()
-                            NavigationLink(destination: MyPageView()) {
-                                Image("icProfileNormal")
-                                    .foregroundColor(Color(.rosegold))
-                                    .frame(width: 48, height: 48, alignment: .center)
-                            }
-                        }
-                        .padding(.horizontal, 15)
-                        .padding([.top], 11)
                     }
                     .padding([.bottom], 30)
                 }

@@ -67,6 +67,11 @@ extension Answer {
 }
 
 extension Answer {
+    var dateForDate: Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.date(from: date)
+    }
     func isTodayAnswer() -> Bool {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -100,6 +105,28 @@ extension Answer {
             )
         }
         
+        return answersData
+    }
+
+    static var sampleData: [Answer] {
+        var answersData: [Answer] = []
+        zip(1..<31, Mission.sampleData).forEach {
+            let randomContent: [String?] = ["만수산 드렁칡이 얽혀진들 어떠하리 나랏말씀이 어떠한들 어떠하리 요렇큼 조렇쿰", .none]
+            let newAnswer = Answer(id: $0.0,
+                                   userId: 0,
+                                   missionId: 0,
+                                   imageUrl: "https://picsum.photos/375/200?grayscale",
+                                   content: randomContent.randomElement()!,
+                                   date: "2020-02-\($0.0)",
+                                   setDate: "2020-02-\($0.0)",
+                                   mission: $0.1,
+                                   fileId: 0,
+                                   file: FileModel(id: 0,
+                                                   cardUrl: "",
+                                                   part: 1),
+                                   no: 1)
+            answersData.append(newAnswer)
+        }
         return answersData
     }
 }

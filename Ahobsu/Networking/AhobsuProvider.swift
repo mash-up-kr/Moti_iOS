@@ -283,6 +283,20 @@ final class AhobsuProvider {
         },
                          errorHandler: error)
     }
+
+    class func getDays(completion: @escaping ((APIData<[String]>?) -> Void),
+                       error: @escaping ((MoyaError) -> Void),
+                       expireTokenAction: @escaping () -> Void,
+                       filteredStatusCode: [StatusEnum]?) {
+        provider.request(.getDays,
+                         completionHandler: { response in
+                            self.apiDataOrNil(response,
+                                              completion,
+                                              expireTokenAction,
+                                              filteredStatusCode ?? [.answers_date_get_success])
+                         },
+                         errorHandler: error)
+    }
     
     /* Missions */
     

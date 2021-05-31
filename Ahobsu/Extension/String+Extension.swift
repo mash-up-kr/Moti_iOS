@@ -9,13 +9,4 @@
 import Foundation
 
 extension String {
-    static func toMainDateString(from date: Date) -> String {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "YYYY. MM. dd"
-        
-        let returnStr = format.string(from: date)
-        
-        return returnStr
-    }
 }
