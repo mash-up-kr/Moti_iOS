@@ -16,7 +16,7 @@ final class DiaryIntent: ObservableObject {
     @Published var currentYear: Int
     @Published var currentMonth: Int
     @Published var isLoading: Bool = false
-    @Published var date: Date = Date()
+    @Published var userSelectedDate: Date = Date()
     @Published var specificPosition: Int?
 
     private var answerMonths: [AnswerDiary] = []
@@ -24,6 +24,7 @@ final class DiaryIntent: ObservableObject {
     private var canScrollToBottom: Bool = true
     var isReloadNeeded: Bool = false
 
+    private let dateFormatter: DateFormatter
     private var subscriptions = Set<AnyCancellable>()
 
     init() {
@@ -31,19 +32,21 @@ final class DiaryIntent: ObservableObject {
         let date = Date()
         self.currentYear = calendar.component(.year, from: date)
         self.currentMonth = calendar.component(.month, from: date)
+        self.dateFormatter = DateFormatter()
+        self.dateFormatter.dateFormat = "yyyy-MM-dd"
 
-        $date.sink { [weak self] newDate in
+        $userSelectedDate.sink { [weak self] newDate in
             guard let self = self else { return }
-            // 이미 존재한다
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let newDateString = formatter.string(from: newDate)
+
+            let newDateString = self.dateFormatter.string(from: newDate)
             if let matchedAnswer = self.answers.first(where: { $0.date == newDateString }) {
+                // 이미 존재한다
                 self.specificPosition = matchedAnswer.id
+            } else {
+                // 없으면 서버로 새로운 요청
+                let nearDateString = self.dateFormatter.string(from: newDate.addingTimeInterval(60*60*24))
+                self.loadDiaryForSelectedDate(direction: .orderedAscending, withDate: nearDateString)
             }
-
-            // 없으면 서버로 새로운 요청
-
         }.store(in: &subscriptions)
         fetchLatestDiary()
     }
@@ -51,7 +54,7 @@ final class DiaryIntent: ObservableObject {
 
 // MARK: - Private Methods
 private extension DiaryIntent {
-    func fetchLatestDiary() {
+    private func fetchLatestDiary() {
         self.isLoading = true
         AhobsuProvider.provider.requestPublisher(.getDiary(direction: .orderedDescending, limit: 6, date: nil))
             .retry(2)
@@ -79,8 +82,57 @@ private extension DiaryIntent {
             .store(in: &subscriptions)
     }
 
-    func loadMoreDiary(direction: ComparisonResult, withDate date: String) {
+    private func loadMoreDiary(direction: ComparisonResult, withDate date: String) {
         self.isLoading = true
+        AhobsuProvider.provider.requestPublisher(.getDiary(direction: direction, limit: 6, date: date))
+            .retry(2)
+            .map { $0.data }
+            .decode(type: APIData<AnswerDiary>.self, decoder: JSONDecoder())
+            .tryCompactMap { $0.data }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+            .sink { (completion) in
+                withAnimation {
+                    switch completion {
+                    case .failure:
+                        self.isReloadNeeded = true
+                        self.isLoading = false
+                    case .finished:
+                        self.isReloadNeeded = false
+                    }
+                }
+            } receiveValue: { [weak self ] (answerDiary) in
+                guard let self = self else { return }
+                withAnimation {
+                    switch direction {
+                    case .orderedAscending:
+                        self.canScrollToBottom = !answerDiary.answers.isEmpty
+                        let newAnswers = Array(Set(self.answers + answerDiary.answers)).sorted { $0.date > $1.date }
+                        let diff = newAnswers.difference(from: self.answers)
+                        self.answers = self.answers.applying(diff) ?? self.answers
+                    case .orderedDescending:
+                        self.canScrollToTop = !answerDiary.answers.isEmpty
+                        let newAnswers = Array(Set(answerDiary.answers + self.answers)).sorted { $0.date > $1.date }
+                        let diff = newAnswers.difference(from: self.answers)
+                        self.answers = self.answers.applying(diff) ?? self.answers
+                    case .orderedSame:
+                        break
+                    }
+                    self.isLoading = false
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func loadDiaryForSelectedDate(direction: ComparisonResult, withDate date: String) {
+        self.isLoading = true
+
+        // 초기화 진행
+        self.answers = []
+        canScrollToTop = true
+        canScrollToBottom = true
+
+        // 데이터 로드
         AhobsuProvider.provider.requestPublisher(.getDiary(direction: direction, limit: 6, date: date))
             .retry(2)
             .map { $0.data }
@@ -133,32 +185,36 @@ extension DiaryIntent {
         // TODO: 상황에 맞게 Refresh
     }
 
-    func onRowAppear(answer: Answer) {
+    func onTopInsetAppear() {
         guard isLoading == false else { return }
-//        answerMonths.last?.monthAnswer.last == answerMonth
-//        let answers: [Answer?] = answerMonths.reduce(Array<Answer?>()) {
-//            let ff = $1.monthAnswer.flatMap { a in a }
-//            return $0 + ff
-//        }
-        if let firstAnswer = answers.first, firstAnswer == answer {
-            guard canScrollToTop else { return }
+        guard canScrollToTop else { return }
+        if let firstAnswer = answers.first {
             loadMoreDiary(direction: .orderedDescending, withDate: firstAnswer.date)
-        } else if let lastAnswer = answers.last, lastAnswer == answer {
-            guard canScrollToBottom else { return }
-            loadMoreDiary(direction: .orderedAscending, withDate: lastAnswer.date)
-        } else {
-            // Nothing
         }
     }
 
-    func onChangeDate(_ date: Date) {
-        self.date = date
-//        refreshAlbums()
+    /// 마지막 셀이 보일 때 추가 로드를 위한 메소드
+    /// - Parameter answer: 마지막 셀을 표현한 Answer 데이터
+    func onRowAppear(answer: Answer) {
+        guard isLoading == false else { return }
+         if let lastAnswer = answers.last, lastAnswer == answer {
+            guard canScrollToBottom else { return }
+            loadMoreDiary(direction: .orderedAscending, withDate: lastAnswer.date)
+        }
     }
 
-    func shouldHaveMonthSeparator(with answer: Answer) -> Bool {
-        guard let answerIndex = answers.firstIndex(of: answer), let previousAnswer = answers[safe: answerIndex - 1] else { return true }
-        return answer.date.prefix(7) != previousAnswer.date.prefix(7)
+    func monthSeparatorTitle(of answer: Answer) -> String? {
+        guard let answerIndex = answers.firstIndex(of: answer),
+              let answerDate = answer.dateForDate else { return nil }
+
+        if answerIndex == 0 {
+            return String(dateFormatter.string(from: answerDate).prefix(7))
+        } else if let previousAnswer = answers[safe: answerIndex - 1],
+                  answer.date.prefix(7) != previousAnswer.date.prefix(7) {
+            return String(dateFormatter.string(from: answerDate).prefix(7))
+        } else {
+            return nil
+        }
     }
 }
 

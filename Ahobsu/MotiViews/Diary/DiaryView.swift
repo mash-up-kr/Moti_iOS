@@ -8,44 +8,76 @@
 
 import SwiftUI
 
+struct Run: View {
+    let block: () -> Void
+
+    var body: some View {
+        DispatchQueue.main.async(execute: block)
+        return AnyView(EmptyView())
+    }
+}
+
 struct DiaryView: View {
 
     @ObservedObject var intent: DiaryIntent
+    @ObservedObject var calendarManager: MonthCalendarManager
 
     @State private var isDatePickerPresented: Bool = false
     @State private var updatingDate: Date = Date()
 
     private var referenceDate: Date = Date()
-    var calendarManager = MonthCalendarManager()
 
-    init(diaryIntent: DiaryIntent) {
+    @State var initialOffset: CGPoint? = nil
+    @State var offset: CGPoint = .zero
+
+    init(diaryIntent: DiaryIntent, calendarManager: MonthCalendarManager) {
         intent = diaryIntent
+        self.calendarManager = calendarManager
     }
 
     var body: some View {
         NavigationMaskingView(isRoot: true,
-                              titleItem: Text(intent.date.titleText),
+                              titleItem: Text(intent.userSelectedDate.titleText),
                               trailingItem: Button(action: { isDatePickerPresented = true },
                                                    label: { Image("icCalenderSelected").buttonSized() } )) {
             let columns: [GridItem] = [GridItem(.flexible())]
             ScrollView(.vertical) {
-                ScrollViewReader { value in
-                    LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
-                        ForEach(intent.answers, id: \.self) { answer in
-                            if intent.shouldHaveMonthSeparator(with: answer) {
-                                DiarySeparator()
+                VStack(alignment: .leading, spacing: 0) {
+                            GeometryReader { geometry in
+                                Run {
+                                    let globalOrigin = geometry.frame(in: .global).origin
+                                    self.initialOffset = self.initialOffset ?? globalOrigin
+                                    let initialOffset = (self.initialOffset ?? .zero)
+                                    let offset = CGPoint(x: globalOrigin.x - initialOffset.x, y: initialOffset.y - globalOrigin.y)
+                                    self.offset = offset
+
+                                    if offset.y < -10 {
+                                        intent.onTopInsetAppear()
+                                    }
+                                }
+                            }.frame(width: 0, height: 0)
+
+                    ScrollViewReader { value in
+                        LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
+                            ForEach(intent.answers, id: \.self) { answer in
+                                if let monthTitle = intent.monthSeparatorTitle(of: answer) {
+                                    DiarySeparator(title: monthTitle)
+                                } else {
+                                    EmptyView()
+                                }
+                                DiaryRowView(answer: answer)
+                                    .onAppear { intent.onRowAppear(answer: answer) }
+                                    .id(answer.id)
                             }
-                            DiaryRowView(answer: answer)
-                                .onAppear { intent.onRowAppear(answer: answer) }
-                                .id(answer.id)
-                        }
-                    }.padding(20)
-                    .onReceive(intent.$specificPosition) { targetPosition in
-                        withAnimation {
-                            value.scrollTo(targetPosition, anchor: .top)
+                        }.padding(20)
+                        .onReceive(intent.$specificPosition) { targetPosition in
+                            withAnimation {
+                                value.scrollTo(targetPosition, anchor: .top)
+                            }
                         }
                     }
-                }
+                        }
+
             }
         }
         .background(BackgroundView())
@@ -56,7 +88,7 @@ struct DiaryView: View {
                      height: 400,
                      showTopIndicator: false) {
             VStack {
-                CalendarDatePicker(calendarManager: calendarManager, selection: $intent.date) {
+                CalendarDatePicker(calendarManager: calendarManager, selection: $intent.userSelectedDate) {
                     isDatePickerPresented = false
                 }
             }
@@ -66,7 +98,7 @@ struct DiaryView: View {
 
 struct DiaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryView(diaryIntent: DiaryIntent())
+        DiaryView(diaryIntent: DiaryIntent(), calendarManager: MonthCalendarManager())
     }
 }
 

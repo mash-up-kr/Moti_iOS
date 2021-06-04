@@ -30,9 +30,6 @@ struct MonthView: View {
         }
         .padding(.top, 50)
         .frame(width: layout.monthWidth, height: layout.monthHeight)
-        .onAppear {
-            print(month)
-        }
     }
 
 }

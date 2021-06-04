@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct DiarySeparator: View {
+
+    var title: String
+
     var body: some View {
         HStack {
             VStack {
@@ -16,7 +19,7 @@ struct DiarySeparator: View {
                     .foregroundColor(Color(.pinkishTan))
             }
             Spacer(minLength: 24)
-            Text("2020. 12")
+            Text(title)
                 .font(.custom("IropkeBatangOTFM", size: 20.0))
                 .foregroundColor(Color(UIColor.rosegold))
             Spacer(minLength: 24)
@@ -30,6 +33,6 @@ struct DiarySeparator: View {
 
 struct DiarySeparator_Previews: PreviewProvider {
     static var previews: some View {
-        DiarySeparator()
+        DiarySeparator(title: "2020. 12")
     }
 }
