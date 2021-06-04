@@ -152,7 +152,7 @@ extension AhobsuAPI: TargetType {
         case let .getAnswer(date):
             defaultParams["date"] = date
         case let .getDiary(direction, limit, date):
-            defaultParams["direction"] = (direction == .orderedDescending) ? 0 : 1
+            defaultParams["direction"] = (direction == .orderedDescending) ? 1 : 0
             defaultParams["limit"] = limit
             if let date = date {
                 defaultParams["date"] = date
