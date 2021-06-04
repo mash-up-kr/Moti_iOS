@@ -33,8 +33,10 @@ struct DiaryView: View {
                 ScrollViewReader { value in
                     LazyVGrid(columns: columns, alignment: .leading, spacing: 20) {
                         ForEach(intent.answers, id: \.self) { answer in
-                            if intent.shouldHaveMonthSeparator(with: answer) {
-                                DiarySeparator()
+                            if let monthTitle = intent.monthSeparatorTitle(of: answer) {
+                                DiarySeparator(title: monthTitle)
+                            } else {
+                                EmptyView()
                             }
                             DiaryRowView(answer: answer)
                                 .onAppear { intent.onRowAppear(answer: answer) }

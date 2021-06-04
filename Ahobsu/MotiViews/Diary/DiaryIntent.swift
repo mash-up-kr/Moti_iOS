@@ -24,6 +24,7 @@ final class DiaryIntent: ObservableObject {
     private var canScrollToBottom: Bool = true
     var isReloadNeeded: Bool = false
 
+    private let dateFormatter: DateFormatter
     private var subscriptions = Set<AnyCancellable>()
 
     init() {
@@ -31,13 +32,14 @@ final class DiaryIntent: ObservableObject {
         let date = Date()
         self.currentYear = calendar.component(.year, from: date)
         self.currentMonth = calendar.component(.month, from: date)
+        self.dateFormatter = DateFormatter()
+        self.dateFormatter.dateFormat = "yyyy-MM-dd"
 
         $date.sink { [weak self] newDate in
             guard let self = self else { return }
             // 이미 존재한다
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let newDateString = formatter.string(from: newDate)
+
+            let newDateString = self.dateFormatter.string(from: newDate)
             if let matchedAnswer = self.answers.first(where: { $0.date == newDateString }) {
                 self.specificPosition = matchedAnswer.id
             }
@@ -156,9 +158,18 @@ extension DiaryIntent {
 //        refreshAlbums()
     }
 
-    func shouldHaveMonthSeparator(with answer: Answer) -> Bool {
-        guard let answerIndex = answers.firstIndex(of: answer), let previousAnswer = answers[safe: answerIndex - 1] else { return true }
-        return answer.date.prefix(7) != previousAnswer.date.prefix(7)
+    func monthSeparatorTitle(of answer: Answer) -> String? {
+        guard let answerIndex = answers.firstIndex(of: answer),
+              let answerDate = answer.dateForDate else { return nil }
+
+        if answerIndex == 0 {
+            return String(dateFormatter.string(from: answerDate).prefix(7))
+        } else if let previousAnswer = answers[safe: answerIndex - 1],
+                  answer.date.prefix(7) != previousAnswer.date.prefix(7) {
+            return String(dateFormatter.string(from: answerDate).prefix(7))
+        } else {
+            return nil
+        }
     }
 }
 
