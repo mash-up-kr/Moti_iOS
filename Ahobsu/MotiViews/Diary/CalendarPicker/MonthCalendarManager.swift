@@ -76,8 +76,6 @@ class MonthCalendarManager: ObservableObject {
             DispatchQueue.main.async {
                 self.dates = rawDates?.data?.compactMap { formatter.date(from: $0) } ?? []
             }
-
-            print(self.dates)
         }, error: { error in
 
         }, expireTokenAction: {
@@ -111,19 +109,5 @@ extension MonthCalendarManager {
            let nextMonth = months[safe: Int(index) + 1] {
             currentMonth = nextMonth
         }
-    }
-}
-
-// MARK: - Previous / Next Month
-extension MonthCalendarManager {
-    func loadPreviousYear() {
-        let previousYear = calendar.date(byAdding: .year, value: -1, to: currentMonth) ?? currentMonth
-        let previousYearStartDay = calendar.startOfYear(for: previousYear)
-        let newMonths = calendar.dates(inside: DateInterval(start: previousYearStartDay, end: currentMonth.previousMonth),
-                                       matching: .firstDayOfEveryMonth)
-//        months.insert(contentsOf: newMonths, at: 0)
-        print(newMonths)
-//        months = newMonths
-        
     }
 }
