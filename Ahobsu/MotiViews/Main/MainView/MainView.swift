@@ -15,6 +15,7 @@ struct MainView: View {
     @ObservedObject var model: MainViewModel = MainViewModel()
     @ObservedObject var diaryIntent: DiaryIntent = DiaryIntent()
     @ObservedObject var albumItent: AlbumItent = AlbumItent()
+    @ObservedObject var calendarManager: MonthCalendarManager = MonthCalendarManager()
 
 
     enum Tab {
@@ -35,7 +36,7 @@ struct MainView: View {
                         Text("Home")
                     }
                 }
-            DiaryView(diaryIntent: diaryIntent)
+            DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager)
                 .tag(Tab.diary)
                 .tabItem {
                     VStack {

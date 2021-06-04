@@ -11,15 +11,16 @@ import SwiftUI
 struct DiaryView: View {
 
     @ObservedObject var intent: DiaryIntent
+    @ObservedObject var calendarManager: MonthCalendarManager
 
     @State private var isDatePickerPresented: Bool = false
     @State private var updatingDate: Date = Date()
 
     private var referenceDate: Date = Date()
-    var calendarManager = MonthCalendarManager()
 
-    init(diaryIntent: DiaryIntent) {
+    init(diaryIntent: DiaryIntent, calendarManager: MonthCalendarManager) {
         intent = diaryIntent
+        self.calendarManager = calendarManager
     }
 
     var body: some View {
@@ -66,7 +67,7 @@ struct DiaryView: View {
 
 struct DiaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryView(diaryIntent: DiaryIntent())
+        DiaryView(diaryIntent: DiaryIntent(), calendarManager: MonthCalendarManager())
     }
 }
 
