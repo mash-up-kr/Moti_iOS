@@ -35,19 +35,21 @@ final class DiaryIntent: ObservableObject {
         self.dateFormatter = DateFormatter()
         self.dateFormatter.dateFormat = "yyyy-MM-dd"
 
-        $userSelectedDate.sink { [weak self] newDate in
-            guard let self = self else { return }
+        $userSelectedDate
+            .dropFirst()
+            .sink { [weak self] newDate in
+                guard let self = self else { return }
 
-            let newDateString = self.dateFormatter.string(from: newDate)
-            if let matchedAnswer = self.answers.first(where: { $0.date == newDateString }) {
-                // 이미 존재한다
-                self.specificPosition = matchedAnswer.id
-            } else {
-                // 없으면 서버로 새로운 요청
-                let nearDateString = self.dateFormatter.string(from: newDate.addingTimeInterval(60*60*24))
-                self.loadDiaryForSelectedDate(direction: .orderedAscending, withDate: nearDateString)
-            }
-        }.store(in: &subscriptions)
+                let newDateString = self.dateFormatter.string(from: newDate)
+                if let matchedAnswer = self.answers.first(where: { $0.date == newDateString }) {
+                    // 이미 존재한다
+                    self.specificPosition = matchedAnswer.id
+                } else {
+                    // 없으면 서버로 새로운 요청
+                    let nearDateString = self.dateFormatter.string(from: newDate.addingTimeInterval(60*60*24))
+                    self.loadDiaryForSelectedDate(direction: .orderedAscending, withDate: nearDateString)
+                }
+            }.store(in: &subscriptions)
         fetchLatestDiary()
     }
 }
@@ -75,7 +77,7 @@ private extension DiaryIntent {
                 }
             } receiveValue: { (answerDiary) in
                 withAnimation {
-                    self.answers += answerDiary.answers
+                    self.answers = answerDiary.answers
                     self.isLoading = false
                 }
             }
