@@ -27,44 +27,46 @@ struct MainView: View {
     @State private var selectedTab: Tab = .home
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            home
-                .tag(Tab.home)
-                .tabItem {
-                    VStack {
-                        Image(selectedTab == .home ? "icMainSelected" : "icMainNormal")
-                        Text("Home")
+        NavigationView {
+            TabView(selection: $selectedTab) {
+                home
+                    .tag(Tab.home)
+                    .tabItem {
+                        VStack {
+                            Image(selectedTab == .home ? "icMainSelected" : "icMainNormal")
+                            Text("Home")
+                        }
                     }
-                }
-            DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager)
-                .tag(Tab.diary)
-                .tabItem {
-                    VStack {
-                        Image(selectedTab == .diary ? "icDiarySelected" : "icDiaryNormal")
-                        Text("Diary")
+                DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager)
+                    .tag(Tab.diary)
+                    .tabItem {
+                        VStack {
+                            Image(selectedTab == .diary ? "icDiarySelected" : "icDiaryNormal")
+                            Text("Diary")
+                        }
                     }
-                }
-            AlbumView(intent: albumItent)
-                .tag(Tab.album)
-                .tabItem {
-                    VStack {
-                        Image(selectedTab == .album ? "icAlbumSelected" : "icAlbumNormal")
-                        Text("Album")
+                AlbumView(intent: albumItent)
+                    .tag(Tab.album)
+                    .tabItem {
+                        VStack {
+                            Image(selectedTab == .album ? "icAlbumSelected" : "icAlbumNormal")
+                            Text("Album")
+                        }
                     }
-                }
-            MyPageView()
-                .tag(Tab.profile)
-                .tabItem {
-                    VStack {
-                        Image(selectedTab == .profile ? "icProfileSelected" : "icProfileNormal")
-                        Text("Mypage")
+                MyPageView()
+                    .tag(Tab.profile)
+                    .tabItem {
+                        VStack {
+                            Image(selectedTab == .profile ? "icProfileSelected" : "icProfileNormal")
+                            Text("Mypage")
+                        }
                     }
-                }
-        }.accentColor(Color(.rosegold))
+            }.accentColor(Color(.rosegold))
+        }
     }
 
     private var home: some View {
-        NavigationView {
+//        NavigationView {
             NavigationMaskingView(isRoot: true,
                                   titleItem: DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .center),
                                   trailingItem: EmptyView())
@@ -132,7 +134,7 @@ struct MainView: View {
                     self.model.getMultipleParts()
                 })
             }
-        }.statusBar(hidden: model.isStatusBarHidden)
+//        }.statusBar(hidden: model.isStatusBarHidden)
     }
 
 }

@@ -85,13 +85,18 @@ struct AnswerCompleteView: View {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
-                VStack {
-                    AnswerCompletePageControl(numberOfPages: viewControllers.count,
-                                              currentPage: $currentPage)
+                ZStack {
                     SwiftUIPagerView(spacing: 0,
                                      pageWidthCompensation: 0,
                                      index: $currentPage,
                                      pages: models.map { AnswerCompleteCardView(answer: $0) })
+                    VStack {
+                        Spacer()
+                        AnswerCompletePageControl(numberOfPages: viewControllers.count,
+                                                  currentPage: $currentPage)
+                        Spacer()
+                            .frame(height: 20)
+                    }
                 }
             }
         }

@@ -9,21 +9,32 @@
 import SwiftUI
 
 struct AnswerComplete_Camera: View {
-    
+    @State var title: String
     @State var imageURL: String
     
     var body: some View {
-        ZStack {
-            CardView(innerLine: true)
-            ScrollView {
-                VStack {
-                    ImageView(withURL: imageURL)
-                        .scaledToFit()
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 424.0)
-                        .cornerRadius(6.0)
-                        .padding([.all], 28.0)
-                }
+        VStack(spacing: 0) {
+            ZStack {
+                ImageView(withURL: imageURL)
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
+                    .allowsHitTesting(false)
+                    .clipped()
             }
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
+            .clipped()
+
+            Color(.goldbrown)
+                .frame(height: 1)
+                .frame(maxWidth: .infinity)
+            Text(title)
+                .foregroundColor(Color(.rosegold))
+                .font(.custom("IropkeBatangOTFM", size: 20))
+                .lineSpacing(10.0)
+                .frame(height: 124, alignment: .topLeading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.all, 20)
         }
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }

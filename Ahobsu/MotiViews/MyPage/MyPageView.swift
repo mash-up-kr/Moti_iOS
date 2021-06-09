@@ -18,7 +18,7 @@ struct MyPageView: View {
     
     @State private var activeSheet: ActiveSheet?
 
-    @ObservedObject var intent: MyPageIntent = MyPageIntent()
+    @ObservedObject var intent: MyPageIntent = MyPageIntent.shared
     
     var mailCompose = MailCompose()
     let privacyURL = URL(string: "https://www.notion.so/88f6a0fc95e747edb054205e057bcb5a?v=38d66de9448f4360ae7460db6fd79026")!
@@ -32,7 +32,8 @@ struct MyPageView: View {
                                                             Image("icRewriteNormal")
                                                                 .renderingMode(.original)
                                                                 .frame(width: 48, height: 48)
-                              }))
+                              }),
+                              isHiddenLeftButton: true)
         {
             ScrollView {
                 VStack {

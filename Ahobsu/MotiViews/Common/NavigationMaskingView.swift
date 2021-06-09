@@ -17,13 +17,15 @@ struct NavigationMaskingView<TitleItem: View, TrailingItem: View, Content: View>
     var titleItem: TitleItem
     var trailingItem: TrailingItem
     var content: Content
+    var isHiddenLeftButton: Bool
     
     private let customHeight: CGFloat = 72
     
-    init(isRoot: Bool = false, titleItem: TitleItem, trailingItem: TrailingItem, @ViewBuilder content: () -> Content) {
+    init(isRoot: Bool = false, titleItem: TitleItem, trailingItem: TrailingItem, isHiddenLeftButton: Bool = false, @ViewBuilder content: () -> Content) {
         self.isRoot = isRoot
         self.titleItem = titleItem
         self.trailingItem = trailingItem
+        self.isHiddenLeftButton = isHiddenLeftButton
         self.content = content()
     }
     
@@ -31,13 +33,15 @@ struct NavigationMaskingView<TitleItem: View, TrailingItem: View, Content: View>
         VStack(spacing: 0) {
             HStack(alignment: .center) {
                 MainNavigationBar(left: {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        if !self.isRoot {
-                            Image("icArrowLeft").renderingMode(.original).frame(width: 48, height: 48)
-                        }
-                    })
+                    if !isHiddenLeftButton {
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            if !self.isRoot {
+                                Image("icArrowLeft").renderingMode(.original).frame(width: 48, height: 48)
+                            }
+                        })
+                    }
                 }, center: {
                     self.titleItem.foregroundColor(Color(.rosegold))
                 }, right: {

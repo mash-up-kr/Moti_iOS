@@ -19,11 +19,12 @@ struct AnswerCompleteCardView: View, Identifiable {
         if let answer = self.answer {
             switch answer.getAnswerType() {
                 case .essay:
-                    return AnyView(AnswerComplete_Essay(text: answer.content ?? ""))
+                    return AnyView(AnswerComplete_Essay(title: answer.mission.title, text: answer.content ?? ""))
                 case .camera:
-                    return AnyView(AnswerComplete_Camera(imageURL: answer.imageUrl ?? ""))
+                    return AnyView(AnswerComplete_Camera(title: answer.mission.title, imageURL: answer.imageUrl ?? ""))
                 case .essayCamera:
-                    return AnyView(AnswerComplete_EssayCamera(text: answer.content ?? "",
+                    return AnyView(AnswerComplete_EssayCamera(title: answer.mission.title,
+                                                              text: answer.content ?? "",
                                                               imageURL: answer.imageUrl ?? ""))
             }
         } else {
@@ -35,12 +36,12 @@ struct AnswerCompleteCardView: View, Identifiable {
         ZStack {
             ScrollView {
                 VStack {
-                    HStack {
-                        Text(answer?.mission.title ?? "")
-                            .font(.custom("IropkeBatangOTFM", size: 24.0))
-                            .foregroundColor(Color(UIColor.rosegold))
-                            .lineSpacing(12.0)
-                        Spacer()
+//                    HStack {
+//                        Text(answer?.mission.title ?? "")
+//                            .font(.custom("IropkeBatangOTFM", size: 24.0))
+//                            .foregroundColor(Color(UIColor.rosegold))
+//                            .lineSpacing(12.0)
+//                        Spacer()
 //                        if answer?.isTodayAnswer() == true {
 //                            Button(action: update) {
 //                                Image("icRewriteNormal")
@@ -48,17 +49,17 @@ struct AnswerCompleteCardView: View, Identifiable {
 //                                    .frame(width: 48.0, height: 48.0)
 //                            }
 //                        }
-                    }
-                    .padding([.leading], 20.0)
-                    .padding([.trailing], 4.0)
+//                    }
+//                    .padding([.leading], 20.0)
+//                    .padding([.trailing], 4.0)
                     VStack {
                         contentView
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 480.0, maxHeight: 480.0)
                     }
                     .padding([.leading, .trailing, .bottom], 32.0)
-                    .padding([.top], 56.0)
                 }
             }
+            .disabled(true)
         }
     }
     

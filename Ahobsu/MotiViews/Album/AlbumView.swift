@@ -21,7 +21,7 @@ struct AlbumView: View {
     var itemSpacing: CGFloat = 28
 
     var body: some View {
-        NavigationView {
+//        NavigationView {
             NavigationMaskingView(isRoot: true, titleItem: EmptyView(), trailingItem: EmptyView()) {
                 VStack {
                     if intent.isReloadNeeded {
@@ -45,7 +45,7 @@ struct AlbumView: View {
             }
             .background(BackgroundView())
             .overlay(LoadingView(isShowing: intent.isLoading))
-        }
+//        }
     }
 
     var shelf: some View {
@@ -119,7 +119,7 @@ struct PartsCombinedAnswer: View {
     
     var body: some View {
         // FIXME: 답변화면 2.0 적용하기
-        NavigationLink(destination: AlbumWeekView(answers: answers, navigationTitle: "")) {
+        NavigationLink(destination: AnswerCompleteView(answers)) {
             ZStack {
                 ForEach(self.answers.compactMap { $0?.file.cardUrl },
                         id: \.self,

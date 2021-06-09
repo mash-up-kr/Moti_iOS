@@ -11,9 +11,13 @@ import Combine
 import Kingfisher
 
 final class MyPageIntent: ObservableObject {
+    static let shared = MyPageIntent() // 계속 유저가 초기화되는 버그때문에 임시로 shared 사용
+    
     @Published var user: User = .placeholderData
     @Published var image: UIImage? = nil
     private var cancels = Set<AnyCancellable>()
+    
+    private init() { }
 }
 
 // MARK: Intent
