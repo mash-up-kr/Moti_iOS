@@ -63,7 +63,7 @@ extension CalendarMonthPicker {
             self.year = year
             if let yearDate = calendarManager.calendar.date(from: DateComponents(year: year)),
                let monthDate = calendarManager.monthsForYear[yearDate] {
-                months = monthDate.map { calendarManager.calendar.component(.month, from: $0) }
+                months = monthDate.map { calendarManager.calendar.component(.month, from: $0) }.sorted()
             } else {
                 months = []
             }
@@ -80,7 +80,7 @@ extension CalendarMonthPicker {
             willSet {
                 if let yearDate = calendarManager.calendar.date(from: DateComponents(year: newValue)),
                    let monthDate = calendarManager.monthsForYear[yearDate] {
-                    months = monthDate.map { calendarManager.calendar.component(.month, from: $0) }
+                    months = monthDate.map { calendarManager.calendar.component(.month, from: $0) }.sorted()
                     month = months.last ?? month
                 }
             }
