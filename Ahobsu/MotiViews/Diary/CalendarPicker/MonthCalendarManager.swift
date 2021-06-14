@@ -45,32 +45,15 @@ class MonthCalendarManager: ObservableObject {
         $currentMonth.map { [weak self] newCurrentMonth in
             guard let self = self else { return false }
             return newCurrentMonth.compare(self.calendar.startOfDay(for: self.months.first ?? Date())) == .orderedSame
-        }.assign(to: &$prevMonthDisabled)
+        }
+        .assign(to: \.prevMonthDisabled, on: self)
+        .store(in: &subscriptions)
         $currentMonth.map { [weak self] newCurrentMonth in
             guard let self = self else { return false }
             return newCurrentMonth.compare(self.calendar.startOfDay(for: self.months.last ?? Date())) == .orderedSame
-        }.assign(to: &$nextMonthDisabled)
-//        .store(in: &subscriptions)
-
-//        $monthDates.sink { [weak self] (newDate) in
-//            guard let self = self else { return }
-//            if self.months.first == newDate {
-//                self.loadPreviousYear()
-//            }
-//        }
-
-//        $currentMonth.sink { [weak self] (newDate) in
-//            guard let self = self else { return }
-//            if self.months.first == newDate {
-//                self.loadPreviousYear()
-//            }
-////            if Calendar.current.startOfMonth(for: self.currentMonth)
-////                != Calendar.current.startOfMonth(for: self.today) {
-////                self.months = [newDate.previousMonth, newDate, newDate.nextMonth]
-////            }  else {
-////                self.months = [newDate.previousMonth, newDate]
-////            }
-//        }.store(in: &subscriptions)
+        }
+        .assign(to: \.nextMonthDisabled, on: self)
+        .store(in: &subscriptions)
 
         AhobsuProvider.getDays(completion: { rawDates in
             DispatchQueue.main.async {
