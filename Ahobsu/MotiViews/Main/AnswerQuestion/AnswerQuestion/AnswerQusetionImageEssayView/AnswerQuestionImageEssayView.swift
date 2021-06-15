@@ -45,6 +45,7 @@ struct AnswerQuestionImageEssayView: View {
                             .allowsHitTesting(false)
                             .clipped()
                     }
+                    .foregroundColor(.blue)
                     .frame(width: UIScreen.main.bounds.width, height: 200)
                     .clipped()
                     .onTapGesture {

@@ -33,33 +33,14 @@ struct AnswerCompleteCardView: View, Identifiable {
     }
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                VStack {
-//                    HStack {
-//                        Text(answer?.mission.title ?? "")
-//                            .font(.custom("IropkeBatangOTFM", size: 24.0))
-//                            .foregroundColor(Color(UIColor.rosegold))
-//                            .lineSpacing(12.0)
-//                        Spacer()
-//                        if answer?.isTodayAnswer() == true {
-//                            Button(action: update) {
-//                                Image("icRewriteNormal")
-//                                    .renderingMode(.original)
-//                                    .frame(width: 48.0, height: 48.0)
-//                            }
-//                        }
-//                    }
-//                    .padding([.leading], 20.0)
-//                    .padding([.trailing], 4.0)
-                    VStack {
-                        contentView
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 480.0, maxHeight: 480.0)
-                    }
-                    .padding([.leading, .trailing, .bottom], 32.0)
-                }
+        VStack {
+            VStack {
+                contentView
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 480.0, maxHeight: 480.0)
             }
-            .disabled(true)
+            .clipped()
+            
+            .padding([.bottom], 32.0)
         }
     }
     

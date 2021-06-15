@@ -26,10 +26,11 @@ struct AnswerComplete_Essay: View {
                     .frame(maxWidth: .infinity)
                 
                 ZStack {
-                    TextView(text: $text)
-                        .disabled(true)
+                    TextView(text: $text, isEditable: false)
+//                        .disabled(true)
                 }
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 32, trailing: 20))
+                Spacer()
             }
         }
     }

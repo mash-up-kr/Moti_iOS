@@ -12,6 +12,8 @@ import SwiftUI
 struct TextView: UIViewRepresentable {
     @Binding var text: String
     
+    var isEditable = true
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -22,7 +24,7 @@ struct TextView: UIViewRepresentable {
         myTextView.backgroundColor = .red
         
         myTextView.isScrollEnabled = true
-        myTextView.isEditable = true
+        myTextView.isEditable = isEditable
         myTextView.isUserInteractionEnabled = true
         myTextView.backgroundColor = .clear
         myTextView.tintColor = .rosegold

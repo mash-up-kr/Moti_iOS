@@ -29,6 +29,8 @@ struct DiaryView: View {
 
     @State var initialOffset: CGPoint? = nil
     @State var offset: CGPoint = .zero
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     init(diaryIntent: DiaryIntent, calendarManager: MonthCalendarManager) {
         intent = diaryIntent
@@ -65,9 +67,11 @@ struct DiaryView: View {
                                 } else {
                                     EmptyView()
                                 }
-                                DiaryRowView(answer: answer)
-                                    .onAppear { intent.onRowAppear(answer: answer) }
-                                    .id(answer.id)
+                                NavigationLink(destination: AnswerCompleteView([answer])) {
+                                    DiaryRowView(answer: answer)
+                                        .onAppear { intent.onRowAppear(answer: answer) }
+                                        .id(answer.id)
+                                }
                             }
                         }.padding(20)
                         .onReceive(intent.$specificPosition) { targetPosition in

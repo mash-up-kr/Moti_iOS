@@ -77,7 +77,7 @@ struct AnswerCompleteView: View {
     
     var body: some View {
         NavigationMaskingView(titleItem: {
-            Text(String.toAnswerCompleteDateString(from: Date()))
+            Text(dateToString(models[currentPage].dateForDate))
                 .foregroundColor(Color(.rosegold))
                 .font(.custom("IropkeBatangOTFM", size: 20.0))
                 .lineSpacing(16.0)
@@ -90,16 +90,25 @@ struct AnswerCompleteView: View {
                                      pageWidthCompensation: 0,
                                      index: $currentPage,
                                      pages: models.map { AnswerCompleteCardView(answer: $0) })
-                    VStack {
-                        Spacer()
-                        AnswerCompletePageControl(numberOfPages: viewControllers.count,
-                                                  currentPage: $currentPage)
-                        Spacer()
-                            .frame(height: 20)
+                        .disabled(models.count == 1)
+                    if models.count != 1 {
+                        VStack {
+                            Spacer()
+                            AnswerCompletePageControl(numberOfPages: viewControllers.count,
+                                                      currentPage: $currentPage)
+                            Spacer()
+                                .frame(height: 20)
+                        }
                     }
                 }
             }
         }
+    }
+    
+    func dateToString(_ date: Date?) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.string(from: date ?? Date())
     }
 }
 
