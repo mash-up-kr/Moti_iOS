@@ -27,5 +27,4 @@ struct WeekView: View {
             }
         }
     }
-
 }

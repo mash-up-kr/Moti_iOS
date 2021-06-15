@@ -12,16 +12,11 @@ struct CalendarLayout {
 
     var primaryColor: Color = .pink
 
-    var dayWidth: CGFloat { 18 }
-    var dayHorizontalSpacing: CGFloat { (monthWidth - (dayWidth * 7)) / 8 }
-    var dayVerticalSpacing: CGFloat { 12 }
+    private var minimumDayWidth: CGFloat { 18 }
+    var dayWidth: CGFloat { minimumDayWidth }
+    var dayHorizontalSpacing: CGFloat { (monthWidth - (minimumDayWidth * 7)) / 8 }
+    var dayVerticalSpacing: CGFloat { 0 }
     var monthWidth: CGFloat
-    var monthHeight: CGFloat {
-        400
-//        dayWidth * 5 + dayVerticalSpacing * 4
-    }
-    var monthHorizontalSpacing: CGFloat = 0
-    var outerHorizontalPadding: CGFloat = 0
 
     init(monthWidth: CGFloat) {
         self.monthWidth = monthWidth

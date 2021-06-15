@@ -17,6 +17,7 @@ struct MainView: View {
     @ObservedObject var albumItent: AlbumItent = AlbumItent()
     @ObservedObject var calendarManager: MonthCalendarManager = MonthCalendarManager()
 
+    @State private var isDatePickerPresented: Bool = false
 
     enum Tab {
         case home
@@ -37,7 +38,7 @@ struct MainView: View {
                             Text("Home")
                         }
                     }
-                DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager)
+                DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager, isDatePickerPresented: $isDatePickerPresented)
                     .tag(Tab.diary)
                     .tabItem {
                         VStack {
@@ -62,6 +63,15 @@ struct MainView: View {
                         }
                     }
             }.accentColor(Color(.rosegold))
+        }
+        .bottomSheet(isPresented: $isDatePickerPresented,
+                     height: 400,
+                     showTopIndicator: false) {
+            VStack {
+                CalendarDatePicker(calendarManager: calendarManager, selection: $diaryIntent.userSelectedDate) {
+                    isDatePickerPresented = false
+                }
+            }
         }
     }
 

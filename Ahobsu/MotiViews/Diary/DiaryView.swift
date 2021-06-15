@@ -22,24 +22,25 @@ struct DiaryView: View {
     @ObservedObject var intent: DiaryIntent
     @ObservedObject var calendarManager: MonthCalendarManager
 
-    @State private var isDatePickerPresented: Bool = false
+    @Binding var isDatePickerPresented: Bool
+
     @State private var updatingDate: Date = Date()
-
-    private var referenceDate: Date = Date()
-
     @State var initialOffset: CGPoint? = nil
     @State var offset: CGPoint = .zero
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    init(diaryIntent: DiaryIntent, calendarManager: MonthCalendarManager) {
+    private var referenceDate: Date = Date()
+
+    init(diaryIntent: DiaryIntent, calendarManager: MonthCalendarManager, isDatePickerPresented: Binding<Bool>) {
         intent = diaryIntent
         self.calendarManager = calendarManager
+        self._isDatePickerPresented = isDatePickerPresented
     }
 
     var body: some View {
         NavigationMaskingView(isRoot: true,
-                              titleItem: Text(intent.userSelectedDate.titleText),
+                              titleItem: Text("Diary"),
                               trailingItem: Button(action: { isDatePickerPresented = true },
                                                    label: { Image("icCalenderSelected").buttonSized() } )) {
             let columns: [GridItem] = [GridItem(.flexible())]
@@ -88,21 +89,12 @@ struct DiaryView: View {
         .onAppear(perform: {
             intent.onAppear()
         })
-        .bottomSheet(isPresented: $isDatePickerPresented,
-                     height: 400,
-                     showTopIndicator: false) {
-            VStack {
-                CalendarDatePicker(calendarManager: calendarManager, selection: $intent.userSelectedDate) {
-                    isDatePickerPresented = false
-                }
-            }
-        }
     }
 }
 
 struct DiaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryView(diaryIntent: DiaryIntent(), calendarManager: MonthCalendarManager())
+        DiaryView(diaryIntent: DiaryIntent(), calendarManager: MonthCalendarManager(), isDatePickerPresented: .constant(false))
     }
 }
 

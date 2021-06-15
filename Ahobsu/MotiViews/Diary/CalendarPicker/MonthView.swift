@@ -28,10 +28,8 @@ struct MonthView: View {
             weeksViewWithDaysOfWeekHeader
             Spacer()
         }
-        .padding(.top, 50)
-        .frame(width: layout.monthWidth, height: layout.monthHeight)
+        .padding(.top, 16)
     }
-
 }
 
 extension String: Identifiable {
@@ -60,7 +58,7 @@ private extension MonthView {
     }
 
     var weeksViewStack: some View {
-        VStack(spacing: layout.dayHorizontalSpacing) {
+        VStack() {
             ForEach(weeks, id: \.self) { week in
                 WeekView(calendarManager: self.calendarManager, selection: $selection, week: week)
             }

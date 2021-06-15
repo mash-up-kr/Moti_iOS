@@ -94,23 +94,21 @@ struct CalendarDatePicker: View {
     private func content(geometry: GeometryProxy) -> some View {
         monthsList
             .calendarLayout(monthWidth: geometry.size.width)
-            .frame(height: layout.monthHeight)
     }
 
     private var monthsList: some View {
         if calendarManager.months.isEmpty {
             return AnyView(EmptyView())
         } else {
-            return AnyView(TabView(selection: $calendarManager.currentMonth) {
-                ForEach(calendarManager.months, id: \.self) { date in
-                    MonthView(calendarManager: calendarManager, selection: _selection, month: date)
-                        .tag(date)
+            return AnyView(
+                TabView(selection: $calendarManager.currentMonth) {
+                    ForEach(calendarManager.months, id: \.self) { date in
+                        MonthView(calendarManager: calendarManager, selection: _selection, month: date)
+                            .tag(date)
+                    }
                 }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)))
-//            .erased
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            )
         }
-
-//        .erased
     }
 }
