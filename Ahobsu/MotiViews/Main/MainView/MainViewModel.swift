@@ -58,4 +58,30 @@ extension MainViewModel {
             
         }, filteredStatusCode: nil)
     }
+    
+    func getMainFrameImageString(isTop: Bool) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
+        let month = dateFormatter.string(from: Date())
+        
+        var season = "spring"
+        
+        switch month {
+        case "03", "04", "05":
+            season = "spring"
+            
+        case "06", "07", "08":
+            season = "summer"
+            
+        case "09", "10", "11":
+            season = "authun"
+            
+        case "12", "01", "02":
+            season = "winter"
+        default:
+            break
+        }
+        
+        return "img_main_frame_\(season)_\(isTop ? "top" : "bottom")"
+    }
 }

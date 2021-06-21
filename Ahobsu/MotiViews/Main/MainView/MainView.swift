@@ -78,7 +78,7 @@ struct MainView: View {
     private var home: some View {
 //        NavigationView {
             NavigationMaskingView(isRoot: true,
-                                  titleItem: DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .center),
+                                  titleItem: EmptyView(),
                                   trailingItem: EmptyView())
             {
                 ZStack {
@@ -89,25 +89,36 @@ struct MainView: View {
                         if model.todayCard != nil {
                             NavigationLink(destination: AnswerCompleteView(model.cards))
                             {
-                                CardView(innerLine: !model.isAnswered)
-                                    .aspectRatio(257.0 / 439.0, contentMode: .fit)
-                                    .padding([.horizontal], 59.0)
-                                    .overlay(
-                                        ZStack {
-                                            ForEach(model.cards.compactMap { $0?.file.cardUrl },
-                                                    id: \.self,
-                                                    content: { (cardUrl) in
-                                                        KFImage(URL(string: cardUrl))
-                                                            .placeholder( { ActivityIndicator(isAnimating: .constant(true),
-                                                                                              style: .medium) } )
-                                                            .setProcessor(PDFProcessor())
-                                                            .resizable()
-                                                            .aspectRatio(257.0 / 439.0, contentMode: .fit)
-                                                            .padding(17)
+                                VStack(spacing: 0) {
+                                    Image(model.getMainFrameImageString(isTop: true))
+                                    ZStack {
+                                        Image(model.getMainFrameImageString(isTop: false))
+                                        VStack(spacing: 0) {
+                                            ZStack {
+                                                ForEach(model.cards.compactMap { $0?.file.cardUrl },
+                                                        id: \.self,
+                                                        content: { (cardUrl) in
+                                                            KFImage(URL(string: cardUrl))
+                                                                .placeholder( { ActivityIndicator(isAnimating: .constant(true),
+                                                                                                  style: .medium) } )
+                                                                .setProcessor(PDFProcessor())
+                                                                .resizable()
+                                                                .aspectRatio(257.0 / 439.0, contentMode: .fit)
+                                                                .padding(17)
 
-                                            })
+                                                })
+                                            }
+                                            .padding(.horizontal, 120)
+                                            Spacer()
                                         }
-                                )
+                                    }
+                                }
+//                                CardView(innerLine: !model.isAnswered)
+//                                    .aspectRatio(257.0 / 439.0, contentMode: .fit)
+//                                    .padding([.horizontal], 59.0)
+//                                    .overlay(
+//
+//                                )
                             }.buttonStyle(PlainButtonStyle())
                         } else {
                             NavigationLink(destination: SelectQuestionView(window: $window,
@@ -138,6 +149,11 @@ struct MainView: View {
                         Spacer()
                     }
                     .padding([.bottom], 30)
+                    VStack {
+                        Spacer().frame(height: 20)
+                        DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .center)
+                        Spacer()
+                    }
                 }
                 .navigationBarTitle(Text(""), displayMode: .inline)
                 .onAppear(perform: {
