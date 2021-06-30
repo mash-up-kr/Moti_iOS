@@ -21,31 +21,32 @@ struct AlbumView: View {
     var itemSpacing: CGFloat = 28
 
     var body: some View {
-//        NavigationView {
-            NavigationMaskingView(isRoot: true, titleItem: EmptyView(), trailingItem: EmptyView()) {
-                VStack {
-                    if intent.isReloadNeeded {
-                        NetworkErrorView {
-                            intent.onError()
-                        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    } else {
-                        if intent.answerMonth.isEmpty {
-                            AnswerEmptyView()
-                        } else {
-                            VStack {
-                                shelf
-                                albums
-                                Spacer()
-                            }
-                        }
-                    }
-                }
-                .disabled(intent.isLoading)
-                .blur(radius: intent.isLoading ? 3 : 0)
-            }
+        NavigationMaskingView(isRoot: true, titleItem: EmptyView(), trailingItem: EmptyView()) {}
+            .overlay(content)
             .background(BackgroundView())
             .overlay(LoadingView(isShowing: intent.isLoading))
-//        }
+    }
+
+    var content: some View {
+        VStack {
+            if intent.isReloadNeeded {
+                NetworkErrorView {
+                    intent.onError()
+                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            } else {
+                if intent.answerMonth.isEmpty {
+                    AnswerEmptyView()
+                } else {
+                    VStack {
+                        shelf
+                        albums
+                        Spacer()
+                    }
+                }
+            }
+        }
+        .disabled(intent.isLoading)
+        .blur(radius: intent.isLoading ? 3 : 0)
     }
 
     var shelf: some View {
