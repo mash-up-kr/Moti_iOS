@@ -66,12 +66,12 @@ struct AlbumView: View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: itemRows, spacing: itemSpacing) {
-                    Color.clear.frame(width: geometry.size.width / 4 - itemSpacing)
+                    Color.clear.frame(width: (geometry.size.width - PartsCombinedAnswer.fixedWidth) / 2 - itemSpacing)
                     ForEach(intent.answerMonth, id: \.self) { answers in
-                        PartsCombinedAnswer(answers: answers, fixedWidth: geometry.size.width / 2)
+                        PartsCombinedAnswer(answers: answers)
                             .onAppear { intent.onRowAppear(answers: answers) }
                     }
-                    Color.clear.frame(width: geometry.size.width / 4 - itemSpacing)
+                    Color.clear.frame(width: (geometry.size.width - PartsCombinedAnswer.fixedWidth) / 2 - itemSpacing)
                 }
             }.frame(height: itemHeight)
         }
@@ -103,14 +103,13 @@ struct AnswerEmptyView: View {
 
 struct PartsCombinedAnswer: View {
 
-    var answers: [Answer?]
+    static var fixedWidth: CGFloat = 185
+    static var fixedHeight: CGFloat = 316
 
-    // PATCH: LazyHGrid에서 다시 그릴 때 placeholder가 생기면서 사이즈가 변경되는 것 방지
-    var fixedWidth: CGFloat
+    var answers: [Answer?]
     
-    init(answers: [Answer?], fixedWidth: CGFloat) {
+    init(answers: [Answer?]) {
         self.answers = answers
-        self.fixedWidth = fixedWidth
         
         // nil 로 상단 뷰에서 확인
         while self.answers.count < 6 {
@@ -132,11 +131,10 @@ struct PartsCombinedAnswer: View {
                                 .fade(duration: 0.25)
                                 .renderingMode(.original)
                                 .resizable()
-                                .aspectRatio(0.62, contentMode: .fit)
                 })
             }
         }
         .buttonStyle(PlainButtonStyle())
-        .frame(width: fixedWidth)
+        .frame(width: PartsCombinedAnswer.fixedWidth, height: PartsCombinedAnswer.fixedHeight)
     }
 }
