@@ -30,7 +30,7 @@ struct DiaryRowView: View {
                 if let imageURL = answer.imageUrl {
                     GeometryReader { geometry in
                         KFImage(URL(string: imageURL))
-                            .placeholder({Color.yellow})
+                            .placeholder( { ActivityIndicator(isAnimating: .constant(true), style: .medium) } )
                             .resizable()
                             .opacity(0.4)
                             .scaledToFill()
