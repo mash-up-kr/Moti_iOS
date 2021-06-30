@@ -70,9 +70,9 @@ struct DiaryView: View {
                                 }
                                 NavigationLink(destination: AnswerCompleteView([answer])) {
                                     DiaryRowView(answer: answer)
-                                        .onAppear { intent.onRowAppear(answer: answer) }
-                                        .id(answer.id)
                                 }
+                                .id(answer.id)
+                                .onAppear { intent.onRowAppear(answer: answer) }
                             }
                         }.padding(20)
                         .onReceive(intent.$specificPosition) { targetPosition in
