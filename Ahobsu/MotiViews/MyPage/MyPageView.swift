@@ -43,7 +43,7 @@ struct MyPageView: View {
                     ListCell(title: "생년월일", detail: intent.user.birthday)
                     ListCell(title: "성별", detail: intent.user.gender)
                     Separator()
-                    ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion) / 최신 \(appVersion.latestVersion)")
+                    ListCell(title: "버전정보", detail: "현재 \(appVersion.currentVersion)")
                     HStack {
                         Spacer()
                         Button(action: {
