@@ -77,18 +77,18 @@ struct MainView: View {
 
     private var home: some View {
 //        NavigationView {
-            NavigationMaskingView(isRoot: true,
-                                  titleItem: EmptyView(),
-                                  trailingItem: EmptyView())
-            {
+//            NavigationMaskingView(isRoot: true,
+//                                  titleItem: EmptyView(),
+//                                  trailingItem: EmptyView())
+//            {
                 ZStack {
                     BackgroundView()
                         .edgesIgnoringSafeArea([.vertical])
+                    
                     VStack {
                         Spacer()
                         if model.todayCard != nil {
-                            NavigationLink(destination: AnswerCompleteView(model.cards))
-                            {
+                            NavigationLink(destination: AnswerCompleteView(model.cards)) {
                                 VStack(spacing: 0) {
                                     Image(model.getMainFrameImageString(isTop: true))
                                     ZStack {
@@ -149,18 +149,18 @@ struct MainView: View {
                         Spacer()
                     }
                     .padding([.bottom], 30)
+                    
                     VStack {
-                        Spacer().frame(height: 20)
-                        DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .center)
+                        Spacer()
+                            .frame(height: 40, alignment: .bottom)
+                        DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .bottom)
                         Spacer()
                     }
+                    .edgesIgnoringSafeArea([.vertical])
                 }
-                .navigationBarTitle(Text(""), displayMode: .inline)
                 .onAppear(perform: {
                     self.model.getMultipleParts()
                 })
-            }
-//        }.statusBar(hidden: model.isStatusBarHidden)
     }
 
 }
