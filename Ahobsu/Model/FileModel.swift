@@ -15,7 +15,7 @@ struct FileModel: Decodable, Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case id
-        case cardUrl
+        case cardUrl = "cardPdfUrl"
         case part
     }
 }
