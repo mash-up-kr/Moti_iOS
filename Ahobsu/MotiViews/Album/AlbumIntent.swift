@@ -130,32 +130,6 @@ private extension AlbumItent {
             }
             .store(in: &cancels)
     }
-//    func fetchAlbums() {
-//        self.isLoading = true
-//        AhobsuProvider.provider.requestPublisher(.getMonthAnswers(year: currentYear, month: currentMonth))
-//            .retry(2)
-//            .map { $0.data }
-//            .decode(type: APIData<AnswerMonth>.self, decoder: JSONDecoder())
-//            .tryCompactMap { $0.data }
-//            .receive(on: DispatchQueue.main)
-//            .eraseToAnyPublisher()
-//            .sink { (completion) in
-//                withAnimation {
-//                    switch completion {
-//                    case .failure:
-//                        self.isReloadNeeded = true
-//                    case .finished:
-//                        self.isReloadNeeded = false
-//                    }
-//                    self.isLoading = false
-//                }
-//            } receiveValue: { (answerMonth) in
-//                withAnimation {
-//                    self.answerMonth = answerMonth
-//                }
-//            }
-//            .store(in: &cancels)
-//    }
 }
 
 // MARK: - Intent
@@ -164,14 +138,6 @@ extension AlbumItent {
     func onError() {
 //        fetchAlbums()
     }
-//
-//    func onChangePage() {
-////        fetchAlbums()
-//    }
-//    
-//    func onAppear() {
-////        fetchAlbums()
-//    }
 
     func onRowAppear(answers: [Answer?]) {
         guard isLoading == false else { return }

@@ -118,13 +118,11 @@ struct PartsCombinedAnswer: View {
     }
     
     var body: some View {
-        // FIXME: 답변화면 2.0 적용하기
         NavigationLink(destination: AnswerCompleteView(answers)) {
             ZStack {
                 ForEach(self.answers.compactMap { $0?.file.cardUrl },
                         id: \.self,
                         content: { (cardUrl) in
-                            // FIXME: LazyHGrid에서 스크롤할 때 인디케이터가 뜨지 않도록
                             KFImage.url(URL(string: cardUrl) ?? URL(string: ""))
                                 .placeholder( { ActivityIndicator(isAnimating: .constant(true), style: .medium) } )
                                 .setProcessor(PDFProcessor())
