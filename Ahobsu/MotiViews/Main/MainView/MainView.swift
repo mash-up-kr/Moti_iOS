@@ -66,6 +66,8 @@ struct MainView: View {
         }
         .bottomSheet(isPresented: $isDatePickerPresented,
                      height: 400,
+                     contentBackgroundColor: Color(red: 0.051, green: 0.043, blue: 0.043),
+                     topBarBackgroundColor: Color(red: 0.051, green: 0.043, blue: 0.043),
                      showTopIndicator: false) {
             VStack {
                 CalendarDatePicker(calendarManager: calendarManager, selection: $diaryIntent.userSelectedDate) {

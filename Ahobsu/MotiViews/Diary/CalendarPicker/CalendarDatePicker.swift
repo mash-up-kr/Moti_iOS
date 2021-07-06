@@ -57,8 +57,11 @@ struct CalendarDatePicker: View {
                             style.toggle()
                         }
                     } label: {
-                        Text(title)
-                            .foregroundColor(Color(.rosegold))
+                        HStack {
+                            Text(title)
+                            Image("icCalenderArrow")
+                                .rotationEffect(style == .calendar ? Angle.degrees(0) : Angle.degrees(180))
+                        }.foregroundColor(Color(.rosegold))
                     }
                     Spacer()
                     if style == .calendar {

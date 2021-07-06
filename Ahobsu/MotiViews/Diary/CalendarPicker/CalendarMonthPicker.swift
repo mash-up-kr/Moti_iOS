@@ -35,8 +35,8 @@ struct CalendarMonthPicker: View {
                     .frame(width: 72, height: 44 * 3)
             }.frame(maxWidth: .infinity, minHeight: 158)
             HStack {
-                Button("Cancel", action: cancelAction)
-                Button("OK") {
+                Button("취소", action: cancelAction)
+                Button("확인") {
                     let dateComponents = DateComponents(year: viewModel.year, month: viewModel.month, day: 1)
                     if let newDate = Calendar.current.date(from: dateComponents) {
                         selection = newDate
