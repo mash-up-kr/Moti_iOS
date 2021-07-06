@@ -26,13 +26,15 @@ final class UIWheelView: UIView {
     var selectedItem: Int = 0 {
         didSet {
             if let selectedRow = items.firstIndex(of: selectedItem) {
-                tableView.scrollToRow(at: IndexPath(row: selectedRow, section: 0), at: .top, animated: true)
+                tableView.scrollToRow(at: IndexPath(row: selectedRow, section: 0), at: .top, animated: false)
             }
         }
     }
     
     var upperSeparator: UIView!
     var lowerSeparator: UIView!
+    var upperDimmedView: UIView!
+    var lowerDimmedView: UIView!
     
     // Constants
     var itemSize: CGSize = CGSize(width: 72 + 8, height: 44)
@@ -77,17 +79,25 @@ final class UIWheelView: UIView {
         tableView.reloadData()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "CellHeaderFooter")
-        
+
         upperSeparator = UIView()
         upperSeparator.backgroundColor = separatorColor
         
         lowerSeparator = UIView()
         lowerSeparator.backgroundColor = separatorColor
+
+        upperDimmedView = UIView()
+        upperDimmedView.backgroundColor = dimmedColor.withAlphaComponent(0.8)
+        upperDimmedView.isUserInteractionEnabled = false
+        lowerDimmedView = UIView()
+        lowerDimmedView.backgroundColor = dimmedColor.withAlphaComponent(0.8)
+        lowerDimmedView.isUserInteractionEnabled = false
         
         addSubview(tableView)
         addSubview(upperSeparator)
         addSubview(lowerSeparator)
+        addSubview(upperDimmedView)
+        addSubview(lowerDimmedView)
     }
     
     override func layoutSubviews() {
@@ -104,20 +114,18 @@ final class UIWheelView: UIView {
                                       y: (frame.height + itemSize.height) / 2,
                                       width: frame.width,
                                       height: 1)
+        upperDimmedView.frame = CGRect(x: 0,
+                                       y: 0,
+                                       width: frame.width,
+                                       height: itemSize.height - 1)
+        lowerDimmedView.frame = CGRect(x: 0,
+                                       y: frame.height - itemSize.height + 1,
+                                       width: frame.width,
+                                       height: itemSize.height - 1)
         // Patch: SwiftUI에서 초기 뷰 세팅할 떄 올바른 위치로 표기가 안되어서
         if let selectedRow = items.firstIndex(of: selectedItem) {
             tableView.scrollToRow(at: IndexPath(row: selectedRow, section: 0), at: .top, animated: true)
         }
-    }
-    
-    func dequeueHeaderFooter(from tableView: UITableView, type: SectionAccessoryViewType) -> UITableViewHeaderFooterView {
-        let headerFooter = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CellHeaderFooter")!
-        if headerFooter.backgroundView == nil {
-            let view = UIView()
-            view.backgroundColor = dimmedColor.withAlphaComponent(0.8)
-            headerFooter.backgroundView = view
-        }
-        return headerFooter
     }
 }
 
@@ -143,23 +151,23 @@ extension UIWheelView: UITableViewDataSource {
 }
 
 extension UIWheelView: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return itemSize.height
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return itemSize.height
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return dequeueHeaderFooter(from: tableView, type: .header)
+        return UIView()
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return dequeueHeaderFooter(from: tableView, type: .footer)
+        return UIView()
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let point = CGPoint(x: scrollView.center.x + scrollView.contentOffset.x,
                             y: scrollView.center.y + scrollView.contentOffset.y)
