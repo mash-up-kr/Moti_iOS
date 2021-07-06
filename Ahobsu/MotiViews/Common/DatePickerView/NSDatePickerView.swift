@@ -53,7 +53,7 @@ final class UIDatePickerView: UIControl {
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .black
+        backgroundColor = UIColor(red: 0.051, green: 0.043, blue: 0.043, alpha: 1.0)
         
         let now = Date()
         let calendar = Calendar.current

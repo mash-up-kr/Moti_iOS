@@ -9,7 +9,7 @@
 import UIKit
 import AudioToolbox
 
-protocol UIWheelViewDelegate: class {
+protocol UIWheelViewDelegate: AnyObject {
     func wheelView(_ wheelView: UIWheelView, didSelectItem item: Int)
 }
 
@@ -36,7 +36,7 @@ final class UIWheelView: UIView {
     
     // Constants
     var itemSize: CGSize = CGSize(width: 72 + 8, height: 44)
-    var gradientColor: UIColor = UIColor(red: 0.051, green: 0.043, blue: 0.043, alpha: 1.0)
+    var dimmedColor: UIColor = UIColor(red: 0.051, green: 0.043, blue: 0.043, alpha: 1.0)
     var separatorColor: UIColor = .lightgold
     var cellTextColor: UIColor = .rosegold
     var cellTextFont: UIFont = UIFont(name: "IropkeBatangOTFM", size: 24) ?? UIFont.systemFont(ofSize: 20)
@@ -114,7 +114,7 @@ final class UIWheelView: UIView {
         let headerFooter = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CellHeaderFooter")!
         if headerFooter.backgroundView == nil {
             let view = UIView()
-            view.backgroundColor = gradientColor.withAlphaComponent(0.5)
+            view.backgroundColor = dimmedColor.withAlphaComponent(0.8)
             headerFooter.backgroundView = view
         }
         return headerFooter
