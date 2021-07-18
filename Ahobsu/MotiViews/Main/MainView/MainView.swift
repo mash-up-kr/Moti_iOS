@@ -93,26 +93,27 @@ struct MainView: View {
                             NavigationLink(destination: AnswerCompleteView(model.cards)) {
                                 VStack(spacing: 0) {
                                     Image(model.getMainFrameImageString(isTop: true))
-                                    ZStack {
+                                    ZStack() {
                                         Image(model.getMainFrameImageString(isTop: false))
                                         VStack(spacing: 0) {
                                             ZStack {
-                                                ForEach(model.cards.compactMap { $0?.file.cardUrl },
-                                                        id: \.self,
-                                                        content: { (cardUrl) in
-                                                            KFImage(URL(string: cardUrl))
-                                                                .placeholder( { ActivityIndicator(isAnimating: .constant(true),
-                                                                                                  style: .medium) } )
-                                                                .setProcessor(PDFProcessor())
-                                                                .resizable()
-                                                                .aspectRatio(257.0 / 439.0, contentMode: .fit)
-                                                                .padding(17)
-
-                                                })
+                                                    ForEach(model.cards.compactMap { $0?.file.cardUrl },
+                                                            id: \.self,
+                                                            content: { (cardUrl) in
+                                                                    KFImage(URL(string: cardUrl))
+                                                                        .targetCache(.default)
+        //                                                                .placeholder( { ActivityIndicator(isAnimating: .constant(true),
+        //                                                                                                  style: .medium) } )
+                                                                        .setProcessor(PDFProcessor())
+                                                                        .resizable()
+                                                                        .aspectRatio(257.0 / 439.0, contentMode: .fit)
+                                                                        .padding(.horizontal, 17)
+                                                    })
                                             }
                                             .padding(.horizontal, 120)
                                             Spacer()
                                         }
+                                        Spacer()
                                     }
                                 }
 //                                CardView(innerLine: !model.isAnswered)
@@ -146,7 +147,8 @@ struct MainView: View {
                                             .padding([.vertical], 32)
                                         }
                                 )
-                            }.buttonStyle(PlainButtonStyle())
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
                         Spacer()
                     }
