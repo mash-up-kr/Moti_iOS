@@ -31,8 +31,8 @@ struct AnswerComplete_Camera: View {
                 .foregroundColor(Color(.rosegold))
                 .font(.custom("IropkeBatangOTFM", size: 20))
                 .lineSpacing(10.0)
-                .frame(height: 124, alignment: .topLeading)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(height: 500, alignment: .topLeading)
+//                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.all, 20)
         }
         .ignoresSafeArea(.all, edges: .bottom)
