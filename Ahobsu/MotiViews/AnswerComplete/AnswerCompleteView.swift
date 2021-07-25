@@ -63,7 +63,16 @@ struct AnswerCompleteView: View {
         })
     }
     
-    var btnBack : some View {
+    func getTodayDateString() -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        formatter.timeZone = TimeZone.current
+        
+        let todayDateString = formatter.string(from: Date())
+        return todayDateString
+    }
+    
+    var btnBack: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
         }, label: {
