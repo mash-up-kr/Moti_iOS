@@ -15,6 +15,7 @@ struct AnswerQuestionImageView: View {
     @State var isStatusBarHidden = false
     @State var isPresentImagePicker = false
     @State var showImageSourcePicker = false
+    @State var isLoading = false
     
     var missonData: Mission
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -85,6 +86,7 @@ struct AnswerQuestionImageView: View {
                         .padding(.all, 20)
                 }
                 .ignoresSafeArea(.all, edges: .bottom)
+                ActivityIndicator(isAnimating: $isLoading, style: .medium)
             }
         }
         .sheet(isPresented: $isPresentImagePicker, content: {
@@ -96,11 +98,13 @@ struct AnswerQuestionImageView: View {
     }
     
     private func requestAnswer() {
+        isLoading = true
         AhobsuProvider.registerAnswer(missionId: missonData.id,
                                       contentOrNil: nil,
                                       imageOrNil: image,
                                       completion: { wrapper in
                                         print(wrapper?.data ?? "")
+                                        isLoading = false
                                         if let _ = wrapper?.data {
                                             self.answerRegisteredActive = true
                                         } else {

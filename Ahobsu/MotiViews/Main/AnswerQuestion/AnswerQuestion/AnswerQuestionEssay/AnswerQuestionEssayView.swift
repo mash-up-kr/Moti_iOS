@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AnswerQuestionEssayView: View {
     @State var text = ""
+    @State var isLoading = false
     var missonData: Mission
     
     @State var answerRegisteredActive: Bool? = false
@@ -59,6 +60,7 @@ struct AnswerQuestionEssayView: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 32, trailing: 20))
                 }
+                ActivityIndicator(isAnimating: $isLoading, style: .medium)
             }
             .onTapGesture {
                 UIApplication.shared.endEditing()
@@ -67,11 +69,13 @@ struct AnswerQuestionEssayView: View {
     }
     
     private func requestAnswer() {
+        isLoading = true
         AhobsuProvider.registerAnswer(missionId: missonData.id,
                                       contentOrNil: text,
                                       imageOrNil: nil,
                                       completion: { wrapper in
                                         print(wrapper?.data ?? "")
+                                        isLoading = false
                                         if let _ = wrapper?.data {
                                             self.answerRegisteredActive = true
 //                                            self.answerRegisteredActive = 1

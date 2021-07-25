@@ -16,6 +16,7 @@ struct AnswerQuestionImageEssayView: View {
     @State var isPresentImagePicker = false
     @State var showImageSourcePicker = false
     @State var text = ""
+    @State var isLoading = false
     
     var missonData: Mission
     
@@ -106,21 +107,24 @@ struct AnswerQuestionImageEssayView: View {
                 .onTapGesture {
                     UIApplication.shared.endEditing()
                 }
+                ActivityIndicator.init(isAnimating: $isLoading, style: .medium)
             }
         }
         .sheet(isPresented: $isPresentImagePicker, content: {
             ImagePicker(showCamera: self.$showCamera,
                         image: self.$image,
-                        isStatusBarHidden: .constant(false),
+                        isStatusBarHidden: self.$isStatusBarHidden,
                         sourceType: .photoLibrary)
         })
     }
     
     private func requestAnswer() {
+        isLoading = true
         AhobsuProvider.registerAnswer(missionId: missonData.id,
                                       contentOrNil: text,
                                       imageOrNil: image,
                                       completion: { wrapper in
+                                        isLoading = false
                                         print(wrapper?.data ?? "")
                                         if let _ = wrapper?.data {
                                             self.answerRegisteredActive = true

@@ -15,6 +15,7 @@ final class MainViewModel: ObservableObject {
     @Published var todayCard: Answer?
     @Published var cards: [Answer?] = [nil, nil, nil, nil, nil, nil]
     @Published var isStatusBarHidden: Bool = false
+    @Published var isFirstLoad = true
 }
 
 

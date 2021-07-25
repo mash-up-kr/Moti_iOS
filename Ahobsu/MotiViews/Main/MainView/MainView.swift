@@ -162,9 +162,17 @@ struct MainView: View {
                     }
                     .edgesIgnoringSafeArea([.vertical])
                 }
-                .onAppear(perform: {
-                    self.model.getMultipleParts()
+                .onChange(of: selectedTab, perform: { newTab in
+                    if newTab == .home {
+                        self.model.getMultipleParts()
+                    }
                 })
+                .onAppear {
+                    if model.isFirstLoad {
+                        self.model.getMultipleParts()
+                        model.isFirstLoad = false
+                    }
+                }
     }
 
 }
