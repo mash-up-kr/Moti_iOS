@@ -108,7 +108,7 @@ struct AnswerCompleteView: View {
                 .foregroundColor(Color(.rosegold))
                 .font(.custom("IropkeBatangOTFM", size: 20.0))
                 .lineSpacing(16.0)
-        }(), trailingItem: EmptyView()) {
+        }(), trailingItem: btnEdit) {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
