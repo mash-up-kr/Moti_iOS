@@ -34,13 +34,10 @@ struct AnswerCompleteCardView: View, Identifiable {
     
     var body: some View {
         VStack {
-            VStack {
-                contentView
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 480.0, maxHeight: 480.0)
-            }
-            .clipped()
-            
-            .padding([.bottom], 32.0)
+            contentView
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: UIScreen.main.bounds.height - (CGFloat.safeAreaTop + CGFloat.safeAreaTop + 72), maxHeight: UIScreen.main.bounds.height - (CGFloat.safeAreaTop + CGFloat.safeAreaTop + 72))
+                .clipped()
+                .padding([.bottom], 32.0)
         }
     }
     
