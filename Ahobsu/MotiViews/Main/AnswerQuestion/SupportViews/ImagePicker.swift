@@ -52,6 +52,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             if picker.sourceType == .camera {
                 showCamera = false
                 isStatusBarHidden = false
+                presentationMode.dismiss()
             } else {
                 presentationMode.dismiss()
             }
@@ -61,6 +62,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             if picker.sourceType == .camera {
                 showCamera = false
                 isStatusBarHidden = false
+                presentationMode.dismiss()
             } else {
                 presentationMode.dismiss()
             }
@@ -91,7 +93,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         #if targetEnvironment(simulator)
         picker.sourceType = .photoLibrary
         #else
-        picker.sourceType = sourceType
+        picker.sourceType = showCamera ? .camera : .photoLibrary
         #endif
         picker.delegate = context.coordinator
         return picker

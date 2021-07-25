@@ -11,7 +11,11 @@ import SwiftUI
 struct AnswerQuestionImageView: View {
     @State var image: UIImage? 
     @State var showCamera: Bool = false
+    @State var showImagePicker = false
+    @State var isStatusBarHidden = false
     @State var isPresentImagePicker = false
+    @State var showImageSourcePicker = false
+    
     var missonData: Mission
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -37,6 +41,12 @@ struct AnswerQuestionImageView: View {
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
                     ZStack {
+                        Color.clear
+                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                self.showImageSourcePicker = true
+                            }
                         Image("icCameraIncircle")
                         Image(uiImage: image ?? UIImage())
                             .resizable()
@@ -47,9 +57,21 @@ struct AnswerQuestionImageView: View {
                     }
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
                     .clipped()
-                    .onTapGesture {
-                        self.isPresentImagePicker = true
-                    }
+                    .actionSheet(isPresented: $showImageSourcePicker) {
+                        ActionSheet(title: Text("사진 선택하기"),
+                                    message: nil,
+                                    buttons: [.default(Text("카메라로 촬영하기"),
+                                                       action: {
+                                                        self.isStatusBarHidden = true
+                                                        self.showCamera = true
+                                                        self.isPresentImagePicker = true
+                                    }),
+                                              .default(Text("앨범에서 가져오기"),
+                                                       action: {
+                                                        self.isPresentImagePicker = true
+                                              }),
+                                              .cancel()])
+                }
 
                     Color(.goldbrown)
                         .frame(height: 1)
