@@ -84,6 +84,24 @@ struct AnswerCompleteView: View {
         })
     }
     
+    @ViewBuilder
+    var btnEdit: some View {
+        if self.models[self.currentPage].date == self.getTodayDateString() {
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }, label: {
+                HStack {
+                    Image("icRewriteNormal")
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.white)
+                }
+            })
+        }
+        else {
+            EmptyView()
+        }
+    }
+    
     var body: some View {
         NavigationMaskingView(titleItem: {
             Text(dateToString(models[currentPage].dateForDate))
