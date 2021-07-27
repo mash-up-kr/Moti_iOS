@@ -16,13 +16,30 @@ struct AnswerQuestionEssayView: View {
     @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
     
+    var isEdit: Bool = false
+    var answerId: Int? = nil
+    
+    private func getTitleItemString() -> String {
+        if self.isEdit == true {
+            return "수정하기"
+        } else {
+            return "답변하기"
+        }
+    }
+    
     var body: some View {
-        NavigationMaskingView(titleItem: Text("답변하기")
+        NavigationMaskingView(titleItem: Text(self.getTitleItemString())
                                 .font(.system(size: 16)),
                               trailingItem: NavigationLink(destination: AnswerRegisteredView(),
                                                            tag: true,
                                                            selection: $answerRegisteredActive) {
-                                Button(action: { self.requestAnswer() }) {
+                                Button(action: {
+                                    if self.isEdit == true {
+                                        self.updateAnswer()
+                                    } else {
+                                        self.requestAnswer()
+                                    }
+                                }) {
                                     Text("완료")
                                         .foregroundColor(text.isEmpty ? Color(.gray) : Color(.rosegold))
                                         .font(.system(size: 16))
@@ -82,6 +99,27 @@ struct AnswerQuestionEssayView: View {
                                         } else {
                                             // print(wrapper?.message ?? "None")
                                         }
+        }, error: { _ in
+            
+        }, expireTokenAction: {
+            
+        }, filteredStatusCode: nil)
+    }
+    
+    private func updateAnswer() {
+        guard let answerId = self.answerId else {
+            return
+        }
+        
+        AhobsuProvider.updateAnswer(answerId: answerId,
+                                    contentOrNil: text,
+                                    imageOrNil: nil,
+                                    completion: { wrapper in
+            if let _ = wrapper?.data {
+                self.answerRegisteredActive = true
+            } else {
+                
+            }
         }, error: { _ in
             
         }, expireTokenAction: {
