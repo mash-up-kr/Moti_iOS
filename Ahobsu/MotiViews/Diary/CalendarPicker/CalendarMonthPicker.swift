@@ -27,24 +27,30 @@ struct CalendarMonthPicker: View {
     }
 
     var body: some View {
-        VStack {
-            HStack {
-                WheelView(selectedItem: $viewModel.year, items: viewModel.years)
-                    .frame(width: 72, height: 44 * 3)
-                WheelView(selectedItem: $viewModel.month, items: viewModel.months)
-                    .frame(width: 72, height: 44 * 3)
-            }.frame(maxWidth: .infinity, minHeight: 158)
-            HStack {
-                Button("취소", action: cancelAction)
-                Button("확인") {
-                    let dateComponents = DateComponents(year: viewModel.year, month: viewModel.month, day: 1)
-                    if let newDate = Calendar.current.date(from: dateComponents) {
-                        selection = newDate
+        GeometryReader { geometry in
+            VStack {
+                HStack {
+                    WheelView(selectedItem: $viewModel.year, items: viewModel.years)
+                        .frame(width: geometry.size.width / 2, height: 44 * 3)
+                    WheelView(selectedItem: $viewModel.month, items: viewModel.months)
+                        .frame(width: geometry.size.width / 2, height: 44 * 3)
+                }.frame(maxWidth: .infinity, minHeight: 158)
+                HStack {
+                    Spacer()
+                    Button("취소", action: cancelAction)
+                    Spacer()
+                    Spacer()
+                    Button("확인") {
+                        let dateComponents = DateComponents(year: viewModel.year, month: viewModel.month, day: 1)
+                        if let newDate = Calendar.current.date(from: dateComponents) {
+                            selection = newDate
+                        }
+                        okAction()
                     }
-                    okAction()
-                }
-            }.foregroundColor(Color(.rosegold))
-        }.frame(maxWidth: .infinity)
+                    Spacer()
+                }.foregroundColor(Color(.rosegold))
+            }.frame(maxWidth: .infinity)
+        }.padding(20)
     }
 }
 
