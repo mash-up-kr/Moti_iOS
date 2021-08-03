@@ -38,7 +38,7 @@ struct DiaryRowView: View {
                                    height: geometry.size.height,
                                    alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .aspectRatio(contentMode: .fill)
-                            .clipped()
+                            .cornerRadius(12, corners: [.topRight, .bottomRight])
                     }
                 }
                 VStack(alignment: .leading, spacing: 8) {
@@ -49,15 +49,10 @@ struct DiaryRowView: View {
                     }
                 }.padding(EdgeInsets(top: 18, leading: 16, bottom: 18, trailing: 20))
             }
-            .cornerRadius(12, corners: [.topRight, .bottomRight])
-            .clipped()
         }
-//        .frame(height: 128)
-//        .frame(minWidth: <#T##CGFloat?#>, idealWidth: <#T##CGFloat?#>, maxWidth: <#T##CGFloat?#>, minHeight: <#T##CGFloat?#>, idealHeight: <#T##CGFloat?#>, maxHeight: <#T##CGFloat?#>, alignment: <#T##Alignment#>)
         .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 128, idealHeight: 128, maxHeight: 128, alignment: .leading)
         .foregroundColor(Color(.rosegold))
         .roundedBorder()
-        .clipped()
     }
 }
 
