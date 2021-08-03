@@ -253,12 +253,12 @@ final class AhobsuProvider {
                          errorHandler: error)
     }
     
-    class func getAnswersMonth(date: String,
+    class func getAnswersMonth(answerID: Int?,
                                completion: @escaping ((APIData<AnswerMonth>?) -> Void),
                                error: @escaping ((MoyaError) -> Void),
                                expireTokenAction: @escaping () -> Void,
                                filteredStatusCode: [StatusEnum]?) {
-        provider.request(.getMonthAnswers(date: date),
+        provider.request(.getAnswers(answerID: answerID),
                          completionHandler: { response in
                             self.apiDataOrNil(response,
                                               completion,
