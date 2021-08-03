@@ -283,7 +283,10 @@ extension AhobsuAPI: TargetType {
             
         case let .updateProfileImage(image):
             let multipartData: [Moya.MultipartFormData] = [
-                .init(provider: .data(image?.pngData() ?? Data()), name: "file", fileName: "\(image?.hashValue ?? 0)", mimeType: "image/png"),
+                .init(provider: .data(image?.jpegData(compressionQuality: 1) ?? Data()),
+                      name: "file",
+                      fileName: "\(image?.hashValue ?? 0)",
+                      mimeType: "image/jpeg"),
             ]
             return .uploadMultipart(multipartData)
     
