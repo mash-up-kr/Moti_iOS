@@ -23,7 +23,7 @@ struct AlbumView: View {
     var body: some View {
         NavigationMaskingView(isRoot: true, titleItem: EmptyView(), trailingItem: EmptyView()) {}
             .overlay(content)
-            .background(BackgroundView())
+            .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
             .overlay(LoadingView(isShowing: intent.isLoading))
     }
 
