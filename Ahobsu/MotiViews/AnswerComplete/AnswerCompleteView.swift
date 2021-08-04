@@ -49,7 +49,7 @@ struct AnswerCompleteView: View {
     
     @State var currentPage = 0
     
-    init(_ models: [Answer]) {
+    init(models: [Answer]) {
         self.models = models
         
         self.viewControllers = self.models.map({
