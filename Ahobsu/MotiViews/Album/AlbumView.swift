@@ -118,7 +118,7 @@ struct PartsCombinedAnswer: View {
     }
     
     var body: some View {
-        NavigationLink(destination: AnswerCompleteView(answers)) {
+        NavigationLink(destination: AnswerCompleteView(models: answers.compactMap({ $0 }))) {
             ZStack {
                 ForEach(self.answers.compactMap { $0?.file.cardUrl },
                         id: \.self,
