@@ -49,10 +49,8 @@ struct AnswerCompleteView: View {
     
     @State var currentPage = 0
     
-    init(_ model: [Answer?]) {
-        self.models = model.compactMap({ $0 })
-        
-        print(self.models)
+    init(_ models: [Answer]) {
+        self.models = models
         
         self.viewControllers = self.models.map({
             let controller = UIHostingController(rootView: AnswerCompleteCardView(answer: $0))
