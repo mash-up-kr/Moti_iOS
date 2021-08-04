@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct AnswerQuestionImageEssayView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var image: UIImage?
     @State var showCamera: Bool = false
     @State var showImagePicker = false
