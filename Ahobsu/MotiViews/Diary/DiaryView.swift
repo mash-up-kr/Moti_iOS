@@ -68,7 +68,7 @@ struct DiaryView: View {
                                 } else {
                                     EmptyView()
                                 }
-                                NavigationLink(destination: AnswerCompleteView([answer])) {
+                                NavigationLink(destination: AnswerCompleteView(models: [answer])) {
                                     DiaryRowView(answer: answer)
                                 }
                                 .id(answer.id)

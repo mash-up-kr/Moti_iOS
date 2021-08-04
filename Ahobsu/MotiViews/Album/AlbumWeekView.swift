@@ -22,7 +22,7 @@ struct AlbumWeekView: View {
             DayWeekView(isFills: answers.map { $0 != nil })
                 .frame(height: 72, alignment: .center)
             ZStack {
-                NavigationLink(destination: AnswerCompleteView(answers)) {
+                NavigationLink(destination: AnswerCompleteView(models: answers.compactMap({ $0 }))) {
                     CardView(innerLine: true)
                         .aspectRatio(257.0 / 439.0, contentMode: .fit)
                         .padding([.horizontal], 59)
