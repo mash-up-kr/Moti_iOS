@@ -114,11 +114,13 @@ struct AnswerQuestionEssayView: View {
         }
         
         AhobsuProvider.updateAnswer(answerId: answerId,
+                                    missionId: missonData.id,
                                     contentOrNil: text,
                                     imageOrNil: nil,
                                     completion: { wrapper in
             if let _ = wrapper?.data {
-                self.answerRegisteredActive = true
+                self.answerRegisteredActive = false
+                self.presentationMode.wrappedValue.dismiss()
             } else {
                 
             }
