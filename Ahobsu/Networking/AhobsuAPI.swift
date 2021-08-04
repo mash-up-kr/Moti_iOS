@@ -13,7 +13,7 @@ import Moya
 enum AhobsuAPI {
     /* Answers */
     case registerAnswer(missionId: Int, contentOrNil: String?, imageOrNil: UIImage?)
-    case updateAnswer(answerId: Int, contentOrNil: String?, imageOrNil: UIImage?)
+    case updateAnswer(answerId: Int, missionId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case getWeekAnswers
     case getMonthAnswers(date: String)
     case getAnswer(missionDate: String)
@@ -53,7 +53,7 @@ extension AhobsuAPI: TargetType {
             /* Answers */
         case .registerAnswer:
             return "/answers"
-        case let .updateAnswer(answerId, _, _):
+        case let .updateAnswer(answerId, _, _, _):
             return "/answers/\(answerId)"
         case .getWeekAnswers:
             return "/answers/week"
@@ -141,8 +141,8 @@ extension AhobsuAPI: TargetType {
             defaultParams["missionId"] = missionId
             defaultParams["content"] = contentOrNil
             defaultParams["file"] = imageOrNil
-        case let .updateAnswer(answerId, contentOrNil, imageOrNil):
-            defaultParams["answerId"] = answerId
+        case let .updateAnswer(answerId, missionId, contentOrNil, imageOrNil):
+            defaultParams["missionId"] = missionId
             defaultParams["content"] = contentOrNil
             defaultParams["file"] = imageOrNil
         case .getWeekAnswers:
@@ -240,7 +240,7 @@ extension AhobsuAPI: TargetType {
             }
             
             return .uploadMultipart(formData)
-        case let .updateAnswer(answerId, contentOrNil, imageOrNil):
+        case let .updateAnswer(answerId, missionId, contentOrNil, imageOrNil):
             
             var formData: [MultipartFormData] = []
             formData.append(MultipartFormData(provider: .data(Data(from: answerId)),
@@ -257,20 +257,26 @@ extension AhobsuAPI: TargetType {
                                                       name: "file",
                                                       fileName: "answer.jpeg",
                                                       mimeType: "image/jpeg"))
-                    formData.append(MultipartFormData(provider: .data(Data(from: content)),
+                    formData.append(MultipartFormData(provider: .data(content.data(using: .utf8)!),
                                                       name: "content"))
+                    formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
+                                                      name: "missionId"))
                 } else {
                     /* 사진 */
                     formData.append(MultipartFormData(provider: .data(imageData),
                                                       name: "file",
                                                       fileName: "answer.jpeg",
                                                       mimeType: "image/jpeg"))
+                    formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
+                                                      name: "missionId"))
                 }
             } else {
                 /* 주관식 */
                 if let content = contentOrNil {
-                    formData.append(MultipartFormData(provider: .data(Data(from: content)),
+                    formData.append(MultipartFormData(provider: .data(content.data(using: .utf8)!),
                                                       name: "content"))
+                    formData.append(MultipartFormData(provider: .data("\(missionId)".data(using: .utf8)!),
+                                                      name: "missionId"))
                 } else {
                     fatalError("Both Content and Image must not be nil")
                 }
