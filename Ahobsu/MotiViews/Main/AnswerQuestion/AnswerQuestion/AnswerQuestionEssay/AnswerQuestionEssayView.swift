@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct AnswerQuestionEssayView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var text = ""
     @State var isLoading = false
     var missonData: Mission
