@@ -13,7 +13,7 @@ struct AnswerQuestionEssayView: View {
     
     @State var text = ""
     @State var isLoading = false
-    var missonData: Mission
+    var missionData: Mission
     
     @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
@@ -53,7 +53,7 @@ struct AnswerQuestionEssayView: View {
                 BackgroundView()
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
-                    Text(missonData.title)
+                    Text(missionData.title)
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
                         .lineSpacing(10.0)
@@ -89,7 +89,7 @@ struct AnswerQuestionEssayView: View {
     
     private func requestAnswer() {
         isLoading = true
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: text,
                                       imageOrNil: nil,
                                       completion: { wrapper in
@@ -114,7 +114,7 @@ struct AnswerQuestionEssayView: View {
         }
         
         AhobsuProvider.updateAnswer(answerId: answerId,
-                                    missionId: missonData.id,
+                                    missionId: missionData.id,
                                     contentOrNil: text,
                                     imageOrNil: nil,
                                     completion: { wrapper in
@@ -134,7 +134,7 @@ struct AnswerQuestionEssayView: View {
 
 struct AnswerQuestionEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerQuestionEssayView(missonData: Mission(id: 0,
+        AnswerQuestionEssayView(missionData: Mission(id: 0,
                                                     title: "질문에 대한 \n답변을 해주세요",
                                                     isContent: true,
                                                     isImage: false))

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AnswerInsertCamaraView: View {
     @Binding var image: UIImage?
-    var missonData: Mission
+    var missionData: Mission
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     

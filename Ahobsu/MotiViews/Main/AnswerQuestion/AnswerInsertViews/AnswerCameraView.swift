@@ -22,7 +22,7 @@ struct AnswerCameraView: View {
     @State var text = ""
 
     
-    var missonData: Mission
+    var missionData: Mission
     @State var isNetworking: Bool = false
     @State var answerRegisteredActive: Bool = false
     
@@ -35,7 +35,7 @@ struct AnswerCameraView: View {
                             VStack {
                                 if image == nil {
                                     HStack {
-                                        Text(missonData.title)
+                                        Text(missionData.title)
                                             .font(.custom("IropkeBatangOTFM", size: 24.0))
                                             .lineSpacing(6)
                                             .foregroundColor(Color(.rosegold))
@@ -45,7 +45,7 @@ struct AnswerCameraView: View {
                                     Spacer()
                                     Image("imgCam")
                                 } else {
-                                    if missonData.isContent {
+                                    if missionData.isContent {
                                         //                            ZStack {
                                         CardView(innerLine: true)
                                             .overlay(
@@ -132,7 +132,7 @@ struct AnswerCameraView: View {
                                         {
                                             MainButton(action: { self.registerCameraAnswer() },
                                                        title: "제출하기")
-                                        }.environment(\.isEnabled, !(missonData.isContent && text.isEmpty))
+                                        }.environment(\.isEnabled, !(missionData.isContent && text.isEmpty))
                                     }
                                     
                                 }
@@ -168,8 +168,8 @@ extension AnswerCameraView {
         guard let image = image else { return }
         self.isNetworking = true
         
-        let content: String? = missonData.isContent ? text : nil
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        let content: String? = missionData.isContent ? text : nil
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: content,
                                       imageOrNil: image,
                                       completion: { (response) in
@@ -187,6 +187,6 @@ extension AnswerCameraView {
 
 //struct AnswerCameraView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        AnswerCameraView(missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
+//        AnswerCameraView(missionData: Mission(id: 1, title: "", isContent: true, isImage: true))
 //    }
 //}
