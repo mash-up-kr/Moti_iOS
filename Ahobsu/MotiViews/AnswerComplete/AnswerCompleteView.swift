@@ -66,8 +66,15 @@ struct AnswerCompleteView: View {
         formatter.formatOptions = .withFullDate
         formatter.timeZone = TimeZone.current
         
-        let todayDateString = formatter.string(from: Date())
+        let nowDate = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .hour, value: -MISSION_INIT_TIME.hour, to: nowDate)!
+        
+        let todayDateString = formatter.string(from: modifiedDate)
         return todayDateString
+    }
+    
+    func isEditable(currentAnswer: Answer) -> Bool {
+        return currentAnswer.date == self.getTodayDateString()
     }
     
     var btnBack: some View {
@@ -86,7 +93,7 @@ struct AnswerCompleteView: View {
     var btnEdit: some View {
         let currentAnswer = self.models[self.currentPage]
         
-        if currentAnswer.date == self.getTodayDateString() {
+        if self.isEditable(currentAnswer: currentAnswer) {
             Button(action: {}, label: {
                 HStack {
                     if currentAnswer.getAnswerType() == Answer.AnswerType.essay {
