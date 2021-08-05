@@ -84,14 +84,51 @@ struct AnswerCompleteView: View {
     
     @ViewBuilder
     var btnEdit: some View {
-        if self.models[self.currentPage].date == self.getTodayDateString() {
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }, label: {
+        let currentAnswer = self.models[self.currentPage]
+        
+        if currentAnswer.date == self.getTodayDateString() {
+            Button(action: {}, label: {
                 HStack {
-                    Image("icRewriteNormal")
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.white)
+                    if currentAnswer.getAnswerType() == Answer.AnswerType.essay {
+                        NavigationLink(destination: AnswerQuestionEssayView(
+                                        text: currentAnswer.content ?? "",
+                            missionData: currentAnswer.mission,
+                                        isEdit: true,
+                                        answerId: currentAnswer.id
+                        )) {
+                            Image("icRewriteNormal")
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                        }.environment(\.isEnabled, !currentAnswer.mission.title.isEmpty)
+                    }
+                    
+                    if currentAnswer.getAnswerType() == Answer.AnswerType.camera {
+                        NavigationLink(destination: AnswerQuestionImageView(
+                            image: UIImage(data: ImageLoader(urlString: currentAnswer.imageUrl ?? "").data ?? Data()),
+                            missionData: currentAnswer.mission,
+                                        isEdit: true,
+                                        answerId: currentAnswer.id,
+                                        imageUrl: currentAnswer.imageUrl
+                        )) {
+                            Image("icRewriteNormal")
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                        }.environment(\.isEnabled, !currentAnswer.mission.title.isEmpty)
+                    }
+                    
+                    if currentAnswer.getAnswerType() == Answer.AnswerType.essayCamera {
+                        NavigationLink(destination: AnswerQuestionImageEssayView(
+                            image: UIImage(data: ImageLoader(urlString: currentAnswer.imageUrl ?? "").data ?? Data()),
+                                        text: currentAnswer.content ?? "",
+                            missionData: currentAnswer.mission,
+                                        isEdit: true,
+                            answerId: currentAnswer.id
+                        )) {
+                            Image("icRewriteNormal")
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                        }.environment(\.isEnabled, !currentAnswer.mission.title.isEmpty)
+                    }
                 }
             })
         }
@@ -142,7 +179,7 @@ struct AnswerCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         
         return Group {
-            AnswerCompleteView(Answer.dummyCardView())
+            AnswerCompleteView(models: Answer.dummyCardView())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
         }
