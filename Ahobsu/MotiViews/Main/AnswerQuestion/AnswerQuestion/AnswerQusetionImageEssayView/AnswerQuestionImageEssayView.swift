@@ -27,6 +27,7 @@ struct AnswerQuestionImageEssayView: View {
     
     var isEdit: Bool = false
     var answerId: Int? = nil
+    var imageUrl: String? = nil
     
     private func getTitleItemString() -> String {
         if self.isEdit == true {
@@ -68,12 +69,20 @@ struct AnswerQuestionImageEssayView: View {
                                 self.showImageSourcePicker = true
                             }
                         Image("icCameraIncircle")
-                        Image(uiImage: image ?? UIImage())
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: UIScreen.main.bounds.width, height: 200)
-                            .allowsHitTesting(false)
-                            .clipped()
+                        if let imageUrl = self.imageUrl {
+                            ImageView(withURL: imageUrl)
+                                .scaledToFill()
+                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .allowsHitTesting(false)
+                                .clipped()
+                        } else {
+                            Image(uiImage: image ?? UIImage())
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .allowsHitTesting(false)
+                                .clipped()
+                        }
                     }
                     .foregroundColor(.blue)
                     .frame(width: UIScreen.main.bounds.width, height: 200)
