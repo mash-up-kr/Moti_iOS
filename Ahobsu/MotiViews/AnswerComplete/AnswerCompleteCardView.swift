@@ -19,13 +19,21 @@ struct AnswerCompleteCardView: View, Identifiable {
         if let answer = self.answer {
             switch answer.getAnswerType() {
                 case .essay:
-                    return AnyView(AnswerComplete_Essay(title: answer.mission.title, text: answer.content ?? ""))
+                    return AnyView(AnswerComplete_Essay(
+                                    title: answer.mission.title,
+                                    text: answer.content ?? "")
+                    )
                 case .camera:
-                    return AnyView(AnswerComplete_Camera(title: answer.mission.title, imageURL: answer.imageUrl ?? ""))
+                    return AnyView(AnswerComplete_Camera(
+                                    title: answer.mission.title,
+                                    imageURL: answer.imageUrl ?? "")
+                    )
                 case .essayCamera:
-                    return AnyView(AnswerComplete_EssayCamera(title: answer.mission.title,
-                                                              text: answer.content ?? "",
-                                                              imageURL: answer.imageUrl ?? ""))
+                    return AnyView(AnswerComplete_EssayCamera(
+                                    title: answer.mission.title,
+                                    text: answer.content ?? "",
+                                    imageURL: answer.imageUrl ?? "")
+                    )
             }
         } else {
             return AnyView(Text(""))
@@ -33,11 +41,18 @@ struct AnswerCompleteCardView: View, Identifiable {
     }
     
     var body: some View {
-        VStack {
-            contentView
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: UIScreen.main.bounds.height - (CGFloat.safeAreaTop + CGFloat.safeAreaTop + 72), maxHeight: UIScreen.main.bounds.height - (CGFloat.safeAreaTop + CGFloat.safeAreaTop + 72))
-                .clipped()
-                .padding([.bottom], 32.0)
+        GeometryReader { geometry in
+            VStack {
+                contentView
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: UIScreen.main.bounds.height - (geometry.safeAreaInsets.top * 2 + 72),
+                        maxHeight: UIScreen.main.bounds.height - (geometry.safeAreaInsets.top * 2 + 72)
+                    )
+                    .clipped()
+                    .padding([.bottom], 32.0)
+            }
         }
     }
     
