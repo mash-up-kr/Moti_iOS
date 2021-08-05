@@ -141,7 +141,7 @@ extension AhobsuAPI: TargetType {
             defaultParams["missionId"] = missionId
             defaultParams["content"] = contentOrNil
             defaultParams["file"] = imageOrNil
-        case let .updateAnswer(answerId, missionId, contentOrNil, imageOrNil):
+        case let .updateAnswer(_, missionId, contentOrNil, imageOrNil):
             defaultParams["missionId"] = missionId
             defaultParams["content"] = contentOrNil
             defaultParams["file"] = imageOrNil
