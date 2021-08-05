@@ -16,7 +16,7 @@ struct AnswerInsertEssayCameraView: View {
     
     @State var text = ""
     
-    var missonData: Mission
+    var missionData: Mission
     @State var isNetworking: Bool = false
     @State var answerRegisteredActive: Bool = false
     
@@ -28,7 +28,7 @@ struct AnswerInsertEssayCameraView: View {
                 ZStack {
                     VStack {
                         HStack {
-                            Text(missonData.title)
+                            Text(missionData.title)
                                 .font(.custom("IropkeBatangOTFM", size: 24.0))
                                 .lineSpacing(6)
                                 .foregroundColor(Color(.rosegold))
@@ -97,7 +97,7 @@ struct AnswerInsertEssayCameraView: View {
         guard let image = image else { return }
         self.isNetworking = true
         
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: text,
                                       imageOrNil: image,
                                       completion: { wrapper in

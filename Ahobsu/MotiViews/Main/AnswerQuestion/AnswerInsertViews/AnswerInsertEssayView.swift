@@ -23,7 +23,7 @@ struct AnswerInsertEssayView: View {
     
     @State var text = ""
     
-    var missonData: Mission
+    var missionData: Mission
     
     var body: some View {
         NavigationMaskingView(titleItem: Text("답변하기"), trailingItem: EmptyView()) {
@@ -33,7 +33,7 @@ struct AnswerInsertEssayView: View {
                 ZStack {
                     VStack {
                         HStack {
-                            Text(missonData.title)
+                            Text(missionData.title)
                                 .font(.custom("IropkeBatangOTFM", size: 24.0))
                                 .lineSpacing(6)
                                 .foregroundColor(Color(.rosegold))
@@ -92,7 +92,7 @@ struct AnswerInsertEssayView: View {
     }
     
     private func requestAnswer() {
-        //        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missonData.id,
+        //        AhobsuProvider.provider.requestPublisher(.registerAnswer(missionId: missionData.id,
         //                                                                 contentOrNil: text,
         //                                                                 imageOrNil: nil))
         //            .map { $0.statusCode == 201 }
@@ -105,7 +105,7 @@ struct AnswerInsertEssayView: View {
         //            })
         //            .store(in: &answerQuestion.cancels)
         
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: text,
                                       imageOrNil: nil,
                                       completion: { wrapper in
@@ -130,7 +130,7 @@ struct AnswerInsertEssayView: View {
 
 struct AnswerInsertEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerInsertEssayView(missonData: Mission(id: 1, title: "", isContent: true, isImage: true))
+        AnswerInsertEssayView(missionData: Mission(id: 1, title: "", isContent: true, isImage: true))
     }
 }
 

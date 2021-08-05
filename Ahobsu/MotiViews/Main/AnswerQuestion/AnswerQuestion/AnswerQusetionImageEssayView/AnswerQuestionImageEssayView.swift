@@ -20,7 +20,7 @@ struct AnswerQuestionImageEssayView: View {
     @State var text = ""
     @State var isLoading = false
     
-    var missonData: Mission
+    var missionData: Mission
     
     @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
@@ -96,7 +96,7 @@ struct AnswerQuestionImageEssayView: View {
                     Color(.goldbrown)
                         .frame(height: 1)
                         .frame(maxWidth: .infinity)
-                    Text(missonData.title)
+                    Text(missionData.title)
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
                         .lineSpacing(10.0)
@@ -139,7 +139,7 @@ struct AnswerQuestionImageEssayView: View {
     
     private func requestAnswer() {
         isLoading = true
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: text,
                                       imageOrNil: image,
                                       completion: { wrapper in
@@ -163,6 +163,7 @@ struct AnswerQuestionImageEssayView: View {
         }
         
         AhobsuProvider.updateAnswer(answerId: answerId,
+                                    missionId: missionData.id,
                                     contentOrNil: text,
                                     imageOrNil: image,
                                     completion: { wrapper in
@@ -181,9 +182,10 @@ struct AnswerQuestionImageEssayView: View {
 
 struct AnswerQuestionImageEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerQuestionImageEssayView(missonData: Mission(id: 0,
+        AnswerQuestionImageEssayView(missionData: Mission(id: 0,
                                                          title: "질문에 대한 \n답변을 해주세요",
                                                          isContent: true,
-                                                         isImage: false))
+                                                         isImage: false)
+        )
     }
 }

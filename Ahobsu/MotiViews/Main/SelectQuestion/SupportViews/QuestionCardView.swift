@@ -47,16 +47,16 @@ struct QuestionCardView: View, Identifiable {
                 Spacer()
                 if missionData.isContent == true {
                     if missionData.isImage == true {
-                        NavigationLink(destination: AnswerQuestionImageEssayView(missonData: missionData)) {
+                        NavigationLink(destination: AnswerQuestionImageEssayView(missionData: missionData)) {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     } else {
-                        NavigationLink(destination: AnswerQuestionEssayView(missonData: missionData)) {
+                        NavigationLink(destination: AnswerQuestionEssayView(missionData: missionData)) {
                             MainButton(title: "답변하기")
                         }.environment(\.isEnabled, !missionData.title.isEmpty)
                     }
                 } else if missionData.isImage == true {
-                    NavigationLink(destination: AnswerQuestionImageView(missonData: missionData)) {
+                    NavigationLink(destination: AnswerQuestionImageView(missionData: missionData)) {
                         MainButton(title: "답변하기")
                     }.environment(\.isEnabled, !missionData.title.isEmpty)
                 }

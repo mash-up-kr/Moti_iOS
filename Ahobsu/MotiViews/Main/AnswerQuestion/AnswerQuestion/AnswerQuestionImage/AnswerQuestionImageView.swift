@@ -17,7 +17,7 @@ struct AnswerQuestionImageView: View {
     @State var showImageSourcePicker = false
     @State var isLoading = false
     
-    var missonData: Mission
+    var missionData: Mission
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var answerRegisteredActive: Bool? = false
@@ -88,7 +88,7 @@ struct AnswerQuestionImageView: View {
                     Color(.goldbrown)
                         .frame(height: 1)
                         .frame(maxWidth: .infinity)
-                    Text(missonData.title)
+                    Text(missionData.title)
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
                         .lineSpacing(10.0)
@@ -110,7 +110,7 @@ struct AnswerQuestionImageView: View {
     
     private func requestAnswer() {
         isLoading = true
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: nil,
                                       imageOrNil: image,
                                       completion: { wrapper in
@@ -134,6 +134,7 @@ struct AnswerQuestionImageView: View {
         }
         
         AhobsuProvider.updateAnswer(answerId: answerId,
+                                    missionId: missionData.id,
                                     contentOrNil: nil,
                                     imageOrNil: image,
                                     completion: { wrapper in
@@ -152,7 +153,7 @@ struct AnswerQuestionImageView: View {
 
 struct AnswerQuestionImageView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerQuestionImageView(missonData: Mission(id: 0,
+        AnswerQuestionImageView(missionData: Mission(id: 0,
                                                     title: "질문에 대한 \n답변을 해주세요",
                                                     isContent: false,
                                                     isImage: true))
