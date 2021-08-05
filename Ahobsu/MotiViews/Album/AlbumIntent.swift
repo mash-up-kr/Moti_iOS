@@ -19,23 +19,15 @@ final class AlbumItent: ObservableObject {
 
     // For Albums
     @Published var answerMonth: [[Answer?]] = []
-    @Published var currentYear: Int
-    @Published var currentMonth: Int
     @Published var isLoading: Bool = false
     var isReloadNeeded: Bool = false
 
-    private var months: [String] = []
-    private var targetMonthIndex: Int = 0
-    private var lastMonth: String?
     private var hasNextData: Bool = true
 
     private var cancels = Set<AnyCancellable>()
 
     init() {
-        let calendar = Calendar.current
         let date = Date()
-        self.currentYear = calendar.component(.year, from: date)
-        self.currentMonth = calendar.component(.month, from: date)
         self.shelfXOffset = 0
         self.updateShelfOffset(for: date)
 
@@ -47,24 +39,7 @@ final class AlbumItent: ObservableObject {
             }
         }.store(in: &cancels)
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        AhobsuProvider.getDays(completion: { rawDates in
-            DispatchQueue.main.async {
-                let dates: [Date] = rawDates?.data?.compactMap { formatter.date(from: $0) } ?? []
-                self.months = Dictionary(grouping: dates) { Calendar.current.startOfMonth(for: $0) }.keys
-                    .compactMap { formatter.string(from: $0) }
-                    .sorted { $0 > $1 }
-                self.lastMonth = self.months.last
-                if self.months.isNotEmpty {
-                    self.loadMore()
-                }
-            }
-        }, error: { error in
-
-        }, expireTokenAction: {
-
-        }, filteredStatusCode: nil)
+        loadMore()
     }
 }
 
@@ -88,15 +63,13 @@ private extension AlbumItent {
 
     func loadMore() {
         guard hasNextData else { return }
-        guard let month = months[safe: targetMonthIndex] else { return }
-        defer {
-            targetMonthIndex += 1
-        }
+
         self.isLoading = true
-        AhobsuProvider.provider.requestPublisher(.getMonthAnswers(date: month))
+        let lastAnswerID = answerMonth.last?.last??.id
+        AhobsuProvider.provider.requestPublisher(.getAnswers(answerID: lastAnswerID))
             .retry(2)
             .map { $0.data }
-            .decode(type: APIData<AnswerMonth>.self, decoder: JSONDecoder())
+            .decode(type: APIData<[[Answer]]>.self, decoder: JSONDecoder())
             .tryCompactMap { $0.data }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
@@ -111,20 +84,12 @@ private extension AlbumItent {
                     }
                     self.isLoading = false
                 }
-            } receiveValue: { [weak self] (answerMonth) in
+            } receiveValue: { [weak self] (answers) in
                 guard let self = self else { return }
                 withAnimation {
-                    let newAnswers = answerMonth.monthAnswer.flatMap { $0 }
-                    if newAnswers.isEmpty {
-                        self.loadMore()
-                    } else {
-                        let groupedAnswers = Dictionary(grouping: newAnswers) { $0?.no }
-                        groupedAnswers.forEach {
-                            self.answerMonth.append($0.value)
-                        }
-                        if newAnswers.contains(where: { $0?.date == self.lastMonth }) {
-                            self.hasNextData = false
-                        }
+                    self.hasNextData = answers.isNotEmpty
+                    answers.forEach {
+                        self.answerMonth.append($0)
                     }
                 }
             }

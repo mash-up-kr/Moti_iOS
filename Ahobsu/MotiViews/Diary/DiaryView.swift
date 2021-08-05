@@ -85,7 +85,7 @@ struct DiaryView: View {
 
             }
         }
-        .background(BackgroundView())
+        .background(BackgroundView().edgesIgnoringSafeArea(.vertical))
         .onAppear(perform: {
             intent.onAppear()
         })

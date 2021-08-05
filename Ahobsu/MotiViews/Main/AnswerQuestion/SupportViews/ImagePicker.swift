@@ -69,8 +69,9 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         private func makeFilteredImage(image: UIImage?) -> UIImage? {
-            guard let cgImage = image?.cgImage,
-                  let sepiaFilter = CIFilter(name:"CISepiaTone") else { return nil }
+            guard let image = image,
+                  let cgImage = image.cgImage,
+                  let sepiaFilter = CIFilter(name:"CISepiaTone") else { return image }
             
             let originalCIImage = CIImage(cgImage: cgImage)
 
@@ -79,7 +80,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             
             guard let output = sepiaFilter.outputImage,
                   let newcgImage = context.createCGImage(output, from: output.extent) else { return nil }
-            return UIImage(cgImage: newcgImage)
+            return UIImage(cgImage: newcgImage, scale: image.scale, orientation: image.imageOrientation)
         }
         
     }

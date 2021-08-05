@@ -15,7 +15,7 @@ enum AhobsuAPI {
     case registerAnswer(missionId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case updateAnswer(answerId: Int, missionId: Int, contentOrNil: String?, imageOrNil: UIImage?)
     case getWeekAnswers
-    case getMonthAnswers(date: String)
+    case getAnswers(answerID: Int?)
     case getAnswer(missionDate: String)
     case getDiary(direction: ComparisonResult, limit: Int, date: String?)
     case getDays
@@ -57,8 +57,8 @@ extension AhobsuAPI: TargetType {
             return "/answers/\(answerId)"
         case .getWeekAnswers:
             return "/answers/week"
-        case .getMonthAnswers:
-            return "/answers/month"
+        case .getAnswers:
+            return "/answers/list"
         case .getAnswer:
             return "/answers"
         case .getDiary:
@@ -99,7 +99,7 @@ extension AhobsuAPI: TargetType {
             return .post
         case .updateAnswer:
             return .put
-        case .getWeekAnswers, .getMonthAnswers, .getAnswer, .getDiary, .getDays:
+        case .getWeekAnswers, .getAnswers, .getAnswer, .getDiary, .getDays:
             return .get
             
             /* Missions */
@@ -147,8 +147,10 @@ extension AhobsuAPI: TargetType {
             defaultParams["file"] = imageOrNil
         case .getWeekAnswers:
             break
-        case let .getMonthAnswers(date):
-            defaultParams["date"] = date
+        case let .getAnswers(answerID):
+            if let answerID = answerID {
+                defaultParams["answerId"] = answerID
+            }
         case let .getAnswer(date):
             defaultParams["date"] = date
         case let .getDiary(direction, limit, date):
@@ -289,7 +291,10 @@ extension AhobsuAPI: TargetType {
             
         case let .updateProfileImage(image):
             let multipartData: [Moya.MultipartFormData] = [
-                .init(provider: .data(image?.pngData() ?? Data()), name: "file", fileName: "\(image?.hashValue ?? 0)", mimeType: "image/png"),
+                .init(provider: .data(image?.jpegData(compressionQuality: 1) ?? Data()),
+                      name: "file",
+                      fileName: "\(image?.hashValue ?? 0)",
+                      mimeType: "image/jpeg"),
             ]
             return .uploadMultipart(multipartData)
     
@@ -299,7 +304,7 @@ extension AhobsuAPI: TargetType {
                 "snsType": "apple"
             ]
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .getMonthAnswers, .getDiary:
+        case .getAnswers, .getDiary:
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         default:
             return .requestPlain
