@@ -90,7 +90,7 @@ struct MainView: View {
                     VStack {
                         Spacer()
                         if model.todayCard != nil {
-                            NavigationLink(destination: AnswerCompleteView(model.cards)) {
+                            NavigationLink(destination: AnswerCompleteView(models: model.cards.compactMap({ $0 }))) {
                                 VStack(spacing: 0) {
                                     Image(model.getMainFrameImageString(isTop: true))
                                     ZStack() {
