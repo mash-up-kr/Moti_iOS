@@ -129,7 +129,8 @@ struct AnswerCompleteView: View {
                                         text: currentAnswer.content ?? "",
                             missionData: currentAnswer.mission,
                                         isEdit: true,
-                            answerId: currentAnswer.id
+                            answerId: currentAnswer.id,
+                            imageUrl: currentAnswer.imageUrl
                         )) {
                             Image("icRewriteNormal")
                                 .aspectRatio(contentMode: .fit)
