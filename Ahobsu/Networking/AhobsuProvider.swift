@@ -221,6 +221,7 @@ final class AhobsuProvider {
     }
     
     class func updateAnswer(answerId: Int,
+                            missionId: Int,
                             contentOrNil: String?,
                             imageOrNil: UIImage?,
                             completion: @escaping ((APIData<Answer>?) -> Void),
@@ -228,6 +229,7 @@ final class AhobsuProvider {
                             expireTokenAction: @escaping () -> Void,
                             filteredStatusCode: [StatusEnum]?) {
         provider.request(.updateAnswer(answerId: answerId,
+                                       missionId: missionId,
                                        contentOrNil: contentOrNil,
                                        imageOrNil: imageOrNil),
                          completionHandler: { response in

@@ -31,10 +31,15 @@ extension MainViewModel {
     func getMultipleParts() {
         AhobsuProvider.getAnswersWeek(completion: { wrapper in
             if var answerWeek = wrapper?.data {
+                
                 let formatter = ISO8601DateFormatter()
                 formatter.formatOptions = .withFullDate
                 formatter.timeZone = TimeZone.current
-                let dateString = formatter.string(from: Date())
+                
+                let nowDate = Date()
+                let modifiedDate = Calendar.current.date(byAdding: .hour, value: -MISSION_INIT_TIME.hour, to: nowDate)!
+                
+                let dateString = formatter.string(from: modifiedDate)
                 
                 withAnimation {
                     if let lastCard = answerWeek.answers.last {

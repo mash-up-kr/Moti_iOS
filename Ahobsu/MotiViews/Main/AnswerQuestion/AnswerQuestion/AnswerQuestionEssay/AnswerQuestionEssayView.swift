@@ -9,20 +9,39 @@
 import SwiftUI
 
 struct AnswerQuestionEssayView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var text = ""
     @State var isLoading = false
-    var missonData: Mission
+    var missionData: Mission
     
     @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
     
+    var isEdit: Bool = false
+    var answerId: Int? = nil
+    
+    private func getTitleItemString() -> String {
+        if self.isEdit {
+            return "수정 하기"
+        } else {
+            return "답변 하기"
+        }
+    }
+    
     var body: some View {
-        NavigationMaskingView(titleItem: Text("답변하기")
+        NavigationMaskingView(titleItem: Text(self.getTitleItemString())
                                 .font(.system(size: 16)),
                               trailingItem: NavigationLink(destination: AnswerRegisteredView(),
                                                            tag: true,
                                                            selection: $answerRegisteredActive) {
-                                Button(action: { self.requestAnswer() }) {
+                                Button(action: {
+                                    if self.isEdit {
+                                        self.updateAnswer()
+                                    } else {
+                                        self.requestAnswer()
+                                    }
+                                }) {
                                     Text("완료")
                                         .foregroundColor(text.isEmpty ? Color(.gray) : Color(.rosegold))
                                         .font(.system(size: 16))
@@ -34,7 +53,7 @@ struct AnswerQuestionEssayView: View {
                 BackgroundView()
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
-                    Text(missonData.title)
+                    Text(missionData.title)
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
                         .lineSpacing(10.0)
@@ -70,7 +89,7 @@ struct AnswerQuestionEssayView: View {
     
     private func requestAnswer() {
         isLoading = true
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: text,
                                       imageOrNil: nil,
                                       completion: { wrapper in
@@ -88,11 +107,35 @@ struct AnswerQuestionEssayView: View {
             
         }, filteredStatusCode: nil)
     }
+    
+    private func updateAnswer() {
+        guard let answerId = self.answerId else {
+            return
+        }
+        
+        isLoading = true
+        AhobsuProvider.updateAnswer(answerId: answerId,
+                                    missionId: missionData.id,
+                                    contentOrNil: text,
+                                    imageOrNil: nil,
+                                    completion: { wrapper in
+                                        isLoading = false
+            if let _ = wrapper?.data {
+                self.answerRegisteredActive = true
+            } else {
+                
+            }
+        }, error: { _ in
+            
+        }, expireTokenAction: {
+            
+        }, filteredStatusCode: nil)
+    }
 }
 
 struct AnswerQuestionEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerQuestionEssayView(missonData: Mission(id: 0,
+        AnswerQuestionEssayView(missionData: Mission(id: 0,
                                                     title: "질문에 대한 \n답변을 해주세요",
                                                     isContent: true,
                                                     isImage: false))

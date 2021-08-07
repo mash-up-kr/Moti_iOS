@@ -63,6 +63,7 @@
 		60712E24E822658E9354E63A3F9106B0 /* AnswerWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA405C08D4F44F9263A48346F2987B99 /* AnswerWeek.swift */; };
 		63EC707B702F70546022F5268B33D4DB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538D8E89CC16EFFB5AC4C42018359B2 /* SplashView.swift */; };
 		63F562C392EFF08575084D7FCCADFAA2 /* AnswerQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54897E54114C299DC791A8C87484A2A3 /* AnswerQuestion.swift */; };
+		6467E11026BB6888000D24D6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467E10F26BB6888000D24D6 /* Config.swift */; };
 		64B4402494D785C7BB7D436D61074A60 /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F903F42F6F06846B7D7ED623C2A1188 /* FileModel.swift */; };
 		65376F7BF8D9119E53ECDDA6E709F31F /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4095D0A15B937B14DD0B1E9243252123 /* Keyboard.swift */; };
 		6675DA914AB268309BC9390ED0487711 /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21028E6C7A9E457DA7D2AC3F90B21995 /* SignInWithAppleDelegates.swift */; };
@@ -215,6 +216,7 @@
 		60F4E2286FCBCCB712F8DB007B559FFE /* GenderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCardView.swift; sourceTree = "<group>"; };
 		627D69417FFDB9370F8C58945F570844 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		633C286DB1ED5ACD4A094B0C2E099E28 /* SignUpGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGenderView.swift; sourceTree = "<group>"; };
+		6467E10F26BB6888000D24D6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		651E668CEFCDFA43412FDC79B18A8094 /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		65D4FC3176B2D6A6A22B58C671DDED5E /* AlbumIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumIntent.swift; sourceTree = "<group>"; };
 		65FC12FC50520F836F645BDBCD11824A /* AhobsuAPIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AhobsuAPIConfig.swift; sourceTree = "<group>"; };
@@ -470,6 +472,14 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		6467E10E26BB6879000D24D6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6467E10F26BB6888000D24D6 /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		66B06056EC6306CB95E43D55EBB54D56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +599,7 @@
 		9B7A173A97D0463CC8BB42133ED4F71D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6467E10E26BB6879000D24D6 /* Config */,
 				7E5C3DDDBE5EFBA929F62DEC19887F7C /* DatePickerView */,
 				F5F6576FBA47C51DFDB637EE28AD2829 /* Fonts */,
 				E11A3E80387511066A7D202CB221F153 /* ActivityIndicator.swift */,
@@ -1108,6 +1119,7 @@
 				FE9A5C5ED84DA12E738F1C023FE43495 /* ActivityIndicator.swift in Sources */,
 				549FCCECAA918667E1EC72B0793D05BB /* AhobsuAPI.swift in Sources */,
 				38390EE92CA3042159C07B381F522900 /* AhobsuAPIConfig.swift in Sources */,
+				6467E11026BB6888000D24D6 /* Config.swift in Sources */,
 				08952E7F3061C2AC361F20FCFA8C7366 /* AhobsuProvider.swift in Sources */,
 				4E6E2023D386BF88CDB2A8DE5A7BC4F9 /* AlbumIntent.swift in Sources */,
 				E7AF816713E6C4CC1C1497D73187C56D /* AlbumView.swift in Sources */,

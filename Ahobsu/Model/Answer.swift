@@ -73,12 +73,15 @@ extension Answer {
         return formatter.date(from: date)
     }
     func isTodayAnswer() -> Bool {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        formatter.timeZone = TimeZone.current
         
-        let todayStr = formatter.string(from: Date())
+        let nowDate = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .hour, value: -MISSION_INIT_TIME.hour, to: nowDate)!
         
-        return self.date == todayStr
+        let todayDateString = formatter.string(from: modifiedDate)
+        return self.date == todayDateString
     }
 }
 

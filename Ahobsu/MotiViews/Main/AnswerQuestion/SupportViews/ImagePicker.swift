@@ -46,7 +46,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController,
                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                image = isFiltered ? makeFilteredImage(image: uiImage) : uiImage
+                image = isFiltered ? makeFilteredImage(uiImage: uiImage) : uiImage
                 completion?(image)
             }
             if picker.sourceType == .camera {
@@ -68,10 +68,10 @@ struct ImagePicker: UIViewControllerRepresentable {
             }
         }
         
-        private func makeFilteredImage(image: UIImage?) -> UIImage? {
-            guard let image = image,
+        private func makeFilteredImage(uiImage: UIImage?) -> UIImage? {
+            guard let image = uiImage,
                   let cgImage = image.cgImage,
-                  let sepiaFilter = CIFilter(name:"CISepiaTone") else { return image }
+                  let sepiaFilter = CIFilter(name:"CISepiaTone") else { return uiImage }
             
             let originalCIImage = CIImage(cgImage: cgImage)
 

@@ -49,10 +49,8 @@ struct AnswerCompleteView: View {
     
     @State var currentPage = 0
     
-    init(_ model: [Answer?]) {
-        self.models = model.compactMap({ $0 })
-        
-        print(self.models)
+    init(models: [Answer]) {
+        self.models = models
         
         self.viewControllers = self.models.map({
             let controller = UIHostingController(rootView: AnswerCompleteCardView(answer: $0))
@@ -63,7 +61,23 @@ struct AnswerCompleteView: View {
         })
     }
     
-    var btnBack : some View {
+    func getTodayDateString() -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        formatter.timeZone = TimeZone.current
+        
+        let nowDate = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .hour, value: -MISSION_INIT_TIME.hour, to: nowDate)!
+        
+        let todayDateString = formatter.string(from: modifiedDate)
+        return todayDateString
+    }
+    
+    func isEditable(currentAnswer: Answer) -> Bool {
+        return currentAnswer.date == self.getTodayDateString()
+    }
+    
+    var btnBack: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
         }, label: {
@@ -75,13 +89,69 @@ struct AnswerCompleteView: View {
         })
     }
     
+    @ViewBuilder
+    var btnEdit: some View {
+        let currentAnswer = self.models[self.currentPage]
+        
+        if self.isEditable(currentAnswer: currentAnswer) {
+            Button(action: {}, label: {
+                HStack {
+                    if currentAnswer.getAnswerType() == Answer.AnswerType.essay {
+                        NavigationLink(destination: AnswerQuestionEssayView(
+                                        text: currentAnswer.content ?? "",
+                            missionData: currentAnswer.mission,
+                                        isEdit: true,
+                                        answerId: currentAnswer.id
+                        )) {
+                            Image("icRewriteNormal")
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                        }.environment(\.isEnabled, !currentAnswer.mission.title.isEmpty)
+                    }
+                    
+                    if currentAnswer.getAnswerType() == Answer.AnswerType.camera {
+                        NavigationLink(destination: AnswerQuestionImageView(
+                            image: UIImage(data: ImageLoader(urlString: currentAnswer.imageUrl ?? "").data ?? Data()),
+                            missionData: currentAnswer.mission,
+                                        isEdit: true,
+                                        answerId: currentAnswer.id,
+                                        imageUrl: currentAnswer.imageUrl
+                        )) {
+                            Image("icRewriteNormal")
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                        }.environment(\.isEnabled, !currentAnswer.mission.title.isEmpty)
+                    }
+                    
+                    if currentAnswer.getAnswerType() == Answer.AnswerType.essayCamera {
+                        NavigationLink(destination: AnswerQuestionImageEssayView(
+                            image: UIImage(data: ImageLoader(urlString: currentAnswer.imageUrl ?? "").data ?? Data()),
+                                        text: currentAnswer.content ?? "",
+                            missionData: currentAnswer.mission,
+                                        isEdit: true,
+                            answerId: currentAnswer.id,
+                            imageUrl: currentAnswer.imageUrl
+                        )) {
+                            Image("icRewriteNormal")
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                        }.environment(\.isEnabled, !currentAnswer.mission.title.isEmpty)
+                    }
+                }
+            })
+        }
+        else {
+            EmptyView()
+        }
+    }
+    
     var body: some View {
         NavigationMaskingView(titleItem: {
             Text(dateToString(models[currentPage].dateForDate))
                 .foregroundColor(Color(.rosegold))
                 .font(.custom("IropkeBatangOTFM", size: 20.0))
                 .lineSpacing(16.0)
-        }(), trailingItem: EmptyView()) {
+        }(), trailingItem: btnEdit) {
             ZStack {
                 BackgroundView()
                     .edgesIgnoringSafeArea([.vertical])
@@ -117,7 +187,7 @@ struct AnswerCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         
         return Group {
-            AnswerCompleteView(Answer.dummyCardView())
+            AnswerCompleteView(models: Answer.dummyCardView())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
         }

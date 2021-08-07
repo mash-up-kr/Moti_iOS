@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct AnswerQuestionImageEssayView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     @State var image: UIImage?
     @State var showCamera: Bool = false
     @State var showImagePicker = false
@@ -18,24 +20,42 @@ struct AnswerQuestionImageEssayView: View {
     @State var text = ""
     @State var isLoading = false
     
-    var missonData: Mission
+    var missionData: Mission
     
     @State var answerRegisteredActive: Bool? = false
     @ObservedObject var answerQuestion = AnswerQuestion()
     
+    var isEdit: Bool = false
+    var answerId: Int? = nil
+    var imageUrl: String? = nil
+    
+    private func getTitleItemString() -> String {
+        if self.isEdit {
+            return "수정 하기"
+        } else {
+            return "답변 하기"
+        }
+    }
+    
     var body: some View {
-        NavigationMaskingView(titleItem: Text("답변하기")
+        NavigationMaskingView(titleItem: Text(self.getTitleItemString())
                                 .font(.system(size: 16)),
                               trailingItem: NavigationLink(destination: AnswerRegisteredView(),
                                                            tag: true,
                                                            selection: $answerRegisteredActive) {
-                                Button(action: { self.requestAnswer() }) {
+                                Button(action: {
+                                    if self.isEdit {
+                                        self.updateAnswer()
+                                    } else {
+                                        self.requestAnswer()
+                                    }
+                                }) {
                                     Text("완료")
-                                        .foregroundColor((text.isEmpty || image == nil) ? Color(.gray) : Color(.rosegold))
+                                        .foregroundColor((isEdit ? text.isEmpty : text.isEmpty || image == nil) ? Color(.gray) : Color(.rosegold))
                                         .font(.system(size: 16))
                                 }
                               }
-                              .disabled(text.isEmpty || image == nil)
+                              .disabled(isEdit ? text.isEmpty : text.isEmpty || image == nil)
         ) {
             ZStack {
                 BackgroundView()
@@ -49,12 +69,20 @@ struct AnswerQuestionImageEssayView: View {
                                 self.showImageSourcePicker = true
                             }
                         Image("icCameraIncircle")
-                        Image(uiImage: image ?? UIImage())
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: UIScreen.main.bounds.width, height: 200)
-                            .allowsHitTesting(false)
-                            .clipped()
+                        if let imageUrl = self.imageUrl {
+                            ImageView(withURL: imageUrl)
+                                .scaledToFill()
+                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .allowsHitTesting(false)
+                                .clipped()
+                        } else {
+                            Image(uiImage: image ?? UIImage())
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .allowsHitTesting(false)
+                                .clipped()
+                        }
                     }
                     .foregroundColor(.blue)
                     .frame(width: UIScreen.main.bounds.width, height: 200)
@@ -77,7 +105,7 @@ struct AnswerQuestionImageEssayView: View {
                     Color(.goldbrown)
                         .frame(height: 1)
                         .frame(maxWidth: .infinity)
-                    Text(missonData.title)
+                    Text(missionData.title)
                         .foregroundColor(Color(.rosegold))
                         .font(.custom("IropkeBatangOTFM", size: 20))
                         .lineSpacing(10.0)
@@ -120,7 +148,7 @@ struct AnswerQuestionImageEssayView: View {
     
     private func requestAnswer() {
         isLoading = true
-        AhobsuProvider.registerAnswer(missionId: missonData.id,
+        AhobsuProvider.registerAnswer(missionId: missionData.id,
                                       contentOrNil: text,
                                       imageOrNil: image,
                                       completion: { wrapper in
@@ -137,13 +165,38 @@ struct AnswerQuestionImageEssayView: View {
             
         }, filteredStatusCode: nil)
     }
+    
+    private func updateAnswer() {
+        guard let answerId = self.answerId else {
+            return
+        }
+        
+        isLoading = true
+        AhobsuProvider.updateAnswer(answerId: answerId,
+                                    missionId: missionData.id,
+                                    contentOrNil: text,
+                                    imageOrNil: image,
+                                    completion: { wrapper in
+                                        isLoading = false
+            if let _ = wrapper?.data {
+                self.answerRegisteredActive = true
+            } else {
+                
+            }
+        }, error: { _ in
+            
+        }, expireTokenAction: {
+            
+        }, filteredStatusCode: nil)
+    }
 }
 
 struct AnswerQuestionImageEssayView_Previews: PreviewProvider {
     static var previews: some View {
-        AnswerQuestionImageEssayView(missonData: Mission(id: 0,
+        AnswerQuestionImageEssayView(missionData: Mission(id: 0,
                                                          title: "질문에 대한 \n답변을 해주세요",
                                                          isContent: true,
-                                                         isImage: false))
+                                                         isImage: false)
+        )
     }
 }
