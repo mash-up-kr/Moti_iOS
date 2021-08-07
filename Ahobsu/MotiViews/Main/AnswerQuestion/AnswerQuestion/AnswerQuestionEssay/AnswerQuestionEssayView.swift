@@ -22,10 +22,10 @@ struct AnswerQuestionEssayView: View {
     var answerId: Int? = nil
     
     private func getTitleItemString() -> String {
-        if self.isEdit == true {
-            return "수정하기"
+        if self.isEdit {
+            return "수정 하기"
         } else {
-            return "답변하기"
+            return "답변 하기"
         }
     }
     
@@ -36,7 +36,7 @@ struct AnswerQuestionEssayView: View {
                                                            tag: true,
                                                            selection: $answerRegisteredActive) {
                                 Button(action: {
-                                    if self.isEdit == true {
+                                    if self.isEdit {
                                         self.updateAnswer()
                                     } else {
                                         self.requestAnswer()
@@ -113,14 +113,15 @@ struct AnswerQuestionEssayView: View {
             return
         }
         
+        isLoading = true
         AhobsuProvider.updateAnswer(answerId: answerId,
                                     missionId: missionData.id,
                                     contentOrNil: text,
                                     imageOrNil: nil,
                                     completion: { wrapper in
+                                        isLoading = false
             if let _ = wrapper?.data {
-                self.answerRegisteredActive = false
-                self.presentationMode.wrappedValue.dismiss()
+                self.answerRegisteredActive = true
             } else {
                 
             }

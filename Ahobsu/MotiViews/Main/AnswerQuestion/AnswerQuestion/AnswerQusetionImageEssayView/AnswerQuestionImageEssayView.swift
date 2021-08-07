@@ -30,10 +30,10 @@ struct AnswerQuestionImageEssayView: View {
     var imageUrl: String? = nil
     
     private func getTitleItemString() -> String {
-        if self.isEdit == true {
-            return "수정하기"
+        if self.isEdit {
+            return "수정 하기"
         } else {
-            return "답변하기"
+            return "답변 하기"
         }
     }
     
@@ -44,18 +44,18 @@ struct AnswerQuestionImageEssayView: View {
                                                            tag: true,
                                                            selection: $answerRegisteredActive) {
                                 Button(action: {
-                                    if self.isEdit == true {
+                                    if self.isEdit {
                                         self.updateAnswer()
                                     } else {
                                         self.requestAnswer()
                                     }
                                 }) {
                                     Text("완료")
-                                        .foregroundColor((text.isEmpty || image == nil) ? Color(.gray) : Color(.rosegold))
+                                        .foregroundColor((isEdit ? text.isEmpty : text.isEmpty || image == nil) ? Color(.gray) : Color(.rosegold))
                                         .font(.system(size: 16))
                                 }
                               }
-                              .disabled(text.isEmpty || image == nil)
+                              .disabled(isEdit ? text.isEmpty : text.isEmpty || image == nil)
         ) {
             ZStack {
                 BackgroundView()
@@ -171,11 +171,13 @@ struct AnswerQuestionImageEssayView: View {
             return
         }
         
+        isLoading = true
         AhobsuProvider.updateAnswer(answerId: answerId,
                                     missionId: missionData.id,
                                     contentOrNil: text,
                                     imageOrNil: image,
                                     completion: { wrapper in
+                                        isLoading = false
             if let _ = wrapper?.data {
                 self.answerRegisteredActive = true
             } else {
