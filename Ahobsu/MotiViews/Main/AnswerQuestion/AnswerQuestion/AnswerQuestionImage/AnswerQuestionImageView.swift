@@ -68,14 +68,14 @@ struct AnswerQuestionImageView: View {
                             }
                         Image("icCameraIncircle")
                         if let imageUrl = self.imageUrl {
-                            ImageView(withURL: imageUrl)
+                            Image(uiImage: image ?? UIImage())
+                                .resizable()
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
                                 .allowsHitTesting(false)
                                 .clipped()
-                        } else {
-                            Image(uiImage: image ?? UIImage())
-                                .resizable()
+                        } else if let imageUrl = self.imageUrl {
+                            ImageView(withURL: imageUrl)
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
                                 .allowsHitTesting(false)

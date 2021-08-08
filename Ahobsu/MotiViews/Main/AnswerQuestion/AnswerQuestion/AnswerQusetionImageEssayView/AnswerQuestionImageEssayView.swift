@@ -69,15 +69,15 @@ struct AnswerQuestionImageEssayView: View {
                                 self.showImageSourcePicker = true
                             }
                         Image("icCameraIncircle")
-                        if let imageUrl = self.imageUrl {
-                            ImageView(withURL: imageUrl)
+                        if let image = self.image {
+                            Image(uiImage: image ?? UIImage())
+                                .resizable()
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
                                 .allowsHitTesting(false)
                                 .clipped()
-                        } else {
-                            Image(uiImage: image ?? UIImage())
-                                .resizable()
+                        } else if let imageUrl = self.imageUrl {
+                            ImageView(withURL: imageUrl)
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
                                 .allowsHitTesting(false)
