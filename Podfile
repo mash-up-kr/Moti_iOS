@@ -8,6 +8,6 @@ inhibit_all_warnings!
   pod 'Moya'
   pod 'Kingfisher'
 
-  # Pods for Ahobsu
-
+  # Firebase
+  pod 'Firebase/Analytics'
 end
