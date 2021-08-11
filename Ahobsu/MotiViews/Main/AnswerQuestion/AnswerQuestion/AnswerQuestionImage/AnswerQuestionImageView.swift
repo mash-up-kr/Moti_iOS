@@ -67,8 +67,8 @@ struct AnswerQuestionImageView: View {
                                 self.showImageSourcePicker = true
                             }
                         Image("icCameraIncircle")
-                        if let imageUrl = self.imageUrl {
-                            Image(uiImage: image ?? UIImage())
+                        if let image = self.image {
+                            Image(uiImage: image)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 4 / 3)
