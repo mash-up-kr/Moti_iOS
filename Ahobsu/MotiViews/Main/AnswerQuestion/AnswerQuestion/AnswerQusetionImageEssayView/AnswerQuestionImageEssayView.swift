@@ -70,7 +70,7 @@ struct AnswerQuestionImageEssayView: View {
                             }
                         Image("icCameraIncircle")
                         if let image = self.image {
-                            Image(uiImage: image ?? UIImage())
+                            Image(uiImage: image)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
