@@ -149,8 +149,8 @@ struct AnswerCompleteView: View {
         NavigationMaskingView(titleItem: {
             Text(dateToString(models[currentPage].dateForDate))
                 .foregroundColor(Color(.rosegold))
-                .font(.custom("IropkeBatangOTFM", size: 20.0))
-                .lineSpacing(16.0)
+                .font(.motiFont(MotiFont.AppleSDGothicNeoRegular, size: 16.0))
+                .lineSpacing(19.0)
         }(), trailingItem: btnEdit) {
             ZStack {
                 BackgroundView()
