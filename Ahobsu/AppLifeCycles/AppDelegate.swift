@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupViewAppearance()
-        
+        setupFirebase()
         return true
     }
     
@@ -34,5 +35,9 @@ extension AppDelegate {
     
     private func setupViewAppearance() {
         UINavigationBar.appearance().tintColor = .rosegold
+    }
+    
+    private func setupFirebase() {
+        FirebaseApp.configure()
     }
 }
