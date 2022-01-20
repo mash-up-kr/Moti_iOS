@@ -96,6 +96,7 @@ struct MainView: View {
                     NavigationLink(destination: AnswerCompleteView(models: model.cards.compactMap({ $0 }))) {
                         VStack(spacing: 0) {
                             Spacer()
+                                .frame(height: 64, alignment: .bottom)
                             Image(model.getMainFrameImageString(isTop: true))
                             ZStack() {
                                 VStack {
