@@ -28,41 +28,47 @@ struct MainView: View {
     @State private var selectedTab: Tab = .home
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $selectedTab) {
-                home
-                    .tag(Tab.home)
-                    .tabItem {
-                        VStack {
-                            Image(selectedTab == .home ? "icMainSelected" : "icMainNormal")
-                            Text("Home")
+        ZStack {
+            BackgroundView()
+                .edgesIgnoringSafeArea([.vertical])
+                .frame(maxHeight: .infinity)
+            
+            NavigationView {
+                TabView(selection: $selectedTab) {
+                    home
+                        .tag(Tab.home)
+                        .tabItem {
+                            VStack {
+                                Image(selectedTab == .home ? "icMainSelected" : "icMainNormal")
+                                Text("Home")
+                            }
                         }
-                    }
-                DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager, isDatePickerPresented: $isDatePickerPresented)
-                    .tag(Tab.diary)
-                    .tabItem {
-                        VStack {
-                            Image(selectedTab == .diary ? "icDiarySelected" : "icDiaryNormal")
-                            Text("Diary")
+                    DiaryView(diaryIntent: diaryIntent, calendarManager: calendarManager, isDatePickerPresented: $isDatePickerPresented)
+                        .tag(Tab.diary)
+                        .tabItem {
+                            VStack {
+                                Image(selectedTab == .diary ? "icDiarySelected" : "icDiaryNormal")
+                                Text("Diary")
+                            }
                         }
-                    }
-                AlbumView(intent: albumItent)
-                    .tag(Tab.album)
-                    .tabItem {
-                        VStack {
-                            Image(selectedTab == .album ? "icAlbumSelected" : "icAlbumNormal")
-                            Text("Album")
+                    AlbumView(intent: albumItent)
+                        .tag(Tab.album)
+                        .tabItem {
+                            VStack {
+                                Image(selectedTab == .album ? "icAlbumSelected" : "icAlbumNormal")
+                                Text("Album")
+                            }
                         }
-                    }
-                MyPageView()
-                    .tag(Tab.profile)
-                    .tabItem {
-                        VStack {
-                            Image(selectedTab == .profile ? "icProfileSelected" : "icProfileNormal")
-                            Text("Mypage")
+                    MyPageView()
+                        .tag(Tab.profile)
+                        .tabItem {
+                            ZStack {
+                                Image(selectedTab == .profile ? "icProfileSelected" : "icProfileNormal")
+                                Text("Mypage")
+                            }
                         }
-                    }
-            }.accentColor(Color(.rosegold))
+                }.accentColor(Color(.rosegold))
+            }
         }
         .bottomSheet(isPresented: $isDatePickerPresented,
                      height: 400,
@@ -83,102 +89,112 @@ struct MainView: View {
 //                                  titleItem: EmptyView(),
 //                                  trailingItem: EmptyView())
 //            {
-                ZStack {
-                    BackgroundView()
-                        .edgesIgnoringSafeArea([.vertical])
-                    
-                    VStack {
-                        Spacer()
-                        if model.todayCard != nil {
-                            NavigationLink(destination: AnswerCompleteView(models: model.cards.compactMap({ $0 }))) {
-                                VStack(spacing: 0) {
-                                    Image(model.getMainFrameImageString(isTop: true))
-                                    ZStack() {
-                                        Image(model.getMainFrameImageString(isTop: false))
-                                        VStack(spacing: 0) {
-                                            ZStack {
-                                                    ForEach(model.cards.compactMap { $0?.file.cardUrl },
-                                                            id: \.self,
-                                                            content: { (cardUrl) in
-                                                                    KFImage(URL(string: cardUrl))
-                                                                        .targetCache(.default)
-        //                                                                .placeholder( { ActivityIndicator(isAnimating: .constant(true),
-        //                                                                                                  style: .medium) } )
-                                                                        .setProcessor(PDFProcessor())
-                                                                        .resizable()
-                                                                        .aspectRatio(257.0 / 439.0, contentMode: .fit)
-                                                                        .padding(.horizontal, 17)
-                                                    })
-                                            }
-                                            .padding(.horizontal, 120)
-                                            Spacer()
-                                        }
-                                        Spacer()
-                                    }
+        ZStack {
+            VStack {
+                Spacer()
+                if model.todayCard != nil {
+                    NavigationLink(destination: AnswerCompleteView(models: model.cards.compactMap({ $0 }))) {
+                        VStack(spacing: 0) {
+                            Spacer()
+                            Image(model.getMainFrameImageString(isTop: true))
+                            ZStack() {
+                                VStack {
+                                    Image(model.getMainFrameImageString(isTop: false))
+                                    Spacer()
                                 }
+                                
+                                VStack(spacing: 0) {
+                                    ZStack {
+                                            ForEach(model.cards.compactMap { $0?.file.cardUrl },
+                                                    id: \.self,
+                                                    content: { (cardUrl) in
+                                                            KFImage(URL(string: cardUrl))
+                                                                .targetCache(.default)
+//                                                                .placeholder( { ActivityIndicator(isAnimating: .constant(true),
+//                                                                                                  style: .medium) } )
+                                                                .setProcessor(PDFProcessor())
+                                                                .resizable()
+                                                                .aspectRatio(257.0 / 439.0, contentMode: .fit)
+                                                                .padding(.horizontal, 17)
+                                            })
+                                    }
+                                    .padding(.horizontal, 120)
+                                    Spacer()
+                                }
+                                
+                                VStack {
+                                    Spacer()
+                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0.0)]),
+                                                   startPoint: .bottom, endPoint: .top)
+                                }
+                            }
+                        }
 //                                CardView(innerLine: !model.isAnswered)
 //                                    .aspectRatio(257.0 / 439.0, contentMode: .fit)
 //                                    .padding([.horizontal], 59.0)
 //                                    .overlay(
 //
 //                                )
-                            }.buttonStyle(PlainButtonStyle())
-                        } else {
-                            NavigationLink(destination: SelectQuestionView(window: $window,
-                                                                           isStatusBarHidden: $model.isStatusBarHidden))
-                            {
-                                CardView(innerLine: !model.isAnswered)
-                                    .aspectRatio(0.62, contentMode: .fit)
-                                    .padding([.horizontal], 59)
-                                    .overlay(
-                                        ZStack {
-                                            VStack {
-                                                Text("Motivation")
-                                                    .font(.custom("Baskerville", size: 16.0))
-                                                    .foregroundColor(Color(.rosegold))
-                                                Spacer()
-                                                Image("imgQuestion")
-                                                Spacer()
-                                                Text("Today’s\nyour\nQuestion")
-                                                    .font(.custom("Baskerville", size: 16.0))
-                                                    .foregroundColor(Color(.rosegold))
-                                                    .multilineTextAlignment(.center)
-                                            }
-                                            .padding([.vertical], 32)
-                                        }
-                                )
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        Spacer()
+                    }.buttonStyle(PlainButtonStyle())
+                } else {
+                    NavigationLink(destination: SelectQuestionView(window: $window,
+                                                                   isStatusBarHidden: $model.isStatusBarHidden))
+                    {
+                        CardView(innerLine: !model.isAnswered)
+                            .aspectRatio(0.62, contentMode: .fit)
+                            .padding([.horizontal], 59)
+                            .overlay(
+                                ZStack {
+                                    VStack {
+                                        Text("Motivation")
+                                            .font(.custom("Baskerville", size: 16.0))
+                                            .foregroundColor(Color(.rosegold))
+                                        Spacer()
+                                        Image("imgQuestion")
+                                        Spacer()
+                                        Text("Today’s\nyour\nQuestion")
+                                            .font(.custom("Baskerville", size: 16.0))
+                                            .foregroundColor(Color(.rosegold))
+                                            .multilineTextAlignment(.center)
+                                    }
+                                    .padding([.vertical], 32)
+                                }
+                        )
                     }
-                    .padding([.bottom], 30)
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 40, alignment: .bottom)
-                        DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .bottom)
-                        Spacer()
-                    }
-                    .edgesIgnoringSafeArea([.vertical])
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .onChange(of: selectedTab, perform: { newTab in
-                    if newTab == .home {
-                        self.model.getMultipleParts()
-                    }
-                })
-                .onAppear {
-                    if model.isFirstLoad {
-                        self.model.getMultipleParts()
-                        model.isFirstLoad = false
-                    }
-                }
+                Spacer()
+            }
+            
+            VStack {
+                Spacer()
+                    .frame(height: 36, alignment: .bottom)
+                DayWeekView(isFills: model.cards.map { $0 != nil }).frame(height: 72, alignment: .bottom)
+                Spacer()
+            }
+        }
+        .edgesIgnoringSafeArea([.vertical])
+        .onChange(of: selectedTab, perform: { newTab in
+            if newTab == .home {
+                self.model.getMultipleParts()
+            }
+        })
+        .onAppear {
+            if model.isFirstLoad {
+                self.model.getMultipleParts()
+                model.isFirstLoad = false
+            }
+        }
     }
-
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(window: UIWindow())
+        ForEach(["iPhone 13 Pro", "iPhone 8 Plus"], id: \.self) {
+            MainView(window: UIWindow())
+                .previewDevice(PreviewDevice(rawValue: $0))
+                .previewDisplayName($0)
+        }
     }
 }
+    
