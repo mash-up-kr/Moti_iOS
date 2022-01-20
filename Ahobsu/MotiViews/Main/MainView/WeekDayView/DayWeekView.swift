@@ -26,13 +26,17 @@ struct DayWeekView: View {
     }
     
     var body: some View {
-        HStack {
-            ForEach(0..<isFills.count) { index in
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0.0)]),
+                                     startPoint: .top, endPoint: .bottom)
+            HStack {
+                ForEach(0..<isFills.count) { index in
+                    Spacer()
+                    WeekDayCellView(title: self.SeqTitleFromIndex(index + 1),
+                                    isFill: self.isFills[index])
+                }
                 Spacer()
-                WeekDayCellView(title: self.SeqTitleFromIndex(index + 1),
-                                isFill: self.isFills[index])
             }
-            Spacer()
         }
     }
 }
