@@ -23,16 +23,17 @@ struct SwiftUIPagerView<Content: View & Identifiable>: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: self.spacing) {
-                    ForEach(self.pages) { page in
-                        page
-                            .frame(width: geometry.size.width + self.pageWidthCompensation, height: nil)
+            if (self.pages.count > 1) {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .center, spacing: self.spacing) {
+                        ForEach(self.pages) { page in
+                            page
+                                .frame(width: geometry.size.width + self.pageWidthCompensation, height: nil)
+                        }
                     }
                 }
-            }
                 // 2
-            .content.offset(x: self.isGestureActive ? self.offset : -((geometry.size.width + self.widthCompensation) * CGFloat(self.index)))
+                .content.offset(x: self.isGestureActive ? self.offset : -((geometry.size.width + self.widthCompensation) * CGFloat(self.index)))
                 // 3
                 .frame(width: geometry.size.width, height: nil, alignment: .leading)
                 .gesture(DragGesture().onChanged({ value in
@@ -56,7 +57,11 @@ struct SwiftUIPagerView<Content: View & Identifiable>: View {
                     // 7
                     DispatchQueue.main.async { self.isGestureActive = false }
                 }))
-                .padding([.leading], -self.pageWidthCompensation)
+                .padding(.leading, -self.pageWidthCompensation)
+            } else {
+                self.pages[0]
+                    .frame(width: geometry.size.width + self.pageWidthCompensation, height: nil)
+            }
         }
     }
 }
