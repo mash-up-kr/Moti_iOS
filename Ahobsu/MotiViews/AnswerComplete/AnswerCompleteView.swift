@@ -160,7 +160,6 @@ struct AnswerCompleteView: View {
                                      pageWidthCompensation: 0,
                                      index: $currentPage,
                                      pages: models.map { AnswerCompleteCardView(answer: $0) })
-                        .disabled(models.count == 1)
                     if models.count != 1 {
                         VStack {
                             Spacer()
